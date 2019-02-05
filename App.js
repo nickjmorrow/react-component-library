@@ -21,7 +21,7 @@ var App = /** @class */ (function (_super) {
     App.prototype.render = function () {
         return (React.createElement("div", null,
             React.createElement(ExampleComponent, { text: "Modern React component module" }),
-            "Testing that now the Example folder uses Typescript"));
+            "Testing 1b"));
     };
     return App;
 }(React.Component));
