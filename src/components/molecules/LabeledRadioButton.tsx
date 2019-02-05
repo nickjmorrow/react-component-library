@@ -1,0 +1,49 @@
+import * as React from "react";
+import styled from "styled-components";
+import { InputWrapper, LabeledInputWrapper } from "components/atoms/Inputs";
+import { boxShadow, colors, transitions } from "styleConstants";
+import { IOption } from "types";
+import { Typography } from "components/atoms/Typography";
+
+export const LabeledRadioButton: React.SFC<IProps> = ({
+  option,
+  isChecked,
+  onClick: handleClick
+}) => {
+  const handleClickInternal = () => {
+    handleClick(option);
+  };
+  return (
+    <LabeledInputWrapper onClick={handleClickInternal}>
+      <InputWrapper>
+        <RadioButton isChecked={isChecked} />
+      </InputWrapper>
+      <Typography color={isChecked ? "primary" : "default"}>
+        {option.label}
+      </Typography>
+    </LabeledInputWrapper>
+  );
+};
+
+const length = 14;
+const RadioButton = styled<IRadioButtonProps, "div">("div")`
+  width: ${length}px;
+  height: ${length}px;
+  border-radius: ${length}px;
+  border: 1px solid
+    ${props => (props.isChecked ? colors.primary : colors.primaryLight)};
+  box-shadow: ${boxShadow.light};
+  background-color: ${props =>
+    props.isChecked ? colors.primary : colors.transparent};
+  transition: background-color ${transitions.fast} ease-in-out;
+`;
+
+interface IRadioButtonProps {
+  isChecked: boolean;
+}
+
+interface IProps {
+  option: IOption;
+  isChecked: boolean;
+  onClick(option: IOption): void;
+}

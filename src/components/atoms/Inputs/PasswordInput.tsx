@@ -25,7 +25,7 @@ export const PasswordInput: React.SFC<IOwnProps> = ({
   const [inputType, setInputType] = useState("password" as allowedInputTypes);
   const showPassword = inputType === "text";
   // TODO: add input validation
-  const [errorOnBlur, setErrorOnBlur] = useState("");
+  const [errorOnBlur] = useState("");
 
   const toggleInputType = () =>
     setInputType(inputType === "text" ? "password" : "text");

@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { transitions, colors } from "@myAlias";
 
+// TODO: think about circular dependency
 export const CloseIcon: React.SFC<IOwnProps & Partial<IDisplayProps>> = ({
   style,
   onClick: handleClick,

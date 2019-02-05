@@ -1,7 +1,8 @@
-import ExampleComponent from './'
+// TODO: add the tests
+// import ExampleComponent from './'
 
-describe('ExampleComponent', () => {
-  it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
-  })
-})
+// describe('ExampleComponent', () => {
+//   it('is truthy', () => {
+//     expect(ExampleComponent).toBeTruthy()
+//   })
+// })
