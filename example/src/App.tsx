@@ -48,7 +48,7 @@ class App extends React.Component {
         <LabeledCheckbox
           option={options[0]}
           onClick={this.handleClick}
-          isToggled={true}
+          isToggled={false}
         />
       </div>
     );
