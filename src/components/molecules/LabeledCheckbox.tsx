@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import { InputWrapper, LabeledInputWrapper } from "components/atoms/Inputs";
-import { borderRadius, boxShadow, colors, transitions } from "styleConstants";
+import { InputWrapper, LabeledInputWrapper } from "~/components/atoms/inputs";
+import { borderRadius, boxShadow, colors, transitions } from "~/styleConstants";
 import { IOption } from "types";
-import { Typography } from "components/atoms/Typography";
-import { Checkbox } from "components/atoms/Inputs/Checkbox";
+import { Typography } from "~/components/atoms/Typography";
+import { Checkbox } from "~/components/atoms/inputs/Checkbox";
 
 export const LabeledCheckbox: React.SFC<IProps> = ({
   isToggled,

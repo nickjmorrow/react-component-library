@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from "./Button";
+import { Button } from "~/components/atoms";
 
 export const VerticalNavMenu: React.SFC<IOwnProps> = ({
   buttonProps: links

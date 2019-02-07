@@ -1,9 +1,8 @@
 import * as React from "react";
 import styled, { StyledFunction } from "styled-components";
-import { IValue } from "./types";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { colors, transitions, iconType } from "styleConstants";
-import { Typography } from "components/atoms/Typography";
+import { IValue } from "~/types";
+import { colors, transitions, iconType } from "~/styleConstants";
+import { Typography } from "~/components/atoms/Typography";
 
 interface OwnProps {
   label: IValue;
@@ -55,12 +54,3 @@ export const ItemWrapper = itemWrapper`
         transition: ${transitions.medium};
     }
 `;
-
-const iconStyle = {
-  height: "10px",
-  width: "10px",
-  marginLeft: "8px",
-  marginBottom: "4px",
-  color: "inherit",
-  cursor: "pointer"
-};

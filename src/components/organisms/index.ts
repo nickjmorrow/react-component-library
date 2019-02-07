@@ -1,5 +1,4 @@
 export { AuthModal } from "./AuthModal";
-export { DescriptorCard } from "./DescriptorCard";
 export { GoogleLoginButton } from "./GoogleLoginButton";
 export { LabeledCheckboxInput } from "./LabeledCheckboxInput";
 export { LabeledRadioButtonInput } from "./LabeledRadioButtonInput";

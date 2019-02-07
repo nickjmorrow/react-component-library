@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReactGoogleLogin, { GoogleLoginResponse } from "react-google-login";
-import { Button, Typography } from "components/atoms";
-import { GoogleIcon } from "components/atoms/icons";
+import { Button, Typography } from "~/components/atoms";
+import { GoogleIcon } from "~/components/atoms/icons";
 
 export const GoogleLoginButton: React.SFC<IOwnProps> = ({
   handleSuccess,

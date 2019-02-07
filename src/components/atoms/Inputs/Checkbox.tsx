@@ -1,5 +1,5 @@
 import * as React from "react";
-import { colors, transitions } from "../../../styleConstants";
+import { colors, transitions } from "~/styleConstants";
 import styled from "styled-components";
 interface ISvgProps {
   fill: string;

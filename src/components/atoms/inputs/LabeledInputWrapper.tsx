@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { verticalMargin } from "styleConstants";
+import { verticalMargin } from "~/styleConstants";
 
 export const LabeledInputWrapper = styled.div`
   display: flex;

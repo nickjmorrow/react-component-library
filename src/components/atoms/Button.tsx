@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors, transitions, borderRadius, boxShadow } from "styleConstants";
+import { colors, transitions, borderRadius, boxShadow } from "~/styleConstants";
 import { Typography } from "./Typography";
 import { Link } from "react-router-dom";
 

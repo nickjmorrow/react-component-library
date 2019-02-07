@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
-import { InputWrapper, LabeledInputWrapper } from "components/atoms/Inputs";
-import { boxShadow, colors, transitions } from "styleConstants";
-import { IOption } from "types";
-import { Typography } from "components/atoms/Typography";
+import { InputWrapper, LabeledInputWrapper } from "~/components/atoms/inputs";
+import { boxShadow, colors, transitions } from "~/styleConstants";
+import { IOption } from "~/types";
+import { Typography } from "~/components/atoms/Typography";
 
 export const LabeledRadioButton: React.SFC<IProps> = ({
   option,
@@ -26,7 +26,7 @@ export const LabeledRadioButton: React.SFC<IProps> = ({
 };
 
 const length = 14;
-const RadioButton = styled<IRadioButtonProps, "div">("div")`
+const RadioButton = styled("div")<IRadioButtonProps>`
   width: ${length}px;
   height: ${length}px;
   border-radius: ${length}px;
