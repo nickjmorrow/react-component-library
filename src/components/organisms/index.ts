@@ -4,5 +4,5 @@ export { LabeledCheckboxInput } from "./LabeledCheckboxInput";
 export { LabeledRadioButtonInput } from "./LabeledRadioButtonInput";
 export { LogOutModal } from "./LogOutModal";
 export { PopulatedAppBar } from "./PopulatedAppBar";
-export { SideNav } from "./SideNav";
+export { SideNav, NavItemProps } from "./SideNav";
 export { TwoButtonModal } from "./TwoButtonModal";

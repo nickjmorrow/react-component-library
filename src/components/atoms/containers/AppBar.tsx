@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors } from "~/styleConstants";
+import { colors, boxShadow } from "~/styleConstants";
 
 interface AppBarProps {
   children: React.ReactNode;
@@ -34,4 +34,5 @@ const Wrapper = styled.div`
   color: ${colors.white};
   display: flex;
   justify-content: center;
+  box-shadow: ${boxShadow.default};
 `;

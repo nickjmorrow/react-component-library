@@ -25,7 +25,7 @@ export default {
       sourcemap: true
     }
   ],
-  external: ["stream"],
+  external: ["stream", "styled-components"],
   plugins: [
     external(),
     postcss({
