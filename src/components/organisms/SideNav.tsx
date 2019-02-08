@@ -2,23 +2,43 @@ import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import styled from "styled-components";
 import { Typography, Link } from "~/components";
-import { colors } from "~/styleConstants";
+import { colors, transitions } from "~/styleConstants";
 
 const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
   navInfos,
-  style
+  style,
+  location
 }) => {
+  const { pathname } = location;
+  console.log(pathname);
   return (
     <Wrapper style={style}>
       {navInfos.map((ni, i) => {
-        const typography: any = <Typography>{ni.label}</Typography>;
-
-        const contentWrapper = (
+        console.log(ni.route);
+        const typography: any = (
+          <Typography color={pathname === ni.route ? "colored" : "default"}>
+            {ni.label}
+          </Typography>
+        );
+        const content = (
           <ContentWrapper itemLevel={ni.itemLevel}>{typography}</ContentWrapper>
         );
+
         return (
           <NavItemWrapper key={i}>
-            <Link route={ni.route}>{contentWrapper}</Link>
+            {ni.route ? (
+              <Link
+                route={ni.route}
+                style={{
+                  display: "inline-block",
+                  width: "100%",
+                  height: "100%"
+                }}>
+                {content}
+              </Link>
+            ) : (
+              { content }
+            )}
           </NavItemWrapper>
         );
       })}
@@ -51,9 +71,10 @@ const NavItemWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  cursor: pointer;
   &:hover {
     background-color: ${colors.lightGray};
-    transition: 0.2s;
+    transition: ${transitions.fast};
   }
 `;
 

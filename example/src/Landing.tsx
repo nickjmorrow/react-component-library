@@ -11,13 +11,13 @@ const atomComponents = {
     {
       component: Buttons,
       label: "Buttons",
-      route: "buttons",
+      route: "/buttons",
       itemLevel: 1
     },
     {
       component: SelectDemo,
       label: "Select",
-      route: "select",
+      route: "/select",
       itemLevel: 1
     }
   ]
@@ -31,7 +31,7 @@ const routes = components.reduce(
       ...curr.components.map((c, i) => (
         <Route
           key={`${c.route}-${i}`}
-          to={c.route}
+          path={c.route}
           component={c.component}
           exact={true}
         />
@@ -69,3 +69,6 @@ const GridWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+// TODO: why are all components being rendered
+// and not just those matched to the current route?
