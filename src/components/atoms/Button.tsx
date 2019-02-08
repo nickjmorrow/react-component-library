@@ -140,7 +140,7 @@ const getColor = (variant: ButtonVariant) => {
     case "secondary":
       return colors.secondary;
     case "cancel":
-      return colors.tertiaryDark;
+      return colors.tertiary;
     case "transparent":
       return colors.transparent;
     case "google":

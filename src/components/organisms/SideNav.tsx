@@ -10,11 +10,9 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
   location
 }) => {
   const { pathname } = location;
-  console.log(pathname);
   return (
     <Wrapper style={style}>
       {navInfos.map((ni, i) => {
-        console.log(ni.route);
         const typography: any = (
           <Typography color={pathname === ni.route ? "colored" : "default"}>
             {ni.label}
@@ -37,7 +35,7 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
                 {content}
               </Link>
             ) : (
-              { content }
+              content
             )}
           </NavItemWrapper>
         );
@@ -94,7 +92,7 @@ const getMargin = (level: itemLevel) => {
 };
 
 // types
-export type NavItemProps = { label: string; route: string } & DisplayProps;
+export type NavItemProps = { label: string; route?: string } & DisplayProps;
 interface SideNavProps {
   navInfos: NavItemProps[];
   style?: React.CSSProperties;

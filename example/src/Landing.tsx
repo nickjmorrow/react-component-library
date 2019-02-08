@@ -44,11 +44,15 @@ const routes = components.reduce(
 
 const navInfos = components.reduce(
   (prev, curr) => {
+    prev.push({
+      label: curr.folderLabel,
+      itemLevel: 1 as itemLevel
+    });
     prev.push(
       ...curr.components.map(c => ({
         route: c.route,
         label: c.label,
-        itemLevel: 1 as itemLevel
+        itemLevel: 2 as itemLevel
       }))
     );
     return prev;
@@ -60,7 +64,7 @@ export const Landing: React.SFC<{}> = () => {
   return (
     <GridWrapper>
       <SideNav navInfos={navInfos} />
-      {routes}
+      <RoutesWrapper>{routes}</RoutesWrapper>
     </GridWrapper>
   );
 };
@@ -68,6 +72,10 @@ export const Landing: React.SFC<{}> = () => {
 const GridWrapper = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const RoutesWrapper = styled.div`
+  margin: 24px 0px 24px 24px;
 `;
 
 // TODO: why are all components being rendered

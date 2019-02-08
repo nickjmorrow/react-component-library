@@ -22,7 +22,7 @@ const Inner = styled.div`
   margin: 0px 16px;
   width: 95%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
 `;
