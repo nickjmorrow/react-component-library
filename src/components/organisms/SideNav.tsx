@@ -2,7 +2,7 @@ import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import styled from "styled-components";
 import { Typography, Link } from "~/components";
-import { colors, transitions } from "~/styleConstants";
+import { colors, transitions, boxShadow } from "~/styleConstants";
 
 const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
   navInfos,
@@ -52,8 +52,9 @@ const Wrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
   min-width: 15rem;
-  height: 100%;
   width: auto;
+  height: max-content;
+  box-shadow: ${boxShadow.default};
 `;
 
 const ContentWrapper = styled("div")<DisplayProps & Partial<HTMLDivElement>>`

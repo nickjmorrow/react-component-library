@@ -1,4 +1,5 @@
-import { AppBar, Typography, Footer, GithubIcon } from "njm-react-component-library";
+import { Footer } from "njm-react-component-library";
+import { LibraryAppBar } from "./components/LibraryAppBar";
 import * as React from "react";
 import "./App.css";
 import { Landing } from "./Landing";
@@ -10,13 +11,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Wrapper>
-          <AppBar>
-            <Typography variant="h2" color="light">
-              Component Library
-            </Typography>
-            <div />
-            <GithubIcon style={{width: '32px', height: '32px', cursor: 'pointer'}} />
-          </AppBar>
+          <LibraryAppBar />
           <Landing />
           <Footer />
         </Wrapper>
@@ -28,5 +23,5 @@ class App extends React.Component {
 export default App;
 
 const Wrapper = styled.div`
-  height: 100vh;
+  height: 100%;
 `;

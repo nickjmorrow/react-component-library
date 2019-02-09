@@ -72,6 +72,7 @@ export const Landing: React.SFC<{}> = () => {
 const GridWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  height: 100%;
 `;
 
 const RoutesWrapper = styled.div`
