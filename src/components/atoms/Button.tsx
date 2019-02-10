@@ -5,11 +5,18 @@ import { Typography } from "./Typography";
 import { Link } from "react-router-dom";
 
 interface IDisplayProps {
-  color: ButtonVariant;
-  backgroundColor: ButtonVariant;
   showBoxShadow?: boolean;
   useMargin?: boolean;
   style?: React.CSSProperties;
+}
+
+interface ColorSet {
+  color: string;
+  colorHover: string;
+  colorActive: string;
+  backgroundColor: string;
+  backgroundColorHover: string;
+  backgroundColorActive: string;
 }
 
 export type ButtonVariant =
@@ -17,24 +24,26 @@ export type ButtonVariant =
   | "secondary"
   | "cancel"
   | "white"
-  | "transparent"
-  | "google";
+  | "transparent";
 
 export type IButtonProps = {
   color?: ButtonVariant;
   variant?: ButtonVariant;
   route?: string;
   children: React.ReactNode;
+  colorSet?: Partial<ColorSet>;
   onClick?(): void;
-} & Partial<IDisplayProps>;
+} & Partial<IDisplayProps> &
+  Partial<ColorSet>;
 
 export const Button: React.SFC<IButtonProps> = ({
   children,
-  variant = "primary" as ButtonVariant,
+  variant = "primary",
   route,
   showBoxShadow = true,
   useMargin = true,
-  color = "white" as ButtonVariant,
+  color = "white",
+  colorSet = {} as ColorSet,
   style,
   onClick: handleClick = () => {
     return;
@@ -48,10 +57,19 @@ export const Button: React.SFC<IButtonProps> = ({
     ) : (
       children
     );
+
   const button = (
     <StyledButton
-      color={color}
-      backgroundColor={variant}
+      color={colorSet.color || getColor(color)}
+      colorActive={colorSet.colorActive || getColorActive(color)}
+      colorHover={colorSet.colorHover || getColorHover(color)}
+      backgroundColor={colorSet.backgroundColor || getColor(variant)}
+      backgroundColorActive={
+        colorSet.backgroundColorActive || getColorActive(variant)
+      }
+      backgroundColorHover={
+        colorSet.backgroundColorHover || getColorHover(variant)
+      }
       showBoxShadow={showBoxShadow}
       useMargin={useMargin}
       onClick={handleClick}
@@ -59,6 +77,7 @@ export const Button: React.SFC<IButtonProps> = ({
       {formattedChildren}
     </StyledButton>
   );
+
   return route ? (
     <Link to={route} style={{ textDecoration: "none" }}>
       {button}
@@ -68,9 +87,9 @@ export const Button: React.SFC<IButtonProps> = ({
   );
 };
 
-const StyledButton = styled("button")<IDisplayProps>`
-  color: ${props => getColor(props.color)};
-  background-color: ${props => getColor(props.backgroundColor)};
+const StyledButton = styled("button")<IDisplayProps & ColorSet>`
+  color: ${props => props.color};
+  background-color: ${props => props.backgroundColor};
   border-radius: ${borderRadius.default};
   padding: 8px 16px;
   height: 36px;
@@ -85,13 +104,13 @@ const StyledButton = styled("button")<IDisplayProps>`
   width: max-content;
   &:hover,
   &:focus {
-    background-color: ${props => getColorHover(props.backgroundColor)};
-    color: ${props => getColorHover(props.color)};
+    background-color: ${props => props.backgroundColorHover};
+    color: ${props => props.color};
     transition: all ${transitions.fast};
   }
   &:active {
-    background-color: ${props => getColorActive(props.backgroundColor)};
-    color: ${props => getColorActive(props.color)};
+    background-color: ${props => props.backgroundColorActive};
+    color: ${props => props.color};
     transition: all ${transitions.fast};
   }
 `;
@@ -109,8 +128,6 @@ const getColorHover = (variant: ButtonVariant) => {
       return colors.white;
     case "transparent":
       return colors.transparent;
-    case "google":
-      return colors.googleRedLight;
   }
 };
 
@@ -126,8 +143,6 @@ const getColorActive = (variant: ButtonVariant) => {
       return colors.white;
     case "transparent":
       return colors.transparent;
-    case "google":
-      return colors.googleRedDark;
   }
 };
 
@@ -143,7 +158,5 @@ const getColor = (variant: ButtonVariant) => {
       return colors.tertiary;
     case "transparent":
       return colors.transparent;
-    case "google":
-      return colors.googleRed;
   }
 };

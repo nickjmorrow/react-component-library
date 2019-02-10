@@ -21,12 +21,15 @@ export const colors = {
   lightGray: "hsla(0, 0%, 0%, 0.2)",
   lighterGray: "hsla(0, 0%, 0%, 0.1)",
   transparent: "transparent",
-  googleRed: "#D95434",
-  googleRedLight: "#D8836F",
-  googleRedDark: "#AE4229",
   red: "#E55",
   redLight: "#ED8D8D",
   redDark: "#C14747"
+};
+
+export const googleColors = {
+  googleRed: "#D95434",
+  googleRedLight: "#D8836F",
+  googleRedDark: "#AE4229"
 };
 
 export enum borderRadius {
