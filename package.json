@@ -1,6 +1,6 @@
 {
   "name": "njm-react-component-library",
-  "version": "3.5.49",
+  "version": "3.5.50",
   "description": "Personal component library",
   "author": "nickjmorrow",
   "license": "MIT",
@@ -49,6 +49,7 @@
     "@types/styled-components": "^4.1.4",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
+    "concurrently": "^4.1.0",
     "cross-env": "^5.1.4",
     "gh-pages": "^1.2.0",
     "react": "^16.4.1",

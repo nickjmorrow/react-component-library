@@ -6,6 +6,7 @@ export const LoadingIcon: React.SFC<IOwnProps> = () => {
       width="100%"
       height="100%"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ height: "24px", width: "24px", position: "absolute" }}
       viewBox="0 0 100 100">
       <g transform="rotate(52.7306 50 50)">
         <path
@@ -13,14 +14,14 @@ export const LoadingIcon: React.SFC<IOwnProps> = () => {
           fill="none"
           ng-attr-stroke="{{config.color}}"
           ng-attr-stroke-width="{{config.width}}"
-          stroke="#e90c59"
+          stroke="currentColor"
           stroke-width="12"
         />
         <path
           ng-attr-d="{{config.darrow}}"
           ng-attr-fill="{{config.color}}"
           d="M49 3L49 27L61 15L49 3"
-          fill="#e90c59"
+          fill="currentColor"
         />
         <animateTransform
           attributeName="transform"

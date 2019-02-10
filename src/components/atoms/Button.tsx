@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { colors, transitions, borderRadius, boxShadow } from "~/styleConstants";
 import { Typography } from "./Typography";
 import { Link } from "react-router-dom";
+import { LoadingIcon } from "./icons";
+
+// TODO: make this the same width regardless
+// of isLoading state
 
 interface IDisplayProps {
   showBoxShadow?: boolean;
@@ -32,6 +36,7 @@ export type IButtonProps = {
   route?: string;
   children: React.ReactNode;
   colorSet?: Partial<ColorSet>;
+  isLoading?: boolean;
   onClick?(): void;
 } & Partial<IDisplayProps> &
   Partial<ColorSet>;
@@ -40,6 +45,7 @@ export const Button: React.SFC<IButtonProps> = ({
   children,
   variant = "primary",
   route,
+  isLoading = false,
   showBoxShadow = true,
   useMargin = true,
   color = "white",
@@ -58,6 +64,8 @@ export const Button: React.SFC<IButtonProps> = ({
       children
     );
 
+  const content = isLoading ? <LoadingIcon /> : formattedChildren;
+
   const button = (
     <StyledButton
       color={colorSet.color || getColor(color)}
@@ -74,7 +82,7 @@ export const Button: React.SFC<IButtonProps> = ({
       useMargin={useMargin}
       onClick={handleClick}
       style={style}>
-      {formattedChildren}
+      {content}
     </StyledButton>
   );
 
@@ -102,8 +110,8 @@ const StyledButton = styled("button")<IDisplayProps & ColorSet>`
   outline: none;
   box-shadow: ${props => props.showBoxShadow && boxShadow.default};
   width: max-content;
-  &:hover,
-  &:focus {
+  min-width: 5rem;
+  &:hover {
     background-color: ${props => props.backgroundColorHover};
     color: ${props => props.color};
     transition: all ${transitions.fast};

@@ -4,6 +4,10 @@ import styled from "styled-components";
 import { googleColors } from "njm-react-component-library";
 
 export const Buttons: React.SFC = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const toggleIsLoading = () => setIsLoading(!isLoading);
+  
+
   return (
     <Wrapper>
       <Button variant="primary">Primary</Button>
@@ -28,6 +32,9 @@ export const Buttons: React.SFC = () => {
         }}>
         <Button variant="transparent">Transparent</Button>
       </div>
+      <Button isLoading={isLoading} onClick={toggleIsLoading}>
+        Something
+      </Button>
     </Wrapper>
   );
 };

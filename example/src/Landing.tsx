@@ -4,6 +4,8 @@ import { Route } from "react-router";
 import styled from "styled-components";
 import { Buttons } from "./components/demos/Buttons";
 import { SelectDemo } from "./components/demos/SelectDemo";
+import { FileInputDemo } from "./components/demos/FileInputDemo";
+import { AuthModalDemo } from "./components/demos/modals/AuthModalDemo";
 
 const atomComponents = {
   folderLabel: "Atoms",
@@ -11,19 +13,33 @@ const atomComponents = {
     {
       component: Buttons,
       label: "Buttons",
-      route: "/buttons",
-      itemLevel: 1
+      route: "/buttons"
     },
     {
       component: SelectDemo,
       label: "Select",
-      route: "/select",
-      itemLevel: 1
+      route: "/select"
+    },
+    {
+      component: FileInputDemo,
+      label: "File Input",
+      route: "/file-input"
     }
   ]
 };
 
-const components = [atomComponents];
+const modalComponents = {
+  folderLabel: "Modals",
+  components: [
+    {
+      component: AuthModalDemo,
+      label: "Auth Modal",
+      route: "/auth-modal"
+    }
+  ]
+};
+
+const components = [atomComponents, modalComponents];
 
 const routes = components.reduce(
   (prev, curr) => {

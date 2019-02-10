@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import styled from "styled-components";
 import { FileInputProps } from "../../../types";
 import {
@@ -11,39 +10,48 @@ import {
 import { UploadIcon } from "../icons/UploadIcon";
 import { Typography } from "../Typography";
 
-export const FileInput: React.SFC<FileInputProps> = ({
-  initialLabel = "Choose a file",
-  onChange: handleChange
-}) => {
-  const [label, setLabel] = useState(initialLabel);
-
-  const handleChangeInternal = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.currentTarget;
-    const newLabel = files && files[0] ? files[0].name : initialLabel;
-    handleChange(files);
-    setLabel(newLabel);
+export class FileInput extends React.Component<
+  FileInputProps,
+  { label: string }
+> {
+  readonly state = {
+    label: this.props.initialLabel || "Choose a file"
   };
 
-  return (
-    <>
-      <StyledFileInput
-        type={"file"}
-        name="file"
-        id="file"
-        onChange={handleChangeInternal}
-      />
-      <Label htmlFor="file">
-        <UploadIcon style={{ height: "30px", width: "30px" }} />
-        <Typography
-          variant="button"
-          color="inherit"
-          style={{ margin: "0", marginLeft: "6px" }}>
-          {label}
-        </Typography>
-      </Label>
-    </>
-  );
-};
+  handleChangeInternal = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.currentTarget;
+    const newLabel =
+      files && files[0] ? files[0].name : this.props.initialLabel!;
+    this.props.onChange(files);
+    this.setState({
+      label: newLabel
+    });
+  };
+
+  render() {
+    const { label } = this.state;
+
+    return (
+      <>
+        <StyledFileInput
+          type={"file"}
+          name="file"
+          id="file"
+          onChange={this.handleChangeInternal}
+        />
+        <Label htmlFor="file">
+          <UploadIcon style={{ height: "30px", width: "30px" }} />
+          <Typography
+            variant="button"
+            color="inherit"
+            style={{ margin: "0", marginLeft: "6px" }}>
+            {label}
+          </Typography>
+        </Label>
+      </>
+    );
+  }
+}
 
 const StyledFileInput = styled.input`
   width: 0.1px;
