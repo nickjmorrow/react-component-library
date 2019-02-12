@@ -18,7 +18,8 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "npm run build",
-    "predeploy": "cd example && npm install && npm run build",
+    "predeploy": "npm run clear && cd example && npm install && npm run build",
+    "clear": "rm -rf node_modules package-lock.json example/node_modules example/package-lock.json && npm install",
     "deploy": "gh-pages -d example/build"
   },
   "dependencies": {

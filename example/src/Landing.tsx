@@ -14,17 +14,17 @@ const atomComponents = {
     {
       component: Buttons,
       label: "Buttons",
-      route: "/buttons"
+      route: "buttons"
     },
     {
       component: SelectDemo,
       label: "Select",
-      route: "/select"
+      route: "select"
     },
     {
       component: FileInputDemo,
       label: "File Input",
-      route: "/file-input"
+      route: "file-input"
     }
   ]
 };
@@ -35,12 +35,12 @@ const modalComponents = {
     {
       component: AuthModalDemo,
       label: "Auth Modal",
-      route: "/auth-modal"
+      route: "auth-modal"
     },
     {
       component: TextInputDemo,
       label: "Text Input",
-      route: "/text-input"
+      route: "text-input"
     }
   ]
 };
