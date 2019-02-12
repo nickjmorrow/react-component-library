@@ -1,8 +1,13 @@
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { Button, PasswordInput, TextInput, Typography } from "../..";
-import { PaperModal } from "~/components/atoms";
+import {
+  Button,
+  PasswordInput,
+  TextInput,
+  Typography,
+  PaperModal
+} from "~/components/atoms";
 import { horizontalSpacing } from "~/styleConstants";
 import { ILoginInfo, IRegisterInfo } from "~/types";
 

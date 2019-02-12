@@ -6,6 +6,7 @@ import { Buttons } from "./components/demos/Buttons";
 import { SelectDemo } from "./components/demos/SelectDemo";
 import { FileInputDemo } from "./components/demos/FileInputDemo";
 import { AuthModalDemo } from "./components/demos/modals/AuthModalDemo";
+import { TextInputDemo } from "./components/demos/TextInputDemo";
 
 const atomComponents = {
   folderLabel: "Atoms",
@@ -35,6 +36,11 @@ const modalComponents = {
       component: AuthModalDemo,
       label: "Auth Modal",
       route: "/auth-modal"
+    },
+    {
+      component: TextInputDemo,
+      label: "Text Input",
+      route: "/text-input"
     }
   ]
 };
