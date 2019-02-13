@@ -4,14 +4,14 @@ export const StyledInput = styled.input`
   outline: none;
   width: 15rem;
   padding: 0.5rem;
-  background-color: ${colors.lighterGray};
+  background-color: ${colors.gray.light};
   border-radius: ${borderRadius.inner};
   border: 1px solid ${colors.transparent};
   margin-bottom: 2px;
   font-size: 1rem;
   margin: 4px 0px;
   &:focus {
-    border: 1px solid ${colors.primary};
+    border: 1px solid ${colors.primary.main};
     transition: border ${transitions.medium};
   }
 `;

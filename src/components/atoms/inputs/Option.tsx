@@ -22,7 +22,7 @@ const StyledOption = styled.div`
   padding: 4px;
   cursor: pointer;
   &:hover {
-    background-color: ${colors.lightGray};
+    background-color: ${colors.gray.light};
     transition: ${transitions.medium};
     border-radius: ${borderRadius.default};
   }

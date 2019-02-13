@@ -72,7 +72,7 @@ const NavItemWrapper = styled.div`
   justify-content: flex-start;
   cursor: pointer;
   &:hover {
-    background-color: ${colors.lightGray};
+    background-color: ${colors.gray.light};
     transition: ${transitions.fast};
   }
 `;

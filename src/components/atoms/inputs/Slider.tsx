@@ -29,7 +29,7 @@ export class RcSlider extends React.Component<IProps, IState> {
     const { isClicking } = this.state;
     const handleStyle = {
       border: border.bold,
-      boxShadow: isClicking ? `0 0 5px ${colors.primary}` : "none",
+      boxShadow: isClicking ? `0 0 5px ${colors.primary.main}` : "none",
       backgroundColor: colors.primary.lightest,
       transition: `box-shadow ${transitions.medium}`
     };

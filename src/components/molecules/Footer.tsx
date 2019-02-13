@@ -17,7 +17,7 @@ export const Footer: React.SFC<IOwnProps> = ({ text = defaultText, style }) => (
 
 const StyledFooter = styled.div`
   margin-top: 24px;
-  background-color: ${colors.primary};
+  background-color: ${colors.primary.main};
   display: flex;
   align-items: center;
   padding: 2px;

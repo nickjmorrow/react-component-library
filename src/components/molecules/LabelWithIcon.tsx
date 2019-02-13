@@ -50,7 +50,7 @@ const itemWrapper: StyledFunction<any> = styled.span;
 export const ItemWrapper = itemWrapper`
     color: ${colors.white};
     &: hover {
-        color: ${props => props.color || colors.darkGray};
+        color: ${props => props.color || colors.primary.main};
         transition: ${transitions.medium};
     }
 `;

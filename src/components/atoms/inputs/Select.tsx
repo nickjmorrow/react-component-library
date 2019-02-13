@@ -85,7 +85,7 @@ const Options = styled.div`
   flex-direction: column;
   position: absolute;
   z-index: 1;
-  border: 1px solid ${colors.lightGray};
+  border: 1px solid ${colors.gray.light};
 `;
 
 const StyledSelect = styled.div`
@@ -99,7 +99,7 @@ const StyledSelect = styled.div`
   text-overflow: "";
   border-bottom: 1px solid ${colors.white};
   &:hover {
-    border-bottom: 1px solid ${colors.darkGray};
+    border-bottom: 1px solid ${colors.gray.dark};
     transition: ${transitions.fast};
     cursor: pointer;
   }

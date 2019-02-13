@@ -17,8 +17,10 @@ class App extends React.Component {
         <ThemeContext.Provider
           value={{
             colors: {
-              primary: generateColorShades({ hue: 240 }),
-              secondary: generateColorShades({ hue: 300 })
+              primary: generateColorShades({
+                hue: 250,
+                lightnessIncrement: 10
+              })
             }
           }}>
           <Wrapper>

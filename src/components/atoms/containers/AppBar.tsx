@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors, boxShadow } from "~/styleConstants";
+import { ThemeContext, getStyles } from "~/styleConstants";
 
 interface AppBarProps {
   children: React.ReactNode;
@@ -11,12 +11,24 @@ export const AppBar: React.SFC<AppBarProps> = ({
   children,
   onClick: handleClick
 }) => {
+  const theme = React.useContext(ThemeContext);
+  const { colors, boxShadow } = getStyles(theme);
   return (
-    <Wrapper onClick={handleClick}>
+    <Wrapper
+      onClick={handleClick}
+      color={colors.white}
+      backgroundColor={colors.primary.main}
+      boxShadow={boxShadow.default}>
       <Inner>{children}</Inner>
     </Wrapper>
   );
 };
+
+interface DisplayProps {
+  backgroundColor: string;
+  boxShadow: string;
+  color: string;
+}
 
 const Inner = styled.div`
   margin: 0px 16px;
@@ -27,12 +39,12 @@ const Inner = styled.div`
   flex-direction: row;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled("div")<DisplayProps>`
   width: 100%;
   height: 50px;
-  background-color: ${colors.primary};
-  color: ${colors.white};
+  background-color: ${props => props.backgroundColor};
+  color: ${props => props.color};
   display: flex;
   justify-content: center;
-  box-shadow: ${boxShadow.default};
+  box-shadow: ${props => props.boxShadow};
 `;

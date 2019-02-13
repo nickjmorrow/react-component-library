@@ -6,9 +6,9 @@ import { transitions, colors } from "@myAlias";
 export const CloseIcon: React.SFC<IOwnProps & Partial<IDisplayProps>> = ({
   style,
   onClick: handleClick,
-  color = colors.gray,
-  hoverColor = colors.darkGray,
-  activeColor = colors.darkGray
+  color = colors.gray.main,
+  hoverColor = colors.gray.dark,
+  activeColor = colors.gray.dark
 }) => {
   return (
     <Wrapper color={color} hoverColor={hoverColor} activeColor={activeColor}>

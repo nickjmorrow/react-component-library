@@ -1,57 +1,51 @@
 import * as React from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
-import { FileInputProps } from "../../../types";
-import {
-  borderRadius,
-  boxShadow,
-  colors,
-  transitions
-} from "../../../styleConstants";
+import { FileInputProps } from "~/types";
 import { UploadIcon } from "../icons/UploadIcon";
-import { Typography } from "../Typography";
+import { Typography } from "~/components";
+import { getStyles, ThemeContext } from "~/styleConstants";
 
-export class FileInput extends React.Component<
-  FileInputProps,
-  { label: string }
-> {
-  readonly state = {
-    label: this.props.initialLabel || "Choose a file"
-  };
-
-  handleChangeInternal = (event: React.ChangeEvent<HTMLInputElement>) => {
+export const FileInput: React.SFC<FileInputProps> = ({
+  initialLabel = "Choose a file",
+  onChange: handleChange
+}) => {
+  const [label, setLabel] = useState(initialLabel);
+  const handleChangeInternal = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.currentTarget;
-    const newLabel =
-      files && files[0] ? files[0].name : this.props.initialLabel!;
-    this.props.onChange(files);
-    this.setState({
-      label: newLabel
-    });
+    const newLabel = files && files[0] ? files[0].name : label;
+    handleChange(files);
+    setLabel(newLabel);
   };
-
-  render() {
-    const { label } = this.state;
-
-    return (
-      <>
-        <StyledFileInput
-          type={"file"}
-          name="file"
-          id="file"
-          onChange={this.handleChangeInternal}
-        />
-        <Label htmlFor="file">
-          <UploadIcon style={{ height: "30px", width: "30px" }} />
-          <Typography
-            variant="button"
-            color="inherit"
-            style={{ margin: "0", marginLeft: "6px" }}>
-            {label}
-          </Typography>
-        </Label>
-      </>
-    );
-  }
-}
+  const theme = useContext(ThemeContext);
+  const { borderRadius, boxShadow, colors, transitions } = getStyles(theme);
+  return (
+    <>
+      <StyledFileInput
+        type={"file"}
+        name="file"
+        id="file"
+        onChange={handleChangeInternal}
+      />
+      <Label
+        htmlFor="file"
+        color={colors.white}
+        backgroundColor={colors.primary.main}
+        backgroundColorHover={colors.primary.light}
+        borderRadius={borderRadius.default}
+        boxShadow={boxShadow.default}
+        transition={transitions.fast}>
+        <UploadIcon style={{ height: "30px", width: "30px" }} />
+        <Typography
+          variant="button"
+          color="inherit"
+          style={{ margin: "0", marginLeft: "6px" }}>
+          {label}
+        </Typography>
+      </Label>
+    </>
+  );
+};
 
 const StyledFileInput = styled.input`
   width: 0.1px;
@@ -62,21 +56,29 @@ const StyledFileInput = styled.input`
   z-index: -1;
 `;
 
-const Label = styled.label`
-  color: ${colors.white};
-  background-color: ${colors.primary.main};
+interface DisplayProps {
+  backgroundColor: string;
+  backgroundColorHover: string;
+  borderRadius: string;
+  boxShadow: string;
+  transition: string;
+}
+
+const Label = styled("label")<DisplayProps>`
+  color: ${props => props.color};
+  background-color: ${props => props.backgroundColor};
   display: inline-block;
   padding: 8px 16px;
   width: max-content;
-  border-radius: ${borderRadius.default};
+  border-radius: ${props => props.borderRadius};
   cursor: pointer;
-  box-shadow: ${boxShadow.default};
-  transition: background-color ${transitions.fast};
+  box-shadow: ${props => props.boxShadow};
+  transition: background-color ${props => props.transition};
   text-transform: uppercase;
   display: flex;
   flex-direction: row;
   align-items: center;
   &:hover {
-    background-color: ${colors.primary.light};
+    background-color: ${props => props.backgroundColorHover};
   }
 `;

@@ -47,7 +47,7 @@ export const PasswordInput: React.SFC<IOwnProps> = ({
           position: "absolute",
           right: "53px",
           bottom: "213px",
-          color: showPassword ? colors.darkGray : colors.gray
+          color: showPassword ? colors.gray.dark : colors.gray.main
         }}
         onClick={toggleInputType}
       />

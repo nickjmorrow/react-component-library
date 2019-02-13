@@ -1,8 +1,10 @@
 import * as React from "react";
-import { colors } from "njm-react-component-library";
+import { ThemeContext, getStyles } from "njm-react-component-library";
 import styled from "styled-components";
 
 export const Colors: React.SFC = () => {
+  const theme = React.useContext(ThemeContext);
+  const { colors } = getStyles(theme);
   return (
     <BlocksWrapper>
       <Wrapper>
