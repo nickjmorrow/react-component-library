@@ -25,18 +25,18 @@ const StyledDeleteButton = styled("div")<IProps>`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
   border-radius: ${props => props.size}px;
-  color: ${colors.primaryLight};
+  color: ${colors.primary.light};
   background-color: ${colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   &hover {
-    color: ${colors.primary};
+    color: ${colors.primary.main};
     transition: ${transitions.medium};
   }
   &:active {
-    color: ${colors.primaryDark};
+    color: ${colors.primary.dark};
     transition: ${transitions.fast};
   }
 `;

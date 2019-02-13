@@ -64,7 +64,7 @@ const StyledFileInput = styled.input`
 
 const Label = styled.label`
   color: ${colors.white};
-  background-color: ${colors.primary};
+  background-color: ${colors.primary.main};
   display: inline-block;
   padding: 8px 16px;
   width: max-content;
@@ -77,6 +77,6 @@ const Label = styled.label`
   flex-direction: row;
   align-items: center;
   &:hover {
-    background-color: ${colors.primaryLight};
+    background-color: ${colors.primary.light};
   }
 `;

@@ -1,4 +1,8 @@
-import { Footer } from "njm-react-component-library";
+import {
+  Footer,
+  ThemeContext,
+  generateColorShades
+} from "njm-react-component-library";
 import { LibraryAppBar } from "./components/LibraryAppBar";
 import * as React from "react";
 import "./App.css";
@@ -10,11 +14,19 @@ class App extends React.Component {
   public render() {
     return (
       <BrowserRouter>
-        <Wrapper>
-          <LibraryAppBar />
-          <Landing />
-          <Footer />
-        </Wrapper>
+        <ThemeContext.Provider
+          value={{
+            colors: {
+              primary: generateColorShades({ hue: 240 }),
+              secondary: generateColorShades({ hue: 300 })
+            }
+          }}>
+          <Wrapper>
+            <LibraryAppBar />
+            <Landing />
+            <Footer />
+          </Wrapper>
+        </ThemeContext.Provider>
       </BrowserRouter>
     );
   }

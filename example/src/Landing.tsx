@@ -7,6 +7,7 @@ import { SelectDemo } from "./components/demos/SelectDemo";
 import { FileInputDemo } from "./components/demos/FileInputDemo";
 import { AuthModalDemo } from "./components/demos/modals/AuthModalDemo";
 import { TextInputDemo } from "./components/demos/TextInputDemo";
+import { Colors } from "./components/demos/Colors";
 
 const atomComponents = {
   folderLabel: "Atoms",
@@ -25,6 +26,11 @@ const atomComponents = {
       component: FileInputDemo,
       label: "File Input",
       route: "/file-input"
+    },
+    {
+      component: Colors,
+      label: "Colors",
+      route: "/colors"
     }
   ]
 };

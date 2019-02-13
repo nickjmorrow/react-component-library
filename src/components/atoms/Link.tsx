@@ -48,6 +48,6 @@ const StyledRouterLink = styled(RouterLink)<
   text-decoration: none;
   &:hover {
     transition: ${transitions.fast};
-    color: ${props => props.hoverColor || colors.secondary};
+    color: ${props => props.hoverColor || colors.secondary.main};
   }
 `;

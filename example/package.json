@@ -10,8 +10,8 @@
     "njm-react-component-library": "file:../"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "start2": "rm -rf ./node_modules/njm-react-component-library/node_modules/react && rm -rf ./node_modules/njm-react-component-library/node_modules/react-dom && npm run start",
+    "start2": "react-scripts-ts start",
+    "start": "rm -rf ./node_modules/njm-react-component-library/node_modules/react && rm -rf ./node_modules/njm-react-component-library/node_modules/react-dom && npm run start",
     "build": "rm -rf ./node_modules/njm-react-component-library/node_modules/react && rm -rf ./node_modules/njm-react-component-library/node_modules/react-dom && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"

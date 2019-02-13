@@ -130,21 +130,21 @@ const getVariantStyles = (props: ITypographyProps) => {
 const getColor = (color: TypographyColor | undefined) => {
   switch (color) {
     case "primary":
-      return colors.darkGray;
+      return colors.gray.dark;
     case "secondary":
-      return colors.gray;
+      return colors.gray.main;
     case "tertiary":
-      return colors.lightGray;
+      return colors.gray.light;
     case "colored":
-      return colors.primary;
+      return colors.primary.main;
     case "error":
-      return colors.red;
+      return colors.red.main;
     case "light":
       return colors.white;
     case "inherit":
       return "inherit";
     default:
-      return colors.darkGray;
+      return colors.gray.dark;
   }
 };
 

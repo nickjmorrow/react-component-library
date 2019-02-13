@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   padding: 0px 4px;
   box-shadow: ${colors.darkGray} 0px 1px 2px -1px;
   &:hover {
-    background-color: ${colors.primaryLight};
+    background-color: ${colors.primary.light};
     transition: ${transitions.fast};
   }
 `;

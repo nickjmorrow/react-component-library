@@ -1,9 +1,9 @@
 import * as React from "react";
-import styled from "styled-components";
-import { colors, transitions, borderRadius, boxShadow } from "~/styleConstants";
-import { Typography } from "./Typography";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { getStyles, ThemeContext } from "~/styleConstants";
 import { LoadingIcon } from "./icons";
+import { Typography } from "./Typography";
 
 // TODO: make this the same width regardless
 // of isLoading state
@@ -12,6 +12,15 @@ interface IDisplayProps {
   showBoxShadow?: boolean;
   useMargin?: boolean;
   style?: React.CSSProperties;
+  backgroundColor: string;
+  backgroundColorActive: string;
+  backgroundColorHover: string;
+  color: string;
+  colorActive: string;
+  colorHover: string;
+  boxShadow: string;
+  borderRadius: string;
+  transition: string;
 }
 
 interface ColorSet {
@@ -66,9 +75,57 @@ export const Button: React.SFC<IButtonProps> = ({
 
   const content = isLoading ? <LoadingIcon /> : formattedChildren;
 
+  const theme = React.useContext(ThemeContext);
+  const { colors, transitions, boxShadow, borderRadius } = getStyles(theme);
+
+  const getColorHover = (variant: ButtonVariant) => {
+    switch (variant) {
+      case "primary":
+        return colors.primary.light;
+      case "secondary":
+        return colors.secondary.light;
+      case "cancel":
+        return colors.red.light;
+      case "white":
+        return colors.white;
+      case "transparent":
+        return colors.transparent;
+    }
+  };
+
+  const getColorActive = (variant: ButtonVariant) => {
+    switch (variant) {
+      case "primary":
+        return colors.primary.dark;
+      case "secondary":
+        return colors.secondary.dark;
+      case "cancel":
+        return colors.red.dark;
+      case "white":
+        return colors.white;
+      case "transparent":
+        return colors.transparent;
+    }
+  };
+
+  const getColor = (variant: ButtonVariant) => {
+    switch (variant) {
+      case "white":
+        return colors.white;
+      case "primary":
+        return colors.primary.main;
+      case "secondary":
+        return colors.secondary.main;
+      case "cancel":
+        return colors.red.main;
+      case "transparent":
+        return colors.transparent;
+    }
+  };
+
   const button = (
     <StyledButton
-      color={colorSet.color || getColor(color)}
+      color={colorSet.color || colors.white || getColor(color)}
       colorActive={colorSet.colorActive || getColorActive(color)}
       colorHover={colorSet.colorHover || getColorHover(color)}
       backgroundColor={colorSet.backgroundColor || getColor(variant)}
@@ -81,6 +138,9 @@ export const Button: React.SFC<IButtonProps> = ({
       showBoxShadow={showBoxShadow}
       useMargin={useMargin}
       onClick={handleClick}
+      transition={transitions.fast}
+      borderRadius={borderRadius.default}
+      boxShadow={boxShadow.default}
       style={style}>
       {content}
     </StyledButton>
@@ -98,7 +158,7 @@ export const Button: React.SFC<IButtonProps> = ({
 const StyledButton = styled("button")<IDisplayProps & ColorSet>`
   color: ${props => props.color};
   background-color: ${props => props.backgroundColor};
-  border-radius: ${borderRadius.default};
+  border-radius: ${props => props.borderRadius};
   padding: 8px 16px;
   height: 36px;
   display: flex;
@@ -108,63 +168,17 @@ const StyledButton = styled("button")<IDisplayProps & ColorSet>`
   margin: ${props => (props.useMargin ? "4px" : "0px")};
   cursor: pointer;
   outline: none;
-  box-shadow: ${props => props.showBoxShadow && boxShadow.default};
+  box-shadow: ${props => props.showBoxShadow && props.boxShadow};
   width: max-content;
   min-width: 5rem;
   &:hover {
     background-color: ${props => props.backgroundColorHover};
     color: ${props => props.color};
-    transition: all ${transitions.fast};
+    transition: all ${props => props.transition};
   }
   &:active {
     background-color: ${props => props.backgroundColorActive};
     color: ${props => props.color};
-    transition: all ${transitions.fast};
+    transition: all ${props => props.transition};
   }
 `;
-
-// helpers
-const getColorHover = (variant: ButtonVariant) => {
-  switch (variant) {
-    case "primary":
-      return colors.primaryLight;
-    case "secondary":
-      return colors.secondaryLight;
-    case "cancel":
-      return colors.tertiaryLight;
-    case "white":
-      return colors.white;
-    case "transparent":
-      return colors.transparent;
-  }
-};
-
-const getColorActive = (variant: ButtonVariant) => {
-  switch (variant) {
-    case "primary":
-      return colors.primaryDark;
-    case "secondary":
-      return colors.secondaryDark;
-    case "cancel":
-      return colors.tertiaryDark;
-    case "white":
-      return colors.white;
-    case "transparent":
-      return colors.transparent;
-  }
-};
-
-const getColor = (variant: ButtonVariant) => {
-  switch (variant) {
-    case "white":
-      return colors.white;
-    case "primary":
-      return colors.primary;
-    case "secondary":
-      return colors.secondary;
-    case "cancel":
-      return colors.tertiary;
-    case "transparent":
-      return colors.transparent;
-  }
-};

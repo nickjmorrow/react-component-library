@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Button } from "njm-react-component-library";
+import {} from "njm-react-component-library";
 import styled from "styled-components";
-import { googleColors } from "njm-react-component-library";
+import { Button, googleColors } from "njm-react-component-library";
 
 export const Buttons: React.SFC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -14,14 +14,14 @@ export const Buttons: React.SFC = () => {
       <Button variant="cancel">Cancel</Button>
       <Button
         colorSet={{
-          backgroundColor: googleColors.googleRed,
-          backgroundColorActive: googleColors.googleRedLight,
-          backgroundColorHover: googleColors.googleRedDark
+          backgroundColor: googleColors.main,
+          backgroundColorActive: googleColors.dark,
+          backgroundColorHover: googleColors.light
         }}>
         Google
       </Button>
       <Button variant="white" color="primary">
-        White with Primary
+        White
       </Button>
       <div
         style={{
@@ -32,7 +32,7 @@ export const Buttons: React.SFC = () => {
         <Button variant="transparent">Transparent</Button>
       </div>
       <Button isLoading={isLoading} onClick={toggleIsLoading}>
-        Loading Button (Click Me!)
+        I'm loading
       </Button>
     </Wrapper>
   );
