@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { getStyles, ThemeContext } from "~/styleConstants";
 import { LoadingIcon } from "./icons";
 import { Typography } from "./Typography";
+import { GetComponentProps } from "~/typeUtilities";
 
 // TODO: make this the same width regardless
 // of isLoading state
@@ -15,9 +16,6 @@ interface IDisplayProps {
   backgroundColor: string;
   backgroundColorActive: string;
   backgroundColorHover: string;
-  color: string;
-  colorActive: string;
-  colorHover: string;
   boxShadow: string;
   borderRadius: string;
   transition: string;
@@ -32,16 +30,16 @@ interface ColorSet {
   backgroundColorActive: string;
 }
 
-export type ButtonVariant =
+type ColorVariant =
   | "primary"
   | "secondary"
   | "cancel"
   | "white"
   | "transparent";
 
-export type IButtonProps = {
-  color?: ButtonVariant;
-  variant?: ButtonVariant;
+type IButtonProps = {
+  textColorVariant?: GetComponentProps<typeof Typography>["colorVariant"];
+  colorVariant?: ColorVariant;
   route?: string;
   children: React.ReactNode;
   colorSet?: Partial<ColorSet>;
@@ -50,23 +48,30 @@ export type IButtonProps = {
 } & Partial<IDisplayProps> &
   Partial<ColorSet>;
 
+// type myType = React.ComponentType<typeof Typography>['']
+
 export const Button: React.SFC<IButtonProps> = ({
   children,
-  variant = "primary",
+  colorVariant = "primary",
   route,
   isLoading = false,
   showBoxShadow = true,
   useMargin = true,
-  color = "white",
+  textColorVariant = "textPrimaryLight",
   colorSet = {} as ColorSet,
-  style,
   onClick: handleClick = () => {
     return;
   }
 }) => {
+  // TODO: use a ref to change uiState
   const formattedChildren =
     typeof children === "string" ? (
-      <Typography color="inherit" variant="button">
+      <Typography
+        colorVariant={textColorVariant}
+        allowedUiStates={["active", "hover"]}
+        sizeVariant={2}
+        weightVariant={2}
+        style={{ textTransform: "uppercase" }}>
         {children}
       </Typography>
     ) : (
@@ -76,72 +81,30 @@ export const Button: React.SFC<IButtonProps> = ({
   const content = isLoading ? <LoadingIcon /> : formattedChildren;
 
   const theme = React.useContext(ThemeContext);
-  const { colors, transitions, boxShadow, borderRadius } = getStyles(theme);
-
-  const getColorHover = (variant: ButtonVariant) => {
-    switch (variant) {
-      case "primary":
-        return colors.primary.light;
-      case "secondary":
-        return colors.secondary.light;
-      case "cancel":
-        return colors.red.light;
-      case "white":
-        return colors.white;
-      case "transparent":
-        return colors.transparent;
-    }
-  };
-
-  const getColorActive = (variant: ButtonVariant) => {
-    switch (variant) {
-      case "primary":
-        return colors.primary.dark;
-      case "secondary":
-        return colors.secondary.dark;
-      case "cancel":
-        return colors.red.dark;
-      case "white":
-        return colors.white;
-      case "transparent":
-        return colors.transparent;
-    }
-  };
-
-  const getColor = (variant: ButtonVariant) => {
-    switch (variant) {
-      case "white":
-        return colors.white;
-      case "primary":
-        return colors.primary.main;
-      case "secondary":
-        return colors.secondary.main;
-      case "cancel":
-        return colors.red.main;
-      case "transparent":
-        return colors.transparent;
-    }
-  };
+  const {
+    colors,
+    transitions,
+    boxShadow,
+    border: { borderRadius }
+  } = getStyles(theme);
 
   const button = (
     <StyledButton
-      color={colorSet.color || colors.white || getColor(color)}
-      colorActive={colorSet.colorActive || getColorActive(color)}
-      colorHover={colorSet.colorHover || getColorHover(color)}
-      backgroundColor={colorSet.backgroundColor || getColor(variant)}
+      backgroundColor={
+        colorSet.backgroundColor || getColor(colors, colorVariant)
+      }
       backgroundColorActive={
-        colorSet.backgroundColorActive || getColorActive(variant)
+        colorSet.backgroundColorActive || getColorActive(colors, colorVariant)
       }
       backgroundColorHover={
-        colorSet.backgroundColorHover || getColorHover(variant)
+        colorSet.backgroundColorHover || getColorHover(colors, colorVariant)
       }
       showBoxShadow={showBoxShadow}
       useMargin={useMargin}
       onClick={handleClick}
       transition={transitions.fast}
       borderRadius={borderRadius.default}
-      boxShadow={boxShadow.default}
-      style={style}>
+      boxShadow={boxShadow.default}>
       {content}
     </StyledButton>
   );
@@ -155,7 +118,9 @@ export const Button: React.SFC<IButtonProps> = ({
   );
 };
 
-const StyledButton = styled("button")<IDisplayProps & ColorSet>`
+const StyledButton = styled("button")<
+  IDisplayProps & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
+>`
   color: ${props => props.color};
   background-color: ${props => props.backgroundColor};
   border-radius: ${props => props.borderRadius};
@@ -173,12 +138,66 @@ const StyledButton = styled("button")<IDisplayProps & ColorSet>`
   min-width: 5rem;
   &:hover {
     background-color: ${props => props.backgroundColorHover};
-    color: ${props => props.color};
+    color: ${props => props.colorHover};
     transition: all ${props => props.transition};
   }
   &:active {
     background-color: ${props => props.backgroundColorActive};
-    color: ${props => props.color};
+    color: ${props => props.colorActive};
     transition: all ${props => props.transition};
   }
 `;
+
+const getColorHover = (
+  colors: ReturnType<typeof getStyles>["colors"],
+  variant: ColorVariant
+) => {
+  switch (variant) {
+    case "primary":
+      return colors.primary.light;
+    case "secondary":
+      return colors.secondary.light;
+    case "cancel":
+      return colors.red.light;
+    case "white":
+      return colors.white;
+    case "transparent":
+      return colors.transparent;
+  }
+};
+
+const getColorActive = (
+  colors: ReturnType<typeof getStyles>["colors"],
+  variant: ColorVariant
+) => {
+  switch (variant) {
+    case "primary":
+      return colors.primary.dark;
+    case "secondary":
+      return colors.secondary.dark;
+    case "cancel":
+      return colors.red.dark;
+    case "white":
+      return colors.white;
+    case "transparent":
+      return colors.transparent;
+  }
+};
+
+const getColor = (
+  colors: ReturnType<typeof getStyles>["colors"],
+  variant: ColorVariant
+) => {
+  switch (variant) {
+    case "white":
+      return colors.white;
+    case "primary":
+      return colors.primary.main;
+    case "secondary":
+      return colors.secondary.main;
+    case "cancel":
+      return colors.red.main;
+    case "transparent":
+      return colors.transparent;
+  }
+};
