@@ -14,7 +14,8 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
     <Wrapper style={style}>
       {navInfos.map((ni, i) => {
         const typography: any = (
-          <Typography color={pathname === ni.route ? "colored" : "default"}>
+          <Typography
+            colorVariant={pathname === ni.route ? "primary" : "default"}>
             {ni.label}
           </Typography>
         );

@@ -1,11 +1,11 @@
 import * as React from "react";
 import Media from "react-media";
 import styled from "styled-components";
-import { AppBar } from "~/components/atoms";
-import { Button, IButtonProps } from "~/components/atoms/Button";
+import { AppBar, Button } from "~/components/atoms";
 import { ILinkProps, Link } from "~/components/atoms/Link";
 import { formattedTextNode } from "~/components/atoms/Typography";
 import { colors } from "~/styleConstants";
+import { GetComponentProps } from "~/typeUtilities";
 
 export const PopulatedAppBar: React.SFC<IOwnProps> = ({
   appName,
@@ -34,7 +34,8 @@ export const PopulatedAppBar: React.SFC<IOwnProps> = ({
     children: "Log Out",
     onClick: handleLogOutClick
   };
-  const asRenderedButton = ({ children, ...other }: IButtonProps) => (
+
+  const asRenderedButton = ({ children, ...other }: ButtonProps) => (
     <Button showBoxShadow={false} {...other}>
       {children}
     </Button>
@@ -44,8 +45,8 @@ export const PopulatedAppBar: React.SFC<IOwnProps> = ({
     : unauthenticatedButtonProps;
   const renderedButtons = buttonProps.map(asRenderedButton);
   const formattedAppName = formattedTextNode(appName, {
-    variant: "h2",
-    color: "light"
+    sizeVariant: 4,
+    colorVariant: "textPrimaryLight"
   });
   const appNameDisplay = titleLink ? (
     <Link route={titleLink}>{formattedAppName}</Link>
@@ -73,11 +74,13 @@ export const PopulatedAppBar: React.SFC<IOwnProps> = ({
   );
 };
 
+type ButtonProps = GetComponentProps<typeof Button>;
+
 // types
 interface IOwnProps {
   links?: ILinkProps[];
   appName: React.ReactNode;
-  authenticatedButtonProps?: IButtonProps[];
+  authenticatedButtonProps?: ButtonProps[];
   isAuthenticated: boolean;
   currentRoute?: string;
   maxWidth?: number;

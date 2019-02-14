@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Button, ButtonVariant } from "~/components/atoms/Button";
 import { formattedTextNode, Typography } from "~/components/atoms/Typography";
 import { IModalProps } from "~/components/atoms/containers";
-import { PaperModal } from "~/components";
+import { PaperModal, Button } from "~/components";
 import { colors, horizontalSpacing } from "~/styleConstants";
+import { GetComponentProps } from "~/typeUtilities";
 
 export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
   isOpen,
@@ -18,9 +18,7 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
 }) => {
   const modalTitle =
     title && typeof title === "string" ? (
-      <Typography variant="h2" noMargin={true}>
-        {title}
-      </Typography>
+      <Typography sizeVariant={3}>{title}</Typography>
     ) : (
       title
     );
@@ -38,14 +36,14 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
       <Wrapper>
         <TitleWrapper>{modalTitle}</TitleWrapper>
         <ChildrenContainer>
-          {formattedTextNode(children, { color: "secondary" })}
+          {formattedTextNode(children, { colorVariant: "textPrimaryDark" })}
         </ChildrenContainer>
         <ButtonsContainer>
           <Button
             onClick={handleSecondaryClickInternal}
-            variant={"transparent"}
+            colorVariant={"transparent"}
             showBoxShadow={false}
-            color={"primary"}>
+            textColorVariant={"primary"}>
             {secondaryButtonElement}
           </Button>
           <ButtonWrapper>
@@ -90,7 +88,7 @@ const TitleWrapper = styled.div`
 interface IOwnProps {
   primaryButtonElement: React.ReactNode;
   secondaryButtonElement: React.ReactNode;
-  secondaryButtonVariant?: ButtonVariant;
+  secondaryButtonVariant?: GetComponentProps<typeof Button>["colorVariant"];
   title?: React.ReactNode;
   onPrimaryClick(): void;
   onSecondaryClick(): void;

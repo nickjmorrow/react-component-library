@@ -80,7 +80,7 @@ export const AuthModal: React.SFC<IProps> = ({
   return (
     <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
       <div style={{ margin: `0 ${horizontalSpacing.default}` }}>
-        <Typography noMargin={true} variant="h2">
+        <Typography sizeVariant={6} weightVariant={2}>
           {"Sign In"}
         </Typography>
         {authInputs}
