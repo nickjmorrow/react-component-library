@@ -2,8 +2,8 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import * as React from "react";
 import styled from "styled-components";
-import { border, colors, transitions } from "./Core/styleConstants";
-import { Typography } from "./Core/components/atoms/Typography";
+import { border, colors, transitions } from "~/styleConstants";
+import { Typography } from "~/components/atoms/Typography";
 
 interface IProps {
   value: number;
@@ -43,14 +43,14 @@ export class RcSlider extends React.Component<IProps, IState> {
           onChange={handleChange}
           handleStyle={handleStyle}
           railStyle={{
-            backgroundColor: colors.gray
+            backgroundColor: colors.gray.main
           }}
-          trackStyle={{ backgroundColor: colors.primary }}
+          trackStyle={{ backgroundColor: colors.primary.main }}
           onBeforeChange={this.handleBeforeChange}
           onAfterChange={this.handleAfterChange}
         />
         <ValueWrapper>
-          <Typography variant="h4">{value}</Typography>
+          <Typography sizeVariant={2}>{value}</Typography>
         </ValueWrapper>
       </Wrapper>
     );

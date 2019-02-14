@@ -1,16 +1,16 @@
-import * as React from 'react';
-import { Typography } from './Typography';
+import * as React from "react";
+import { Typography } from "./Typography";
 
 interface ErrorProps {
-	children: string | null;
+  children: string | null;
 }
 
 export const Error: React.SFC<ErrorProps> = ({
-	children
+  children
 }: {
-	children: string;
+  children: string;
 }) => (
-	<Typography color="error" variant="body">
-		{children}
-	</Typography>
+  <Typography colorVariant="error" sizeVariant={1}>
+    {children}
+  </Typography>
 );
