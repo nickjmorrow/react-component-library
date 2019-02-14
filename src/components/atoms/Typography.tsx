@@ -1,159 +1,223 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors } from "../../styleConstants";
-import { Omit } from "../../typeUtilities";
+import { getStyles, ThemeContext, transitions } from "~/styleConstants";
+import { Omit } from "~/typeUtilities";
 
-export const Typography: React.SFC<ITypographyProps> = ({
-  color,
-  align,
-  variant,
+export const Typography: React.SFC<TypographyProps> = ({
+  align = "default",
+  colorVariant = "default",
+  sizeVariant = 3,
+  weightVariant = 1,
+  allowedUiStates = [],
   children,
-  noMargin,
   style
-}) => (
-  <StyledTypography
-    color={color}
-    align={align}
-    variant={variant}
-    noMargin={noMargin}
-    style={style}>
-    {children}
-  </StyledTypography>
-);
+}) => {
+  const theme = React.useContext(ThemeContext);
+  const {
+    colors,
+    typography: { fontFamily, fontSizes, fontWeights }
+  } = getStyles(theme);
 
-export type TypographyColor =
-  | "default"
-  | "error"
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "colored"
-  | "inherit"
-  | "light";
-type Align = "inherit" | "left" | "center" | "right" | "justify";
-type Variant =
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "button"
-  | "inherit"
-  | "body";
+  const colorActive =
+    allowedUiStates.find(aus => aus === "active") !== undefined
+      ? getColorActive(colors, colorVariant)
+      : getColor(colors, colorVariant);
+  const colorHover =
+    allowedUiStates.find(aus => aus === "active") !== undefined
+      ? getColorHover(colors, colorVariant)
+      : getColor(colors, colorVariant);
 
-export interface ITypographyProps {
-  align?: Align;
-  color?: TypographyColor;
-  variant?: Variant;
-  shouldWrap?: boolean;
-  noMargin?: boolean;
-  children: React.ReactNode;
-  style?: React.CSSProperties;
-}
+  return (
+    <StyledTypography
+      color={getColor(colors, colorVariant)}
+      colorActive={colorActive}
+      colorHover={colorHover}
+      align={align}
+      fontFamily={fontFamily.default}
+      transition={transitions.fast}
+      fontSize={getFontSize(fontSizes, sizeVariant)}
+      fontWeight={getFontWeight(fontWeights, weightVariant)}
+      style={style}>
+      {children}
+    </StyledTypography>
+  );
+};
 
-export const StyledTypography = styled("span")<ITypographyProps>`
+export const StyledTypography = styled("span")<DisplayProps>`
   display: inline-block;
   font-family: Roboto, sans-serif;
   text-align: ${p => p.align};
-  color: ${p => getColor(p.color)};
-  width: ${p => (p.shouldWrap ? "" : "max-content")};
-  ${props => getVariantStyles(props)};
+  color: ${p => p.color};
+  font-size: ${p => p.fontSize};
+  font-weight: ${p => p.fontWeight};
+  &:hover {
+    color: ${p => p.colorHover};
+    transition: color ${p => p.transition};
+  }
+  &:active {
+    color: ${p => p.colorActive};
+    transition: color ${p => p.transition};
+  }
 `;
 
-const getVariantStyles = (props: ITypographyProps) => {
-  const { variant, noMargin } = props;
-  switch (variant) {
-    case "h1":
-      return `
-				display: block;
-				font-size: 2em;
-				font-weight: bold;
-				${!noMargin && `margin: 0.67em 0;`}
-			`;
-    case "h2":
-      return `
-				display: block;
-				font-size: 1.5em;
-				font-weight: bold;
-				${!noMargin && `margin: 0.83em 0;`}
-			`;
-    case "h3":
-      return `
-				display: block;
-				font-size: 1.17em;
-				font-weight: bold;
-				${!noMargin && `margin: 1em 0;`}
-			`;
-    case "h4":
-      return `
-				display: block;
-				font-size: 1em;
-				font-weight: bold;
-				${!noMargin && `margin: 1.33em 0;`}
-			`;
-    case "h5":
-      return `
-				display: block;
-				font-size: .83em;
-				font-weight: bold;
-				${!noMargin && `margin: 1.67em 0;`}
-			`;
-    case "h6":
-      return `
-				display: block;
-				font-size: .67em;
-				font-weight: bold;
-				${!noMargin && `margin: 2.33em 0;`}
-			`;
-    case undefined:
-    case "body":
-      return `
-				display: block;
-				font-size: 1em;
-			`;
-    case "button":
-      return `
-				display: block;
-				text-transform: uppercase;
-				font-size: 0.875rem;
-				font-weight: 600;
-				letter-spacing: 0.03rem;
-			`;
+const getColorHover = (
+  colors: ReturnType<typeof getStyles>["colors"],
+  colorVariant: ColorVariant
+) => {
+  switch (colorVariant) {
+    case "default":
+    case "textPrimaryDark":
+      return colors.gray.darker;
+    case "textSecondaryDark":
+      return colors.gray.main;
+    case "textPrimaryLight":
+      return colors.white;
+    case "textSecondaryLight":
+      return colors.gray.lightest;
+    case "primary":
+      return colors.primary.light;
+    case "secondary":
+      return colors.secondary.light;
+    case "error":
+      return colors.red.main;
     case "inherit":
       return "inherit";
-    default:
-      throw Error(`Unexpected variant: ${variant}`);
   }
 };
 
-const getColor = (color: TypographyColor | undefined) => {
-  switch (color) {
-    case "primary":
-      return colors.gray.dark;
-    case "secondary":
+const getColorActive = (
+  colors: ReturnType<typeof getStyles>["colors"],
+  colorVariant: ColorVariant
+) => {
+  switch (colorVariant) {
+    case "default":
+    case "textPrimaryDark":
+      return colors.gray.darker;
+    case "textSecondaryDark":
       return colors.gray.main;
-    case "tertiary":
-      return colors.gray.light;
-    case "colored":
-      return colors.primary.main;
+    case "textPrimaryLight":
+      return colors.white;
+    case "textSecondaryLight":
+      return colors.gray.lightest;
+    case "primary":
+      return colors.primary.dark;
+    case "secondary":
+      return colors.secondary.dark;
     case "error":
       return colors.red.main;
-    case "light":
-      return colors.white;
     case "inherit":
       return "inherit";
-    default:
-      return colors.gray.dark;
+  }
+};
+
+const getColor = (
+  colors: ReturnType<typeof getStyles>["colors"],
+  color: ColorVariant | undefined = "default"
+) => {
+  switch (color) {
+    case "default":
+    case "textPrimaryDark":
+      return colors.gray.darker;
+    case "textSecondaryDark":
+      return colors.gray.main;
+    case "textPrimaryLight":
+      return colors.white;
+    case "textSecondaryLight":
+      return colors.gray.lightest;
+    case "primary":
+      return colors.primary.main;
+    case "secondary":
+      return colors.secondary.main;
+    case "error":
+      return colors.red.main;
+    case "inherit":
+      return "inherit";
   }
 };
 
 export const formattedTextNode = (
   textNode: React.ReactNode,
-  props: Omit<ITypographyProps, "children"> = {}
-) =>
+  props: Omit<TypographyProps, "children"> = {}
+): React.ReactNode =>
   typeof textNode === "string" ? (
     <Typography {...props}>{textNode}</Typography>
   ) : (
     textNode
   );
+
+type UiState = "hover" | "active";
+
+export type ColorVariant =
+  | "default"
+  | "error"
+  | "primary"
+  | "secondary"
+  | "textPrimaryDark"
+  | "textSecondaryDark"
+  | "textPrimaryLight"
+  | "textSecondaryLight"
+  | "inherit";
+type Align = "inherit" | "left" | "center" | "right" | "justify" | "default";
+type SizeVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+type WeightVariant = 1 | 2 | 3 | 4 | 5;
+
+interface DisplayProps {
+  color: string;
+  align: string;
+  fontSize: string;
+  fontWeight: string;
+  fontFamily: string;
+  transition: string;
+  colorHover: string;
+  colorActive: string;
+}
+
+interface TypographyProps {
+  align?: Align;
+  sizeVariant?: SizeVariant;
+  colorVariant?: ColorVariant;
+  weightVariant?: WeightVariant;
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+  uiState?: UiState;
+  allowedUiStates?: UiState[];
+}
+
+// helpers
+const getFontSize = (
+  fontSizes: ReturnType<typeof getStyles>["typography"]["fontSizes"],
+  sizeVariant: SizeVariant
+): string => {
+  switch (sizeVariant) {
+    case 1:
+      return fontSizes[12];
+    case 2:
+      return fontSizes[14];
+    default:
+    case 3:
+      return fontSizes[16];
+    case 4:
+      return fontSizes[18];
+    case 5:
+      return fontSizes[20];
+    case 6:
+      return fontSizes[24];
+    case 7:
+      return fontSizes[30];
+    case 8:
+      return fontSizes[36];
+    case 9:
+      return fontSizes[48];
+    case 10:
+      return fontSizes[60];
+    case 11:
+      return fontSizes[72];
+  }
+};
+
+const getFontWeight = (
+  fontWeights: ReturnType<typeof getStyles>["typography"]["fontWeights"],
+  weightVariant: WeightVariant
+) => {
+  return fontWeights[weightVariant];
+};
