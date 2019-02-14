@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start2": "react-scripts-ts start",
-    "start": "rm -rf ./node_modules/njm-react-component-library/node_modules/react && rm -rf ./node_modules/njm-react-component-library/node_modules/react-dom && npm run start2",
+    "start": "rm -rf ./node_modules/njm-react-component-library/node_modules/react && rm -rf ./node_modules/njm-react-component-library/node_modules/react-dom && npm run start2`",
     "build": "rm -rf ./node_modules/njm-react-component-library/node_modules/react && rm -rf ./node_modules/njm-react-component-library/node_modules/react-dom && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"

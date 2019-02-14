@@ -12,7 +12,10 @@ export const AppBarInternal: React.SFC<RouterProps> = ({ history }) => {
   const handleClick = () => history.push(githubLink);
   return (
     <AppBar>
-      <Typography variant="h2" color="light">
+      <Typography
+        sizeVariant={6}
+        colorVariant="textPrimaryLight"
+        weightVariant={2}>
         Component Library
       </Typography>
       <InvisibleLink href={githubLink}>

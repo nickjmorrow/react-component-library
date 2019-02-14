@@ -9,9 +9,9 @@ export const Buttons: React.SFC = () => {
 
   return (
     <Wrapper>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="cancel">Cancel</Button>
+      <Button colorVariant="primary">Primary</Button>
+      <Button colorVariant="secondary">Secondary</Button>
+      <Button colorVariant="cancel">Cancel</Button>
       <Button
         colorSet={{
           backgroundColor: googleColors.main,
@@ -20,7 +20,7 @@ export const Buttons: React.SFC = () => {
         }}>
         Google
       </Button>
-      <Button variant="white" color="primary">
+      <Button colorVariant="white" textColorVariant="primary">
         White
       </Button>
       <div
@@ -29,7 +29,7 @@ export const Buttons: React.SFC = () => {
           padding: "6px",
           width: "max-content"
         }}>
-        <Button variant="transparent">Transparent</Button>
+        <Button colorVariant="transparent">Transparent</Button>
       </div>
       <Button isLoading={isLoading} onClick={toggleIsLoading}>
         I'm loading
