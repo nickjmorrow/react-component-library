@@ -1,17 +1,83 @@
+import * as React from "react";
 import styled from "styled-components";
-import { borderRadius, colors, transitions } from "~/styleConstants";
-export const StyledInput = styled.input`
+import { getStyles, ThemeContext } from "~/styleConstants";
+
+export const StyledInput: React.SFC<Props> = ({
+  value,
+  type,
+  onChange: handleChange,
+  placeholder = ""
+}) => {
+  const theme = React.useContext(ThemeContext);
+  const {
+    colors,
+    transitions,
+    border: { borderRadius, borderStyle },
+    spacing,
+    typography: { fontFamily, fontSizes, fontWeights }
+  } = getStyles(theme);
+
+  return (
+    <Input
+      fontSize={fontSizes[16]}
+      fontFamily={fontFamily.default}
+      fontWeight={fontWeights[1]}
+      type={type}
+      backgroundColor={colors.gray.lightest}
+      transition={transitions.fast}
+      borderRadius={borderRadius.default}
+      focusBorderColor={colors.primary.main}
+      defaultBorderColor={colors.transparent}
+      borderStyle={borderStyle.default}
+      width={spacing[64]}
+      padding={spacing[2]}
+      margin={spacing[1]}
+      onChange={handleChange}
+      value={value}
+      placeholder={placeholder}
+    />
+  );
+};
+
+export const Input = styled("input")<DisplayProps>`
   outline: none;
-  width: 15rem;
-  padding: 0.5rem;
-  background-color: ${colors.gray.light};
-  border-radius: ${borderRadius.inner};
-  border: 1px solid ${colors.transparent};
-  margin-bottom: 2px;
-  font-size: 1rem;
-  margin: 4px 0px;
+  width: ${p => p.width};
+  padding: ${p => p.padding};
+  background-color: ${p => p.backgroundColor};
+  border-radius: ${p => p.borderRadius};
+  border: ${p => p.borderStyle} ${p => p.defaultBorderColor};
+  margin: ${p => p.margin} 0px;
+  type: ${p => p.type};
+  font-weight: ${p => p.fontWeight};
+  font-family: ${p => p.fontFamily};
+  font-size: ${p => p.fontSize};
   &:focus {
-    border: 1px solid ${colors.primary.main};
-    transition: border ${transitions.medium};
+    border: ${p => p.borderStyle} ${p => p.focusBorderColor};
+    transition: border ${p => p.transition};
   }
 `;
+
+type InputTypes = "text" | "password";
+
+interface Props {
+  value: React.ReactText;
+  type: InputTypes;
+  placeholder?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface DisplayProps {
+  borderRadius: string;
+  transition: string;
+  backgroundColor: string;
+  defaultBorderColor: string;
+  focusBorderColor: string;
+  borderStyle: string;
+  type: InputTypes;
+  width: string;
+  padding: string;
+  margin: string;
+  fontSize: string;
+  fontFamily: string;
+  fontWeight: string;
+}

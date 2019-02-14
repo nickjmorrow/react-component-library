@@ -15,8 +15,7 @@ interface IOwnProps {
 export const TextInput: React.SFC<IOwnProps> = ({
   onChange: handleChange,
   value,
-  placeholder,
-  style
+  placeholder
 }) => {
   const [errorOnBlur] = useState("");
 
@@ -30,7 +29,6 @@ export const TextInput: React.SFC<IOwnProps> = ({
         onChange={handleChangeInternal}
         type={"text"}
         placeholder={placeholder}
-        style={style}
       />
       <Error>{errorOnBlur}</Error>
     </Wrapper>

@@ -18,8 +18,7 @@ interface IOwnProps {
 export const PasswordInput: React.SFC<IOwnProps> = ({
   onChange: handleChange,
   value,
-  placeholder = "Password",
-  style
+  placeholder = "Password"
 }) => {
   type allowedInputTypes = "text" | "password";
   const [inputType, setInputType] = useState("password" as allowedInputTypes);
@@ -40,7 +39,6 @@ export const PasswordInput: React.SFC<IOwnProps> = ({
         onChange={handleChangeInternal}
         type={inputType}
         placeholder={placeholder}
-        style={style}
       />
       <EyeIcon
         style={{

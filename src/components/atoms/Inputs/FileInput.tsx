@@ -18,7 +18,13 @@ export const FileInput: React.SFC<FileInputProps> = ({
     setLabel(newLabel);
   };
   const theme = useContext(ThemeContext);
-  const { borderRadius, boxShadow, colors, transitions } = getStyles(theme);
+  const {
+    border: { borderRadius },
+    boxShadow,
+    colors,
+    transitions,
+    spacing
+  } = getStyles(theme);
   return (
     <>
       <StyledFileInput
@@ -34,11 +40,12 @@ export const FileInput: React.SFC<FileInputProps> = ({
         backgroundColorHover={colors.primary.light}
         borderRadius={borderRadius.default}
         boxShadow={boxShadow.default}
-        transition={transitions.fast}>
+        transition={transitions.fast}
+        spacing={spacing}>
         <UploadIcon style={{ height: "30px", width: "30px" }} />
         <Typography
-          variant="button"
-          color="inherit"
+          colorVariant="textPrimaryLight"
+          weightVariant={2}
           style={{ margin: "0", marginLeft: "6px" }}>
           {label}
         </Typography>
@@ -47,28 +54,20 @@ export const FileInput: React.SFC<FileInputProps> = ({
   );
 };
 
-const StyledFileInput = styled.input`
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-`;
-
 interface DisplayProps {
   backgroundColor: string;
   backgroundColorHover: string;
   borderRadius: string;
   boxShadow: string;
   transition: string;
+  spacing: ReturnType<typeof getStyles>["spacing"];
 }
 
 const Label = styled("label")<DisplayProps>`
   color: ${props => props.color};
   background-color: ${props => props.backgroundColor};
   display: inline-block;
-  padding: 8px 16px;
+  padding: ${p => p.spacing[2]} ${p => p.spacing[3]};
   width: max-content;
   border-radius: ${props => props.borderRadius};
   cursor: pointer;
@@ -81,4 +80,13 @@ const Label = styled("label")<DisplayProps>`
   &:hover {
     background-color: ${props => props.backgroundColorHover};
   }
+`;
+
+const StyledFileInput = styled.input`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 `;
