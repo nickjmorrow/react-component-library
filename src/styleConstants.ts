@@ -1,6 +1,6 @@
-import * as React from "react";
 import * as deepmergeProxy from "deepmerge";
-import { DeepRequired, DeepPartial } from "ts-essentials";
+import * as React from "react";
+import { DeepPartial, DeepRequired } from "ts-essentials";
 const deepmerge: typeof deepmergeProxy =
   (deepmergeProxy as any).default || deepmergeProxy;
 
@@ -13,17 +13,19 @@ const defaultPrimaryPaletteDescriptor = {
 
 const defaultSecondaryPaletteDescriptor = {
   ...defaultPrimaryPaletteDescriptor,
-  hue: 160 // hsl(160, 100%, 50%)
+  hue: 190 // hsl(190, 70%, 50%)
 };
 
 const defaultGrayPaletteDescriptor = {
   ...defaultPrimaryPaletteDescriptor,
-  saturation: 0
+  saturation: 0,
+  lightnessIncrement: 13,
+  middleLightness: 57
 };
 
-const defaultErrorPaletteDescriptor = {
+const defaultRedPaletteDescriptor = {
   ...defaultPrimaryPaletteDescriptor,
-  hue: 50 // hsl(10, 100%, 50%)
+  hue: 0 // hsl(10, 100%, 50%)
 };
 
 interface ColorShades {
@@ -69,7 +71,7 @@ export const colors = {
   primary: generateColorShades(defaultPrimaryPaletteDescriptor),
   secondary: generateColorShades(defaultSecondaryPaletteDescriptor),
   gray: generateColorShades(defaultGrayPaletteDescriptor),
-  red: generateColorShades(defaultErrorPaletteDescriptor)
+  red: generateColorShades(defaultRedPaletteDescriptor)
 };
 
 export const googleColors = generateColorShades({
@@ -77,10 +79,33 @@ export const googleColors = generateColorShades({
   saturation: 70
 });
 
-export enum borderRadius {
-  default = "4px",
-  inner = "2px"
-}
+const spacingUnit = 4;
+
+export const getSpacingSystem = (spacingUnit: number) => ({
+  1: spacingUnit + "px",
+  2: 2 * spacingUnit + "px",
+  3: 3 * spacingUnit + "px",
+  4: 4 * spacingUnit + "px",
+  6: 6 * spacingUnit + "px",
+  8: 8 * spacingUnit + "px",
+  12: 12 * spacingUnit + "px",
+  16: 16 * spacingUnit + "px",
+  24: 24 * spacingUnit + "px",
+  32: 32 * spacingUnit + "px",
+  48: 48 * spacingUnit + "px",
+  64: 64 * spacingUnit + "px",
+  96: 96 * spacingUnit + "px",
+  128: 128 * spacingUnit + "px",
+  160: 160 * spacingUnit + "px",
+  192: 192 * spacingUnit + "px"
+});
+
+const spacing = getSpacingSystem(spacingUnit);
+
+export const borderRadius = {
+  default: "4px",
+  inner: "2px"
+};
 
 export enum padding {
   default = "4px"
@@ -110,15 +135,52 @@ export const border = {
   bold: `3px solid ${colors.primary.main}`
 };
 
+export const borderStyle = {
+  default: "1px solid"
+};
+
 export const horizontalSpacing = {
   default: "1.5rem"
+};
+
+export const fontFamily = {
+  default: "Roboto, sans-serif"
+};
+
+export const fontSizes = {
+  12: "12px",
+  14: "14px",
+  16: "16px",
+  18: "18px",
+  20: "20px",
+  24: "24px",
+  30: "30px",
+  36: "36px",
+  48: "48px",
+  60: "60px",
+  72: "72px"
+};
+
+export const fontWeights = {
+  1: "400",
+  2: "600",
+  3: "800"
 };
 
 export const defaultTheme = {
   colors,
   transitions,
-  borderRadius,
-  boxShadow
+  boxShadow,
+  border: {
+    borderRadius,
+    borderStyle
+  },
+  typography: {
+    fontSizes,
+    fontFamily,
+    fontWeights
+  },
+  spacing
 };
 
 type OptionalTheme = DeepPartial<typeof defaultTheme>;
@@ -127,8 +189,8 @@ export const ThemeContext = React.createContext(defaultTheme as OptionalTheme);
 
 // merge theme with defaultTheme
 export const getStyles = (theme: DeepPartial<typeof defaultTheme>) =>
-  theme
-    ? deepmerge<typeof defaultTheme>(defaultTheme, theme as DeepRequired<
+  (theme
+    ? (deepmerge<typeof defaultTheme>(defaultTheme, theme as DeepRequired<
         typeof theme
-      >)
-    : defaultTheme;
+      >) as typeof defaultTheme)
+    : (defaultTheme as typeof defaultTheme)) as typeof defaultTheme;
