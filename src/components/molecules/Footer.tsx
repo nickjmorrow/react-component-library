@@ -1,32 +1,45 @@
 import * as React from "react";
 import styled from "styled-components";
+import { fullName, githubLink } from "~/constants";
+import { getStyles, ThemeContext } from "~/styleConstants";
+import { GithubIcon, InvisibleLink } from "../atoms";
 import { Typography } from "../atoms/Typography";
-import { colors } from "../../styleConstants";
-import { fullName } from "../../constants";
 
 const currentYear = new Date().getFullYear();
 const defaultText = `© ${currentYear} ${fullName}`;
 
-export const Footer: React.SFC<IOwnProps> = ({ text = defaultText, style }) => (
-  <StyledFooter style={style}>
-    <Typography color="light" style={{ padding: "6px", fontSize: "14px" }}>
-      {text}
-    </Typography>
-  </StyledFooter>
-);
+export const Footer: React.SFC<IOwnProps> = ({ text = defaultText }) => {
+  const theme = React.useContext(ThemeContext);
+  const { colors, spacing } = getStyles(theme);
+  return (
+    <StyledFooter colors={colors} spacing={spacing}>
+      <Typography colorVariant="textSecondaryDark" sizeVariant={2}>
+        {text}
+      </Typography>
+      <InvisibleLink href={githubLink}>
+        <GithubIcon sizeVariant={2} colorVariant={"secondaryDark"} />
+      </InvisibleLink>
+    </StyledFooter>
+  );
+};
 
-const StyledFooter = styled.div`
-  margin-top: 24px;
-  background-color: ${colors.primary.main};
+interface DisplayProps {
+  colors: ReturnType<typeof getStyles>["colors"];
+  spacing: ReturnType<typeof getStyles>["spacing"];
+}
+
+const StyledFooter = styled("div")<DisplayProps>`
+  background-color: ${p => p.colors.gray.lightest};
   display: flex;
   align-items: center;
-  padding: 2px;
+  justify-content: space-between;
+  padding: ${p => p.spacing[2]};
   width: 100%;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
+  box-sizing: border-box;
 `;
 
 interface IOwnProps {
   text?: string;
-  style?: React.CSSProperties;
 }

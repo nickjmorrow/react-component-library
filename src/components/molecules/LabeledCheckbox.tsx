@@ -23,7 +23,7 @@ export const LabeledCheckbox: React.SFC<IProps> = ({
           />
         </CheckboxWrapper>
       </InputWrapper>
-      <Typography color={isToggled ? "primary" : "default"}>
+      <Typography colorVariant={isToggled ? "primary" : "default"}>
         {option.label}
       </Typography>
     </LabeledInputWrapper>
