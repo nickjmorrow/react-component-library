@@ -18,9 +18,14 @@ class App extends React.Component {
           value={{
             colors: {
               primary: generateColorShades({
-                hue: 250,
+                hue: 160,
                 lightnessIncrement: 10
               })
+            },
+            border: {
+              borderRadius: {
+                default: "8px"
+              }
             }
           }}>
           <Wrapper>

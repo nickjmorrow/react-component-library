@@ -9,7 +9,6 @@ import {
 import { withRouter, RouterProps } from "react-router";
 
 export const AppBarInternal: React.SFC<RouterProps> = ({ history }) => {
-  const handleClick = () => history.push(githubLink);
   return (
     <AppBar>
       <Typography
@@ -19,10 +18,7 @@ export const AppBarInternal: React.SFC<RouterProps> = ({ history }) => {
         Component Library
       </Typography>
       <InvisibleLink href={githubLink}>
-        <GithubIcon
-          style={{ width: "32px", height: "32px", cursor: "pointer" }}
-          onClick={handleClick}
-        />
+        <GithubIcon sizeVariant={4} colorVariant={"primaryLight"} />
       </InvisibleLink>
     </AppBar>
   );

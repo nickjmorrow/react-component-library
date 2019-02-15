@@ -10,7 +10,12 @@ export const Buttons: React.SFC = () => {
   return (
     <Wrapper>
       <Button colorVariant="primary">Primary</Button>
-      <Button colorVariant="secondary">Secondary</Button>
+      <Button
+        colorVariant="secondary"
+        styleVariant="outline"
+        textColorVariant="secondary">
+        Secondary
+      </Button>
       <Button colorVariant="cancel">Cancel</Button>
       <Button
         colorSet={{

@@ -14,9 +14,13 @@ const options: IOption[] = [
 ];
 
 export const SelectDemo: React.SFC = () => {
-  const [option, setOption] = useState(options[0]);
+  const [currentOption, setOption] = useState(options[0]);
 
   return (
-    <Select options={options} currentOption={option} onChange={setOption} />
+    <Select
+      options={options}
+      currentOption={currentOption}
+      onChange={setOption}
+    />
   );
 };
