@@ -2,7 +2,7 @@ import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import styled from "styled-components";
 import { Typography, Link } from "~/components";
-import { colors, transitions, boxShadow } from "~/styleConstants";
+import { boxShadow, ThemeContext, getStyles } from "~/styleConstants";
 
 const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
   navInfos,
@@ -22,9 +22,13 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
         const content = (
           <ContentWrapper itemLevel={ni.itemLevel}>{typography}</ContentWrapper>
         );
-
+        const theme = React.useContext(ThemeContext);
+        const { colors, transitions } = getStyles(theme);
         return (
-          <NavItemWrapper key={i}>
+          <NavItemWrapper
+            key={i}
+            color={colors.gray.lightest}
+            transition={transitions.fast}>
             {ni.route ? (
               <Link
                 route={ni.route}
@@ -66,15 +70,15 @@ const ContentWrapper = styled("div")<DisplayProps & Partial<HTMLDivElement>>`
   margin-left: ${p => getMargin(p.itemLevel)};
 `;
 
-const NavItemWrapper = styled.div`
+const NavItemWrapper = styled("div")<{ color: string; transition: string }>`
   height: 2rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
   &:hover {
-    background-color: ${colors.gray.light};
-    transition: ${transitions.fast};
+    background-color: ${p => p.color};
+    transition: ${p => p.transition};
   }
 `;
 

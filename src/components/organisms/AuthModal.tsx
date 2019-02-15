@@ -8,7 +8,7 @@ import {
   Typography,
   PaperModal
 } from "~/components/atoms";
-import { horizontalSpacing } from "~/styleConstants";
+import { horizontalSpacing, ThemeContext, getStyles } from "~/styleConstants";
 import { ILoginInfo, IRegisterInfo } from "~/types";
 
 export const AuthModal: React.SFC<IProps> = ({
@@ -77,6 +77,8 @@ export const AuthModal: React.SFC<IProps> = ({
   );
 
   const authInputs = isLoggingIn ? loginInputs : registerInputs;
+  const theme = React.useContext(ThemeContext);
+  const { spacing } = getStyles(theme);
   return (
     <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
       <div style={{ margin: `0 ${horizontalSpacing.default}` }}>
@@ -84,11 +86,14 @@ export const AuthModal: React.SFC<IProps> = ({
           {"Sign In"}
         </Typography>
         {authInputs}
-        <ButtonContainer>
+        <ButtonContainer verticalMargin={spacing[4]}>
           <Button style={buttonBarStyle} onClick={handleRegisterInternal}>
             Register
           </Button>
-          <Button style={buttonBarStyle} onClick={handleLoginInternal}>
+          <Button
+            style={buttonBarStyle}
+            onClick={handleLoginInternal}
+            useMargin={false}>
             Log In
           </Button>
           {renderAdditionalComponents
@@ -115,10 +120,11 @@ const InputWrapper = styled.div`
   margin-top: 28px;
 `;
 
-const ButtonContainer = styled.div`
-  margin: 1.5rem 0;
+const ButtonContainer = styled("div")<{ verticalMargin: string }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
   width: 100%;
+  margin: ${p => p.verticalMargin} 0;
 `;
