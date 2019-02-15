@@ -8,7 +8,9 @@ const defaultPrimaryPaletteDescriptor = {
   hue: 220, // hsl(220, 100%, 50%)
   middleLightness: 50,
   lightnessIncrement: 10,
-  saturation: 55
+  lightnessDecrement: 10,
+  saturation: 55,
+  hueDecrement: 0
 };
 
 const defaultSecondaryPaletteDescriptor = {
@@ -20,7 +22,7 @@ const defaultGrayPaletteDescriptor = {
   ...defaultPrimaryPaletteDescriptor,
   saturation: 0,
   lightnessIncrement: 13,
-  middleLightness: 57
+  middleLightness: 55
 };
 
 const defaultRedPaletteDescriptor = {
@@ -28,7 +30,15 @@ const defaultRedPaletteDescriptor = {
   hue: 0 // hsl(10, 100%, 50%)
 };
 
-interface ColorShades {
+const defaultYellowPaletteDescriptor = {
+  ...defaultPrimaryPaletteDescriptor,
+  hue: 50, // hsl(50, 100%, 50%)
+  lightnessIncrement: 10,
+  lightnessDecrement: 6,
+  hueDecrement: 15
+};
+
+export interface ColorShades {
   lightest: string;
   lighter: string;
   light: string;
@@ -38,30 +48,26 @@ interface ColorShades {
   darkest: string;
 }
 
-interface ShadesDescriptor {
-  hue?: number;
-  middleLightness?: number;
-  lightnessIncrement?: number;
-  saturation?: number;
-}
-
 export const generateColorShades = (
-  paletteDescriptor: ShadesDescriptor
+  paletteDescriptor: Partial<typeof defaultPrimaryPaletteDescriptor>
 ): ColorShades => {
   const {
     hue: h = 220,
     middleLightness: l = 50,
     saturation: s = 50,
-    lightnessIncrement: li = 10
+    lightnessIncrement: li = 10,
+    lightnessDecrement: ld = 10,
+    hueDecrement: hd = 0
   } = paletteDescriptor;
+  // TODO: i think i want 9 shades and the keys should be numbers :/
   return {
     lightest: `hsl(${h}, ${s}%, ${l + 3 * li}%)`,
     lighter: `hsl(${h}, ${s}%, ${l + 2 * li}%)`,
     light: `hsl(${h}, ${s}%, ${l + li}%)`,
     main: `hsl(${h}, ${s}%, ${l}%)`,
-    dark: `hsl(${h}, ${s}%, ${l - li}%)`,
-    darker: `hsl(${h}, ${s}%, ${l - 2 * li}%)`,
-    darkest: `hsl(${h}, ${s}%, ${l - 3 * li}%)`
+    dark: `hsl(${h - hd}, ${s}%, ${l - ld}%)`,
+    darker: `hsl(${h - 2 * hd}, ${s}%, ${l - 2 * ld}%)`,
+    darkest: `hsl(${h - 3 * hd}, ${s}%, ${l - 3 * ld}%)`
   };
 };
 
@@ -71,7 +77,8 @@ export const colors = {
   primary: generateColorShades(defaultPrimaryPaletteDescriptor),
   secondary: generateColorShades(defaultSecondaryPaletteDescriptor),
   gray: generateColorShades(defaultGrayPaletteDescriptor),
-  red: generateColorShades(defaultRedPaletteDescriptor)
+  red: generateColorShades(defaultRedPaletteDescriptor),
+  yellow: generateColorShades(defaultYellowPaletteDescriptor)
 };
 
 export const googleColors = generateColorShades({
@@ -136,7 +143,9 @@ export const border = {
 };
 
 export const borderStyle = {
-  default: "1px solid"
+  default: "1px solid",
+  1: "1px solid",
+  2: "2px solid"
 };
 
 export const horizontalSpacing = {
@@ -167,6 +176,13 @@ export const fontWeights = {
   3: "800"
 };
 
+const iconSizes = {
+  1: "12px",
+  2: "16px",
+  3: "24px",
+  4: "32px"
+};
+
 export const defaultTheme = {
   colors,
   transitions,
@@ -180,7 +196,10 @@ export const defaultTheme = {
     fontFamily,
     fontWeights
   },
-  spacing
+  spacing,
+  icons: {
+    iconSizes
+  }
 };
 
 type OptionalTheme = DeepPartial<typeof defaultTheme>;
