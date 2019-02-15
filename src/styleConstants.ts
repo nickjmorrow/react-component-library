@@ -20,9 +20,10 @@ const defaultSecondaryPaletteDescriptor = {
 
 const defaultGrayPaletteDescriptor = {
   ...defaultPrimaryPaletteDescriptor,
-  saturation: 0,
+  saturation: 13,
   lightnessIncrement: 13,
-  middleLightness: 55
+  middleLightness: 55,
+  hue: 200 // hsl(200, 100%, 50%)
 };
 
 const defaultRedPaletteDescriptor = {
@@ -36,6 +37,12 @@ const defaultYellowPaletteDescriptor = {
   lightnessIncrement: 10,
   lightnessDecrement: 6,
   hueDecrement: 15
+};
+
+const defaultSuccessPaletteDescriptor = {
+  ...defaultPrimaryPaletteDescriptor,
+  hue: 120, //hsl(120, 100%, 50%)
+  saturation: 40
 };
 
 export interface ColorShades {
@@ -71,6 +78,14 @@ export const generateColorShades = (
   };
 };
 
+// TODO: consider replacing  the following:
+// 'primary' with 'core'
+// 'secondary' with 'accent'
+// 'red' with 'error'
+// 'yellow' with 'warning'
+// 'gray' with 'neutral'
+// TODO: should have a 'success' color scheme!
+
 export const colors = {
   white: "rgb(255, 255, 255)",
   transparent: "transparent",
@@ -78,7 +93,8 @@ export const colors = {
   secondary: generateColorShades(defaultSecondaryPaletteDescriptor),
   gray: generateColorShades(defaultGrayPaletteDescriptor),
   red: generateColorShades(defaultRedPaletteDescriptor),
-  yellow: generateColorShades(defaultYellowPaletteDescriptor)
+  yellow: generateColorShades(defaultYellowPaletteDescriptor),
+  success: generateColorShades(defaultSuccessPaletteDescriptor)
 };
 
 export const googleColors = generateColorShades({
@@ -154,6 +170,7 @@ export const horizontalSpacing = {
 
 export const fontFamily = {
   default: "Roboto, sans-serif"
+  // default: "Times New Roman"
 };
 
 export const fontSizes = {

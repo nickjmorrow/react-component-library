@@ -18,7 +18,7 @@ class App extends React.Component {
           value={{
             colors: {
               primary: generateColorShades({
-                hue: 160,
+                hue: 260,
                 lightnessIncrement: 10
               })
             },

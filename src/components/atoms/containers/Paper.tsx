@@ -3,13 +3,16 @@ import styled from "styled-components";
 import { ThemeContext, getStyles } from "~/styleConstants";
 
 interface IPaperProps {
-  color: string;
-  boxShadow: string;
-  borderRadius: string;
   children: React.ReactNode;
 }
 
-const StyledPaper = styled("div")<IPaperProps>`
+interface DisplayProps {
+  color: string;
+  boxShadow: string;
+  borderRadius: string;
+}
+
+const StyledPaper = styled("div")<DisplayProps>`
   display: inline-flex;
   flex-direction: column;
   flex-wrap: wrap;

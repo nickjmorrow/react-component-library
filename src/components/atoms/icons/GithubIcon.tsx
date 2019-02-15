@@ -1,8 +1,10 @@
 import * as React from "react";
 import { ThemeContext, getStyles } from "~/styleConstants";
 import styled from "styled-components";
+import { IconProps } from "./types";
+import { getColor } from "./iconServices";
 
-export const GithubIcon: React.SFC<Props> = ({
+export const GithubIcon: React.SFC<IconProps> = ({
   sizeVariant = 2,
   colorVariant = "primaryDark"
 }) => {
@@ -31,41 +33,10 @@ export const GithubIcon: React.SFC<Props> = ({
   );
 };
 
-type SizeVariant = 1 | 2 | 3 | 4;
-type ColorVariant =
-  | "primaryLight"
-  | "primaryDark"
-  | "secondaryLight"
-  | "secondaryDark";
-interface Props {
-  sizeVariant?: SizeVariant;
-  colorVariant?: ColorVariant;
-}
-
-interface DisplayProps {
-  size: string;
-  color: string;
-}
-
-const Svg = styled("svg")<DisplayProps>`
+const Svg = styled("svg")<{ size: string; color: string }>`
   height: ${p => p.size};
   width: ${p => p.size};
+  color: ${p => p.color};
   position: relative;
   top: 2px;
 `;
-
-const getColor = (
-  colorVariant: ColorVariant,
-  colors: ReturnType<typeof getStyles>["colors"]
-) => {
-  switch (colorVariant) {
-    case "primaryLight":
-      return colors.white;
-    case "secondaryLight":
-      return colors.gray.lightest;
-    case "primaryDark":
-      return colors.gray.darkest;
-    case "secondaryDark":
-      return colors.gray.dark;
-  }
-};

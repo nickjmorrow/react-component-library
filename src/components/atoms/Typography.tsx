@@ -45,7 +45,7 @@ export const Typography: React.SFC<TypographyProps> = ({
 
 export const StyledTypography = styled("span")<DisplayProps>`
   display: inline-block;
-  font-family: Roboto, sans-serif;
+  font-family: ${p => p.fontFamily};
   text-align: ${p => p.align};
   color: ${p => p.color};
   font-size: ${p => p.fontSize};

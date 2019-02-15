@@ -52,6 +52,15 @@ export const Colors: React.SFC = () => {
         <Block color={colors.yellow.darker} />
         <Block color={colors.yellow.darkest} />
       </Wrapper>
+      <Wrapper>
+        <Block color={colors.success.lightest} />
+        <Block color={colors.success.lighter} />
+        <Block color={colors.success.light} />
+        <Block color={colors.success.main} />
+        <Block color={colors.success.dark} />
+        <Block color={colors.success.darker} />
+        <Block color={colors.success.darkest} />
+      </Wrapper>
     </BlocksWrapper>
   );
 };

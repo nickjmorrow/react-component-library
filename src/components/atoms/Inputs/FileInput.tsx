@@ -82,6 +82,7 @@ const Label = styled("label")<DisplayProps>`
   }
 `;
 
+// TODO: spacing looks kind of weird here, no?
 const StyledFileInput = styled.input`
   width: 0.1px;
   height: 0.1px;

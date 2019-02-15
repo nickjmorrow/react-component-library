@@ -9,6 +9,9 @@ import { GetComponentProps } from "~/typeUtilities";
 // TODO: make this the same width regardless
 // of isLoading state
 
+// TODO: text should light up as soon as cursor enters button
+// but it doesnt. it waits till cursor over text :/
+
 interface IDisplayProps {
   showBoxShadow?: boolean;
   useMargin?: boolean;
