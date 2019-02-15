@@ -1,121 +1,104 @@
 import * as React from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { colors, transitions } from "~/styleConstants";
 import { IOption } from "types";
 import { Option } from "./Option";
 import { Typography } from "~/components/atoms/Typography";
+import { getStyles, ThemeContext } from "~/styleConstants";
 
-export class Select extends React.Component<OwnProps, IState> {
-  readonly state = initialState;
+export const Select: React.SFC<OwnProps> = ({
+  onChange: handleChange,
+  currentOption,
+  options
+}) => {
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  toggleIsMenuVisible = () => {
-    this.setState(prevState => ({
-      isMenuVisible: !prevState.isMenuVisible
-    }));
+  const toggleIsMenuVisible = () => {
+    setIsMenuVisible(isMenuVisible => !isMenuVisible);
   };
 
-  closeMenu = () => {
-    this.setState({
-      isMenuVisible: false
-    });
+  const closeMenu = () => setIsMenuVisible(false);
+
+  const handleClickOption = (option: IOption) => {
+    closeMenu();
+    handleChange(option);
   };
 
-  handleClickOption = (option: IOption) => {
-    this.setState({
-      isMenuVisible: false
-    });
-    this.props.onChange(option);
-  };
+  const theme = React.useContext(ThemeContext);
+  const {
+    colors,
+    spacing,
+    border: { borderStyle },
+    transitions
+  } = getStyles(theme);
 
-  componentDidMount = () => {
-    const { currentOption, options } = this.props;
+  return (
+    <Wrapper onMouseLeave={closeMenu} width={spacing[32]}>
+      <StyledSelect
+        onClick={toggleIsMenuVisible}
+        colors={colors}
+        spacing={spacing}
+        transition={transitions.fast}
+        borderStyle={borderStyle.default}>
+        <Typography sizeVariant={3}>{currentOption.label}</Typography>
+      </StyledSelect>
+      {isMenuVisible && (
+        <Options colors={colors} borderStyle={borderStyle.default}>
+          {options
+            .filter(o => o.value !== currentOption.value)
+            .map(o => (
+              <Option key={o.value} onClick={handleClickOption} option={o} />
+            ))}
+        </Options>
+      )}
+    </Wrapper>
+  );
+};
 
-    const newOptions = currentOption ? options : [...options, noneChosenOption];
-    this.setState({
-      options: newOptions
-    });
-  };
-
-  render() {
-    const {
-      currentOption,
-      removeNoneOptionAfterSelection: includeNoneOptionAfterSelection
-    } = this.props;
-    const { isMenuVisible, options } = this.state;
-
-    const newCurrentOption = currentOption || noneChosenOption;
-    const newOptions =
-      includeNoneOptionAfterSelection && currentOption
-        ? options.filter(o => o.value !== noneChosenOption.value)
-        : options;
-
-    return (
-      <Wrapper onMouseLeave={this.closeMenu}>
-        <StyledSelect onClick={this.toggleIsMenuVisible}>
-          <Typography>{newCurrentOption.label}</Typography>
-        </StyledSelect>
-        {isMenuVisible && (
-          <Options>
-            {newOptions
-              .filter(o => o.value !== newCurrentOption.value)
-              .map(o => (
-                <Option
-                  key={o.value}
-                  onClick={this.handleClickOption}
-                  option={o}
-                />
-              ))}
-          </Options>
-        )}
-      </Wrapper>
-    );
-  }
-}
-
-const noneChosenOption = { value: "N/A", label: "N/A" };
-
-const Wrapper = styled.div`
-  width: 10rem;
+const Wrapper = styled("div")<{ width: string }>`
+  width: ${p => p.width};
 `;
 
-const Options = styled.div`
-  background-color: ${colors.white};
+interface OptionsDisplayProps {
+  colors: ReturnType<typeof getStyles>["colors"];
+  borderStyle: string;
+}
+
+const Options = styled("div")<OptionsDisplayProps>`
+  background-color: ${p => p.colors.transparent};
   width: inherit;
   display: flex;
   flex-direction: column;
   position: absolute;
   z-index: 1;
-  border: 1px solid ${colors.gray.light};
+  border: ${p => p.borderStyle} ${p => p.colors.transparent};
 `;
 
-const StyledSelect = styled.div`
-  font-size: 16px;
-  background-color: ${colors.white};
+interface StyledSelectDisplayProps {
+  colors: ReturnType<typeof getStyles>["colors"];
+  spacing: ReturnType<typeof getStyles>["spacing"];
+  borderStyle: string;
+  transition: string;
+}
+
+const StyledSelect = styled("div")<StyledSelectDisplayProps>`
+  background-color: ${p => p.colors.transparent};
   border: none;
   outline: none;
-  width: 10rem;
   appearance: none;
   text-indent: 1px;
   text-overflow: "";
-  border-bottom: 1px solid ${colors.white};
+  border-bottom: ${p => p.borderStyle} ${p => p.colors.transparent};
   &:hover {
-    border-bottom: 1px solid ${colors.gray.dark};
-    transition: ${transitions.fast};
+    border-bottom: ${p => p.borderStyle} ${p => p.colors.primary.main};
+    transition: ${p => p.transition};
     cursor: pointer;
   }
 `;
 
 interface OwnProps {
   options: IOption[];
-  currentOption: IOption | null;
-  removeNoneOptionAfterSelection?: boolean;
+  currentOption: IOption;
+  includeNoneOptionAfterSelection?: boolean;
   onChange(option: IOption): void;
 }
-
-const initialState = {
-  isMenuVisible: false,
-  currentOption: null as IOption | null,
-  options: [] as IOption[]
-};
-
-type IState = typeof initialState;

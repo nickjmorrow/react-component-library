@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { colors } from "../../../styleConstants";
+// import { Error } from "../Error";
 import { EyeIcon } from "../icons/EyeIcon";
-import { Error } from "../Error";
 import { StyledInput } from "./StyledInput";
 
 interface IOwnProps {
@@ -24,7 +23,7 @@ export const PasswordInput: React.SFC<IOwnProps> = ({
   const [inputType, setInputType] = useState("password" as allowedInputTypes);
   const showPassword = inputType === "text";
   // TODO: add input validation
-  const [errorOnBlur] = useState("");
+  // const [errorOnBlur] = useState("");
 
   const toggleInputType = () =>
     setInputType(inputType === "text" ? "password" : "text");
@@ -42,14 +41,13 @@ export const PasswordInput: React.SFC<IOwnProps> = ({
       />
       <EyeIcon
         style={{
-          position: "absolute",
-          right: "53px",
-          bottom: "213px",
-          color: showPassword ? colors.gray.dark : colors.gray.main
+          position: "relative",
+          left: "240px",
+          top: "-30px"
         }}
+        colorVariant={showPassword ? "primaryDark" : "secondaryDark"}
         onClick={toggleInputType}
       />
-      <Error>{errorOnBlur}</Error>
     </Wrapper>
   );
 };

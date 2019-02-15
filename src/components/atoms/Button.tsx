@@ -17,8 +17,11 @@ interface IDisplayProps {
   backgroundColorActive: string;
   backgroundColorHover: string;
   boxShadow: string;
-  borderRadius: string;
+  border: ReturnType<typeof getStyles>["border"];
   transition: string;
+  useBorder: boolean;
+  styleVariant: StyleVariant;
+  spacing: ReturnType<typeof getStyles>["spacing"];
 }
 
 interface ColorSet {
@@ -37,9 +40,13 @@ type ColorVariant =
   | "white"
   | "transparent";
 
+// TODO: finish this for outline and make it extendable
+type StyleVariant = "default" | "outline";
+
 type IButtonProps = {
   textColorVariant?: GetComponentProps<typeof Typography>["colorVariant"];
   colorVariant?: ColorVariant;
+  styleVariant?: StyleVariant;
   route?: string;
   children: React.ReactNode;
   colorSet?: Partial<ColorSet>;
@@ -53,17 +60,21 @@ type IButtonProps = {
 export const Button: React.SFC<IButtonProps> = ({
   children,
   colorVariant = "primary",
+  textColorVariant = "textPrimaryLight",
+  styleVariant = "default",
   route,
   isLoading = false,
   showBoxShadow = true,
   useMargin = true,
-  textColorVariant = "textPrimaryLight",
   colorSet = {} as ColorSet,
   onClick: handleClick = () => {
     return;
   }
 }) => {
   // TODO: use a ref to change uiState
+  // remember: text only lights up when hovering over text
+  // but we want it to light up when hovering over button
+
   const formattedChildren =
     typeof children === "string" ? (
       <Typography
@@ -81,12 +92,7 @@ export const Button: React.SFC<IButtonProps> = ({
   const content = isLoading ? <LoadingIcon /> : formattedChildren;
 
   const theme = React.useContext(ThemeContext);
-  const {
-    colors,
-    transitions,
-    boxShadow,
-    border: { borderRadius }
-  } = getStyles(theme);
+  const { colors, transitions, boxShadow, spacing, border } = getStyles(theme);
 
   const button = (
     <StyledButton
@@ -103,8 +109,11 @@ export const Button: React.SFC<IButtonProps> = ({
       useMargin={useMargin}
       onClick={handleClick}
       transition={transitions.fast}
-      borderRadius={borderRadius.default}
-      boxShadow={boxShadow.default}>
+      border={border}
+      useBorder={styleVariant === "outline"}
+      styleVariant={styleVariant}
+      boxShadow={boxShadow.default}
+      spacing={spacing}>
       {content}
     </StyledButton>
   );
@@ -122,27 +131,30 @@ const StyledButton = styled("button")<
   IDisplayProps & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
 >`
   color: ${props => props.color};
-  background-color: ${props => props.backgroundColor};
-  border-radius: ${props => props.borderRadius};
-  padding: 8px 16px;
-  height: 36px;
+  background-color: ${p =>
+    p.styleVariant === "outline" ? "transparent" : p.backgroundColor};
+  border-radius: ${props => props.border.borderRadius.default};
+  border: ${p => p.border.borderStyle[2]} ${props => props.backgroundColor};
+  padding: ${p => p.spacing[3] + " " + p.spacing[4]};
   display: flex;
-  border: none;
   justify-content: center;
   align-items: center;
-  margin: ${props => (props.useMargin ? "4px" : "0px")};
+  margin: ${props => (props.useMargin ? props.spacing[4] : 0)};
   cursor: pointer;
   outline: none;
   box-shadow: ${props => props.showBoxShadow && props.boxShadow};
   width: max-content;
-  min-width: 5rem;
   &:hover {
-    background-color: ${props => props.backgroundColorHover};
+    border-color: ${p => p.backgroundColorHover};
+    background-color: ${p =>
+      p.styleVariant === "outline" ? "none" : p.backgroundColorHover};
     color: ${props => props.colorHover};
     transition: all ${props => props.transition};
   }
   &:active {
-    background-color: ${props => props.backgroundColorActive};
+    border-color: ${p => p.backgroundColorActive};
+    background-color: ${p =>
+      p.styleVariant === "outline" ? "transparent" : p.backgroundColorActive};
     color: ${props => props.colorActive};
     transition: all ${props => props.transition};
   }
@@ -168,9 +180,9 @@ const getColorHover = (
 
 const getColorActive = (
   colors: ReturnType<typeof getStyles>["colors"],
-  variant: ColorVariant
+  colorVariant: ColorVariant
 ) => {
-  switch (variant) {
+  switch (colorVariant) {
     case "primary":
       return colors.primary.dark;
     case "secondary":
@@ -186,9 +198,9 @@ const getColorActive = (
 
 const getColor = (
   colors: ReturnType<typeof getStyles>["colors"],
-  variant: ColorVariant
+  colorVariant: ColorVariant
 ) => {
-  switch (variant) {
+  switch (colorVariant) {
     case "white":
       return colors.white;
     case "primary":

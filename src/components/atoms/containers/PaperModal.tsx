@@ -12,10 +12,8 @@ export const PaperModal: React.SFC<IOwnProps> = ({
   return (
     <Modal isOpen={isOpen} onRequestClose={handleRequestClose}>
       <Paper>
-        <>
-          <CloseIcon onClick={handleRequestClose} style={iconStyle} />
-          <Wrapper>{children}</Wrapper>
-        </>
+        <CloseIcon onClick={handleRequestClose} style={iconStyle} />
+        <Wrapper>{children}</Wrapper>
       </Paper>
     </Modal>
   );

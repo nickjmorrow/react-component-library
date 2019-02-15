@@ -25,7 +25,7 @@ export const Link: React.SFC<ILinkProps> = ({
       color={color}
       hoverColor={hoverColor}
       style={style}>
-      {formattedTextNode(children, { color: "inherit" })}
+      {formattedTextNode(children, { colorVariant: "inherit" })}
     </StyledRouterLink>
   );
 };

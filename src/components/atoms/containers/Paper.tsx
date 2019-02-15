@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import { borderRadius, boxShadow, colors } from "../../../styleConstants";
+import { ThemeContext, getStyles } from "~/styleConstants";
 
 interface IPaperProps {
-  minHeight?: number;
-  minWidth?: number;
-  style?: React.CSSProperties;
+  color: string;
+  boxShadow: string;
+  borderRadius: string;
   children: React.ReactNode;
 }
 
@@ -13,20 +13,24 @@ const StyledPaper = styled("div")<IPaperProps>`
   display: inline-flex;
   flex-direction: column;
   flex-wrap: wrap;
-  background-color: ${colors.white};
-  box-shadow: ${boxShadow.default};
-  border-radius: ${borderRadius.inner};
-  min-width: ${props => props.minWidth}px;
-  min-height: ${props => props.minHeight}px;
+  background-color: ${p => p.color};
+  box-shadow: ${p => p.boxShadow};
+  border-radius: ${p => p.borderRadius};
 `;
 
-export const Paper: React.SFC<IPaperProps> = ({
-  style,
-  minHeight = 0,
-  minWidth = 0,
-  children
-}) => (
-  <StyledPaper style={style} minHeight={minHeight} minWidth={minWidth}>
-    {children}
-  </StyledPaper>
-);
+export const Paper: React.SFC<IPaperProps> = ({ children }) => {
+  const theme = React.useContext(ThemeContext);
+  const {
+    colors,
+    boxShadow,
+    border: { borderRadius }
+  } = getStyles(theme);
+  return (
+    <StyledPaper
+      color={colors.white}
+      boxShadow={boxShadow.default}
+      borderRadius={borderRadius.default}>
+      {children}
+    </StyledPaper>
+  );
+};

@@ -1,34 +1,48 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors, transitions, borderRadius } from "~/styleConstants";
-import { IOption } from "~/types";
 import { Typography } from "~/components/atoms/Typography";
+import { getStyles, ThemeContext } from "~/styleConstants";
+import { IOption } from "~/types";
 
-export const Option: React.SFC<IProps> = ({ option, onClick: handleClick }) => {
-  const { label } = option;
-
+export const Option: React.SFC<{
+  option: IOption;
+  onClick(Option: IOption): void;
+}> = ({ option, onClick: handleClick }) => {
   const handleClickInternal = () => {
     handleClick(option);
   };
 
+  const theme = React.useContext(ThemeContext);
+  const {
+    spacing,
+    colors,
+    transitions,
+    border: { borderRadius }
+  } = getStyles(theme);
+
   return (
-    <StyledOption onClick={handleClickInternal}>
-      <Typography>{label}</Typography>
+    <StyledOption
+      onClick={handleClickInternal}
+      colors={colors}
+      borderRadius={borderRadius}
+      transitions={transitions}
+      spacing={spacing}>
+      <Typography>{option.label}</Typography>
     </StyledOption>
   );
 };
 
-const StyledOption = styled.div`
+const StyledOption = styled("div")<{
+  spacing: ReturnType<typeof getStyles>["spacing"];
+  colors: ReturnType<typeof getStyles>["colors"];
+  transitions: ReturnType<typeof getStyles>["transitions"];
+  borderRadius: ReturnType<typeof getStyles>["border"]["borderRadius"];
+}>`
   padding: 4px;
   cursor: pointer;
   &:hover {
-    background-color: ${colors.gray.light};
-    transition: ${transitions.medium};
-    border-radius: ${borderRadius.default};
+    background-color: ${p => p.colors.gray.lightest};
+    transition: ${p => p.transitions.fast};
+    border-radius: ${p => p.borderRadius.default};
   }
 `;
-
-interface IProps {
-  option: IOption;
-  onClick(Option: IOption): void;
-}

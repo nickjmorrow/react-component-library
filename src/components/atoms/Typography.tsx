@@ -67,9 +67,9 @@ const getColorHover = (
   switch (colorVariant) {
     case "default":
     case "textPrimaryDark":
-      return colors.gray.darker;
+      return colors.gray.darkest;
     case "textSecondaryDark":
-      return colors.gray.main;
+      return colors.gray.darker;
     case "textPrimaryLight":
       return colors.white;
     case "textSecondaryLight":
