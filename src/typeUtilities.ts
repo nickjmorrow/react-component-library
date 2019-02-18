@@ -1,3 +1,5 @@
+import { getStyles } from "./styleConstants";
+
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export type Required<T> = T extends object
@@ -9,3 +11,7 @@ export type GetComponentProps<T> = T extends
   | React.Component<infer P>
   ? P
   : never;
+
+export type StyleConstant<
+  T extends keyof ReturnType<typeof getStyles>
+> = ReturnType<typeof getStyles>[T];
