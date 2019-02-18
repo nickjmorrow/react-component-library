@@ -13,12 +13,12 @@ import styled from "styled-components";
 class App extends React.Component {
   public render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <ThemeContext.Provider
           value={{
             colors: {
               primary: generateColorShades({
-                hue: 260,
+                hue: 99,
                 lightnessIncrement: 10
               })
             },
