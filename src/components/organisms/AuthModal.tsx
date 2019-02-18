@@ -3,12 +3,12 @@ import { useState } from "react";
 import styled from "styled-components";
 import {
   Button,
+  PaperModal,
   PasswordInput,
   TextInput,
-  Typography,
-  PaperModal
+  Typography
 } from "~/components/atoms";
-import { horizontalSpacing, ThemeContext, getStyles } from "~/styleConstants";
+import { getStyles, ThemeContext } from "~/styleConstants";
 import { ILoginInfo, IRegisterInfo } from "~/types";
 
 export const AuthModal: React.SFC<IProps> = ({
@@ -79,10 +79,10 @@ export const AuthModal: React.SFC<IProps> = ({
   const authInputs = isLoggingIn ? loginInputs : registerInputs;
   const theme = React.useContext(ThemeContext);
   const { spacing } = getStyles(theme);
-  // TODO: why is there so much spacing above hte buttons?
+
   return (
     <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
-      <div style={{ margin: `0 ${horizontalSpacing.default}` }}>
+      <div style={{ margin: `0 ${spacing[4]}` }}>
         <Typography sizeVariant={6} weightVariant={2}>
           {"Sign In"}
         </Typography>

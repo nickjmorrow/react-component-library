@@ -1,50 +1,52 @@
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import styled from "styled-components";
-import { Typography, Link } from "~/components";
-import { boxShadow, ThemeContext, getStyles } from "~/styleConstants";
+import { Link, Typography } from "~/components";
+import { getStyles, ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/typeUtilities";
 
 const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
   navInfos,
-  style,
   location
 }) => {
   const { pathname } = location;
+  const theme = React.useContext(ThemeContext);
+  const { colors, transitions, spacing, boxShadow } = getStyles(theme);
   return (
-    <Wrapper style={style}>
-      {navInfos.map((ni, i) => {
-        const typography: any = (
-          <Typography
-            colorVariant={pathname === ni.route ? "primary" : "default"}>
-            {ni.label}
-          </Typography>
-        );
-        const content = (
-          <ContentWrapper itemLevel={ni.itemLevel}>{typography}</ContentWrapper>
-        );
-        const theme = React.useContext(ThemeContext);
-        const { colors, transitions } = getStyles(theme);
-        return (
-          <NavItemWrapper
-            key={i}
-            color={colors.gray.lightest}
-            transition={transitions.fast}>
-            {ni.route ? (
-              <Link
-                route={ni.route}
-                style={{
-                  display: "inline-block",
-                  width: "100%",
-                  height: "100%"
-                }}>
-                {content}
-              </Link>
-            ) : (
-              content
-            )}
-          </NavItemWrapper>
-        );
-      })}
+    <Wrapper boxShadow={boxShadow}>
+      <NavItems spacing={spacing}>
+        {navInfos.map((ni, i) => {
+          const content = (
+            <ContentWrapper itemLevel={ni.itemLevel}>
+              <Typography
+                colorVariant={pathname === ni.route ? "primary" : "default"}>
+                {ni.label}
+              </Typography>
+            </ContentWrapper>
+          );
+
+          return (
+            <NavItemWrapper
+              key={i}
+              color={colors.gray.lightest}
+              transition={transitions.fast}>
+              {ni.route ? (
+                <Link
+                  route={ni.route}
+                  style={{
+                    display: "inline-block",
+                    width: "100%",
+                    height: "100%"
+                  }}>
+                  {content}
+                </Link>
+              ) : (
+                content
+              )}
+            </NavItemWrapper>
+          );
+        })}
+      </NavItems>
     </Wrapper>
   );
 };
@@ -52,17 +54,17 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
 export const SideNav = withRouter(SideNavInternal);
 
 // css
-const Wrapper = styled.div`
+const Wrapper = styled("div")<{ boxShadow: StyleConstant<"boxShadow"> }>`
   grid-area: nav;
   display: inline-flex;
   flex-direction: column;
   min-width: 15rem;
   width: auto;
   height: max-content;
-  box-shadow: ${boxShadow.default};
+  box-shadow: ${p => p.boxShadow.default};
 `;
 
-const ContentWrapper = styled("div")<DisplayProps & Partial<HTMLDivElement>>`
+const ContentWrapper = styled("div")<DisplayProps>`
   height: 100%;
   width: 100%;
   display: flex;
@@ -80,6 +82,10 @@ const NavItemWrapper = styled("div")<{ color: string; transition: string }>`
     background-color: ${p => p.color};
     transition: ${p => p.transition};
   }
+`;
+
+const NavItems = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
+  margin-top: ${p => p.spacing[2]};
 `;
 
 const getMargin = (level: itemLevel) => {
