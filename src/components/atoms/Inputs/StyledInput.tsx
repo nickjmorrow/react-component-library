@@ -31,7 +31,7 @@ export const StyledInput: React.SFC<Props> = ({
       borderStyle={borderStyle.default}
       width={spacing[64]}
       padding={spacing[2]}
-      margin={spacing[1]}
+      margin={spacing[2]}
       onChange={handleChange}
       value={value}
       placeholder={placeholder}
@@ -46,7 +46,7 @@ export const Input = styled("input")<DisplayProps>`
   background-color: ${p => p.backgroundColor};
   border-radius: ${p => p.borderRadius};
   border: ${p => p.borderStyle} ${p => p.defaultBorderColor};
-  margin: ${p => p.margin} 0px;
+  margin-top: ${p => p.margin};
   type: ${p => p.type};
   font-weight: ${p => p.fontWeight};
   font-family: ${p => p.fontFamily};

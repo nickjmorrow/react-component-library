@@ -1,49 +1,45 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors, transitions } from "../../styleConstants";
+import { ThemeContext, getStyles } from "../../styleConstants";
 import { TrashIcon } from "./icons/TrashIcon";
+import { StyleConstant } from "~/typeUtilities";
 
-export const DeleteButton: React.SFC<IProps> = ({
-  size = 18,
-  onClick: handleClick,
-  ...divProps
+export const DeleteButton: React.SFC<{ onClick: () => void }> = ({
+  onClick: handleClick
 }) => {
-  const iconStyle = {
-    width: size / 1.5,
-    height: size / 1.5,
-    color: "inherit"
-  };
+  const theme = React.useContext(ThemeContext);
+  const {
+    colors,
+    spacing,
+    border: { borderRadius },
+    transitions
+  } = getStyles(theme);
   return (
-    // @ts-ignore
-    <StyledDeleteButton size={size} onClick={handleClick} {...divProps}>
-      <TrashIcon style={iconStyle} />
+    <StyledDeleteButton
+      spacing={spacing}
+      colors={colors}
+      borderRadius={borderRadius}
+      transitions={transitions}
+      onClick={handleClick}>
+      <TrashIcon />
     </StyledDeleteButton>
   );
 };
 
-const StyledDeleteButton = styled("div")<IProps>`
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
-  border-radius: ${props => props.size}px;
-  color: ${colors.primary.light};
-  background-color: ${colors.white};
+interface DisplayProps {
+  spacing: StyleConstant<"spacing">;
+  colors: StyleConstant<"colors">;
+  borderRadius: StyleConstant<"border">["borderRadius"];
+  transitions: StyleConstant<"transitions">;
+}
+
+const StyledDeleteButton = styled("div")<DisplayProps>`
+  width: ${props => props.spacing[2]};
+  height: ${props => props.spacing[2]};
+  border-radius: ${props => props.borderRadius}px;
+  background-color: ${p => p.colors.primary.dark};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  &hover {
-    color: ${colors.primary.main};
-    transition: ${transitions.medium};
-  }
-  &:active {
-    color: ${colors.primary.dark};
-    transition: ${transitions.fast};
-  }
 `;
-
-type IProps = IDisplayProps & Partial<React.HTMLProps<HTMLDivElement>>;
-
-interface IDisplayProps {
-  size?: number;
-  onClick(): void;
-}

@@ -41,9 +41,9 @@ export const PasswordInput: React.SFC<IOwnProps> = ({
       />
       <EyeIcon
         style={{
-          position: "relative",
-          left: "240px",
-          top: "-30px"
+          position: "absolute",
+          right: "10px",
+          top: "17px"
         }}
         colorVariant={showPassword ? "primaryDark" : "secondaryDark"}
         onClick={toggleInputType}
@@ -56,4 +56,5 @@ const Wrapper = styled.div`
   height: min-content;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
