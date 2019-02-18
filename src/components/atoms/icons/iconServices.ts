@@ -18,3 +18,17 @@ export const getColor = (
       return colors.gray.dark;
   }
 };
+
+export const getColorHover = (
+  colorVariant: ColorVariant,
+  colors: ReturnType<typeof getStyles>["colors"]
+) => {
+  switch (colorVariant) {
+    case "primaryDark":
+      return colors.gray.dark;
+    case "secondaryDark":
+      return colors.gray.main;
+    default:
+      return getColor(colorVariant, colors);
+  }
+};

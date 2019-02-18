@@ -35,9 +35,7 @@ const Wrapper = styled.div`
 `;
 
 const iconStyle: React.CSSProperties = {
-  height: "20px",
-  width: "20px",
   position: "absolute",
-  right: "44px",
-  top: "57px"
+  right: "37px",
+  top: "48px"
 };

@@ -9,3 +9,8 @@ export interface IconProps {
   sizeVariant?: SizeVariant;
   colorVariant?: ColorVariant;
 }
+
+export interface IconDisplayProps {
+  size: string;
+  color: string;
+}
