@@ -1,10 +1,11 @@
 import * as deepmergeProxy from "deepmerge";
 import * as React from "react";
-import { DeepPartial, DeepRequired } from "ts-essentials";
+import { IconColorVariant } from "./components/atoms/icons/types";
+import { DeepPartial } from "ts-essentials";
 const deepmerge: typeof deepmergeProxy =
   (deepmergeProxy as any).default || deepmergeProxy;
 
-const defaultPrimaryPaletteDescriptor = {
+export const defaultPrimaryPaletteDescriptor = {
   hue: 220, // hsl(220, 100%, 50%)
   middleLightness: 50,
   lightnessIncrement: 10,
@@ -45,7 +46,7 @@ const defaultSuccessPaletteDescriptor = {
   saturation: 40
 };
 
-export interface ColorShades {
+export interface ColorShade {
   lightest: string;
   lighter: string;
   light: string;
@@ -57,7 +58,7 @@ export interface ColorShades {
 
 export const generateColorShades = (
   paletteDescriptor: Partial<typeof defaultPrimaryPaletteDescriptor>
-): ColorShades => {
+): ColorShade => {
   const {
     hue: h = 220,
     middleLightness: l = 50,
@@ -78,22 +79,14 @@ export const generateColorShades = (
   };
 };
 
-// TODO: consider replacing  the following:
-// 'primary' with 'core'
-// 'secondary' with 'accent'
-// 'red' with 'error'
-// 'yellow' with 'warning'
-// 'gray' with 'neutral'
-// TODO: should have a 'success' color scheme!
-
 export const colors = {
-  white: "rgb(255, 255, 255)",
+  background: "rgb(255, 255, 255)",
   transparent: "transparent",
-  primary: generateColorShades(defaultPrimaryPaletteDescriptor),
-  secondary: generateColorShades(defaultSecondaryPaletteDescriptor),
-  gray: generateColorShades(defaultGrayPaletteDescriptor),
-  red: generateColorShades(defaultRedPaletteDescriptor),
-  yellow: generateColorShades(defaultYellowPaletteDescriptor),
+  core: generateColorShades(defaultPrimaryPaletteDescriptor),
+  accent: generateColorShades(defaultSecondaryPaletteDescriptor),
+  neutral: generateColorShades(defaultGrayPaletteDescriptor),
+  danger: generateColorShades(defaultRedPaletteDescriptor),
+  warning: generateColorShades(defaultYellowPaletteDescriptor),
   success: generateColorShades(defaultSuccessPaletteDescriptor)
 };
 
@@ -149,13 +142,13 @@ export const verticalMargin = {
 };
 
 export const boxShadow = {
-  default: `0px 2px 6px ${colors.gray.main}`,
-  light: `0px 2px 6px ${colors.primary.light}`
+  default: `0px 2px 6px ${colors.neutral.main}`,
+  light: `0px 2px 6px ${colors.core.light}`
 };
 
 export const border = {
-  default: `1px solid ${colors.primary.main}`,
-  bold: `3px solid ${colors.primary.main}`
+  default: `1px solid ${colors.core.main}`,
+  bold: `3px solid ${colors.core.main}`
 };
 
 export const borderStyle = {
@@ -193,12 +186,15 @@ export const fontWeights = {
   3: "800"
 };
 
-const iconSizes = {
+const iconSizes: { 1: string; 2: string; 3: string; 4: string } = {
   1: "12px",
   2: "16px",
   3: "24px",
   4: "32px"
 };
+
+const defaultIconSizeVariant = 4;
+const defaultIconColorVariant: IconColorVariant = "primaryDark" as IconColorVariant;
 
 export const defaultTheme = {
   colors,
@@ -215,18 +211,33 @@ export const defaultTheme = {
   },
   spacing,
   icons: {
-    iconSizes
+    iconSizes,
+    defaultIconSizeVariant,
+    defaultIconColorVariant
   }
 };
 
-type OptionalTheme = DeepPartial<typeof defaultTheme>;
+interface contextInput {
+  theme: DeepPartial<typeof defaultTheme>;
+  updateTheme(newTheme: DeepPartial<typeof defaultTheme>): void;
+}
 
-export const ThemeContext = React.createContext(defaultTheme as OptionalTheme);
+export const updateTheme = (newTheme: DeepPartial<typeof defaultTheme>) =>
+  deepmerge<typeof defaultTheme>(defaultTheme, newTheme as Partial<
+    typeof defaultTheme
+  >);
+export const ThemeContext = React.createContext({
+  theme: defaultTheme as DeepPartial<typeof defaultTheme>,
+  updateTheme
+} as contextInput);
 
 // merge theme with defaultTheme
-export const getStyles = (theme: DeepPartial<typeof defaultTheme>) =>
+export const getStyles = (
+  theme: DeepPartial<typeof defaultTheme>
+): typeof defaultTheme =>
   (theme
-    ? (deepmerge<typeof defaultTheme>(defaultTheme, theme as DeepRequired<
-        typeof theme
-      >) as typeof defaultTheme)
+    ? (deepmerge<typeof defaultTheme>(
+        defaultTheme,
+        theme as typeof defaultTheme
+      ) as typeof defaultTheme)
     : (defaultTheme as typeof defaultTheme)) as typeof defaultTheme;

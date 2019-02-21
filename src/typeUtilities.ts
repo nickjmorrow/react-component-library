@@ -15,3 +15,9 @@ export type GetComponentProps<T> = T extends
 export type StyleConstant<
   T extends keyof ReturnType<typeof getStyles>
 > = ReturnType<typeof getStyles>[T];
+
+export type ArgumentType<F extends Function> = F extends (
+  ...args: infer A
+) => any
+  ? A
+  : never;
