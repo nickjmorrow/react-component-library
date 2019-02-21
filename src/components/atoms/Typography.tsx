@@ -12,7 +12,7 @@ export const Typography: React.SFC<TypographyProps> = ({
   children,
   style
 }) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     typography: { fontFamily, fontSizes, fontWeights }
@@ -67,19 +67,19 @@ const getColorHover = (
   switch (colorVariant) {
     case "default":
     case "textPrimaryDark":
-      return colors.gray.darkest;
+      return colors.neutral.darkest;
     case "textSecondaryDark":
-      return colors.gray.darker;
+      return colors.neutral.darker;
     case "textPrimaryLight":
-      return colors.white;
+      return colors.background;
     case "textSecondaryLight":
-      return colors.gray.lightest;
+      return colors.neutral.lightest;
     case "primary":
-      return colors.primary.light;
+      return colors.core.light;
     case "secondary":
-      return colors.secondary.light;
+      return colors.accent.light;
     case "error":
-      return colors.red.main;
+      return colors.danger.main;
     case "inherit":
       return "inherit";
   }
@@ -92,19 +92,19 @@ const getColorActive = (
   switch (colorVariant) {
     case "default":
     case "textPrimaryDark":
-      return colors.gray.darker;
+      return colors.neutral.darker;
     case "textSecondaryDark":
-      return colors.gray.main;
+      return colors.neutral.main;
     case "textPrimaryLight":
-      return colors.white;
+      return colors.background;
     case "textSecondaryLight":
-      return colors.gray.lightest;
+      return colors.neutral.lightest;
     case "primary":
-      return colors.primary.dark;
+      return colors.core.dark;
     case "secondary":
-      return colors.secondary.dark;
+      return colors.accent.dark;
     case "error":
-      return colors.red.main;
+      return colors.danger.main;
     case "inherit":
       return "inherit";
   }
@@ -117,19 +117,19 @@ const getColor = (
   switch (color) {
     case "default":
     case "textPrimaryDark":
-      return colors.gray.darker;
+      return colors.neutral.darker;
     case "textSecondaryDark":
-      return colors.gray.main;
+      return colors.neutral.main;
     case "textPrimaryLight":
-      return colors.white;
+      return colors.background;
     case "textSecondaryLight":
-      return colors.gray.lightest;
+      return colors.neutral.lightest;
     case "primary":
-      return colors.primary.main;
+      return colors.core.main;
     case "secondary":
-      return colors.secondary.main;
+      return colors.accent.main;
     case "error":
-      return colors.red.main;
+      return colors.danger.main;
     case "inherit":
       return "inherit";
   }

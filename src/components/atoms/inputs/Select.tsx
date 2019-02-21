@@ -24,7 +24,7 @@ export const Select: React.SFC<OwnProps> = ({
     handleChange(option);
   };
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     spacing,
@@ -90,7 +90,7 @@ const StyledSelect = styled("div")<StyledSelectDisplayProps>`
   text-overflow: "";
   border-bottom: ${p => p.borderStyle} ${p => p.colors.transparent};
   &:hover {
-    border-bottom: ${p => p.borderStyle} ${p => p.colors.primary.main};
+    border-bottom: ${p => p.borderStyle} ${p => p.colors.core.main};
     transition: ${p => p.transition};
     cursor: pointer;
   }

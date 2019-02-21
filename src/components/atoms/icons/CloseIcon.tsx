@@ -2,24 +2,24 @@ import * as React from "react";
 import styled from "styled-components";
 import { getStyles, ThemeContext, transitions } from "~/styleConstants";
 import { getColor, getColorHover } from "./iconServices";
-import { ColorVariant, SizeVariant } from "./types";
+import { IconProps } from "./types";
 
 // TODO: think about circular dependency
 
 interface Props {
   style?: React.CSSProperties;
-  colorVariant?: ColorVariant;
-  sizeVariant?: SizeVariant;
-  onClick(): void;
+  onClick?(): void;
 }
 
-export const CloseIcon: React.SFC<IOwnProps & Props> = ({
+export const CloseIcon: React.SFC<IOwnProps & Props & IconProps> = ({
   style,
-  onClick: handleClick,
+  onClick: handleClick = () => {
+    return;
+  },
   colorVariant = "primaryDark",
   sizeVariant = 2
 }) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     icons: { iconSizes }

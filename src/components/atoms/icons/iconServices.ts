@@ -1,34 +1,40 @@
-import { ColorVariant } from "./types";
-
-import { getStyles } from "~/styleConstants";
+import styled from "styled-components";
+import { StyleConstant } from "~/typeUtilities";
+import { IconDisplayProps } from "./types";
 
 export const getColor = (
-  colorVariant: ColorVariant,
-  colors: ReturnType<typeof getStyles>["colors"]
+  colorVariant: StyleConstant<"icons">["defaultIconColorVariant"],
+  colors: StyleConstant<"colors">
 ) => {
   switch (colorVariant) {
     case "primaryLight":
-      return colors.white;
+      return colors.background;
     case "secondaryLight":
-      return colors.gray.lightest;
+      return colors.neutral.lightest;
     case "primaryDark":
-      return colors.gray.darkest;
+      return colors.neutral.darkest;
     default:
     case "secondaryDark":
-      return colors.gray.dark;
+      return colors.neutral.dark;
   }
 };
 
 export const getColorHover = (
-  colorVariant: ColorVariant,
-  colors: ReturnType<typeof getStyles>["colors"]
+  colorVariant: StyleConstant<"icons">["defaultIconColorVariant"],
+  colors: StyleConstant<"colors">
 ) => {
   switch (colorVariant) {
     case "primaryDark":
-      return colors.gray.dark;
+      return colors.neutral.dark;
     case "secondaryDark":
-      return colors.gray.main;
+      return colors.neutral.main;
     default:
       return getColor(colorVariant, colors);
   }
 };
+
+export const DefaultIconSvg = styled("svg")<IconDisplayProps>`
+  height: ${p => p.size};
+  width: ${p => p.size};
+  color: ${p => p.color};
+`;

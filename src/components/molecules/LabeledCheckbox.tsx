@@ -17,10 +17,8 @@ export const LabeledCheckbox: React.SFC<IProps> = ({
     <LabeledInputWrapper onClick={handleClickInternal}>
       <InputWrapper>
         <CheckboxWrapper
-          color={isToggled ? colors.primary.main : colors.gray.dark}>
-          <Checkbox
-            fill={isToggled ? colors.primary.main : colors.transparent}
-          />
+          color={isToggled ? colors.core.main : colors.neutral.dark}>
+          <Checkbox fill={isToggled ? colors.core.main : colors.transparent} />
         </CheckboxWrapper>
       </InputWrapper>
       <Typography colorVariant={isToggled ? "primary" : "default"}>

@@ -6,3 +6,4 @@ export { PasswordInput } from "./PasswordInput";
 export { StyledInput } from "./StyledInput";
 export { TextInput } from "./TextInput";
 export { Select } from "./Select";
+export { Slider } from "./Slider";

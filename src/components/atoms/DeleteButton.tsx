@@ -7,7 +7,7 @@ import { StyleConstant } from "~/typeUtilities";
 export const DeleteButton: React.SFC<{ onClick: () => void }> = ({
   onClick: handleClick
 }) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     spacing,
@@ -37,7 +37,7 @@ const StyledDeleteButton = styled("div")<DisplayProps>`
   width: ${props => props.spacing[2]};
   height: ${props => props.spacing[2]};
   border-radius: ${props => props.borderRadius}px;
-  background-color: ${p => p.colors.primary.dark};
+  background-color: ${p => p.colors.core.dark};
   display: flex;
   justify-content: center;
   align-items: center;

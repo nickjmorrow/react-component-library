@@ -5,14 +5,16 @@ import { getStyles, ThemeContext } from "~/index";
 import { getColor } from "./iconServices";
 
 export const EyeIcon: React.SFC<
-  IconProps & { style: React.CSSProperties; onClick: () => void }
+  IconProps & { style?: React.CSSProperties; onClick?: () => void }
 > = ({
   style,
-  onClick: handleClick,
+  onClick: handleClick = () => {
+    return;
+  },
   sizeVariant = 2,
   colorVariant = "primaryDark"
 }) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const {
     icons: { iconSizes },
     colors

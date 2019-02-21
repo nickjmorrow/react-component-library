@@ -10,7 +10,7 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
   location
 }) => {
   const { pathname } = location;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const { colors, transitions, spacing, boxShadow } = getStyles(theme);
   return (
     <Wrapper boxShadow={boxShadow}>
@@ -28,7 +28,7 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
           return (
             <NavItemWrapper
               key={i}
-              color={colors.gray.lightest}
+              color={colors.neutral.lightest}
               transition={transitions.fast}>
               {ni.route ? (
                 <Link

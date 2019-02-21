@@ -4,6 +4,7 @@ import { ThemeContext, getStyles } from "~/styleConstants";
 
 interface IPaperProps {
   children: React.ReactNode;
+  color?: string;
 }
 
 interface DisplayProps {
@@ -21,8 +22,8 @@ const StyledPaper = styled("div")<DisplayProps>`
   border-radius: ${p => p.borderRadius};
 `;
 
-export const Paper: React.SFC<IPaperProps> = ({ children }) => {
-  const theme = React.useContext(ThemeContext);
+export const Paper: React.SFC<IPaperProps> = ({ children, color }) => {
+  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     boxShadow,
@@ -30,7 +31,7 @@ export const Paper: React.SFC<IPaperProps> = ({ children }) => {
   } = getStyles(theme);
   return (
     <StyledPaper
-      color={colors.white}
+      color={color || colors.background}
       boxShadow={boxShadow.default}
       borderRadius={borderRadius.default}>
       {children}

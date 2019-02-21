@@ -1,17 +1,17 @@
 import * as React from "react";
-import { ThemeContext, getStyles } from "~/styleConstants";
 import styled from "styled-components";
+import { getStyles, ThemeContext } from "~/styleConstants";
+import { DefaultIconSvg, getColor } from "./iconServices";
 import { IconProps } from "./types";
-import { getColor } from "./iconServices";
 
 export const GithubIcon: React.SFC<IconProps> = ({
-  sizeVariant = 2,
+  sizeVariant,
   colorVariant = "primaryDark"
 }) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
-    icons: { iconSizes }
+    icons: { iconSizes, defaultIconSizeVariant }
   } = getStyles(theme);
 
   return (
@@ -19,7 +19,7 @@ export const GithubIcon: React.SFC<IconProps> = ({
       xmlns="http://www.w3.org/2000/svg"
       version="1.0"
       viewBox="0 0 120.000000 120.000000"
-      size={iconSizes[sizeVariant]}
+      size={iconSizes[sizeVariant || defaultIconSizeVariant]}
       color={getColor(colorVariant, colors)}>
       <g
         transform="translate(0.000000,120.000000) scale(0.100000,-0.100000)"
@@ -33,10 +33,7 @@ export const GithubIcon: React.SFC<IconProps> = ({
   );
 };
 
-const Svg = styled("svg")<{ size: string; color: string }>`
-  height: ${p => p.size};
-  width: ${p => p.size};
-  color: ${p => p.color};
+const Svg = styled(DefaultIconSvg)`
   position: relative;
   top: 2px;
 `;

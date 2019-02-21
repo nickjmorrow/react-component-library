@@ -9,7 +9,7 @@ const currentYear = new Date().getFullYear();
 const defaultText = `© ${currentYear} ${fullName}`;
 
 export const Footer: React.SFC<IOwnProps> = ({ text = defaultText }) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const { colors, spacing } = getStyles(theme);
   return (
     <StyledFooter colors={colors} spacing={spacing}>
@@ -29,7 +29,7 @@ interface DisplayProps {
 }
 
 const StyledFooter = styled("div")<DisplayProps>`
-  background-color: ${p => p.colors.gray.lightest};
+  background-color: ${p => p.colors.neutral.lightest};
   display: flex;
   align-items: center;
   justify-content: space-between;

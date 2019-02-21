@@ -27,15 +27,15 @@ const height = 20;
 const Wrapper = styled.div`
   height: ${height}px;
   width: ${width}px;
-  background-color: ${colors.primary.main};
+  background-color: ${colors.core.main};
   cursor: pointer;
   border-radius: 20px;
   display: flex;
   align-items: center;
   padding: 0px 4px;
-  box-shadow: ${colors.gray.dark} 0px 1px 2px -1px;
+  box-shadow: ${colors.neutral.dark} 0px 1px 2px -1px;
   &:hover {
-    background-color: ${colors.primary.light};
+    background-color: ${colors.core.light};
     transition: ${transitions.fast};
   }
 `;
@@ -51,12 +51,13 @@ const Switch = styled("div")<ISwitchProps>`
   left: -2px;
   border-radius: ${height}px;
   transform: ${props => `translateX(${props.isToggled ? "120%" : "0%"})`};
-  background-color: ${colors.gray.light};
+  background-color: ${colors.neutral.light};
   transition: transform ${transitions.fast} ease-in-out;
-  box-shadow: ${colors.gray.dark} 1px 0px 2px -1px,
-    ${colors.gray.dark} -1px 0px 2px -1px, ${colors.gray.dark} 0px 1px 2px -1px,
-    ${colors.gray.dark} 0px -1px 2px -1px;
+  box-shadow: ${colors.neutral.dark} 1px 0px 2px -1px,
+    ${colors.neutral.dark} -1px 0px 2px -1px,
+    ${colors.neutral.dark} 0px 1px 2px -1px,
+    ${colors.neutral.dark} 0px -1px 2px -1px;
   &:hover {
-    background-color: ${colors.gray.light};
+    background-color: ${colors.neutral.light};
   }
 `;

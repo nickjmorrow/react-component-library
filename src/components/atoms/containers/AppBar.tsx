@@ -11,13 +11,13 @@ export const AppBar: React.SFC<AppBarProps> = ({
   children,
   onClick: handleClick
 }) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const { colors, boxShadow } = getStyles(theme);
   return (
     <Wrapper
       onClick={handleClick}
-      color={colors.white}
-      backgroundColor={colors.primary.main}
+      color={colors.background}
+      backgroundColor={colors.core.main}
       boxShadow={boxShadow.default}>
       <Inner>{children}</Inner>
     </Wrapper>

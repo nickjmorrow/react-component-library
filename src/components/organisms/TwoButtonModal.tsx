@@ -63,7 +63,7 @@ const ButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   padding: 0.75rem ${horizontalSpacing.default};
-  background-color: ${colors.gray.lighter};
+  background-color: ${colors.neutral.lighter};
 `;
 
 const Wrapper = styled.div`

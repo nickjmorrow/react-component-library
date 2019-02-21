@@ -26,7 +26,7 @@ const renderButton:
     style={{ width: "100%" }}
     backgroundColor={"google"}
     onClick={renderProps!.onClick}>
-    <GoogleIcon style={{ marginRight: "8px" }} />
+    <GoogleIcon />
     <Typography sizeVariant={2} colorVariant="textPrimaryLight">
       Sign In With Google
     </Typography>

@@ -77,7 +77,7 @@ export const AuthModal: React.SFC<IProps> = ({
   );
 
   const authInputs = isLoggingIn ? loginInputs : registerInputs;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const { spacing } = getStyles(theme);
 
   return (

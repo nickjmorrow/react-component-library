@@ -8,7 +8,7 @@ export const StyledInput: React.SFC<Props> = ({
   onChange: handleChange,
   placeholder = ""
 }) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     transitions,
@@ -23,10 +23,10 @@ export const StyledInput: React.SFC<Props> = ({
       fontFamily={fontFamily.default}
       fontWeight={fontWeights[1]}
       type={type}
-      backgroundColor={colors.gray.lightest}
+      backgroundColor={colors.neutral.lightest}
       transition={transitions.fast}
       borderRadius={borderRadius.default}
-      focusBorderColor={colors.primary.main}
+      focusBorderColor={colors.core.main}
       defaultBorderColor={colors.transparent}
       borderStyle={borderStyle.default}
       width={spacing[64]}

@@ -94,7 +94,7 @@ export const Button: React.SFC<IButtonProps> = ({
 
   const content = isLoading ? <LoadingIcon /> : formattedChildren;
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const { colors, transitions, boxShadow, spacing, border } = getStyles(theme);
 
   const button = (
@@ -169,13 +169,13 @@ const getColorHover = (
 ) => {
   switch (variant) {
     case "primary":
-      return colors.primary.light;
+      return colors.core.light;
     case "secondary":
-      return colors.secondary.light;
+      return colors.accent.light;
     case "cancel":
-      return colors.red.light;
+      return colors.danger.light;
     case "white":
-      return colors.white;
+      return colors.background;
     case "transparent":
       return colors.transparent;
   }
@@ -187,13 +187,13 @@ const getColorActive = (
 ) => {
   switch (colorVariant) {
     case "primary":
-      return colors.primary.dark;
+      return colors.core.dark;
     case "secondary":
-      return colors.secondary.dark;
+      return colors.accent.dark;
     case "cancel":
-      return colors.red.dark;
+      return colors.danger.dark;
     case "white":
-      return colors.white;
+      return colors.background;
     case "transparent":
       return colors.transparent;
   }
@@ -205,13 +205,13 @@ const getColor = (
 ) => {
   switch (colorVariant) {
     case "white":
-      return colors.white;
+      return colors.background;
     case "primary":
-      return colors.primary.main;
+      return colors.core.main;
     case "secondary":
-      return colors.secondary.main;
+      return colors.accent.main;
     case "cancel":
-      return colors.red.main;
+      return colors.danger.main;
     case "transparent":
       return colors.transparent;
   }

@@ -17,7 +17,7 @@ export const FileInput: React.SFC<FileInputProps> = ({
     handleChange(files);
     setLabel(newLabel);
   };
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const {
     border: { borderRadius },
     boxShadow,
@@ -35,14 +35,14 @@ export const FileInput: React.SFC<FileInputProps> = ({
       />
       <Label
         htmlFor="file"
-        color={colors.white}
-        backgroundColor={colors.primary.main}
-        backgroundColorHover={colors.primary.light}
+        color={colors.background}
+        backgroundColor={colors.core.main}
+        backgroundColorHover={colors.core.light}
         borderRadius={borderRadius.default}
         boxShadow={boxShadow.default}
         transition={transitions.fast}
         spacing={spacing}>
-        <UploadIcon style={{ height: "30px", width: "30px" }} />
+        <UploadIcon colorVariant={"primaryLight"} />
         <Typography
           colorVariant="textPrimaryLight"
           weightVariant={2}

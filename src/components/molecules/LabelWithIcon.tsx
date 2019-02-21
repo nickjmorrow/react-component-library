@@ -48,9 +48,9 @@ const Item = styled.div``;
 const itemWrapper: StyledFunction<any> = styled.span;
 
 export const ItemWrapper = itemWrapper`
-    color: ${colors.white};
+    color: ${colors.background};
     &: hover {
-        color: ${props => props.color || colors.primary.main};
+        color: ${props => props.color || colors.core.main};
         transition: ${transitions.medium};
     }
 `;

@@ -12,7 +12,7 @@ export const Option: React.SFC<{
     handleClick(option);
   };
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const {
     spacing,
     colors,
@@ -41,7 +41,7 @@ const StyledOption = styled("div")<{
   padding: 4px;
   cursor: pointer;
   &:hover {
-    background-color: ${p => p.colors.gray.lightest};
+    background-color: ${p => p.colors.neutral.lightest};
     transition: ${p => p.transitions.fast};
     border-radius: ${p => p.borderRadius.default};
   }

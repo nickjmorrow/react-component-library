@@ -22,8 +22,8 @@ export const PopulatedAppBar: React.SFC<IOwnProps> = ({
       <Link
         key={index}
         route={l.route}
-        color={colors.white}
-        hoverColor={colors.secondary.main}>
+        color={colors.background}
+        hoverColor={colors.accent.main}>
         {l.children}
       </Link>
     ));

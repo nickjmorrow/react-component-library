@@ -44,10 +44,10 @@ interface IExternalLinkProps {
 const StyledRouterLink = styled(RouterLink)<
   IStyledLinkProps & IExternalLinkProps
 >`
-  color: ${props => props.color || colors.white};
+  color: ${props => props.color || colors.background};
   text-decoration: none;
   &:hover {
     transition: ${transitions.fast};
-    color: ${props => props.hoverColor || colors.secondary.main};
+    color: ${props => props.hoverColor || colors.accent.main};
   }
 `;
