@@ -4,10 +4,11 @@
   "private": true,
   "homepage": "https://nickjmorrow.github.io/njm-react-component-library",
   "dependencies": {
+    "njm-react-component-library": "file:../",
+    "rc-slider": "^8.6.5",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-scripts-ts": "3.1.0",
-    "njm-react-component-library": "file:../"
+    "react-scripts-ts": "3.1.0"
   },
   "scripts": {
     "start2": "react-scripts-ts start",

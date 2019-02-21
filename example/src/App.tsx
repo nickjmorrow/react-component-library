@@ -1,7 +1,9 @@
 import {
   Footer,
   ThemeContext,
-  generateColorShades
+  generateColorShades,
+  updateTheme,
+  ArgumentType
 } from "njm-react-component-library";
 import { LibraryAppBar } from "./components/LibraryAppBar";
 import * as React from "react";
@@ -10,23 +12,37 @@ import { Landing } from "./Landing";
 import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
 
-class App extends React.Component {
+const initialState = {
+  theme: {
+    colors: {
+      core: generateColorShades({
+        hue: 99,
+        lightnessIncrement: 10
+      })
+    },
+    border: {
+      borderRadius: {
+        default: "8px"
+      }
+    }
+  }
+};
+
+class App extends React.Component<{}, typeof initialState> {
+  public readonly state = initialState;
+
+  public handleUpdateTheme = (theme: ArgumentType<typeof updateTheme>[0]) => {
+    this.setState({
+      theme: updateTheme(theme)
+    });
+  };
   public render() {
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <ThemeContext.Provider
           value={{
-            colors: {
-              primary: generateColorShades({
-                hue: 99,
-                lightnessIncrement: 10
-              })
-            },
-            border: {
-              borderRadius: {
-                default: "8px"
-              }
-            }
+            theme: this.state.theme,
+            updateTheme: this.handleUpdateTheme
           }}>
           <Wrapper>
             <LibraryAppBar />

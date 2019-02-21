@@ -8,6 +8,8 @@ import { FileInputDemo } from "./components/demos/FileInputDemo";
 import { AuthModalDemo } from "./components/demos/modals/AuthModalDemo";
 import { InputDemo } from "./components/demos/TextInputDemo";
 import { Colors } from "./components/demos/Colors";
+import { IconsDemo } from "./components/demos/IconsDemo";
+import { SliderDemo } from "./components/demos/SliderDemo";
 
 const atomComponents = {
   folderLabel: "Atoms",
@@ -23,14 +25,19 @@ const atomComponents = {
       route: "/select"
     },
     {
+      component: IconsDemo,
+      label: "Icons",
+      route: "/icons"
+    },
+    {
       component: FileInputDemo,
       label: "File Input",
       route: "/file-input"
     },
     {
-      component: Colors,
-      label: "Colors",
-      route: "/colors"
+      component: SliderDemo,
+      label: "Slider",
+      route: "/slider"
     }
   ]
 };
@@ -51,7 +58,18 @@ const modalComponents = {
   ]
 };
 
-const components = [atomComponents, modalComponents];
+const themeConfiguration = {
+  folderLabel: "Theme Configurations",
+  components: [
+    {
+      component: Colors,
+      label: "Colors",
+      route: "/colors"
+    }
+  ]
+};
+
+const components = [atomComponents, modalComponents, themeConfiguration];
 
 const routes = components.reduce(
   (prev, curr) => {

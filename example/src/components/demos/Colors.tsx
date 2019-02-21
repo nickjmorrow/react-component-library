@@ -1,80 +1,139 @@
 import * as React from "react";
-import { ThemeContext, getStyles } from "njm-react-component-library";
+import {
+  ThemeContext,
+  getStyles,
+  ColorShade,
+  Typography,
+  StyleConstant,
+  Slider,
+  defaultPrimaryPaletteDescriptor
+} from "njm-react-component-library";
 import styled from "styled-components";
 
 export const Colors: React.SFC = () => {
-  const theme = React.useContext(ThemeContext);
-  const { colors } = getStyles(theme);
+  const { theme, updateTheme } = React.useContext(ThemeContext);
+  const {
+    colors,
+    spacing,
+    border: { borderRadius }
+  } = getStyles(theme);
+
+  const handleChange = (
+    value: number,
+    colorInput: keyof typeof defaultPrimaryPaletteDescriptor,
+    colorShade: keyof typeof colors
+  ) => {
+    const updateObj = {
+      colors: {
+        [colorShade]: {
+          [colorInput]: value
+        }
+      }
+    };
+
+    console.log(updateObj);
+    updateTheme(updateObj);
+  };
+  const renderBlocks = (colorShade: ColorShade, colorName: string) => (
+    <Blocks spacing={spacing}>
+      <Typography sizeVariant={4}>{colorName}</Typography>
+      <Wrapper spacing={spacing}>
+        <Block
+          borderRadius={borderRadius}
+          spacing={spacing}
+          color={colorShade.lightest}
+        />
+        <Block
+          borderRadius={borderRadius}
+          spacing={spacing}
+          color={colorShade.lighter}
+        />
+        <Block
+          borderRadius={borderRadius}
+          spacing={spacing}
+          color={colorShade.light}
+        />
+        <Block
+          borderRadius={borderRadius}
+          spacing={spacing}
+          color={colorShade.main}
+        />
+        <Block
+          borderRadius={borderRadius}
+          spacing={spacing}
+          color={colorShade.dark}
+        />
+        <Block
+          borderRadius={borderRadius}
+          spacing={spacing}
+          color={colorShade.darker}
+        />
+        <Block
+          borderRadius={borderRadius}
+          spacing={spacing}
+          color={colorShade.darkest}
+        />
+      </Wrapper>
+      <Parameters>
+        <Typography>Hue: </Typography>
+        <Slider
+          min={0}
+          max={20}
+          onChange={value =>
+            handleChange(
+              value,
+              "hue",
+              colorName.toLowerCase() as keyof typeof colors
+            )
+          }
+        />
+        <Typography>Hue Decrement: </Typography>
+        <Typography>Middle Lightness: </Typography>
+        <Typography>Lightness Increment: </Typography>
+        <Typography>Lightness Decrement: </Typography>
+        <Typography>Saturation: </Typography>
+      </Parameters>
+    </Blocks>
+  );
+  const { core, accent, neutral, danger, warning, success } = colors;
+
   return (
     <BlocksWrapper>
-      <Wrapper>
-        <Block color={colors.primary.lightest} />
-        <Block color={colors.primary.lighter} />
-        <Block color={colors.primary.light} />
-        <Block color={colors.primary.main} />
-        <Block color={colors.primary.dark} />
-        <Block color={colors.primary.darker} />
-        <Block color={colors.primary.darkest} />
-      </Wrapper>
-      <Wrapper>
-        <Block color={colors.secondary.lightest} />
-        <Block color={colors.secondary.lighter} />
-        <Block color={colors.secondary.light} />
-        <Block color={colors.secondary.main} />
-        <Block color={colors.secondary.dark} />
-        <Block color={colors.secondary.darker} />
-        <Block color={colors.secondary.darkest} />
-      </Wrapper>
-      <Wrapper>
-        <Block color={colors.gray.lightest} />
-        <Block color={colors.gray.lighter} />
-        <Block color={colors.gray.light} />
-        <Block color={colors.gray.main} />
-        <Block color={colors.gray.dark} />
-        <Block color={colors.gray.darker} />
-        <Block color={colors.gray.darkest} />
-      </Wrapper>
-      <Wrapper>
-        <Block color={colors.red.lightest} />
-        <Block color={colors.red.lighter} />
-        <Block color={colors.red.light} />
-        <Block color={colors.red.main} />
-        <Block color={colors.red.dark} />
-        <Block color={colors.red.darker} />
-        <Block color={colors.red.darkest} />
-      </Wrapper>
-      <Wrapper>
-        <Block color={colors.yellow.lightest} />
-        <Block color={colors.yellow.lighter} />
-        <Block color={colors.yellow.light} />
-        <Block color={colors.yellow.main} />
-        <Block color={colors.yellow.dark} />
-        <Block color={colors.yellow.darker} />
-        <Block color={colors.yellow.darkest} />
-      </Wrapper>
-      <Wrapper>
-        <Block color={colors.success.lightest} />
-        <Block color={colors.success.lighter} />
-        <Block color={colors.success.light} />
-        <Block color={colors.success.main} />
-        <Block color={colors.success.dark} />
-        <Block color={colors.success.darker} />
-        <Block color={colors.success.darkest} />
-      </Wrapper>
+      {renderBlocks(core, "Core")}
+      {renderBlocks(accent, "Accent")}
+      {renderBlocks(neutral, "Neutral")}
+      {renderBlocks(danger, "Danger")}
+      {renderBlocks(warning, "Warning")}
+      {renderBlocks(success, "Success")}
     </BlocksWrapper>
   );
 };
 
 const BlocksWrapper = styled.div``;
-const Wrapper = styled.div`
+const Wrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   display: flex;
   flex-direction: row;
+  margin-bottom: ${p => p.spacing[4]};
 `;
 
-const Block = styled("div")<{ color: string }>`
-  width: 50px;
-  height: 50px;
-  margin: 6px;
-  border-radius: 4px;
+const Block = styled("div")<{
+  color: string;
+  spacing: StyleConstant<"spacing">;
+  borderRadius: StyleConstant<"border">["borderRadius"];
+}>`
+  width: ${p => p.spacing[16]};
+  height: ${p => p.spacing[16]};
+  margin: ${p => `${p.spacing[2]}px ${p.spacing[4]}px ${p.spacing[2]}px 0`};
+  margin: 6px 12px 6px 0;
+  border-radius: ${p => p.borderRadius.default};
   background-color: ${props => props.color};
+`;
+
+const Parameters = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Blocks = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
+  margin-bottom: ${p => p.spacing[16]};
 `;
