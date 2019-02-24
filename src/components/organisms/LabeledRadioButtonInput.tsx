@@ -1,8 +1,7 @@
 import * as React from "react";
-import { IOption } from "~/types";
 import { Typography } from "~/components/atoms/Typography";
-import { hasDuplicates } from "~/services";
 import { LabeledRadioButton } from "~/components/molecules";
+import { IOption } from "~/types";
 
 export const LabeledRadioButtonInput: React.SFC<IProps> = ({
   options,
@@ -11,10 +10,10 @@ export const LabeledRadioButtonInput: React.SFC<IProps> = ({
   text = "",
   onClick: handleClick
 }) => {
-  const values = options.map(o => o.value);
-  if (hasDuplicates(values)) {
-    throw Error(`Labels contains duplicates: ${values}`);
-  }
+  // const values = options.map(o => o.value);
+  // if (hasDuplicates(values)) {
+  //   throw Error(`Labels contains duplicates: ${values}`);
+  // }
 
   const handleClickInternal = (option: IOption) => handleClick(option, name);
   return (
@@ -24,7 +23,7 @@ export const LabeledRadioButtonInput: React.SFC<IProps> = ({
         <LabeledRadioButton
           key={option.value}
           option={option}
-          isChecked={option === selectedOption}
+          isChecked={option.value === selectedOption.value}
           onClick={handleClickInternal}
         />
       ))}

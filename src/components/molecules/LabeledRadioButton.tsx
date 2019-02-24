@@ -1,9 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
 import { InputWrapper, LabeledInputWrapper } from "~/components/atoms/inputs";
-import { boxShadow, colors, transitions } from "~/styleConstants";
-import { IOption } from "~/types";
 import { Typography } from "~/components/atoms/Typography";
+import { ThemeContext } from "~/styleConstants";
+import { IOption } from "~/types";
+import { StyleConstant } from "~/typeUtilities";
 
 export const LabeledRadioButton: React.SFC<IProps> = ({
   option,
@@ -13,10 +14,17 @@ export const LabeledRadioButton: React.SFC<IProps> = ({
   const handleClickInternal = () => {
     handleClick(option);
   };
+  const { boxShadow, colors, transitions } = React.useContext(ThemeContext);
+
   return (
     <LabeledInputWrapper onClick={handleClickInternal}>
       <InputWrapper>
-        <RadioButton isChecked={isChecked} />
+        <RadioButton
+          isChecked={isChecked}
+          boxShadow={boxShadow}
+          colors={colors}
+          transitions={transitions}
+        />
       </InputWrapper>
       <Typography colorVariant={isChecked ? "primary" : "default"}>
         {option.label}
@@ -31,15 +39,19 @@ const RadioButton = styled("div")<IRadioButtonProps>`
   height: ${length}px;
   border-radius: ${length}px;
   border: 1px solid
-    ${props => (props.isChecked ? colors.core.main : colors.core.light)};
-  box-shadow: ${boxShadow.light};
+    ${props =>
+      props.isChecked ? props.colors.core.main : props.colors.core.light};
+  box-shadow: ${p => p.boxShadow.bs1};
   background-color: ${props =>
-    props.isChecked ? colors.core.main : colors.transparent};
-  transition: background-color ${transitions.fast} ease-in-out;
+    props.isChecked ? props.colors.core.main : props.colors.transparent};
+  transition: background-color ${p => p.transitions.fast} ease-in-out;
 `;
 
 interface IRadioButtonProps {
   isChecked: boolean;
+  colors: StyleConstant<"colors">;
+  transitions: StyleConstant<"transitions">;
+  boxShadow: StyleConstant<"boxShadow">;
 }
 
 interface IProps {

@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { Theme } from "~/index";
 import { StyleConstant } from "~/typeUtilities";
-import { IconDisplayProps } from "./types";
+import { IconDisplayProps, IconSizeVariant, IconColorVariant } from "./types";
 
 export const getColor = (
-  colorVariant: StyleConstant<"icons">["defaultIconColorVariant"],
+  colorVariant: IconColorVariant,
   colors: StyleConstant<"colors">
 ) => {
   switch (colorVariant) {
@@ -20,7 +21,7 @@ export const getColor = (
 };
 
 export const getColorHover = (
-  colorVariant: StyleConstant<"icons">["defaultIconColorVariant"],
+  colorVariant: IconColorVariant,
   colors: StyleConstant<"colors">
 ) => {
   switch (colorVariant) {
@@ -38,3 +39,8 @@ export const DefaultIconSvg = styled("svg")<IconDisplayProps>`
   width: ${p => p.size};
   color: ${p => p.color};
 `;
+
+export const getIconSize = (
+  iconSizeVariant: IconSizeVariant
+): keyof Theme["icons"]["iconSizes"] =>
+  `is${iconSizeVariant}` as keyof Theme["icons"]["iconSizes"];

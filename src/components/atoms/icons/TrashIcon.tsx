@@ -1,18 +1,17 @@
 import * as React from "react";
 import { IconProps, IconDisplayProps } from "./types";
-import { getColor } from "./iconServices";
+import { getColor, getIconSize } from "./iconServices";
 import styled from "styled-components";
-import { ThemeContext, getStyles } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 
 export const TrashIcon: React.SFC<IconProps> = ({
   sizeVariant = 2,
   colorVariant
 }) => {
-  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
-    icons: { iconSizes, defaultIconColorVariant }
-  } = getStyles(theme);
+    icons: { iconSizes, defaultIconColorVariant, defaultIconSizeVariant }
+  } = React.useContext(ThemeContext);
   return (
     <Svg
       aria-hidden="true"
@@ -20,7 +19,7 @@ export const TrashIcon: React.SFC<IconProps> = ({
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
-      size={iconSizes[sizeVariant]}
+      size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
       color={getColor(colorVariant || defaultIconColorVariant, colors)}>
       <path
         fill="currentColor"

@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext, getStyles } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 
 interface AppBarProps {
   children: React.ReactNode;
@@ -11,14 +11,13 @@ export const AppBar: React.SFC<AppBarProps> = ({
   children,
   onClick: handleClick
 }) => {
-  const { theme } = React.useContext(ThemeContext);
-  const { colors, boxShadow } = getStyles(theme);
+  const { colors, boxShadow } = React.useContext(ThemeContext);
   return (
     <Wrapper
       onClick={handleClick}
       color={colors.background}
       backgroundColor={colors.core.main}
-      boxShadow={boxShadow.default}>
+      boxShadow={boxShadow.bs1}>
       <Inner>{children}</Inner>
     </Wrapper>
   );

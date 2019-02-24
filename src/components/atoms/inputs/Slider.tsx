@@ -3,7 +3,7 @@ import "rc-slider/assets/index.css";
 import * as React from "react";
 import styled from "styled-components";
 import { Typography } from "~/components/atoms/Typography";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
 
 interface IProps {
@@ -18,17 +18,16 @@ export const Slider: React.SFC<IProps> = ({
   value,
   min,
   max,
-  spacingVariant = 64,
+  spacingVariant = "ss64",
   onChange: handleChange
 }) => {
   const [isClicking, setIsClicking] = React.useState(false);
-  const { theme } = React.useContext(ThemeContext);
   const {
     spacing,
     colors,
     border: { borderStyle },
     transitions
-  } = getStyles(theme);
+  } = React.useContext(ThemeContext);
 
   const handleStyle = {
     border: borderStyle[1],
@@ -47,14 +46,15 @@ export const Slider: React.SFC<IProps> = ({
         onChange={handleChange}
         handleStyle={handleStyle}
         railStyle={{
-          backgroundColor: colors.neutral.main
+          backgroundColor: colors.neutral.main,
+          width: spacing.ss48
         }}
         trackStyle={{ backgroundColor: colors.core.main }}
         onBeforeChange={() => setIsClicking(false)}
         onAfterChange={() => setIsClicking(true)}
       />
       <ValueWrapper>
-        <Typography sizeVariant={2}>{value}</Typography>
+        <Typography sizeVariant={3}>{value}</Typography>
       </ValueWrapper>
     </Wrapper>
   );
@@ -67,7 +67,8 @@ const Wrapper = styled("div")<{
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: ${p => p.spacing[p.spacingVariant]};
+  width: 230px;
+  padding: ${p => p.spacing.ss1} 0;
 `;
 
 const ValueWrapper = styled.div`

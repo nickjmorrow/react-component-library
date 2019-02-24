@@ -8,15 +8,13 @@ import {
   CloseIcon,
   UploadIcon,
   ThemeContext,
-  getStyles,
   StyleConstant,
   Paper
 } from "njm-react-component-library";
 import styled from "styled-components";
 
 export const IconsDemo: React.SFC = () => {
-  const { theme } = React.useContext(ThemeContext);
-  const { spacing, colors } = getStyles(theme);
+  const { spacing, colors } = React.useContext(ThemeContext);
   return (
     <Wrapper>
       <Paper>
@@ -63,7 +61,7 @@ const Wrapper = styled.div`
 
 const IconSizes = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   padding: 16px;
-  min-width: ${p => p.spacing[24]};
+  min-width: ${p => p.spacing.ss24};
   display: flex;
   justify-content: space-between;
   align-items: center;

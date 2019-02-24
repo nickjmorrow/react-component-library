@@ -1,8 +1,8 @@
 import * as React from "react";
-import { LabeledCheckbox } from "../molecules";
+import { hasDuplicates } from "services";
 import { IOption } from "types";
 import { Typography } from "~/components";
-import { hasDuplicates } from "services";
+import { LabeledCheckbox } from "../molecules";
 
 export const LabeledCheckboxInput: React.SFC<IOwnProps> = ({
   onClick: handleClick,
@@ -11,7 +11,7 @@ export const LabeledCheckboxInput: React.SFC<IOwnProps> = ({
   options,
   text = ""
 }) => {
-  checkArguments(options, selectedOptions);
+  // checkArguments(options, selectedOptions);
 
   const handleClickInternal = (selectedOption: IOption) => {
     handleClick(getNewSelectedOptions(selectedOption, selectedOptions), name);
@@ -59,6 +59,9 @@ export const checkArguments = (
   options: IOption[],
   selectedOptions: IOption[]
 ) => {
+  if (!options || !selectedOptions) {
+    return;
+  }
   const optionsValues = options.map(o => o.value);
   const selectedOptionsValues = selectedOptions.map(so => so.value);
 

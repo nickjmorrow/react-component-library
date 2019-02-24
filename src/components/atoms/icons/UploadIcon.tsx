@@ -1,23 +1,22 @@
 import * as React from "react";
 import { IconProps } from "./types";
-import { ThemeContext, getStyles } from "~/styleConstants";
-import { DefaultIconSvg, getColor } from "./iconServices";
+import { ThemeContext } from "~/styleConstants";
+import { DefaultIconSvg, getColor, getIconSize } from "./iconServices";
 
 export const UploadIcon: React.SFC<IconProps> = ({
   sizeVariant,
   colorVariant
 }) => {
-  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     icons: { iconSizes, defaultIconSizeVariant, defaultIconColorVariant }
-  } = getStyles(theme);
+  } = React.useContext(ThemeContext);
   return (
     <DefaultIconSvg
       x="0px"
       y="0px"
       viewBox="0 0 96 96"
-      size={iconSizes[sizeVariant || defaultIconSizeVariant]}
+      size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
       color={getColor(colorVariant || defaultIconColorVariant, colors)}>
       <path
         fill="currentColor"

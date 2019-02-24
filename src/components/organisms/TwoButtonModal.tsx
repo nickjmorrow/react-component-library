@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { formattedTextNode, Typography } from "~/components/atoms/Typography";
 import { IModalProps } from "~/components/atoms/containers";
 import { PaperModal, Button } from "~/components";
-import { colors, horizontalSpacing } from "~/styleConstants";
-import { GetComponentProps } from "~/typeUtilities";
+import { GetComponentProps, StyleConstant } from "~/typeUtilities";
+import { ThemeContext } from "~/styleConstants";
 
 export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
   isOpen,
@@ -31,14 +31,15 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
     handleSecondaryClick();
     handleRequestClose();
   };
+  const { colors, spacing } = React.useContext(ThemeContext);
   return (
     <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
       <Wrapper>
-        <TitleWrapper>{modalTitle}</TitleWrapper>
-        <ChildrenContainer>
+        <TitleWrapper spacing={spacing}>{modalTitle}</TitleWrapper>
+        <ChildrenContainer spacing={spacing}>
           {formattedTextNode(children, { colorVariant: "textPrimaryDark" })}
         </ChildrenContainer>
-        <ButtonsContainer>
+        <ButtonsContainer spacing={spacing} colors={colors}>
           <Button
             onClick={handleSecondaryClickInternal}
             colorVariant={"transparent"}
@@ -58,12 +59,15 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
 };
 
 // css
-const ButtonsContainer = styled.div`
+const ButtonsContainer = styled("div")<{
+  spacing: StyleConstant<"spacing">;
+  colors: StyleConstant<"colors">;
+}>`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding: 0.75rem ${horizontalSpacing.default};
-  background-color: ${colors.neutral.lighter};
+  padding: 0.75rem ${p => p.spacing.ss2};
+  background-color: ${p => p.colors.neutral.lighter};
 `;
 
 const Wrapper = styled.div`
@@ -72,16 +76,16 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const ChildrenContainer = styled.div`
-  margin: 2rem ${horizontalSpacing.default};
+const ChildrenContainer = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
+  margin: 2rem ${p => p.spacing.ss2};
 `;
 
 const ButtonWrapper = styled.div`
   margin: 4px 0px 4px 4px;
 `;
 
-const TitleWrapper = styled.div`
-  margin-left: ${horizontalSpacing.default};
+const TitleWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
+  margin-left: ${p => p.spacing.ss2};
 `;
 
 // types

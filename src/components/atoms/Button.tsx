@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 import { LoadingIcon } from "./icons";
 import { Typography } from "./Typography";
-import { GetComponentProps } from "~/typeUtilities";
+import { GetComponentProps, StyleConstant } from "~/typeUtilities";
 
 // TODO: make this the same width regardless
 // of isLoading state
@@ -19,12 +19,12 @@ interface IDisplayProps {
   backgroundColor: string;
   backgroundColorActive: string;
   backgroundColorHover: string;
-  boxShadow: string;
-  border: ReturnType<typeof getStyles>["border"];
+  boxShadow: StyleConstant<"boxShadow">;
+  border: StyleConstant<"border">;
   transition: string;
   useBorder: boolean;
   styleVariant: StyleVariant;
-  spacing: ReturnType<typeof getStyles>["spacing"];
+  spacing: StyleConstant<"spacing">;
 }
 
 interface ColorSet {
@@ -94,8 +94,9 @@ export const Button: React.SFC<IButtonProps> = ({
 
   const content = isLoading ? <LoadingIcon /> : formattedChildren;
 
-  const { theme } = React.useContext(ThemeContext);
-  const { colors, transitions, boxShadow, spacing, border } = getStyles(theme);
+  const { colors, transitions, boxShadow, spacing, border } = React.useContext(
+    ThemeContext
+  );
 
   const button = (
     <StyledButton
@@ -115,7 +116,7 @@ export const Button: React.SFC<IButtonProps> = ({
       border={border}
       useBorder={styleVariant === "outline"}
       styleVariant={styleVariant}
-      boxShadow={boxShadow.default}
+      boxShadow={boxShadow}
       spacing={spacing}>
       {content}
     </StyledButton>
@@ -136,35 +137,44 @@ const StyledButton = styled("button")<
   color: ${props => props.color};
   background-color: ${p =>
     p.styleVariant === "outline" ? "transparent" : p.backgroundColor};
-  border-radius: ${props => props.border.borderRadius.default};
-  border: ${p => p.border.borderStyle[2]} ${props => props.backgroundColor};
-  padding: ${p => p.spacing[3] + " " + p.spacing[4]};
+  border-radius: ${props => props.border.borderRadius.br1};
+  border: ${p =>
+    p.styleVariant === "outline"
+      ? `${p.border.borderStyle.bs2} ${p.backgroundColor}`
+      : "none"};
+  padding: ${p => p.spacing.ss3 + " " + p.spacing.ss4};
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: ${props => (props.useMargin ? props.spacing[4] : 0)};
+  margin: ${props => (props.useMargin ? props.spacing.ss4 : 0)};
   cursor: pointer;
   outline: none;
-  box-shadow: ${props => props.showBoxShadow && props.boxShadow};
+  box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs2},
+    ${p =>
+      p.styleVariant === "default" &&
+      `inset 0 2px 0 ${p.backgroundColorHover}`};
   width: max-content;
+  transition: box-shadow ${p => p.transition},
+    background-color ${p => p.transition};
   &:hover {
     border-color: ${p => p.backgroundColorHover};
     background-color: ${p =>
       p.styleVariant === "outline" ? "none" : p.backgroundColorHover};
     color: ${props => props.colorHover};
-    transition: all ${props => props.transition};
+    box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs1};
+    transition: all ${props => props.transition} ease-in-out;
   }
   &:active {
     border-color: ${p => p.backgroundColorActive};
     background-color: ${p =>
       p.styleVariant === "outline" ? "transparent" : p.backgroundColorActive};
     color: ${props => props.colorActive};
-    transition: all ${props => props.transition};
+    transition: all ${props => props.transition} ease-in-out;
   }
 `;
 
 const getColorHover = (
-  colors: ReturnType<typeof getStyles>["colors"],
+  colors: StyleConstant<"colors">,
   variant: ColorVariant
 ) => {
   switch (variant) {
@@ -182,7 +192,7 @@ const getColorHover = (
 };
 
 const getColorActive = (
-  colors: ReturnType<typeof getStyles>["colors"],
+  colors: StyleConstant<"colors">,
   colorVariant: ColorVariant
 ) => {
   switch (colorVariant) {
@@ -200,7 +210,7 @@ const getColorActive = (
 };
 
 const getColor = (
-  colors: ReturnType<typeof getStyles>["colors"],
+  colors: StyleConstant<"colors">,
   colorVariant: ColorVariant
 ) => {
   switch (colorVariant) {

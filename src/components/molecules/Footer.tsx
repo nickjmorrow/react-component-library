@@ -1,16 +1,16 @@
 import * as React from "react";
 import styled from "styled-components";
 import { fullName, githubLink } from "~/constants";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 import { GithubIcon, InvisibleLink } from "../atoms";
 import { Typography } from "../atoms/Typography";
+import { StyleConstant } from "~/index";
 
 const currentYear = new Date().getFullYear();
 const defaultText = `© ${currentYear} ${fullName}`;
 
 export const Footer: React.SFC<IOwnProps> = ({ text = defaultText }) => {
-  const { theme } = React.useContext(ThemeContext);
-  const { colors, spacing } = getStyles(theme);
+  const { colors, spacing } = React.useContext(ThemeContext);
   return (
     <StyledFooter colors={colors} spacing={spacing}>
       <Typography colorVariant="textSecondaryDark" sizeVariant={2}>
@@ -24,8 +24,8 @@ export const Footer: React.SFC<IOwnProps> = ({ text = defaultText }) => {
 };
 
 interface DisplayProps {
-  colors: ReturnType<typeof getStyles>["colors"];
-  spacing: ReturnType<typeof getStyles>["spacing"];
+  colors: StyleConstant<"colors">;
+  spacing: StyleConstant<"spacing">;
 }
 
 const StyledFooter = styled("div")<DisplayProps>`
@@ -33,11 +33,11 @@ const StyledFooter = styled("div")<DisplayProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: ${p => p.spacing[2]};
+  padding: ${p => p.spacing.ss2};
   width: 100%;
-  position: absolute;
-  bottom: 0;
   box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
 `;
 
 interface IOwnProps {

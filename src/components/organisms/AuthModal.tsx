@@ -8,7 +8,7 @@ import {
   TextInput,
   Typography
 } from "~/components/atoms";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 import { ILoginInfo, IRegisterInfo } from "~/types";
 
 export const AuthModal: React.SFC<IProps> = ({
@@ -77,17 +77,16 @@ export const AuthModal: React.SFC<IProps> = ({
   );
 
   const authInputs = isLoggingIn ? loginInputs : registerInputs;
-  const { theme } = React.useContext(ThemeContext);
-  const { spacing } = getStyles(theme);
+  const { spacing } = React.useContext(ThemeContext);
 
   return (
     <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
-      <div style={{ margin: `0 ${spacing[4]}` }}>
+      <div style={{ margin: `0 ${spacing.ss4}` }}>
         <Typography sizeVariant={6} weightVariant={2}>
           {"Sign In"}
         </Typography>
         {authInputs}
-        <ButtonContainer verticalMargin={spacing[4]}>
+        <ButtonContainer verticalMargin={spacing.ss4}>
           <Button style={buttonBarStyle} onClick={handleRegisterInternal}>
             Register
           </Button>

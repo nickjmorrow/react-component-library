@@ -1,9 +1,10 @@
+import { LocationDescriptor } from "history";
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { formattedTextNode } from "./Typography";
-import { colors, transitions } from "../../styleConstants";
 import styled from "styled-components";
-import { LocationDescriptor } from "history";
+import { ThemeContext } from "../../styleConstants";
+import { formattedTextNode } from "./Typography";
+import { StyleConstant } from "~/typeUtilities";
 
 export interface INonStyledLinkProps {
   route: string;
@@ -12,23 +13,25 @@ export interface INonStyledLinkProps {
 
 export type ILinkProps = INonStyledLinkProps & IStyledLinkProps;
 
-export const Link: React.SFC<ILinkProps> = ({
-  children,
-  color,
-  hoverColor,
-  route,
-  style
-}) => {
+export const Link: React.SFC<ILinkProps> = ({ children, route, style }) => {
+  const { colors, transitions } = React.useContext(ThemeContext);
   return (
     <StyledRouterLink
       to={route}
-      color={color}
-      hoverColor={hoverColor}
+      color={colors.core.main}
+      hoverColor={colors.core.light}
+      transition={transitions.fast}
+      colors={colors}
       style={style}>
       {formattedTextNode(children, { colorVariant: "inherit" })}
     </StyledRouterLink>
   );
 };
+
+interface StyleSystemProps {
+  colors: StyleConstant<"colors">;
+  transition: string;
+}
 
 interface IStyledLinkProps {
   color?: string;
@@ -42,12 +45,12 @@ interface IExternalLinkProps {
 }
 
 const StyledRouterLink = styled(RouterLink)<
-  IStyledLinkProps & IExternalLinkProps
+  IStyledLinkProps & IExternalLinkProps & StyleSystemProps
 >`
-  color: ${props => props.color || colors.background};
+  color: ${props => props.color || props.colors.core.main};
   text-decoration: none;
   &:hover {
-    transition: ${transitions.fast};
-    color: ${props => props.hoverColor || colors.accent.main};
+    transition: ${p => p.transition};
+    color: ${props => props.hoverColor || props.colors.core.light};
   }
 `;

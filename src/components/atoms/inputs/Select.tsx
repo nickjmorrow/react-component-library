@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { IOption } from "types";
 import { Option } from "./Option";
 import { Typography } from "~/components/atoms/Typography";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/index";
 
 export const Select: React.SFC<OwnProps> = ({
   onChange: handleChange,
@@ -24,26 +25,25 @@ export const Select: React.SFC<OwnProps> = ({
     handleChange(option);
   };
 
-  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     spacing,
     border: { borderStyle },
     transitions
-  } = getStyles(theme);
+  } = React.useContext(ThemeContext);
 
   return (
-    <Wrapper onMouseLeave={closeMenu} width={spacing[32]}>
+    <Wrapper onMouseLeave={closeMenu} width={spacing.ss32}>
       <StyledSelect
         onClick={toggleIsMenuVisible}
         colors={colors}
         spacing={spacing}
         transition={transitions.fast}
-        borderStyle={borderStyle.default}>
+        borderStyle={borderStyle.bs1}>
         <Typography sizeVariant={3}>{currentOption.label}</Typography>
       </StyledSelect>
       {isMenuVisible && (
-        <Options colors={colors} borderStyle={borderStyle.default}>
+        <Options colors={colors} borderStyle={borderStyle.bs1}>
           {options
             .filter(o => o.value !== currentOption.value)
             .map(o => (
@@ -60,7 +60,7 @@ const Wrapper = styled("div")<{ width: string }>`
 `;
 
 interface OptionsDisplayProps {
-  colors: ReturnType<typeof getStyles>["colors"];
+  colors: StyleConstant<"colors">;
   borderStyle: string;
 }
 
@@ -75,8 +75,8 @@ const Options = styled("div")<OptionsDisplayProps>`
 `;
 
 interface StyledSelectDisplayProps {
-  colors: ReturnType<typeof getStyles>["colors"];
-  spacing: ReturnType<typeof getStyles>["spacing"];
+  colors: StyleConstant<"colors">;
+  spacing: StyleConstant<"spacing">;
   borderStyle: string;
   transition: string;
 }

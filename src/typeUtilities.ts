@@ -1,4 +1,4 @@
-import { getStyles } from "./styleConstants";
+import { Theme } from "./types";
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -12,9 +12,7 @@ export type GetComponentProps<T> = T extends
   ? P
   : never;
 
-export type StyleConstant<
-  T extends keyof ReturnType<typeof getStyles>
-> = ReturnType<typeof getStyles>[T];
+export type StyleConstant<T extends keyof Theme> = Theme[T];
 
 export type ArgumentType<F extends Function> = F extends (
   ...args: infer A

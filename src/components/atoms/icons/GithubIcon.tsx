@@ -1,25 +1,27 @@
 import * as React from "react";
 import styled from "styled-components";
-import { getStyles, ThemeContext } from "~/styleConstants";
-import { DefaultIconSvg, getColor } from "./iconServices";
+import { ThemeContext } from "~/styleConstants";
+import { DefaultIconSvg, getColor, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
+import { StyleConstant } from "~/typeUtilities";
 
 export const GithubIcon: React.SFC<IconProps> = ({
   sizeVariant,
-  colorVariant = "primaryDark"
+  colorVariant = "primaryDark" as StyleConstant<
+    "icons"
+  >["defaultIconColorVariant"]
 }) => {
-  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     icons: { iconSizes, defaultIconSizeVariant }
-  } = getStyles(theme);
+  } = React.useContext(ThemeContext);
 
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       version="1.0"
       viewBox="0 0 120.000000 120.000000"
-      size={iconSizes[sizeVariant || defaultIconSizeVariant]}
+      size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
       color={getColor(colorVariant, colors)}>
       <g
         transform="translate(0.000000,120.000000) scale(0.100000,-0.100000)"

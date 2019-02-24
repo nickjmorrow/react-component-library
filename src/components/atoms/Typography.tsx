@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { getStyles, ThemeContext, transitions } from "~/styleConstants";
-import { Omit } from "~/typeUtilities";
+import { ThemeContext } from "~/styleConstants";
+import { Omit, StyleConstant } from "~/typeUtilities";
 
 export const Typography: React.SFC<TypographyProps> = ({
   align = "default",
@@ -12,11 +12,11 @@ export const Typography: React.SFC<TypographyProps> = ({
   children,
   style
 }) => {
-  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
+    transitions,
     typography: { fontFamily, fontSizes, fontWeights }
-  } = getStyles(theme);
+  } = React.useContext(ThemeContext);
 
   const colorActive =
     allowedUiStates.find(aus => aus === "active") !== undefined
@@ -61,7 +61,7 @@ export const StyledTypography = styled("span")<DisplayProps>`
 `;
 
 const getColorHover = (
-  colors: ReturnType<typeof getStyles>["colors"],
+  colors: StyleConstant<"colors">,
   colorVariant: ColorVariant
 ) => {
   switch (colorVariant) {
@@ -86,7 +86,7 @@ const getColorHover = (
 };
 
 const getColorActive = (
-  colors: ReturnType<typeof getStyles>["colors"],
+  colors: StyleConstant<"colors">,
   colorVariant: ColorVariant
 ) => {
   switch (colorVariant) {
@@ -111,7 +111,7 @@ const getColorActive = (
 };
 
 const getColor = (
-  colors: ReturnType<typeof getStyles>["colors"],
+  colors: StyleConstant<"colors">,
   color: ColorVariant | undefined = "default"
 ) => {
   switch (color) {
@@ -185,39 +185,15 @@ interface TypographyProps {
 
 // helpers
 const getFontSize = (
-  fontSizes: ReturnType<typeof getStyles>["typography"]["fontSizes"],
+  fontSizes: StyleConstant<"typography">["fontSizes"],
   sizeVariant: SizeVariant
 ): string => {
-  switch (sizeVariant) {
-    case 1:
-      return fontSizes[12];
-    case 2:
-      return fontSizes[14];
-    default:
-    case 3:
-      return fontSizes[16];
-    case 4:
-      return fontSizes[18];
-    case 5:
-      return fontSizes[20];
-    case 6:
-      return fontSizes[24];
-    case 7:
-      return fontSizes[30];
-    case 8:
-      return fontSizes[36];
-    case 9:
-      return fontSizes[48];
-    case 10:
-      return fontSizes[60];
-    case 11:
-      return fontSizes[72];
-  }
+  return fontSizes[("fs" + sizeVariant) as keyof typeof fontSizes];
 };
 
 const getFontWeight = (
-  fontWeights: ReturnType<typeof getStyles>["typography"]["fontWeights"],
+  fontWeights: StyleConstant<"typography">["fontWeights"],
   weightVariant: WeightVariant
 ) => {
-  return fontWeights[weightVariant];
+  return fontWeights["fw" + weightVariant];
 };

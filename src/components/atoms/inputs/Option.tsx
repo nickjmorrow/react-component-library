@@ -1,8 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Typography } from "~/components/atoms/Typography";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 import { IOption } from "~/types";
+import { StyleConstant } from "~/typeUtilities";
 
 export const Option: React.SFC<{
   option: IOption;
@@ -11,14 +12,12 @@ export const Option: React.SFC<{
   const handleClickInternal = () => {
     handleClick(option);
   };
-
-  const { theme } = React.useContext(ThemeContext);
   const {
     spacing,
     colors,
     transitions,
     border: { borderRadius }
-  } = getStyles(theme);
+  } = React.useContext(ThemeContext);
 
   return (
     <StyledOption
@@ -33,16 +32,16 @@ export const Option: React.SFC<{
 };
 
 const StyledOption = styled("div")<{
-  spacing: ReturnType<typeof getStyles>["spacing"];
-  colors: ReturnType<typeof getStyles>["colors"];
-  transitions: ReturnType<typeof getStyles>["transitions"];
-  borderRadius: ReturnType<typeof getStyles>["border"]["borderRadius"];
+  spacing: StyleConstant<"spacing">;
+  colors: StyleConstant<"colors">;
+  transitions: StyleConstant<"transitions">;
+  borderRadius: StyleConstant<"border">["borderRadius"];
 }>`
   padding: 4px;
   cursor: pointer;
   &:hover {
     background-color: ${p => p.colors.neutral.lightest};
     transition: ${p => p.transitions.fast};
-    border-radius: ${p => p.borderRadius.default};
+    border-radius: ${p => p.borderRadius.br1};
   }
 `;

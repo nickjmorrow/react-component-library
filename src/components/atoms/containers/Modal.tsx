@@ -1,6 +1,7 @@
 import * as React from "react";
 const ReactModal = require("react-modal");
 import Radium from "radium";
+import { ThemeContext } from "~/styleConstants";
 const Style = Radium.Style;
 
 export const Modal: React.SFC<IModalProps> = ({
@@ -8,6 +9,7 @@ export const Modal: React.SFC<IModalProps> = ({
   children,
   onRequestClose: handleRequestClose
 }) => {
+  const { boxShadow } = React.useContext(ThemeContext);
   const customStyles = {
     content: {
       top: "50%",
@@ -26,7 +28,8 @@ export const Modal: React.SFC<IModalProps> = ({
       <Style
         rules={{
           ".ReactModalPortal > div": {
-            opacity: 0
+            opacity: 0,
+            boxShadow: boxShadow.bs5
           },
           ".ReactModalPortal .ReactModal__Overlay": {
             transition: "opacity 200ms ease-in-out",

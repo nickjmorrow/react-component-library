@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { FileInputProps } from "~/types";
 import { UploadIcon } from "../icons/UploadIcon";
 import { Typography } from "~/components";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/index";
 
 export const FileInput: React.SFC<FileInputProps> = ({
   initialLabel = "Choose a file",
@@ -17,14 +18,13 @@ export const FileInput: React.SFC<FileInputProps> = ({
     handleChange(files);
     setLabel(newLabel);
   };
-  const { theme } = useContext(ThemeContext);
   const {
     border: { borderRadius },
     boxShadow,
     colors,
     transitions,
     spacing
-  } = getStyles(theme);
+  } = useContext(ThemeContext);
   return (
     <>
       <StyledFileInput
@@ -38,8 +38,8 @@ export const FileInput: React.SFC<FileInputProps> = ({
         color={colors.background}
         backgroundColor={colors.core.main}
         backgroundColorHover={colors.core.light}
-        borderRadius={borderRadius.default}
-        boxShadow={boxShadow.default}
+        borderRadius={borderRadius.br1}
+        boxShadow={boxShadow.bs1}
         transition={transitions.fast}
         spacing={spacing}>
         <UploadIcon colorVariant={"primaryLight"} />
@@ -60,14 +60,14 @@ interface DisplayProps {
   borderRadius: string;
   boxShadow: string;
   transition: string;
-  spacing: ReturnType<typeof getStyles>["spacing"];
+  spacing: StyleConstant<"spacing">;
 }
 
 const Label = styled("label")<DisplayProps>`
   color: ${props => props.color};
   background-color: ${props => props.backgroundColor};
   display: inline-block;
-  padding: ${p => p.spacing[2]} ${p => p.spacing[3]};
+  padding: ${p => p.spacing.ss2} ${p => p.spacing.ss3};
   width: max-content;
   border-radius: ${props => props.borderRadius};
   cursor: pointer;

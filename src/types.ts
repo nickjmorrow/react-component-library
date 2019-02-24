@@ -1,3 +1,7 @@
+import { defaultThemeInputs } from "./styleConstants/styleInputs";
+import { getTheme } from "./styleConstants/themeProvider";
+import { generateColorShades } from "./styleConstants/styleProviders";
+
 // TODO: can this be organized better?
 export interface IOption {
   value: IValue;
@@ -75,3 +79,7 @@ export interface IAuthState {
   readonly user: IUser | null;
   readonly error: string | null;
 }
+
+export type ColorShade = ReturnType<typeof generateColorShades>;
+export type ThemeInput = typeof defaultThemeInputs;
+export type Theme = ReturnType<typeof getTheme>;

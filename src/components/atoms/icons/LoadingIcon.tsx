@@ -1,7 +1,7 @@
 import * as React from "react";
-import { DefaultIconSvg, getColor } from "./iconServices";
+import { DefaultIconSvg, getColor, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
-import { getStyles, ThemeContext } from "~/index";
+import { ThemeContext } from "~/index";
 
 export const LoadingIcon: React.SFC<IconProps> = ({
   sizeVariant,
@@ -10,12 +10,12 @@ export const LoadingIcon: React.SFC<IconProps> = ({
   const {
     colors,
     icons: { iconSizes, defaultIconSizeVariant, defaultIconColorVariant }
-  } = getStyles(React.useContext(ThemeContext).theme);
+  } = React.useContext(ThemeContext);
   return (
     <DefaultIconSvg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100"
-      size={iconSizes[sizeVariant || defaultIconSizeVariant]}
+      size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
       color={getColor(colorVariant || defaultIconColorVariant, colors)}>
       <g>
         <path

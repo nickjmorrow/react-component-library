@@ -1,6 +1,6 @@
 import * as React from "react";
-import { getStyles, ThemeContext } from "~/styleConstants";
-import { DefaultIconSvg, getColor } from "./iconServices";
+import { ThemeContext } from "~/styleConstants";
+import { DefaultIconSvg, getColor, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
 
 export const GoogleIcon: React.SFC<IconProps> = ({
@@ -10,13 +10,13 @@ export const GoogleIcon: React.SFC<IconProps> = ({
   const {
     colors,
     icons: { iconSizes, defaultIconSizeVariant }
-  } = getStyles(React.useContext(ThemeContext).theme);
+  } = React.useContext(ThemeContext);
 
   return (
     <DefaultIconSvg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      size={iconSizes[sizeVariant || defaultIconSizeVariant]}
+      size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
       color={getColor(colorVariant, colors)}>
       <path
         fill="currentColor"

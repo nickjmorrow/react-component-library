@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 
 export const StyledInput: React.SFC<Props> = ({
   value,
@@ -8,30 +8,29 @@ export const StyledInput: React.SFC<Props> = ({
   onChange: handleChange,
   placeholder = ""
 }) => {
-  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
     transitions,
     border: { borderRadius, borderStyle },
     spacing,
     typography: { fontFamily, fontSizes, fontWeights }
-  } = getStyles(theme);
+  } = React.useContext(ThemeContext);
 
   return (
     <Input
-      fontSize={fontSizes[16]}
+      fontSize={fontSizes.fs2}
       fontFamily={fontFamily.default}
-      fontWeight={fontWeights[1]}
+      fontWeight={fontWeights.fw1}
       type={type}
       backgroundColor={colors.neutral.lightest}
       transition={transitions.fast}
-      borderRadius={borderRadius.default}
+      borderRadius={borderRadius.br1}
       focusBorderColor={colors.core.main}
       defaultBorderColor={colors.transparent}
-      borderStyle={borderStyle.default}
-      width={spacing[64]}
-      padding={spacing[2]}
-      margin={spacing[2]}
+      borderStyle={borderStyle.bs1}
+      width={spacing.ss64}
+      padding={spacing.ss2}
+      margin={spacing.ss2}
       onChange={handleChange}
       value={value}
       placeholder={placeholder}

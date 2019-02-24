@@ -1,59 +1,67 @@
 import {
+  ArgumentType,
   Footer,
   ThemeContext,
-  generateColorShades,
-  updateTheme,
-  ArgumentType
+  ThemeInputsContext,
+  getThemeFromNewInputs,
+  getMergedThemeInputs,
+  updateThemeInputs
 } from "njm-react-component-library";
-import { LibraryAppBar } from "./components/LibraryAppBar";
 import * as React from "react";
-import "./App.css";
-import { Landing } from "./Landing";
 import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
+import "./App.css";
+import { LibraryAppBar } from "./components/LibraryAppBar";
+import { Landing } from "./Landing";
 
-const initialState = {
-  theme: {
-    colors: {
-      core: generateColorShades({
-        hue: 99,
-        lightnessIncrement: 10
-      })
+const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
+  colors: {
+    core: {
+      hue: 222
     },
-    border: {
-      borderRadius: {
-        default: "8px"
-      }
+    accent: {
+      hue: 180
+    },
+    neutral: {
+      hue: 222
+    },
+    success: {
+      hue: 130
+    },
+    warning: {
+      hue: 140
+    },
+    danger: {
+      hue: 150
     }
   }
 };
 
-class App extends React.Component<{}, typeof initialState> {
-  public readonly state = initialState;
+const App: React.SFC = () => {
+  const [themeInputs, setThemeInputs] = React.useState(initialThemeInputs);
 
-  public handleUpdateTheme = (theme: ArgumentType<typeof updateTheme>[0]) => {
-    this.setState({
-      theme: updateTheme(theme)
-    });
-  };
-  public render() {
-    return (
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <ThemeContext.Provider
+  const handleUpdateThemeInputs = (
+    newThemeInputs: ArgumentType<typeof updateThemeInputs>[0]
+  ): void => setThemeInputs(updateThemeInputs(newThemeInputs));
+
+  return (
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>
+        <ThemeInputsContext.Provider
           value={{
-            theme: this.state.theme,
-            updateTheme: this.handleUpdateTheme
+            themeInputs: getMergedThemeInputs(themeInputs),
+            updateThemeInputs: handleUpdateThemeInputs
           }}>
           <Wrapper>
             <LibraryAppBar />
             <Landing />
             <Footer />
           </Wrapper>
-        </ThemeContext.Provider>
-      </BrowserRouter>
-    );
-  }
-}
+        </ThemeInputsContext.Provider>
+      </ThemeContext.Provider>
+    </BrowserRouter>
+  );
+};
 
 export default App;
 

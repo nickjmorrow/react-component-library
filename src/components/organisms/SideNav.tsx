@@ -2,7 +2,7 @@ import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import styled from "styled-components";
 import { Link, Typography } from "~/components";
-import { getStyles, ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
 
 const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
@@ -10,8 +10,9 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
   location
 }) => {
   const { pathname } = location;
-  const { theme } = React.useContext(ThemeContext);
-  const { colors, transitions, spacing, boxShadow } = getStyles(theme);
+  const { colors, transitions, spacing, boxShadow } = React.useContext(
+    ThemeContext
+  );
   return (
     <Wrapper boxShadow={boxShadow}>
       <NavItems spacing={spacing}>
@@ -61,7 +62,7 @@ const Wrapper = styled("div")<{ boxShadow: StyleConstant<"boxShadow"> }>`
   min-width: 15rem;
   width: auto;
   height: max-content;
-  box-shadow: ${p => p.boxShadow.default};
+  box-shadow: ${p => p.boxShadow.bs1};
 `;
 
 const ContentWrapper = styled("div")<DisplayProps>`
@@ -85,7 +86,7 @@ const NavItemWrapper = styled("div")<{ color: string; transition: string }>`
 `;
 
 const NavItems = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
-  margin-top: ${p => p.spacing[2]};
+  margin-top: ${p => p.spacing.ss2};
 `;
 
 const getMargin = (level: itemLevel) => {

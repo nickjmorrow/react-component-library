@@ -1,7 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-import { getStyles, ThemeContext, transitions } from "~/styleConstants";
-import { getColor, getColorHover } from "./iconServices";
+import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/typeUtilities";
+import { getColor, getColorHover, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
 
 // TODO: think about circular dependency
@@ -19,20 +20,20 @@ export const CloseIcon: React.SFC<IOwnProps & Props & IconProps> = ({
   colorVariant = "primaryDark",
   sizeVariant = 2
 }) => {
-  const { theme } = React.useContext(ThemeContext);
   const {
     colors,
-    icons: { iconSizes }
-  } = getStyles(theme);
+    transitions,
+    icons: { iconSizes, defaultIconSizeVariant }
+  } = React.useContext(ThemeContext);
 
   return (
     <Svg
       style={style}
-      size={iconSizes[sizeVariant]}
+      size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
       color={getColor(colorVariant, colors)}
-      transition={transitions.fast}
       hoverColor={getColorHover(colorVariant, colors)}
       onClick={handleClick}
+      transitions={transitions}
       viewBox="0 0 1000 1000">
       <g>
         <path
@@ -53,7 +54,7 @@ interface IOwnProps {
 interface IDisplayProps {
   size: string;
   color: string;
-  transition: string;
+  transitions: StyleConstant<"transitions">;
   hoverColor: string;
 }
 
@@ -63,7 +64,7 @@ const Svg = styled("svg")<IDisplayProps>`
   color: ${p => p.color};
   cursor: pointer;
   &:hover {
-    transition: color ${p => p.transition};
+    transition: color ${p => p.transitions.fast};
     color: ${p => p.hoverColor};
   }
 `;

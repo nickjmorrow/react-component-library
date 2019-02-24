@@ -5,7 +5,7 @@ export type IconColorVariant =
   | "secondaryDark";
 
 export interface IconProps {
-  sizeVariant?: number;
+  sizeVariant?: IconSizeVariant;
   colorVariant?: IconColorVariant;
 }
 
@@ -13,3 +13,5 @@ export interface IconDisplayProps {
   size: string;
   color: string;
 }
+
+export type IconSizeVariant = 1 | 2 | 3 | 4;

@@ -7,9 +7,11 @@ import { SelectDemo } from "./components/demos/SelectDemo";
 import { FileInputDemo } from "./components/demos/FileInputDemo";
 import { AuthModalDemo } from "./components/demos/modals/AuthModalDemo";
 import { InputDemo } from "./components/demos/TextInputDemo";
-import { Colors } from "./components/demos/Colors";
+import { Colors } from "./components/demos/configurations/Colors";
 import { IconsDemo } from "./components/demos/IconsDemo";
 import { SliderDemo } from "./components/demos/SliderDemo";
+import { Borders } from "./components/demos/configurations/Borders";
+import { LabeledInputDemo } from "./components/demos/LabeledInputDemo";
 
 const atomComponents = {
   folderLabel: "Atoms",
@@ -38,6 +40,16 @@ const atomComponents = {
       component: SliderDemo,
       label: "Slider",
       route: "/slider"
+    },
+    {
+      component: InputDemo,
+      label: "Text Input",
+      route: "/text-input"
+    },
+    {
+      component: LabeledInputDemo,
+      label: "Labeled Input",
+      route: "/labeled-input"
     }
   ]
 };
@@ -49,11 +61,6 @@ const modalComponents = {
       component: AuthModalDemo,
       label: "Auth Modal",
       route: "/auth-modal"
-    },
-    {
-      component: InputDemo,
-      label: "Text Input",
-      route: "/text-input"
     }
   ]
 };
@@ -65,6 +72,11 @@ const themeConfiguration = {
       component: Colors,
       label: "Colors",
       route: "/colors"
+    },
+    {
+      component: Borders,
+      label: "Borders",
+      route: "/borders"
     }
   ]
 };
@@ -108,21 +120,21 @@ const navInfos = components.reduce(
 
 export const Landing: React.SFC<{}> = () => {
   return (
-    <GridWrapper>
+    <FlexWrapper>
       <SideNav navInfos={navInfos} />
       <RoutesWrapper>{routes}</RoutesWrapper>
-    </GridWrapper>
+    </FlexWrapper>
   );
 };
 
-const GridWrapper = styled.div`
+const FlexWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
 `;
 
 const RoutesWrapper = styled.div`
-  margin: 24px 0px 24px 24px;
+  margin: 24px 0px 24px 32px;
 `;
 
 // TODO: why are all components being rendered

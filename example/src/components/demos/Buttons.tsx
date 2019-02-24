@@ -1,7 +1,6 @@
+import { Button } from "njm-react-component-library";
 import * as React from "react";
-import {} from "njm-react-component-library";
 import styled from "styled-components";
-import { Button, googleColors } from "njm-react-component-library";
 
 export const Buttons: React.SFC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -17,14 +16,6 @@ export const Buttons: React.SFC = () => {
         Secondary
       </Button>
       <Button colorVariant="cancel">Cancel</Button>
-      <Button
-        colorSet={{
-          backgroundColor: googleColors.main,
-          backgroundColorActive: googleColors.dark,
-          backgroundColorHover: googleColors.light
-        }}>
-        Google
-      </Button>
       <Button colorVariant="white" textColorVariant="primary">
         White
       </Button>
