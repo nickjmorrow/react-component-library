@@ -1,16 +1,20 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
-import { LoadingIcon } from "./icons";
-import { Typography } from "./Typography";
-import { GetComponentProps, StyleConstant } from "~/typeUtilities";
+import { StyleConstant } from "~/typeUtilities";
+import { CoreColorVariant } from "../types";
+import { Typography } from "../typography/Typography";
+import { getColor, getColorActive, getColorHover } from "./buttonServices";
+import { ColorVariant, StyleVariant } from "./types";
 
 // TODO: make this the same width regardless
 // of isLoading state
 
 // TODO: text should light up as soon as cursor enters button
 // but it doesnt. it waits till cursor over text :/
+
+// TODO: also think about hte case (like with FileInput) where
+// you want the icon to also light up a bit on hover
 
 interface IDisplayProps {
   showBoxShadow?: boolean;
@@ -22,9 +26,10 @@ interface IDisplayProps {
   boxShadow: StyleConstant<"boxShadow">;
   border: StyleConstant<"border">;
   transition: string;
-  useBorder: boolean;
   styleVariant: StyleVariant;
   spacing: StyleConstant<"spacing">;
+  width: number;
+  height: number;
 }
 
 interface ColorSet {
@@ -36,24 +41,13 @@ interface ColorSet {
   backgroundColorActive: string;
 }
 
-type ColorVariant =
-  | "primary"
-  | "secondary"
-  | "cancel"
-  | "white"
-  | "transparent";
-
-// TODO: finish this for outline and make it extendable
-type StyleVariant = "default" | "outline";
-
 type IButtonProps = {
-  textColorVariant?: GetComponentProps<typeof Typography>["colorVariant"];
+  textColorVariant?: CoreColorVariant;
   colorVariant?: ColorVariant;
   styleVariant?: StyleVariant;
   route?: string;
   children: React.ReactNode;
   colorSet?: Partial<ColorSet>;
-  isLoading?: boolean;
   onClick?(): void;
 } & Partial<IDisplayProps> &
   Partial<ColorSet>;
@@ -62,11 +56,9 @@ type IButtonProps = {
 
 export const Button: React.SFC<IButtonProps> = ({
   children,
-  colorVariant = "primary",
-  textColorVariant = "textPrimaryLight",
-  styleVariant = "default",
-  route,
-  isLoading = false,
+  colorVariant = "core",
+  textColorVariant = "primaryLight",
+  styleVariant = "primary",
   showBoxShadow = true,
   useMargin = true,
   colorSet = {} as ColorSet,
@@ -92,14 +84,28 @@ export const Button: React.SFC<IButtonProps> = ({
       children
     );
 
-  const content = isLoading ? <LoadingIcon /> : formattedChildren;
-
   const { colors, transitions, boxShadow, spacing, border } = React.useContext(
     ThemeContext
   );
 
-  const button = (
+  const innerWrapperRef = React.useRef<HTMLDivElement>(null);
+  const [width, setWidth] = React.useState(0);
+  const [height, setHeight] = React.useState(0);
+
+  if (innerWrapperRef && innerWrapperRef.current) {
+    if (innerWrapperRef.current.clientWidth > width) {
+      setWidth(innerWrapperRef.current.clientWidth);
+    }
+
+    if (innerWrapperRef.current.clientHeight > height) {
+      setHeight(innerWrapperRef.current.clientHeight);
+    }
+  }
+
+  return (
     <StyledButton
+      width={width}
+      height={height}
       backgroundColor={
         colorSet.backgroundColor || getColor(colors, colorVariant)
       }
@@ -112,36 +118,34 @@ export const Button: React.SFC<IButtonProps> = ({
       showBoxShadow={showBoxShadow}
       useMargin={useMargin}
       onClick={handleClick}
-      transition={transitions.fast}
+      transition={transitions.medium}
       border={border}
-      useBorder={styleVariant === "outline"}
       styleVariant={styleVariant}
       boxShadow={boxShadow}
       spacing={spacing}>
-      {content}
+      <InnerWrapper width={width} height={height} ref={innerWrapperRef}>
+        {formattedChildren}
+      </InnerWrapper>
     </StyledButton>
   );
-
-  return route ? (
-    <Link to={route} style={{ textDecoration: "none" }}>
-      {button}
-    </Link>
-  ) : (
-    button
-  );
 };
+
+const InnerWrapper = styled("div")<{ width: number; height: number }>`
+  min-width: ${p => p.width}px;
+  min-height: ${p => p.height}px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const StyledButton = styled("button")<
   IDisplayProps & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
 >`
   color: ${props => props.color};
   background-color: ${p =>
-    p.styleVariant === "outline" ? "transparent" : p.backgroundColor};
+    p.styleVariant === "secondary" ? "transparent" : p.backgroundColor};
   border-radius: ${props => props.border.borderRadius.br1};
-  border: ${p =>
-    p.styleVariant === "outline"
-      ? `${p.border.borderStyle.bs2} ${p.backgroundColor}`
-      : "none"};
+  border: ${p => `${p.border.borderStyle.bs2} ${p.backgroundColor}`};
   padding: ${p => p.spacing.ss3 + " " + p.spacing.ss4};
   display: flex;
   justify-content: center;
@@ -149,80 +153,30 @@ const StyledButton = styled("button")<
   margin: ${props => (props.useMargin ? props.spacing.ss4 : 0)};
   cursor: pointer;
   outline: none;
-  box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs2},
-    ${p =>
-      p.styleVariant === "default" &&
-      `inset 0 2px 0 ${p.backgroundColorHover}`};
-  width: max-content;
+  box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs2};
+  min-width: ${p => p.width}px;
+  min-height: ${p => p.height}px;
   transition: box-shadow ${p => p.transition},
-    background-color ${p => p.transition};
+    background-color ${p => p.transition}, border-color ${p => p.transition};
   &:hover {
-    border-color: ${p => p.backgroundColorHover};
+    border-color: ${p =>
+      p.styleVariant === "secondary"
+        ? p.backgroundColor
+        : p.backgroundColorHover};
     background-color: ${p =>
-      p.styleVariant === "outline" ? "none" : p.backgroundColorHover};
+      p.styleVariant === "secondary" ? "none" : p.backgroundColorHover};
     color: ${props => props.colorHover};
     box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs1};
     transition: all ${props => props.transition} ease-in-out;
   }
   &:active {
-    border-color: ${p => p.backgroundColorActive};
+    border-color: ${p =>
+      p.styleVariant === "secondary"
+        ? p.backgroundColor
+        : p.backgroundColorActive};
     background-color: ${p =>
-      p.styleVariant === "outline" ? "transparent" : p.backgroundColorActive};
+      p.styleVariant === "secondary" ? "transparent" : p.backgroundColorActive};
     color: ${props => props.colorActive};
     transition: all ${props => props.transition} ease-in-out;
   }
 `;
-
-const getColorHover = (
-  colors: StyleConstant<"colors">,
-  variant: ColorVariant
-) => {
-  switch (variant) {
-    case "primary":
-      return colors.core.light;
-    case "secondary":
-      return colors.accent.light;
-    case "cancel":
-      return colors.danger.light;
-    case "white":
-      return colors.background;
-    case "transparent":
-      return colors.transparent;
-  }
-};
-
-const getColorActive = (
-  colors: StyleConstant<"colors">,
-  colorVariant: ColorVariant
-) => {
-  switch (colorVariant) {
-    case "primary":
-      return colors.core.dark;
-    case "secondary":
-      return colors.accent.dark;
-    case "cancel":
-      return colors.danger.dark;
-    case "white":
-      return colors.background;
-    case "transparent":
-      return colors.transparent;
-  }
-};
-
-const getColor = (
-  colors: StyleConstant<"colors">,
-  colorVariant: ColorVariant
-) => {
-  switch (colorVariant) {
-    case "white":
-      return colors.background;
-    case "primary":
-      return colors.core.main;
-    case "secondary":
-      return colors.accent.main;
-    case "cancel":
-      return colors.danger.main;
-    case "transparent":
-      return colors.transparent;
-  }
-};

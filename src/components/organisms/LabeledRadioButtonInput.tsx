@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography } from "~/components/atoms/Typography";
+import { Typography } from "~/components/atoms/typography/Typography";
 import { LabeledRadioButton } from "~/components/molecules";
 import { IOption } from "~/types";
 

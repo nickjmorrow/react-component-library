@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from "./Button";
+import { Button } from "./buttons/Button";
 
 export const GoogleButton: React.SFC<IOwnProps> = ({
   onClick: handleClick

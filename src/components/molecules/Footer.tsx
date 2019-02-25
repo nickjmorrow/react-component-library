@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { fullName, githubLink } from "~/constants";
 import { ThemeContext } from "~/styleConstants";
 import { GithubIcon, InvisibleLink } from "../atoms";
-import { Typography } from "../atoms/Typography";
+import { Typography } from "../atoms/typography/Typography";
 import { StyleConstant } from "~/index";
 
 const currentYear = new Date().getFullYear();
@@ -13,7 +13,7 @@ export const Footer: React.SFC<IOwnProps> = ({ text = defaultText }) => {
   const { colors, spacing } = React.useContext(ThemeContext);
   return (
     <StyledFooter colors={colors} spacing={spacing}>
-      <Typography colorVariant="textSecondaryDark" sizeVariant={2}>
+      <Typography colorVariant="secondaryDark" sizeVariant={2}>
         {text}
       </Typography>
       <InvisibleLink href={githubLink}>

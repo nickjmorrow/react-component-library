@@ -27,7 +27,7 @@ const renderButton:
     backgroundColor={"google"}
     onClick={renderProps!.onClick}>
     <GoogleIcon />
-    <Typography sizeVariant={2} colorVariant="textPrimaryLight">
+    <Typography sizeVariant={2} colorVariant="primaryLight">
       Sign In With Google
     </Typography>
   </Button>

@@ -8,13 +8,10 @@ import {
 } from "njm-react-component-library";
 import { withRouter, RouterProps } from "react-router";
 
-export const AppBarInternal: React.SFC<RouterProps> = ({ history }) => {
+export const AppBarInternal: React.SFC<RouterProps> = () => {
   return (
     <AppBar>
-      <Typography
-        sizeVariant={6}
-        colorVariant="textPrimaryLight"
-        weightVariant={2}>
+      <Typography sizeVariant={6} colorVariant="primaryLight" weightVariant={2}>
         Component Library
       </Typography>
       <InvisibleLink href={githubLink}>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { IOption } from "types";
 import { Option } from "./Option";
-import { Typography } from "~/components/atoms/Typography";
+import { Typography } from "~/components/atoms/typography/Typography";
 import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/index";
 

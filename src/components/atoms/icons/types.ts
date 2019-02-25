@@ -1,12 +1,8 @@
-export type IconColorVariant =
-  | "primaryLight"
-  | "primaryDark"
-  | "secondaryLight"
-  | "secondaryDark";
+import { CoreColorVariant } from "~/components/atoms";
 
 export interface IconProps {
   sizeVariant?: IconSizeVariant;
-  colorVariant?: IconColorVariant;
+  colorVariant?: CoreColorVariant;
 }
 
 export interface IconDisplayProps {

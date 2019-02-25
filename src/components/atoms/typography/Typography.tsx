@@ -2,6 +2,8 @@ import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
 import { Omit, StyleConstant } from "~/typeUtilities";
+import { ColorVariant } from "./types";
+import { getColorActive, getColor, getColorHover } from "./typographyServices";
 
 export const Typography: React.SFC<TypographyProps> = ({
   align = "default",
@@ -60,81 +62,6 @@ export const StyledTypography = styled("span")<DisplayProps>`
   }
 `;
 
-const getColorHover = (
-  colors: StyleConstant<"colors">,
-  colorVariant: ColorVariant
-) => {
-  switch (colorVariant) {
-    case "default":
-    case "textPrimaryDark":
-      return colors.neutral.darkest;
-    case "textSecondaryDark":
-      return colors.neutral.darker;
-    case "textPrimaryLight":
-      return colors.background;
-    case "textSecondaryLight":
-      return colors.neutral.lightest;
-    case "primary":
-      return colors.core.light;
-    case "secondary":
-      return colors.accent.light;
-    case "error":
-      return colors.danger.main;
-    case "inherit":
-      return "inherit";
-  }
-};
-
-const getColorActive = (
-  colors: StyleConstant<"colors">,
-  colorVariant: ColorVariant
-) => {
-  switch (colorVariant) {
-    case "default":
-    case "textPrimaryDark":
-      return colors.neutral.darker;
-    case "textSecondaryDark":
-      return colors.neutral.main;
-    case "textPrimaryLight":
-      return colors.background;
-    case "textSecondaryLight":
-      return colors.neutral.lightest;
-    case "primary":
-      return colors.core.dark;
-    case "secondary":
-      return colors.accent.dark;
-    case "error":
-      return colors.danger.main;
-    case "inherit":
-      return "inherit";
-  }
-};
-
-const getColor = (
-  colors: StyleConstant<"colors">,
-  color: ColorVariant | undefined = "default"
-) => {
-  switch (color) {
-    case "default":
-    case "textPrimaryDark":
-      return colors.neutral.darker;
-    case "textSecondaryDark":
-      return colors.neutral.main;
-    case "textPrimaryLight":
-      return colors.background;
-    case "textSecondaryLight":
-      return colors.neutral.lightest;
-    case "primary":
-      return colors.core.main;
-    case "secondary":
-      return colors.accent.main;
-    case "error":
-      return colors.danger.main;
-    case "inherit":
-      return "inherit";
-  }
-};
-
 export const formattedTextNode = (
   textNode: React.ReactNode,
   props: Omit<TypographyProps, "children"> = {}
@@ -147,16 +74,6 @@ export const formattedTextNode = (
 
 type UiState = "hover" | "active";
 
-export type ColorVariant =
-  | "default"
-  | "error"
-  | "primary"
-  | "secondary"
-  | "textPrimaryDark"
-  | "textSecondaryDark"
-  | "textPrimaryLight"
-  | "textSecondaryLight"
-  | "inherit";
 type Align = "inherit" | "left" | "center" | "right" | "justify" | "default";
 type SizeVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 type WeightVariant = 1 | 2 | 3 | 4 | 5;

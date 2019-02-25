@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Theme } from "~/index";
+import { CoreColorVariant, Theme } from "~/index";
 import { StyleConstant } from "~/typeUtilities";
-import { IconDisplayProps, IconSizeVariant, IconColorVariant } from "./types";
+import { IconDisplayProps, IconSizeVariant } from "./types";
 
 export const getColor = (
-  colorVariant: IconColorVariant,
+  colorVariant: CoreColorVariant,
   colors: StyleConstant<"colors">
 ) => {
   switch (colorVariant) {
@@ -17,11 +17,15 @@ export const getColor = (
     default:
     case "secondaryDark":
       return colors.neutral.dark;
+    case "core":
+      return colors.core.main;
+    case "accent":
+      return colors.accent.main;
   }
 };
 
 export const getColorHover = (
-  colorVariant: IconColorVariant,
+  colorVariant: CoreColorVariant,
   colors: StyleConstant<"colors">
 ) => {
   switch (colorVariant) {

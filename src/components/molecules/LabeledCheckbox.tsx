@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { IOption } from "types";
 import { InputWrapper, LabeledInputWrapper } from "~/components/atoms/inputs";
 import { Checkbox } from "~/components/atoms/inputs/Checkbox";
-import { Typography } from "~/components/atoms/Typography";
+import { Typography } from "~/components/atoms/typography/Typography";
 import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
 
@@ -32,7 +32,7 @@ export const LabeledCheckbox: React.SFC<IProps> = ({
           <Checkbox fill={isToggled ? colors.core.main : colors.transparent} />
         </CheckboxWrapper>
       </InputWrapper>
-      <Typography colorVariant={isToggled ? "primary" : "default"}>
+      <Typography colorVariant={isToggled ? "core" : "default"}>
         {option.label}
       </Typography>
     </LabeledInputWrapper>

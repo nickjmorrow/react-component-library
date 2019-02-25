@@ -18,21 +18,6 @@ const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
   colors: {
     core: {
       hue: 222
-    },
-    accent: {
-      hue: 180
-    },
-    neutral: {
-      hue: 222
-    },
-    success: {
-      hue: 130
-    },
-    warning: {
-      hue: 140
-    },
-    danger: {
-      hue: 150
     }
   }
 };

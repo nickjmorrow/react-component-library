@@ -13,9 +13,9 @@ export const UploadIcon: React.SFC<IconProps> = ({
   } = React.useContext(ThemeContext);
   return (
     <DefaultIconSvg
-      x="0px"
-      y="0px"
-      viewBox="0 0 96 96"
+      x="-40px"
+      y="-140px"
+      viewBox="20 20 55 55"
       size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
       color={getColor(colorVariant || defaultIconColorVariant, colors)}>
       <path

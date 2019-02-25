@@ -77,6 +77,15 @@ export const AuthModal: React.SFC<IProps> = ({
   );
 
   const authInputs = isLoggingIn ? loginInputs : registerInputs;
+
+  const inputsWrapperRef = React.useRef<HTMLDivElement>(null);
+  const [height, setHeight] = React.useState(0);
+  if (
+    inputsWrapperRef.current &&
+    inputsWrapperRef.current.clientHeight > height
+  ) {
+    setHeight(inputsWrapperRef.current.clientHeight);
+  }
   const { spacing } = React.useContext(ThemeContext);
 
   return (
@@ -85,15 +94,23 @@ export const AuthModal: React.SFC<IProps> = ({
         <Typography sizeVariant={6} weightVariant={2}>
           {"Sign In"}
         </Typography>
-        {authInputs}
+        <InputsWrapper ref={inputsWrapperRef} height={height}>
+          {authInputs}
+        </InputsWrapper>
         <ButtonContainer verticalMargin={spacing.ss4}>
-          <Button style={buttonBarStyle} onClick={handleRegisterInternal}>
+          <Button
+            style={buttonBarStyle}
+            onClick={handleRegisterInternal}
+            textColorVariant={isLoggingIn ? "core" : "primaryLight"}
+            styleVariant={isLoggingIn ? "secondary" : "primary"}>
             Register
           </Button>
           <Button
             style={buttonBarStyle}
             onClick={handleLoginInternal}
-            useMargin={false}>
+            useMargin={false}
+            textColorVariant={isLoggingIn ? "primaryLight" : "core"}
+            styleVariant={isLoggingIn ? "primary" : "secondary"}>
             Log In
           </Button>
           {renderAdditionalComponents
@@ -127,4 +144,8 @@ const ButtonContainer = styled("div")<{ verticalMargin: string }>`
   justify-content: flex-end;
   width: 100%;
   margin: ${p => p.verticalMargin} 0;
+`;
+
+const InputsWrapper = styled("div")<{ height: number }>`
+  min-height: ${p => p.height}px;
 `;

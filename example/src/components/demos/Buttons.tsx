@@ -1,4 +1,4 @@
-import { Button } from "njm-react-component-library";
+import { LoadingButton, Button } from "njm-react-component-library";
 import * as React from "react";
 import styled from "styled-components";
 
@@ -8,28 +8,34 @@ export const Buttons: React.SFC = () => {
 
   return (
     <Wrapper>
-      <Button colorVariant="primary">Primary</Button>
+      <Button colorVariant="core">Core</Button>
+      <Button colorVariant="accent">Accent</Button>
+
+      <Button colorVariant="success">Success</Button>
+      <Button colorVariant="warning">Warning</Button>
+      <Button colorVariant="danger">Cancel</Button>
       <Button
-        colorVariant="secondary"
-        styleVariant="outline"
-        textColorVariant="secondary">
+        colorVariant="accent"
+        styleVariant="secondary"
+        textColorVariant="accent">
         Secondary
       </Button>
-      <Button colorVariant="cancel">Cancel</Button>
-      <Button colorVariant="white" textColorVariant="primary">
+      <Button colorVariant="white" textColorVariant="core">
         White
       </Button>
-      <div
-        style={{
-          backgroundColor: "turquoise",
-          padding: "6px",
-          width: "max-content"
-        }}>
-        <Button colorVariant="transparent">Transparent</Button>
-      </div>
-      <Button isLoading={isLoading} onClick={toggleIsLoading}>
+      <LoadingButton
+        isLoading={isLoading}
+        onClick={toggleIsLoading}
+        textColorVariant={"primaryLight"}>
         I'm loading
-      </Button>
+      </LoadingButton>
+      <LoadingButton
+        isLoading={isLoading}
+        onClick={toggleIsLoading}
+        styleVariant={"secondary"}
+        textColorVariant={"core"}>
+        I'm loading
+      </LoadingButton>
     </Wrapper>
   );
 };

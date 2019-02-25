@@ -1,6 +1,7 @@
 export const transitions = {
   fast: "0.15s cubic-bezier(0.645, 0.045, 0.355, 1.000)",
-  medium: "0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000)"
+  medium: "0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000)",
+  slow: "0.8s cubic-bezier(0.645, 0.045, 0.355, 1.000)"
 };
 
 export const fontFamily = {

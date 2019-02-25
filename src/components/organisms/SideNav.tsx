@@ -20,7 +20,7 @@ const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
           const content = (
             <ContentWrapper itemLevel={ni.itemLevel}>
               <Typography
-                colorVariant={pathname === ni.route ? "primary" : "default"}>
+                colorVariant={pathname === ni.route ? "core" : "default"}>
                 {ni.label}
               </Typography>
             </ContentWrapper>

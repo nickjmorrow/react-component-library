@@ -3,7 +3,7 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import styled from "styled-components";
 import { ThemeContext } from "../../styleConstants";
-import { formattedTextNode } from "./Typography";
+import { formattedTextNode } from "./typography/Typography";
 import { StyleConstant } from "~/typeUtilities";
 
 export interface INonStyledLinkProps {

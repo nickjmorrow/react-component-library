@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography } from "./Typography";
+import { Typography } from "./typography/Typography";
 
 interface ErrorProps {
   children: string | null;

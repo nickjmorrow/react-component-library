@@ -1,6 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
-import { formattedTextNode, Typography } from "~/components/atoms/Typography";
+import {
+  formattedTextNode,
+  Typography
+} from "~/components/atoms/typography/Typography";
 import { IModalProps } from "~/components/atoms/containers";
 import { PaperModal, Button } from "~/components";
 import { GetComponentProps, StyleConstant } from "~/typeUtilities";
@@ -37,14 +40,14 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
       <Wrapper>
         <TitleWrapper spacing={spacing}>{modalTitle}</TitleWrapper>
         <ChildrenContainer spacing={spacing}>
-          {formattedTextNode(children, { colorVariant: "textPrimaryDark" })}
+          {formattedTextNode(children, { colorVariant: "primaryDark" })}
         </ChildrenContainer>
         <ButtonsContainer spacing={spacing} colors={colors}>
           <Button
             onClick={handleSecondaryClickInternal}
             colorVariant={"transparent"}
             showBoxShadow={false}
-            textColorVariant={"primary"}>
+            textColorVariant={"core"}>
             {secondaryButtonElement}
           </Button>
           <ButtonWrapper>

@@ -47,10 +47,6 @@ export enum itemLevel {
   two,
   three
 }
-export interface FileInputProps {
-  initialLabel?: string;
-  onChange(value: FileList | null): void;
-}
 
 export interface ITextInputInfo extends IInputInfo {
   value: string;
