@@ -41,7 +41,8 @@ const defaultSuccessPaletteInputs = {
 
 const defaultBorderStyleInputs = {
   bs1: 1,
-  bs2: 2
+  bs2: 2,
+  bs3: 5
 };
 
 const defaultBorderRadiusInputs = {

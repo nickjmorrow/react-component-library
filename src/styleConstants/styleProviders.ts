@@ -5,7 +5,8 @@ export const getBorderStyle = (
   borderStyleInputs: ThemeInput["border"]["borderStyle"]
 ) => ({
   bs1: borderStyleInputs.bs1 + "px solid",
-  bs2: borderStyleInputs.bs2 + "px solid"
+  bs2: borderStyleInputs.bs2 + "px solid",
+  bs3: borderStyleInputs.bs3 + "px solid"
 });
 
 export const generateColorShades = ({

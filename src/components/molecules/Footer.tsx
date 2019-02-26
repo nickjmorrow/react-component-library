@@ -9,6 +9,9 @@ import { StyleConstant } from "~/index";
 const currentYear = new Date().getFullYear();
 const defaultText = `© ${currentYear} ${fullName}`;
 
+// TODO: should have primary, secondary styleVariants
+// should styleVariant be something more like heirarchyVariant?
+// or hierarchyLevel?
 export const Footer: React.SFC<IOwnProps> = ({ text = defaultText }) => {
   const { colors, spacing } = React.useContext(ThemeContext);
   return (

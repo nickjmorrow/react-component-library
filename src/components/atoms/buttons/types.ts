@@ -7,7 +7,3 @@ export type ColorVariant =
   | "cancel"
   | "white"
   | "transparent";
-
-// TODO: finish this for outline and make it extendable
-
-export type StyleVariant = "primary" | "secondary";

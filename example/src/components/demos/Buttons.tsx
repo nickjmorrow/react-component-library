@@ -1,4 +1,4 @@
-import { LoadingButton, Button } from "njm-react-component-library";
+import { Button } from "njm-react-component-library";
 import * as React from "react";
 import styled from "styled-components";
 
@@ -23,19 +23,20 @@ export const Buttons: React.SFC = () => {
       <Button colorVariant="white" textColorVariant="core">
         White
       </Button>
-      <LoadingButton
+      <Button
         isLoading={isLoading}
         onClick={toggleIsLoading}
         textColorVariant={"primaryLight"}>
         I'm loading
-      </LoadingButton>
-      <LoadingButton
+      </Button>
+      <Button
         isLoading={isLoading}
         onClick={toggleIsLoading}
         styleVariant={"secondary"}
         textColorVariant={"core"}>
         I'm loading
-      </LoadingButton>
+      </Button>
+      <Button link={"google.com"}>Link</Button>
     </Wrapper>
   );
 };

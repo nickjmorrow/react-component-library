@@ -1,5 +1,9 @@
+import {
+  AuthModal,
+  Button,
+  GoogleLoginButton
+} from "njm-react-component-library";
 import * as React from "react";
-import { AuthModal, Button } from "njm-react-component-library";
 
 export const AuthModalDemo: React.SFC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -8,6 +12,7 @@ export const AuthModalDemo: React.SFC = () => {
   const defaultFunc = () => {
     return;
   };
+
   return (
     <>
       <AuthModal
@@ -15,6 +20,16 @@ export const AuthModalDemo: React.SFC = () => {
         onLoginClick={defaultFunc}
         onRegisterClick={defaultFunc}
         onRequestClose={handleClose}
+        renderAdditionalComponents={[
+          () => (
+            <GoogleLoginButton
+              handleSuccess={() => {
+                return;
+              }}
+              clientId={"myClientId"}
+            />
+          )
+        ]}
       />
       <Button onClick={toggleAuthModal}>Toggle Auth Modal</Button>
     </>

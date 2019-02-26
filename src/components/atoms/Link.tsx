@@ -23,7 +23,7 @@ export const Link: React.SFC<ILinkProps> = ({ children, route, style }) => {
       transition={transitions.fast}
       colors={colors}
       style={style}>
-      {formattedTextNode(children, { colorVariant: "inherit" })}
+      {formattedTextNode(children, { colorVariant: "core" })}
     </StyledRouterLink>
   );
 };

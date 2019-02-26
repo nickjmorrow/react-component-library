@@ -10,7 +10,7 @@ export const Error: React.SFC<ErrorProps> = ({
 }: {
   children: string;
 }) => (
-  <Typography colorVariant="error" sizeVariant={1}>
+  <Typography colorVariant="core" sizeVariant={1}>
     {children}
   </Typography>
 );

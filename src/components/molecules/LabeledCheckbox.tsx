@@ -32,7 +32,7 @@ export const LabeledCheckbox: React.SFC<IProps> = ({
           <Checkbox fill={isToggled ? colors.core.main : colors.transparent} />
         </CheckboxWrapper>
       </InputWrapper>
-      <Typography colorVariant={isToggled ? "core" : "default"}>
+      <Typography colorVariant={isToggled ? "core" : "primaryDark"}>
         {option.label}
       </Typography>
     </LabeledInputWrapper>

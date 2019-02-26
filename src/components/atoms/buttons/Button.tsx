@@ -2,19 +2,16 @@ import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
-import { CoreColorVariant } from "../types";
+import { CoreColorVariant, ColorSet, StyleVariant } from "../types";
 import { Typography } from "../typography/Typography";
 import { getColor, getColorActive, getColorHover } from "./buttonServices";
-import { ColorVariant, StyleVariant } from "./types";
+import { ColorVariant } from "./types";
+import PulseLoader from "react-spinners/PulseLoader";
+import { FadeIn } from "~/components/animations";
+import { getColor as getTypographyColor } from "~/components/atoms/typography";
+import { Link } from "react-router-dom";
 
-// TODO: make this the same width regardless
-// of isLoading state
-
-// TODO: text should light up as soon as cursor enters button
-// but it doesnt. it waits till cursor over text :/
-
-// TODO: also think about hte case (like with FileInput) where
-// you want the icon to also light up a bit on hover
+// TODO: should use isLoading, isEnabled props
 
 interface IDisplayProps {
   showBoxShadow?: boolean;
@@ -26,19 +23,11 @@ interface IDisplayProps {
   boxShadow: StyleConstant<"boxShadow">;
   border: StyleConstant<"border">;
   transition: string;
+  isFullWidth: boolean;
   styleVariant: StyleVariant;
   spacing: StyleConstant<"spacing">;
   width: number;
   height: number;
-}
-
-interface ColorSet {
-  color: string;
-  colorHover: string;
-  colorActive: string;
-  backgroundColor: string;
-  backgroundColorHover: string;
-  backgroundColorActive: string;
 }
 
 type IButtonProps = {
@@ -48,6 +37,9 @@ type IButtonProps = {
   route?: string;
   children: React.ReactNode;
   colorSet?: Partial<ColorSet>;
+  isFullWidth?: boolean;
+  isLoading?: boolean;
+  link?: string;
   onClick?(): void;
 } & Partial<IDisplayProps> &
   Partial<ColorSet>;
@@ -61,6 +53,9 @@ export const Button: React.SFC<IButtonProps> = ({
   styleVariant = "primary",
   showBoxShadow = true,
   useMargin = true,
+  isFullWidth = false,
+  isLoading = false,
+  link,
   colorSet = {} as ColorSet,
   onClick: handleClick = () => {
     return;
@@ -70,6 +65,14 @@ export const Button: React.SFC<IButtonProps> = ({
   // remember: text only lights up when hovering over text
   // but we want it to light up when hovering over button
 
+  const typographyColorSet =
+    styleVariant === "primary"
+      ? colorSet
+      : {
+          color: colorSet.backgroundColor,
+          colorHover: colorSet.backgroundColorHover,
+          colorActive: colorSet.backgroundColorActive
+        };
   const formattedChildren =
     typeof children === "string" ? (
       <Typography
@@ -77,6 +80,7 @@ export const Button: React.SFC<IButtonProps> = ({
         allowedUiStates={["active", "hover"]}
         sizeVariant={2}
         weightVariant={2}
+        colorSet={typographyColorSet}
         style={{ textTransform: "uppercase" }}>
         {children}
       </Typography>
@@ -102,8 +106,9 @@ export const Button: React.SFC<IButtonProps> = ({
     }
   }
 
-  return (
+  const content = (
     <StyledButton
+      isFullWidth={isFullWidth}
       width={width}
       height={height}
       backgroundColor={
@@ -124,9 +129,27 @@ export const Button: React.SFC<IButtonProps> = ({
       boxShadow={boxShadow}
       spacing={spacing}>
       <InnerWrapper width={width} height={height} ref={innerWrapperRef}>
-        {formattedChildren}
+        {isLoading ? (
+          <FadeIn duration={transitions.slow}>
+            <PulseLoader
+              color={getTypographyColor(colors, textColorVariant)}
+              size={7}
+              sizeUnit={"px"}
+            />
+          </FadeIn>
+        ) : (
+          formattedChildren
+        )}
       </InnerWrapper>
     </StyledButton>
+  );
+
+  return link ? (
+    <Link to={link} style={{ textDecoration: "none" }}>
+      {content}
+    </Link>
+  ) : (
+    content
   );
 };
 
@@ -141,7 +164,7 @@ const InnerWrapper = styled("div")<{ width: number; height: number }>`
 const StyledButton = styled("button")<
   IDisplayProps & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
 >`
-  color: ${props => props.color};
+  color: ${p => (p.styleVariant === "secondary" ? p.backgroundColor : p.color)};
   background-color: ${p =>
     p.styleVariant === "secondary" ? "transparent" : p.backgroundColor};
   border-radius: ${props => props.border.borderRadius.br1};
@@ -156,6 +179,7 @@ const StyledButton = styled("button")<
   box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs2};
   min-width: ${p => p.width}px;
   min-height: ${p => p.height}px;
+  ${p => (p.isFullWidth ? "width: 100%" : "")}
   transition: box-shadow ${p => p.transition},
     background-color ${p => p.transition}, border-color ${p => p.transition};
   &:hover {
@@ -165,7 +189,8 @@ const StyledButton = styled("button")<
         : p.backgroundColorHover};
     background-color: ${p =>
       p.styleVariant === "secondary" ? "none" : p.backgroundColorHover};
-    color: ${props => props.colorHover};
+    color: ${p =>
+      p.styleVariant === "secondary" ? p.backgroundColorHover : p.colorHover};
     box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs1};
     transition: all ${props => props.transition} ease-in-out;
   }

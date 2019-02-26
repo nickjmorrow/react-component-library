@@ -10,12 +10,15 @@ import { withRouter, RouterProps } from "react-router";
 
 export const AppBarInternal: React.SFC<RouterProps> = () => {
   return (
-    <AppBar>
-      <Typography sizeVariant={6} colorVariant="primaryLight" weightVariant={2}>
+    <AppBar styleVariant={"secondary"}>
+      <Typography
+        sizeVariant={6}
+        colorVariant={"primaryDark"}
+        weightVariant={2}>
         Component Library
       </Typography>
       <InvisibleLink href={githubLink}>
-        <GithubIcon sizeVariant={4} colorVariant={"primaryLight"} />
+        <GithubIcon sizeVariant={3} colorVariant={"secondaryDark"} />
       </InvisibleLink>
     </AppBar>
   );

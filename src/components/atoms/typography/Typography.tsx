@@ -2,15 +2,15 @@ import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
 import { Omit, StyleConstant } from "~/typeUtilities";
-import { ColorVariant } from "./types";
-import { getColorActive, getColor, getColorHover } from "./typographyServices";
+import { getColor, getColorActive, getColorHover } from "./typographyServices";
+import { CoreColorVariant, ColorSet } from "~/components/atoms/types";
 
 export const Typography: React.SFC<TypographyProps> = ({
   align = "default",
-  colorVariant = "default",
+  colorVariant = "primaryDark",
   sizeVariant = 3,
   weightVariant = 1,
-  allowedUiStates = [],
+  colorSet = {} as ColorSet,
   children,
   style
 }) => {
@@ -20,20 +20,11 @@ export const Typography: React.SFC<TypographyProps> = ({
     typography: { fontFamily, fontSizes, fontWeights }
   } = React.useContext(ThemeContext);
 
-  const colorActive =
-    allowedUiStates.find(aus => aus === "active") !== undefined
-      ? getColorActive(colors, colorVariant)
-      : getColor(colors, colorVariant);
-  const colorHover =
-    allowedUiStates.find(aus => aus === "active") !== undefined
-      ? getColorHover(colors, colorVariant)
-      : getColor(colors, colorVariant);
-
   return (
     <StyledTypography
-      color={getColor(colors, colorVariant)}
-      colorActive={colorActive}
-      colorHover={colorHover}
+      color={colorSet.color || getColor(colors, colorVariant)}
+      colorActive={colorSet.colorActive || getColorActive(colors, colorVariant)}
+      colorHover={colorSet.colorHover || getColorHover(colors, colorVariant)}
       align={align}
       fontFamily={fontFamily.default}
       transition={transitions.fast}
@@ -92,12 +83,14 @@ interface DisplayProps {
 interface TypographyProps {
   align?: Align;
   sizeVariant?: SizeVariant;
-  colorVariant?: ColorVariant;
+  colorVariant?: CoreColorVariant;
   weightVariant?: WeightVariant;
   children: React.ReactNode;
   style?: React.CSSProperties;
   uiState?: UiState;
+  colorSet?: Partial<ColorSet>;
   allowedUiStates?: UiState[];
+  someProp?: boolean;
 }
 
 // helpers

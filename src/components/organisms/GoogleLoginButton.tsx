@@ -1,7 +1,6 @@
 import * as React from "react";
 import ReactGoogleLogin, { GoogleLoginResponse } from "react-google-login";
-import { Button, Typography } from "~/components/atoms";
-import { GoogleIcon } from "~/components/atoms/icons";
+import { GoogleButton } from "~/components/atoms/buttons/GoogleButton";
 
 export const GoogleLoginButton: React.SFC<IOwnProps> = ({
   handleSuccess,
@@ -21,17 +20,7 @@ export const GoogleLoginButton: React.SFC<IOwnProps> = ({
 
 const renderButton:
   | ((props?: { onClick: () => void } | undefined) => JSX.Element)
-  | undefined = renderProps => (
-  <Button
-    style={{ width: "100%" }}
-    backgroundColor={"google"}
-    onClick={renderProps!.onClick}>
-    <GoogleIcon />
-    <Typography sizeVariant={2} colorVariant="primaryLight">
-      Sign In With Google
-    </Typography>
-  </Button>
-);
+  | undefined = renderProps => <GoogleButton onClick={renderProps!.onClick} />;
 
 // types
 interface IOwnProps {

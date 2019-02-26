@@ -26,7 +26,7 @@ export const LabeledRadioButton: React.SFC<IProps> = ({
           transitions={transitions}
         />
       </InputWrapper>
-      <Typography colorVariant={isChecked ? "core" : "default"}>
+      <Typography colorVariant={isChecked ? "core" : "primaryDark"}>
         {option.label}
       </Typography>
     </LabeledInputWrapper>

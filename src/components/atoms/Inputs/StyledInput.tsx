@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/typeUtilities";
 
 export const StyledInput: React.SFC<Props> = ({
   value,
@@ -13,24 +14,24 @@ export const StyledInput: React.SFC<Props> = ({
     transitions,
     border: { borderRadius, borderStyle },
     spacing,
+    boxShadow,
     typography: { fontFamily, fontSizes, fontWeights }
   } = React.useContext(ThemeContext);
 
   return (
     <Input
-      fontSize={fontSizes.fs2}
+      boxShadow={boxShadow}
+      spacing={spacing}
+      fontSize={fontSizes.fs3}
       fontFamily={fontFamily.default}
       fontWeight={fontWeights.fw1}
       type={type}
       backgroundColor={colors.neutral.lightest}
-      transition={transitions.fast}
+      transition={transitions.medium}
       borderRadius={borderRadius.br1}
       focusBorderColor={colors.core.main}
       defaultBorderColor={colors.transparent}
       borderStyle={borderStyle.bs1}
-      width={spacing.ss64}
-      padding={spacing.ss2}
-      margin={spacing.ss2}
       onChange={handleChange}
       value={value}
       placeholder={placeholder}
@@ -40,19 +41,24 @@ export const StyledInput: React.SFC<Props> = ({
 
 export const Input = styled("input")<DisplayProps>`
   outline: none;
-  width: ${p => p.width};
-  padding: ${p => p.padding};
+  width: ${p => p.spacing.ss64};
+  padding: ${p => p.spacing.ss3};
   background-color: ${p => p.backgroundColor};
   border-radius: ${p => p.borderRadius};
   border: ${p => p.borderStyle} ${p => p.defaultBorderColor};
-  margin-top: ${p => p.margin};
+  margin-top: ${p => p.spacing.ss3};
   type: ${p => p.type};
   font-weight: ${p => p.fontWeight};
   font-family: ${p => p.fontFamily};
   font-size: ${p => p.fontSize};
+  transition: box-shadow ${p => p.transition};
+  &:hover {
+    box-shadow: ${p => p.boxShadow.bs1};
+    transition: box-shadow ${p => p.transition};
+  }
   &:focus {
-    border: ${p => p.borderStyle} ${p => p.focusBorderColor};
-    transition: border ${p => p.transition};
+    box-shadow: ${p => p.boxShadow.bs2};
+    transition: all ${p => p.transition};
   }
 `;
 
@@ -73,10 +79,9 @@ interface DisplayProps {
   focusBorderColor: string;
   borderStyle: string;
   type: InputTypes;
-  width: string;
-  padding: string;
-  margin: string;
   fontSize: string;
   fontFamily: string;
   fontWeight: string;
+  boxShadow: StyleConstant<"boxShadow">;
+  spacing: StyleConstant<"spacing">;
 }

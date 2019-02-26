@@ -3,13 +3,10 @@ import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
 import { DefaultIconSvg, getColor, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
-import { StyleConstant } from "~/typeUtilities";
 
 export const GithubIcon: React.SFC<IconProps> = ({
   sizeVariant,
-  colorVariant = "primaryDark" as StyleConstant<
-    "icons"
-  >["defaultIconColorVariant"]
+  colorVariant = "primaryDark"
 }) => {
   const {
     colors,

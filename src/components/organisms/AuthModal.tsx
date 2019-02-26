@@ -90,39 +90,38 @@ export const AuthModal: React.SFC<IProps> = ({
 
   return (
     <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
-      <div style={{ margin: `0 ${spacing.ss4}` }}>
-        <Typography sizeVariant={6} weightVariant={2}>
-          {"Sign In"}
-        </Typography>
-        <InputsWrapper ref={inputsWrapperRef} height={height}>
-          {authInputs}
-        </InputsWrapper>
-        <ButtonContainer verticalMargin={spacing.ss4}>
-          <Button
-            style={buttonBarStyle}
-            onClick={handleRegisterInternal}
-            textColorVariant={isLoggingIn ? "core" : "primaryLight"}
-            styleVariant={isLoggingIn ? "secondary" : "primary"}>
-            Register
-          </Button>
-          <Button
-            style={buttonBarStyle}
-            onClick={handleLoginInternal}
-            useMargin={false}
-            textColorVariant={isLoggingIn ? "primaryLight" : "core"}
-            styleVariant={isLoggingIn ? "primary" : "secondary"}>
-            Log In
-          </Button>
-          {renderAdditionalComponents
-            ? renderAdditionalComponents.map(render => render())
-            : null}
-        </ButtonContainer>
-      </div>
+      <Typography
+        sizeVariant={6}
+        weightVariant={2}
+        style={{ alignSelf: "flex-start" }}>
+        {"Sign In"}
+      </Typography>
+      <InputsWrapper ref={inputsWrapperRef} height={height}>
+        {authInputs}
+      </InputsWrapper>
+      <ButtonContainer verticalMargin={spacing.ss4}>
+        <Button
+          onClick={handleRegisterInternal}
+          textColorVariant={isLoggingIn ? "core" : "primaryLight"}
+          isFullWidth={true}
+          styleVariant={isLoggingIn ? "secondary" : "primary"}>
+          Register
+        </Button>
+        <Button
+          onClick={handleLoginInternal}
+          useMargin={false}
+          textColorVariant={isLoggingIn ? "primaryLight" : "core"}
+          isFullWidth={true}
+          styleVariant={isLoggingIn ? "primary" : "secondary"}>
+          Log In
+        </Button>
+        {renderAdditionalComponents
+          ? renderAdditionalComponents.map(render => render())
+          : null}
+      </ButtonContainer>
     </PaperModal>
   );
 };
-
-const buttonBarStyle = { width: "100%" };
 
 interface IProps {
   isOpen: boolean;
@@ -139,7 +138,7 @@ const InputWrapper = styled.div`
 
 const ButtonContainer = styled("div")<{ verticalMargin: string }>`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   width: 100%;
