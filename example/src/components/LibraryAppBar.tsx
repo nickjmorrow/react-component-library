@@ -14,7 +14,7 @@ export const AppBarInternal: React.SFC<RouterProps> = () => {
       <Typography
         sizeVariant={6}
         colorVariant={"primaryDark"}
-        weightVariant={2}>
+        weightVariant={3}>
         Component Library
       </Typography>
       <InvisibleLink href={githubLink}>

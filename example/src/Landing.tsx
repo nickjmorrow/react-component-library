@@ -131,6 +131,7 @@ const FlexWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
+  width: 100%;
 `;
 
 const RoutesWrapper = styled.div`

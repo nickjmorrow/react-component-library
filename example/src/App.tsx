@@ -17,7 +17,7 @@ import { Landing } from "./Landing";
 const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
   colors: {
     core: {
-      hue: 222
+      hue: 330
     }
   }
 };
