@@ -1,9 +1,6 @@
-export type ColorVariant =
+export type ButtonColorVariant =
   | "core"
   | "accent"
   | "success"
   | "danger"
-  | "warning"
-  | "cancel"
-  | "white"
-  | "transparent";
+  | "warning";

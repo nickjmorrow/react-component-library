@@ -18,6 +18,12 @@ export const getColorHover = (
       return colors.core.light;
     case "accent":
       return colors.accent.light;
+    case "success":
+      return colors.success.light;
+    case "warning":
+      return colors.warning.light;
+    case "danger":
+      return colors.danger.light;
   }
 };
 
@@ -38,6 +44,12 @@ export const getColorActive = (
       return colors.core.dark;
     case "accent":
       return colors.accent.dark;
+    case "success":
+      return colors.success.dark;
+    case "warning":
+      return colors.warning.dark;
+    case "danger":
+      return colors.danger.dark;
   }
 };
 
@@ -59,5 +71,11 @@ export const getColor = (
       return colors.core.main;
     case "accent":
       return colors.accent.main;
+    case "success":
+      return colors.success.main;
+    case "warning":
+      return colors.warning.main;
+    case "danger":
+      return colors.danger.main;
   }
 };

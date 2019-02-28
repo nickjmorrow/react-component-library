@@ -5,6 +5,7 @@ import { ThemeContext } from "~/styleConstants";
 interface IPaperProps {
   children: React.ReactNode;
   color?: string;
+  style?: React.CSSProperties;
 }
 
 interface DisplayProps {
@@ -22,7 +23,7 @@ const StyledPaper = styled("div")<DisplayProps>`
   border-radius: ${p => p.borderRadius};
 `;
 
-export const Paper: React.SFC<IPaperProps> = ({ children, color }) => {
+export const Paper: React.SFC<IPaperProps> = ({ children, color, style }) => {
   const {
     colors,
     boxShadow,
@@ -30,6 +31,7 @@ export const Paper: React.SFC<IPaperProps> = ({ children, color }) => {
   } = React.useContext(ThemeContext);
   return (
     <StyledPaper
+      style={style}
       color={color || colors.background}
       boxShadow={boxShadow.bs1}
       borderRadius={borderRadius.br1}>

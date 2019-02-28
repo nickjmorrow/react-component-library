@@ -43,7 +43,7 @@ export const Select: React.SFC<OwnProps> = ({
         <Typography sizeVariant={3}>{currentOption.label}</Typography>
       </StyledSelect>
       {isMenuVisible && (
-        <Options colors={colors} borderStyle={borderStyle.bs1}>
+        <Options colors={colors} spacing={spacing} borderStyle={borderStyle}>
           {options
             .filter(o => o.value !== currentOption.value)
             .map(o => (
@@ -61,7 +61,8 @@ const Wrapper = styled("div")<{ width: string }>`
 
 interface OptionsDisplayProps {
   colors: StyleConstant<"colors">;
-  borderStyle: string;
+  spacing: StyleConstant<"spacing">;
+  borderStyle: StyleConstant<"border">["borderStyle"];
 }
 
 const Options = styled("div")<OptionsDisplayProps>`
@@ -71,7 +72,8 @@ const Options = styled("div")<OptionsDisplayProps>`
   flex-direction: column;
   position: absolute;
   z-index: 1;
-  border: ${p => p.borderStyle} ${p => p.colors.transparent};
+  padding: ${p => p.spacing.ss1};
+  border: ${p => p.borderStyle.bs1} ${p => p.colors.transparent};
 `;
 
 interface StyledSelectDisplayProps {
@@ -87,7 +89,7 @@ const StyledSelect = styled("div")<StyledSelectDisplayProps>`
   outline: none;
   appearance: none;
   text-indent: 1px;
-  text-overflow: "";
+  padding: ${p => p.spacing.ss1};
   border-bottom: ${p => p.borderStyle} ${p => p.colors.transparent};
   &:hover {
     border-bottom: ${p => p.borderStyle} ${p => p.colors.core.main};

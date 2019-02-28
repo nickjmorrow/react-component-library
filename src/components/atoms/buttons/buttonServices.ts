@@ -1,10 +1,106 @@
 import { StyleConstant } from "~/index";
-import { ColorVariant } from "./types";
+import { ButtonColorVariant } from "./types";
+import { ColorSet, StyleVariant, ColorState } from "../types";
+import { getColor, getColorHover, getColorActive } from "../typography";
 
-export const getColorActive = (
+export const getBorderColorState = (
   colors: StyleConstant<"colors">,
-  colorVariant: ColorVariant
+  colorVariant: ButtonColorVariant,
+  colorSet: Partial<ColorSet>,
+  styleVariant: StyleVariant
+): ColorState => ({
+  normal: getBorderColor(colors, colorVariant, colorSet, styleVariant),
+  hover: getBorderColorHover(colors, colorVariant, colorSet, styleVariant),
+  active: getBorderColorActive(colors, colorVariant, colorSet, styleVariant)
+});
+
+const getBorderColor = (
+  colors: StyleConstant<"colors">,
+  colorVariant: ButtonColorVariant,
+  colorSet: Partial<ColorSet>,
+  styleVariant: StyleVariant
+): string => {
+  switch (styleVariant) {
+    case "primary":
+      return getBackgroundColor(colors, colorVariant, colorSet, styleVariant);
+    case "secondary":
+      return getColor(colors, colorVariant);
+    case "tertiary":
+      return colors.transparent;
+    default:
+      throw new Error(`Unexpected styleVariant: ${styleVariant}`);
+  }
+};
+
+const getBorderColorHover = (
+  colors: StyleConstant<"colors">,
+  colorVariant: ButtonColorVariant,
+  colorSet: Partial<ColorSet>,
+  styleVariant: StyleVariant
+): string => {
+  switch (styleVariant) {
+    case "primary":
+      return getBackgroundColorHover(
+        colors,
+        colorVariant,
+        colorSet,
+        styleVariant
+      );
+    case "secondary":
+      return getColorHover(colors, colorVariant);
+    case "tertiary":
+      return colors.transparent;
+    default:
+      throw new Error(`Unexpected styleVariant: ${styleVariant}`);
+  }
+};
+
+const getBorderColorActive = (
+  colors: StyleConstant<"colors">,
+  colorVariant: ButtonColorVariant,
+  colorSet: Partial<ColorSet>,
+  styleVariant: StyleVariant
+): string => {
+  switch (styleVariant) {
+    case "primary":
+      return getBackgroundColorActive(
+        colors,
+        colorVariant,
+        colorSet,
+        styleVariant
+      );
+    case "secondary":
+      return getColorActive(colors, colorVariant);
+    case "tertiary":
+      return colors.transparent;
+    default:
+      throw new Error(`Unexpected styleVariant: ${styleVariant}`);
+  }
+};
+
+export const getBackgroundColorState = (
+  colors: StyleConstant<"colors">,
+  colorVariant: ButtonColorVariant,
+  colorSet: Partial<ColorSet>,
+  styleVariant: StyleVariant
+): ColorState => ({
+  normal: getBackgroundColor(colors, colorVariant, colorSet, styleVariant),
+  hover: getBackgroundColorHover(colors, colorVariant, colorSet, styleVariant),
+  active: getBackgroundColorActive(colors, colorVariant, colorSet, styleVariant)
+});
+
+const getBackgroundColorActive = (
+  colors: StyleConstant<"colors">,
+  colorVariant: ButtonColorVariant,
+  colorSet: Partial<ColorSet>,
+  styleVariant: StyleVariant
 ) => {
+  if (styleVariant === "secondary" || styleVariant === "tertiary") {
+    return colorSet.colorActive || colors.transparent;
+  }
+  if (colorSet.backgroundColorActive) {
+    return colorSet.backgroundColorActive;
+  }
   switch (colorVariant) {
     case "core":
       return colors.core.dark;
@@ -15,22 +111,25 @@ export const getColorActive = (
     case "warning":
       return colors.warning.dark;
     case "danger":
-    case "cancel":
       return colors.danger.dark;
-    case "white":
-      return colors.background;
-    case "transparent":
-      return colors.transparent;
   }
 };
 
-export const getColor = (
+const getBackgroundColor = (
   colors: StyleConstant<"colors">,
-  colorVariant: ColorVariant
-) => {
+  colorVariant: ButtonColorVariant,
+  colorSet: Partial<ColorSet>,
+  styleVariant: StyleVariant
+): string => {
+  if (styleVariant === "secondary" || styleVariant === "tertiary") {
+    return colorSet.color || colors.transparent;
+  }
+
+  if (colorSet.backgroundColor) {
+    return colorSet.backgroundColor;
+  }
+
   switch (colorVariant) {
-    case "white":
-      return colors.background;
     case "core":
       return colors.core.main;
     case "accent":
@@ -40,17 +139,22 @@ export const getColor = (
     case "warning":
       return colors.warning.main;
     case "danger":
-    case "cancel":
       return colors.danger.main;
-    case "transparent":
-      return colors.transparent;
   }
 };
 
-export const getColorHover = (
+const getBackgroundColorHover = (
   colors: StyleConstant<"colors">,
-  variant: ColorVariant
+  variant: ButtonColorVariant,
+  colorSet: Partial<ColorSet>,
+  styleVariant: StyleVariant
 ) => {
+  if (styleVariant === "secondary" || styleVariant === "tertiary") {
+    return colorSet.colorHover || colors.transparent;
+  }
+  if (colorSet.backgroundColorHover) {
+    return colorSet.backgroundColorHover;
+  }
   switch (variant) {
     case "core":
       return colors.core.light;
@@ -61,11 +165,6 @@ export const getColorHover = (
     case "warning":
       return colors.warning.light;
     case "danger":
-    case "cancel":
       return colors.danger.light;
-    case "white":
-      return colors.background;
-    case "transparent":
-      return colors.transparent;
   }
 };

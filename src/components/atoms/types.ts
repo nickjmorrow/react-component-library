@@ -1,10 +1,11 @@
+import { ButtonColorVariant } from "./buttons/types";
+
 export type CoreColorVariant =
   | "primaryLight"
   | "primaryDark"
   | "secondaryLight"
   | "secondaryDark"
-  | "core"
-  | "accent";
+  | ButtonColorVariant;
 
 export interface ColorSet {
   color: string;
@@ -15,4 +16,10 @@ export interface ColorSet {
   backgroundColorActive: string;
 }
 
-export type StyleVariant = "primary" | "secondary";
+export type StyleVariant = "primary" | "secondary" | "tertiary";
+
+export interface ColorState {
+  normal: string;
+  hover: string;
+  active: string;
+}

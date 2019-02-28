@@ -2,10 +2,10 @@ import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
-import { CoreColorVariant, ColorSet, StyleVariant } from "../types";
+import { CoreColorVariant, ColorSet, StyleVariant, ColorState } from "../types";
 import { Typography } from "../typography/Typography";
-import { getColor, getColorActive, getColorHover } from "./buttonServices";
-import { ColorVariant } from "./types";
+import { getBackgroundColorState, getBorderColorState } from "./buttonServices";
+import { ButtonColorVariant } from "./types";
 import PulseLoader from "react-spinners/PulseLoader";
 import { FadeIn } from "~/components/animations";
 import { getColor as getTypographyColor } from "~/components/atoms/typography";
@@ -17,9 +17,8 @@ interface IDisplayProps {
   showBoxShadow?: boolean;
   useMargin?: boolean;
   style?: React.CSSProperties;
-  backgroundColor: string;
-  backgroundColorActive: string;
-  backgroundColorHover: string;
+  backgroundColorState: ColorState;
+  borderColorState: ColorState;
   boxShadow: StyleConstant<"boxShadow">;
   border: StyleConstant<"border">;
   transition: string;
@@ -32,7 +31,7 @@ interface IDisplayProps {
 
 type IButtonProps = {
   textColorVariant?: CoreColorVariant;
-  colorVariant?: ColorVariant;
+  colorVariant?: ButtonColorVariant;
   styleVariant?: StyleVariant;
   route?: string;
   children: React.ReactNode;
@@ -106,20 +105,27 @@ export const Button: React.SFC<IButtonProps> = ({
     }
   }
 
+  const backgroundColorState = getBackgroundColorState(
+    colors,
+    colorVariant,
+    colorSet,
+    styleVariant
+  );
+
+  const borderColorState = getBorderColorState(
+    colors,
+    colorVariant,
+    colorSet,
+    styleVariant
+  );
+
   const content = (
     <StyledButton
       isFullWidth={isFullWidth}
       width={width}
       height={height}
-      backgroundColor={
-        colorSet.backgroundColor || getColor(colors, colorVariant)
-      }
-      backgroundColorActive={
-        colorSet.backgroundColorActive || getColorActive(colors, colorVariant)
-      }
-      backgroundColorHover={
-        colorSet.backgroundColorHover || getColorHover(colors, colorVariant)
-      }
+      backgroundColorState={backgroundColorState}
+      borderColorState={borderColorState}
       showBoxShadow={showBoxShadow}
       useMargin={useMargin}
       onClick={handleClick}
@@ -165,10 +171,9 @@ const StyledButton = styled("button")<
   IDisplayProps & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
 >`
   color: ${p => (p.styleVariant === "secondary" ? p.backgroundColor : p.color)};
-  background-color: ${p =>
-    p.styleVariant === "secondary" ? "transparent" : p.backgroundColor};
+  background-color: ${p => p.backgroundColorState.normal};
   border-radius: ${props => props.border.borderRadius.br1};
-  border: ${p => `${p.border.borderStyle.bs2} ${p.backgroundColor}`};
+  border: ${p => `${p.border.borderStyle.bs2} ${p.borderColorState.normal}`};
   padding: ${p => p.spacing.ss3 + " " + p.spacing.ss4};
   display: flex;
   justify-content: center;
@@ -176,31 +181,26 @@ const StyledButton = styled("button")<
   margin: ${props => (props.useMargin ? props.spacing.ss4 : 0)};
   cursor: pointer;
   outline: none;
+  word-wrap: no-wrap;
   box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs2};
   min-width: ${p => p.width}px;
+  width: max-content;
   min-height: ${p => p.height}px;
+  height: max-content;
   ${p => (p.isFullWidth ? "width: 100%" : "")}
   transition: box-shadow ${p => p.transition},
     background-color ${p => p.transition}, border-color ${p => p.transition};
   &:hover {
-    border-color: ${p =>
-      p.styleVariant === "secondary"
-        ? p.backgroundColor
-        : p.backgroundColorHover};
-    background-color: ${p =>
-      p.styleVariant === "secondary" ? "none" : p.backgroundColorHover};
+    border-color: ${p => p.borderColorState.hover};
+    background-color: ${p => p.backgroundColorState.hover};
     color: ${p =>
       p.styleVariant === "secondary" ? p.backgroundColorHover : p.colorHover};
     box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs1};
     transition: all ${props => props.transition} ease-in-out;
   }
   &:active {
-    border-color: ${p =>
-      p.styleVariant === "secondary"
-        ? p.backgroundColor
-        : p.backgroundColorActive};
-    background-color: ${p =>
-      p.styleVariant === "secondary" ? "transparent" : p.backgroundColorActive};
+    border-color: ${p => p.borderColorState.active};
+    background-color: ${p => p.backgroundColorState.active};
     color: ${props => props.colorActive};
     transition: all ${props => props.transition} ease-in-out;
   }
