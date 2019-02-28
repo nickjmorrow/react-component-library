@@ -45,9 +45,8 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
         <ButtonsContainer spacing={spacing} colors={colors}>
           <Button
             onClick={handleSecondaryClickInternal}
-            colorVariant={"transparent"}
             showBoxShadow={false}
-            textColorVariant={"core"}>
+            styleVariant={"tertiary"}>
             {secondaryButtonElement}
           </Button>
           <ButtonWrapper>
