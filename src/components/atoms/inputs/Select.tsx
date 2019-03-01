@@ -6,11 +6,15 @@ import { Option } from "./Option";
 import { Typography } from "~/components/atoms/typography/Typography";
 import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/index";
+import { FadeIn } from "~/components/animations";
 
 export const Select: React.SFC<OwnProps> = ({
   onChange: handleChange,
   currentOption,
-  options
+  options,
+  label,
+  helperText,
+  error
 }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
@@ -25,31 +29,53 @@ export const Select: React.SFC<OwnProps> = ({
     handleChange(option);
   };
 
-  const {
-    colors,
-    spacing,
-    border: { borderStyle },
-    transitions
-  } = React.useContext(ThemeContext);
+  const { colors, spacing, border, transitions, boxShadow } = React.useContext(
+    ThemeContext
+  );
+  const { borderStyle } = border;
 
   return (
     <Wrapper onMouseLeave={closeMenu} width={spacing.ss32}>
+      {label && (
+        <Typography
+          sizeVariant={1}
+          colorVariant={error ? "danger" : "secondaryDark"}>
+          {label || error}
+        </Typography>
+      )}
       <StyledSelect
         onClick={toggleIsMenuVisible}
         colors={colors}
         spacing={spacing}
-        transition={transitions.fast}
-        borderStyle={borderStyle.bs1}>
+        transitions={transitions}
+        boxShadow={boxShadow}
+        borderStyle={borderStyle}
+        isMenuVisible={isMenuVisible}
+        error={error}>
         <Typography sizeVariant={3}>{currentOption.label}</Typography>
       </StyledSelect>
       {isMenuVisible && (
-        <Options colors={colors} spacing={spacing} borderStyle={borderStyle}>
-          {options
-            .filter(o => o.value !== currentOption.value)
-            .map(o => (
-              <Option key={o.value} onClick={handleClickOption} option={o} />
-            ))}
-        </Options>
+        <FadeIn duration={transitions.medium} style={{ width: "inherit" }}>
+          <Options
+            boxShadow={boxShadow}
+            colors={colors}
+            spacing={spacing}
+            border={border}
+            transitions={transitions}>
+            {options
+              .filter(o => o.value !== currentOption.value)
+              .map(o => (
+                <Option key={o.value} onClick={handleClickOption} option={o} />
+              ))}
+          </Options>
+        </FadeIn>
+      )}
+      {helperText && (
+        <Typography
+          sizeVariant={1}
+          colorVariant={error ? "danger" : "secondaryDark"}>
+          {error || helperText}
+        </Typography>
       )}
     </Wrapper>
   );
@@ -57,44 +83,63 @@ export const Select: React.SFC<OwnProps> = ({
 
 const Wrapper = styled("div")<{ width: string }>`
   width: ${p => p.width};
+  height: 40px;
 `;
 
 interface OptionsDisplayProps {
   colors: StyleConstant<"colors">;
   spacing: StyleConstant<"spacing">;
-  borderStyle: StyleConstant<"border">["borderStyle"];
+  border: StyleConstant<"border">;
+  boxShadow: StyleConstant<"boxShadow">;
+  transitions: StyleConstant<"transitions">;
 }
 
 const Options = styled("div")<OptionsDisplayProps>`
-  background-color: ${p => p.colors.transparent};
+  background-color: ${p => p.colors.background};
   width: inherit;
   display: flex;
   flex-direction: column;
   position: absolute;
   z-index: 1;
-  padding: ${p => p.spacing.ss1};
-  border: ${p => p.borderStyle.bs1} ${p => p.colors.transparent};
+  box-shadow: ${p => p.boxShadow.bs1};
+  border-radius: ${p => p.border.borderRadius.br2};
+  transition: box-shadow ${p => p.transitions.slow};
+  &:hover {
+    box-shadow: ${p => p.boxShadow.bs2};
+    transition: box-shadow ${p => p.transitions.slow};
+  }
 `;
 
 interface StyledSelectDisplayProps {
   colors: StyleConstant<"colors">;
   spacing: StyleConstant<"spacing">;
-  borderStyle: string;
-  transition: string;
+  borderStyle: StyleConstant<"border">["borderStyle"];
+  transitions: StyleConstant<"transitions">;
+  boxShadow: StyleConstant<"boxShadow">;
+  isMenuVisible: boolean;
+  error?: string;
 }
 
 const StyledSelect = styled("div")<StyledSelectDisplayProps>`
-  background-color: ${p => p.colors.transparent};
   border: none;
   outline: none;
   appearance: none;
   text-indent: 1px;
-  padding: ${p => p.spacing.ss1};
-  border-bottom: ${p => p.borderStyle} ${p => p.colors.transparent};
+  margin-bottom: ${p => p.spacing.ss1};
+  padding: ${p => p.spacing.ss2};
+  border-bottom: ${p => p.borderStyle.bs2}
+    ${p => (p.isMenuVisible ? p.colors.core.main : p.colors.neutral.main)};
+  transition: border-bottom ${p => p.transitions.medium};
   &:hover {
-    border-bottom: ${p => p.borderStyle} ${p => p.colors.core.main};
-    transition: ${p => p.transition};
+    border-bottom: ${p => p.borderStyle.bs2}
+      ${p => (p.isMenuVisible ? p.colors.core.main : p.colors.neutral.darker)};
+    transition: border-bottom ${p => p.transitions.medium};
     cursor: pointer;
+  }
+  &:focus,
+  &:active {
+    border-bottom: ${p => p.borderStyle.bs2} ${p => p.colors.core.main};
+    transition: border-bottom ${p => p.transitions.medium};
   }
 `;
 
@@ -102,5 +147,8 @@ interface OwnProps {
   options: IOption[];
   currentOption: IOption;
   includeNoneOptionAfterSelection?: boolean;
+  label?: string;
+  helperText?: string;
+  error?: string;
   onChange(option: IOption): void;
 }

@@ -37,11 +37,12 @@ const StyledOption = styled("div")<{
   transitions: StyleConstant<"transitions">;
   borderRadius: StyleConstant<"border">["borderRadius"];
 }>`
-  padding: 4px;
+  padding: ${({ spacing }) => spacing.ss3};
   cursor: pointer;
+  transition: background-color ${p => p.transitions.fast};
   &:hover {
     background-color: ${p => p.colors.neutral.lightest};
-    transition: ${p => p.transitions.fast};
+    transition: background-color ${p => p.transitions.fast};
     border-radius: ${p => p.borderRadius.br1};
   }
 `;
