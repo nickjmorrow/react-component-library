@@ -11,8 +11,6 @@ import { Fade } from "~/components/animations";
 import { getColor as getTypographyColor } from "~/components/atoms/typography";
 import { Link } from "react-router-dom";
 
-// TODO: should use isLoading, isEnabled props
-
 interface IDisplayProps {
   showBoxShadow?: boolean;
   useMargin?: boolean;
@@ -53,7 +51,7 @@ export const Button: React.SFC<IButtonProps> = ({
   showBoxShadow = true,
   useMargin = true,
   isFullWidth = false,
-  isLoading = false,
+  isLoading,
   link,
   colorSet = {} as ColorSet,
   onClick: handleClick = () => {
@@ -119,6 +117,24 @@ export const Button: React.SFC<IButtonProps> = ({
     styleVariant
   );
 
+  const loadingFade = (
+    <>
+      <Fade
+        in={isLoading as boolean}
+        style={{ position: "absolute" }}
+        transitionVariant={"medium"}>
+        <PulseLoader
+          color={getTypographyColor(colors, textColorVariant)}
+          size={7}
+          sizeUnit={"px"}
+        />
+      </Fade>
+      <Fade in={!isLoading} transitionVariant={"medium"}>
+        {formattedChildren}
+      </Fade>
+    </>
+  );
+
   const content = (
     <StyledButton
       isFullWidth={isFullWidth}
@@ -135,19 +151,7 @@ export const Button: React.SFC<IButtonProps> = ({
       boxShadow={boxShadow}
       spacing={spacing}>
       <InnerWrapper width={width} height={height} ref={innerWrapperRef}>
-        <Fade
-          in={isLoading}
-          style={{ position: "absolute" }}
-          transitionVariant={"medium"}>
-          <PulseLoader
-            color={getTypographyColor(colors, textColorVariant)}
-            size={7}
-            sizeUnit={"px"}
-          />
-        </Fade>
-        <Fade in={!isLoading} transitionVariant={"medium"}>
-          {formattedChildren}
-        </Fade>
+        {isLoading != undefined ? loadingFade : formattedChildren}
       </InnerWrapper>
     </StyledButton>
   );

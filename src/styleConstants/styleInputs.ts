@@ -79,9 +79,6 @@ const defaultFontSizeInputs = {
 
 const spacingUnit = 4;
 
-// TODO: I wish these were just in regular intervals
-// so it would be easier to "go up an increment" and not have to search
-// and remember, ie ss6, ss7, ss8 . . .
 const defaultSpacingSystemInputs = {
   ss1: 1 * spacingUnit,
   ss2: 2 * spacingUnit,

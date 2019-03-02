@@ -7,7 +7,7 @@ export const FileInputDemo: React.SFC = () => {
   const setFile = useState(null as FileList | null)[1];
   return (
     <Wrapper>
-      <FileInput onChange={setFile} />
+      <FileInput onChange={setFile} isLoading={false} />
       <FileInput onChange={setFile} colorVariant={"accent"} />
       <FileInput
         onChange={setFile}

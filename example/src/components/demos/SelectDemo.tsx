@@ -1,12 +1,8 @@
+import { IOption, Select, ThemeContext } from "njm-react-component-library";
 import * as React from "react";
-import {
-  IOption,
-  Select,
-  Paper,
-  ThemeContext
-} from "njm-react-component-library";
 import { useState } from "react";
 import styled from "styled-components";
+import { DisplayPaper } from "../DisplayPaper";
 
 const options: IOption[] = [
   {
@@ -44,7 +40,7 @@ export const SelectDemo: React.SFC = () => {
 
   return (
     <>
-      <Paper style={paperStyles}>
+      <DisplayPaper customStyle={paperStyles}>
         <SelectWrapper>
           <Select
             options={options}
@@ -69,8 +65,8 @@ export const SelectDemo: React.SFC = () => {
             onChange={setOption}
           />
         </SelectWrapper>
-      </Paper>
-      <Paper style={paperStyles}>
+      </DisplayPaper>
+      <DisplayPaper customStyle={paperStyles}>
         <SelectWrapper>
           <Select
             options={options}
@@ -96,7 +92,7 @@ export const SelectDemo: React.SFC = () => {
             onChange={setOption}
           />
         </SelectWrapper>
-      </Paper>
+      </DisplayPaper>
     </>
   );
 };

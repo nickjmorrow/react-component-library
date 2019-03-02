@@ -16,7 +16,8 @@ export const AuthModal: React.SFC<IProps> = ({
   renderAdditionalComponents,
   onLoginClick: handleLoginClick,
   onRegisterClick: handleRegisterClick,
-  onRequestClose: handleRequestClose
+  onRequestClose: handleRequestClose,
+  isLoading
 }) => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [email, setEmail] = useState("");
@@ -29,7 +30,6 @@ export const AuthModal: React.SFC<IProps> = ({
         email,
         password
       });
-      handleRequestClose();
     } else {
       setIsLoggingIn(true);
     }
@@ -42,7 +42,6 @@ export const AuthModal: React.SFC<IProps> = ({
         password,
         name: fullName
       });
-      handleRequestClose();
     } else {
       setIsLoggingIn(false);
     }
@@ -104,7 +103,8 @@ export const AuthModal: React.SFC<IProps> = ({
           onClick={handleRegisterInternal}
           textColorVariant={isLoggingIn ? "core" : "primaryLight"}
           isFullWidth={true}
-          styleVariant={isLoggingIn ? "secondary" : "primary"}>
+          styleVariant={isLoggingIn ? "secondary" : "primary"}
+          isLoading={isLoading && !isLoggingIn}>
           Register
         </Button>
         <Button
@@ -112,7 +112,8 @@ export const AuthModal: React.SFC<IProps> = ({
           useMargin={false}
           textColorVariant={isLoggingIn ? "primaryLight" : "core"}
           isFullWidth={true}
-          styleVariant={isLoggingIn ? "primary" : "secondary"}>
+          styleVariant={isLoggingIn ? "primary" : "secondary"}
+          isLoading={isLoading && isLoggingIn}>
           Log In
         </Button>
         {renderAdditionalComponents
@@ -126,6 +127,7 @@ export const AuthModal: React.SFC<IProps> = ({
 interface IProps {
   isOpen: boolean;
   isRegistering?: boolean;
+  isLoading?: boolean;
   renderAdditionalComponents?: Array<() => React.ReactNode>;
   onRequestClose(): void;
   onRegisterClick(registerInfo: IRegisterInfo): void;

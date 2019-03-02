@@ -1,13 +1,13 @@
 import {
   Button,
-  Paper,
-  ThemeContext,
-  Typography,
+  IOption,
   Select,
-  IOption
+  ThemeContext,
+  Typography
 } from "njm-react-component-library";
 import * as React from "react";
 import styled from "styled-components";
+import { DisplayPaper } from "../DisplayPaper";
 
 export const Buttons: React.SFC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -48,20 +48,12 @@ export const Buttons: React.SFC = () => {
     </div>
   );
 
-  const paperStyles = {
-    marginBottom: spacing.ss12,
-    width: "max-content",
-    display: "flex",
-    flexDirection: "row" as "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    maxWidth: "700px",
-    padding: spacing.ss3,
+  const customStyle = {
     backgroundColor: option.value as string
   };
   return (
     <Wrapper>
-      <Paper style={{ ...paperStyles, display: "none" }}>
+      <DisplayPaper customStyle={{ ...customStyle, display: "none" }}>
         <div
           style={{
             display: "flex",
@@ -75,18 +67,18 @@ export const Buttons: React.SFC = () => {
             currentOption={option}
           />
         </div>
-      </Paper>
+      </DisplayPaper>
       {renderSectionHeader("Style Variants")}
       {renderButtonGroupHeader("Primary")}
-      <Paper style={paperStyles}>
+      <DisplayPaper customStyle={customStyle}>
         <Button colorVariant="core">Core</Button>
         <Button colorVariant="accent">Accent</Button>
         <Button colorVariant="success">Success</Button>
         <Button colorVariant="warning">Warning</Button>
         <Button colorVariant="danger">Cancel</Button>
-      </Paper>
+      </DisplayPaper>
       {renderButtonGroupHeader("Secondary")}
-      <Paper style={paperStyles}>
+      <DisplayPaper customStyle={customStyle}>
         <Button
           styleVariant="secondary"
           textColorVariant="core"
@@ -122,9 +114,9 @@ export const Buttons: React.SFC = () => {
           useMargin={true}>
           Cancel
         </Button>
-      </Paper>
+      </DisplayPaper>
       {renderButtonGroupHeader("Tertiary")}
-      <Paper style={paperStyles}>
+      <DisplayPaper customStyle={customStyle}>
         <Button
           styleVariant="tertiary"
           textColorVariant="core"
@@ -155,10 +147,10 @@ export const Buttons: React.SFC = () => {
           colorVariant="danger">
           Cancel
         </Button>
-      </Paper>
+      </DisplayPaper>
       {renderSectionHeader("Other Props")}
       {renderButtonGroupHeader("Loading")}
-      <Paper style={paperStyles}>
+      <DisplayPaper customStyle={customStyle}>
         <Button
           isLoading={isLoading}
           onClick={toggleIsLoading}
@@ -172,9 +164,9 @@ export const Buttons: React.SFC = () => {
           textColorVariant={"core"}>
           I'm loading
         </Button>
-      </Paper>
+      </DisplayPaper>
       {renderButtonGroupHeader("Link Buttons")}
-      <Paper style={paperStyles}>
+      <DisplayPaper customStyle={customStyle}>
         <Button colorVariant={"accent"} link={"google.com"}>
           Google
         </Button>
@@ -182,7 +174,7 @@ export const Buttons: React.SFC = () => {
         <Button colorVariant={"success"} link={"instagram.com"}>
           Instagram
         </Button>
-      </Paper>
+      </DisplayPaper>
     </Wrapper>
   );
 };
