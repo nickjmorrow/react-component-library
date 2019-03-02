@@ -56,7 +56,13 @@ export const StyledInput: React.SFC<{
         value={value}
         placeholder={placeholder}
       />
-      <Fade in={errors.length > 0} transitionVariant={"medium"}>
+      <Fade
+        in={errors.length > 0}
+        transitionVariant={"medium"}
+        styleKeys={["top", "height"]}
+        mounted={{ top: "0px" }}
+        unmounted={{ top: "-10px" }}
+        style={{ position: "relative" }}>
         <FlexColumn>{errors.map(renderErrors)}</FlexColumn>
       </Fade>
     </>
