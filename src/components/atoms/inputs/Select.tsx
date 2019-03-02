@@ -2,11 +2,10 @@ import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { IOption } from "types";
-import { Option } from "./Option";
 import { Typography } from "~/components/atoms/typography/Typography";
+import { StyleConstant, Fade } from "~/index";
 import { ThemeContext } from "~/styleConstants";
-import { StyleConstant } from "~/index";
-import { FadeIn } from "~/components/animations";
+import { Option } from "./Option";
 
 export const Select: React.SFC<OwnProps> = ({
   onChange: handleChange,
@@ -29,55 +28,56 @@ export const Select: React.SFC<OwnProps> = ({
     handleChange(option);
   };
 
-  const { colors, spacing, border, transitions, boxShadow } = React.useContext(
-    ThemeContext
-  );
-  const { borderStyle } = border;
+  const myContext = React.useContext(ThemeContext);
+  const { colors, spacing, border, transitions, boxShadow } = myContext;
 
+  const { borderStyle } = border;
+  console.log(myContext);
+
+  // TODO: use react transition group to fade out on unmount of Options
   return (
-    <Wrapper onMouseLeave={closeMenu} width={spacing.ss32}>
-      {label && (
-        <Typography
-          sizeVariant={1}
-          colorVariant={error ? "danger" : "secondaryDark"}>
-          {label || error}
-        </Typography>
-      )}
-      <StyledSelect
-        onClick={toggleIsMenuVisible}
-        colors={colors}
-        spacing={spacing}
-        transitions={transitions}
-        boxShadow={boxShadow}
-        borderStyle={borderStyle}
-        isMenuVisible={isMenuVisible}
-        error={error}>
-        <Typography sizeVariant={3}>{currentOption.label}</Typography>
-      </StyledSelect>
-      {isMenuVisible && (
-        <FadeIn duration={transitions.medium} style={{ width: "inherit" }}>
+    <>
+      <Wrapper onMouseLeave={closeMenu} width={spacing.ss32}>
+        {label && (
+          <Typography
+            sizeVariant={1}
+            colorVariant={error ? "danger" : "secondaryDark"}>
+            {label || error}
+          </Typography>
+        )}
+        <StyledSelect
+          onClick={toggleIsMenuVisible}
+          colors={colors}
+          spacing={spacing}
+          transitions={transitions}
+          boxShadow={boxShadow}
+          borderStyle={borderStyle}
+          isMenuVisible={isMenuVisible}
+          error={error}>
+          <Typography sizeVariant={3}>{currentOption.label}</Typography>
+        </StyledSelect>
+        <Fade in={isMenuVisible}>
           <Options
             boxShadow={boxShadow}
             colors={colors}
             spacing={spacing}
             border={border}
-            transitions={transitions}>
-            {options
-              .filter(o => o.value !== currentOption.value)
-              .map(o => (
-                <Option key={o.value} onClick={handleClickOption} option={o} />
-              ))}
+            transitions={transitions}
+            className="fade">
+            {options.map(o => (
+              <Option key={o.value} onClick={handleClickOption} option={o} />
+            ))}
           </Options>
-        </FadeIn>
-      )}
-      {helperText && (
-        <Typography
-          sizeVariant={1}
-          colorVariant={error ? "danger" : "secondaryDark"}>
-          {error || helperText}
-        </Typography>
-      )}
-    </Wrapper>
+        </Fade>
+        {helperText && (
+          <Typography
+            sizeVariant={1}
+            colorVariant={error ? "danger" : "secondaryDark"}>
+            {error || helperText}
+          </Typography>
+        )}
+      </Wrapper>
+    </>
   );
 };
 
@@ -109,6 +109,21 @@ const Options = styled("div")<OptionsDisplayProps>`
     transition: box-shadow ${p => p.transitions.slow};
   }
 `;
+
+// &.fade-enter {
+//   opacity: 0.01;
+// }
+// &.fade-enter-active {
+//   opacity: 1;
+//   transition: all 500ms ease-in;
+// }
+// &.fade-exit {
+//   opacity: 1;
+// }
+// &.fade-exit-active {
+//   opacity: 0.01;
+//   transition: all 500ms ease-in;
+// }
 
 interface StyledSelectDisplayProps {
   colors: StyleConstant<"colors">;

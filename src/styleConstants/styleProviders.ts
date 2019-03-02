@@ -1,5 +1,5 @@
 import { ThemeInput } from "~/types";
-import { boxShadowOffsets } from "./styleConstants";
+import { boxShadowOffsets, transitionTimingFunction } from "./styleConstants";
 
 export const getBorderStyle = (
   borderStyleInputs: ThemeInput["border"]["borderStyle"]
@@ -92,4 +92,15 @@ export const getBoxShadow = (
   bs3: offsets.bso3.map(convertOffsetsToBoxShadow(colorInput)).join(", "),
   bs4: offsets.bso4.map(convertOffsetsToBoxShadow(colorInput)).join(", "),
   bs5: offsets.bso5.map(convertOffsetsToBoxShadow(colorInput)).join(", ")
+});
+
+export const getTransitions = (transitions: ThemeInput["transitions"]) => ({
+  fast: `${transitions.fast}ms ${transitionTimingFunction}`,
+  medium: `${transitions.medium}ms ${transitionTimingFunction}`,
+  slow: `${transitions.slow}ms ${transitionTimingFunction}`,
+  durations: {
+    fast: transitions.fast,
+    medium: transitions.medium,
+    slow: transitions.slow
+  }
 });

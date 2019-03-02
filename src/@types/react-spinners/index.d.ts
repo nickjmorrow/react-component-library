@@ -2,6 +2,7 @@ interface Props {
   color?: string;
   size?: number;
   sizeUnit?: "px";
+  style?: React.CSSProperties;
 }
 
 declare module "react-spinners" {

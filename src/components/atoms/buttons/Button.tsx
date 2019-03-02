@@ -7,7 +7,7 @@ import { Typography } from "../typography/Typography";
 import { getBackgroundColorState, getBorderColorState } from "./buttonServices";
 import { ButtonColorVariant } from "./types";
 import PulseLoader from "react-spinners/PulseLoader";
-import { FadeIn } from "~/components/animations";
+import { Fade } from "~/components/animations";
 import { getColor as getTypographyColor } from "~/components/atoms/typography";
 import { Link } from "react-router-dom";
 
@@ -135,17 +135,19 @@ export const Button: React.SFC<IButtonProps> = ({
       boxShadow={boxShadow}
       spacing={spacing}>
       <InnerWrapper width={width} height={height} ref={innerWrapperRef}>
-        {isLoading ? (
-          <FadeIn duration={transitions.slow}>
-            <PulseLoader
-              color={getTypographyColor(colors, textColorVariant)}
-              size={7}
-              sizeUnit={"px"}
-            />
-          </FadeIn>
-        ) : (
-          formattedChildren
-        )}
+        <Fade
+          in={isLoading}
+          style={{ position: "absolute" }}
+          transitionVariant={"medium"}>
+          <PulseLoader
+            color={getTypographyColor(colors, textColorVariant)}
+            size={7}
+            sizeUnit={"px"}
+          />
+        </Fade>
+        <Fade in={!isLoading} transitionVariant={"medium"}>
+          {formattedChildren}
+        </Fade>
       </InnerWrapper>
     </StyledButton>
   );

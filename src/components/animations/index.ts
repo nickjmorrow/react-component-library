@@ -1,1 +1,1 @@
-export { FadeIn } from "./FadeIn";
+export { Fade } from "./Fade";

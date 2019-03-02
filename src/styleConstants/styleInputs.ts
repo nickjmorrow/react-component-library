@@ -101,6 +101,12 @@ const defaultSpacingSystemInputs = {
   ss192: 192 * spacingUnit
 };
 
+const defaultTransitionInputs = {
+  fast: 200,
+  medium: 350,
+  slow: 800
+};
+
 export const defaultThemeInputs = {
   colors: {
     core: defaultCorePaletteInputs,
@@ -114,6 +120,7 @@ export const defaultThemeInputs = {
     borderRadius: defaultBorderRadiusInputs,
     borderStyle: defaultBorderStyleInputs
   },
+  transitions: defaultTransitionInputs,
   typography: {
     fontSizes: defaultFontSizeInputs,
     fontWeights: defaultFontWeightInputs
