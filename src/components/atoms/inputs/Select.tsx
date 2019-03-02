@@ -3,9 +3,10 @@ import { useState } from "react";
 import styled from "styled-components";
 import { IOption } from "types";
 import { Typography } from "~/components/atoms/typography/Typography";
-import { StyleConstant, Fade } from "~/index";
 import { ThemeContext } from "~/styleConstants";
 import { Option } from "./Option";
+import { StyleConstant } from "~/typeUtilities";
+import { Fade } from "~/components/animations";
 
 export const Select: React.SFC<OwnProps> = ({
   onChange: handleChange,

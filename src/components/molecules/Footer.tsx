@@ -4,7 +4,7 @@ import { fullName, githubLink } from "~/constants";
 import { ThemeContext } from "~/styleConstants";
 import { GithubIcon, InvisibleLink } from "../atoms";
 import { Typography } from "../atoms/typography/Typography";
-import { StyleConstant } from "~/index";
+import { StyleConstant } from "~/typeUtilities";
 
 const currentYear = new Date().getFullYear();
 const defaultText = `© ${currentYear} ${fullName}`;

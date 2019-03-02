@@ -1,6 +1,6 @@
 {
   "name": "njm-react-component-library",
-  "version": "3.6.1",
+  "version": "3.6.2",
   "description": "Personal component library",
   "author": "nickjmorrow",
   "license": "MIT",
@@ -25,7 +25,6 @@
   "dependencies": {
     "deepmerge": "^3.2.0",
     "emitter": "0.0.5",
-    "example": "file:example",
     "radium": "^0.25.1",
     "rc-slider": "^8.6.5",
     "react-animations": "^1.0.0",
