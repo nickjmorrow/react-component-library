@@ -4,6 +4,7 @@ import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
 import { Typography } from "../typography";
 import { Fade } from "~/components/animations";
+import { TransitionGroup } from "react-transition-group";
 
 export const StyledInput: React.SFC<{
   value: React.ReactText;
@@ -27,13 +28,24 @@ export const StyledInput: React.SFC<{
     typography: { fontFamily, fontSizes, fontWeights }
   } = React.useContext(ThemeContext);
 
+  // TODO: handle error removal better (with an animation)
+  // may have to look into transition-group
+
   const renderErrors = (error: string) => (
-    <Typography
-      sizeVariant={1}
-      colorVariant={"danger"}
-      style={{ marginTop: spacing.ss1 }}>
-      {error}
-    </Typography>
+    <Fade
+      in={errors.length > 0}
+      transitionVariant={"medium"}
+      styleKeys={["top", "height"]}
+      mounted={{ top: "0px", height: "15px" }}
+      unmounted={{ top: "-10px", height: "0px" }}
+      style={{ position: "relative" }}>
+      <Typography
+        sizeVariant={1}
+        colorVariant={"danger"}
+        style={{ marginTop: spacing.ss1 }}>
+        {error}
+      </Typography>
+    </Fade>
   );
   return (
     <>
@@ -56,15 +68,9 @@ export const StyledInput: React.SFC<{
         value={value}
         placeholder={placeholder}
       />
-      <Fade
-        in={errors.length > 0}
-        transitionVariant={"medium"}
-        styleKeys={["top", "height"]}
-        mounted={{ top: "0px" }}
-        unmounted={{ top: "-10px" }}
-        style={{ position: "relative" }}>
-        <FlexColumn>{errors.map(renderErrors)}</FlexColumn>
-      </Fade>
+      <FlexColumn>
+        <TransitionGroup>{errors.map(renderErrors)}</TransitionGroup>
+      </FlexColumn>
     </>
   );
 };

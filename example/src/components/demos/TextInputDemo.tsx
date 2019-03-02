@@ -5,15 +5,25 @@ import styled from "styled-components";
 
 export const InputDemo: React.SFC = () => {
   const [value, setValue] = React.useState("");
-  const emailErrors = [
+  const twoErrors = [
     "Please enter a valid email address.",
     "Something else related to the email address."
   ];
   const noErrors = [] as string[];
+  const oneError = ["Some other email error"];
 
-  const [errors, setErrors] = React.useState(emailErrors);
-  const toggleErrors = () =>
-    setErrors(prevErrors => (prevErrors.length === 0 ? emailErrors : noErrors));
+  const errorSequence = [noErrors, oneError, twoErrors, oneError];
+  const [pointer, setPointer] = React.useState(0);
+
+  const getNewErrors = () => {
+    if (pointer === errorSequence.length - 1) {
+      setPointer(0);
+    } else {
+      setPointer(prevPointer => prevPointer + 1);
+    }
+  };
+
+  const toggleErrors = () => getNewErrors();
 
   const style = {
     flexDirection: "column" as "column",
@@ -22,7 +32,11 @@ export const InputDemo: React.SFC = () => {
   return (
     <DisplayPaper customStyle={style}>
       <InputsWrapper>
-        <TextInput value={value} onChange={setValue} errors={errors} />
+        <TextInput
+          value={value}
+          onChange={setValue}
+          errors={errorSequence[pointer]}
+        />
         <PasswordInput value={value} onChange={setValue} />
       </InputsWrapper>
       <Button onClick={toggleErrors} useMargin={false}>
