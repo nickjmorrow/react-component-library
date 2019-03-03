@@ -39,7 +39,7 @@ const StyledFooter = styled("div")<DisplayProps>`
   padding: ${p => p.spacing.ss2};
   width: 100%;
   box-sizing: border-box;
-  position: fixed;
+  position: absolute;
   bottom: 0;
 `;
 
