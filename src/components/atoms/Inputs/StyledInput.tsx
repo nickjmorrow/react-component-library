@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
-import { StyleConstant } from "~/typeUtilities";
+import { ThemeContext } from "../../../styleConstants";
+import { StyleConstant } from "../../../typeUtilities";
 import { Typography } from "../typography";
-import { Fade } from "~/components/animations";
+import { Fade } from "../../animations";
 import { TransitionGroup } from "react-transition-group";
 
 export const StyledInput: React.SFC<{

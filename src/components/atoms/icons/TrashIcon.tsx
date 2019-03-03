@@ -2,7 +2,7 @@ import * as React from "react";
 import { IconProps, IconDisplayProps } from "./types";
 import { getColor, getIconSize } from "./iconServices";
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "../../../styleConstants";
 
 export const TrashIcon: React.SFC<IconProps> = ({
   sizeVariant = 2,

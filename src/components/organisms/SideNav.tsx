@@ -1,9 +1,9 @@
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import styled from "styled-components";
-import { Link, Typography } from "~/components";
-import { ThemeContext } from "~/styleConstants";
-import { StyleConstant } from "~/typeUtilities";
+import { Link, Typography } from "../atoms";
+import { ThemeContext } from "../../styleConstants";
+import { StyleConstant } from "../../typeUtilities";
 
 const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
   navInfos,

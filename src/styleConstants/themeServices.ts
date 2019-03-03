@@ -1,7 +1,7 @@
 import * as deepMergeProxy from "deepmerge";
 import * as React from "react";
 import { DeepPartial } from "ts-essentials";
-import { Theme } from "~/types";
+import { Theme } from "../types";
 import { defaultThemeInputs } from "./styleInputs";
 import { getTheme } from "./themeProvider";
 const deepMerge: typeof deepMergeProxy =

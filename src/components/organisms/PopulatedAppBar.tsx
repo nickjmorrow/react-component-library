@@ -1,11 +1,9 @@
 import * as React from "react";
 import Media from "react-media";
 import styled from "styled-components";
-import { AppBar, Button } from "~/components/atoms";
-import { ILinkProps, Link } from "~/components/atoms/Link";
-import { formattedTextNode } from "~/components/atoms/typography/Typography";
-import { GetComponentProps } from "~/typeUtilities";
-import { ThemeContext } from "~/styleConstants";
+import { AppBar, Button, Link, ILinkProps, formattedTextNode } from "../atoms";
+import { GetComponentProps } from "../../typeUtilities";
+import { ThemeContext } from "../../styleConstants";
 
 export const PopulatedAppBar: React.SFC<IOwnProps> = ({
   appName,
@@ -47,7 +45,8 @@ export const PopulatedAppBar: React.SFC<IOwnProps> = ({
   const renderedButtons = buttonProps.map(asRenderedButton);
   const formattedAppName = formattedTextNode(appName, {
     sizeVariant: 4,
-    colorVariant: "primaryLight"
+    colorVariant: "primaryLight",
+    weightVariant: 3
   });
   const appNameDisplay = titleLink ? (
     <Link route={titleLink}>{formattedAppName}</Link>

@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import { InputWrapper, LabeledInputWrapper } from "~/components/atoms/inputs";
-import { Typography } from "~/components/atoms/typography/Typography";
-import { ThemeContext } from "~/styleConstants";
-import { IOption } from "~/types";
-import { StyleConstant } from "~/typeUtilities";
+import { InputWrapper, LabeledInputWrapper } from "../atoms/inputs";
+import { Typography } from "../atoms/typography/Typography";
+import { ThemeContext } from "../../styleConstants";
+import { IOption } from "../../types";
+import { StyleConstant } from "../../typeUtilities";
 
 export const LabeledRadioButton: React.SFC<IProps> = ({
   option,

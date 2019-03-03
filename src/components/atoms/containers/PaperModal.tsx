@@ -3,8 +3,8 @@ import { Paper } from "./Paper";
 import { Modal } from "./Modal";
 import styled from "styled-components";
 import { CloseIcon } from "../icons/CloseIcon";
-import { ThemeContext } from "~/styleConstants";
-import { StyleConstant } from "~/typeUtilities";
+import { ThemeContext } from "../../../styleConstants";
+import { StyleConstant } from "../../../typeUtilities";
 
 export const PaperModal: React.SFC<IOwnProps> = ({
   children,

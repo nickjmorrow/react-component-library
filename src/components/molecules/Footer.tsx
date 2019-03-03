@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import { fullName, githubLink } from "~/constants";
-import { ThemeContext } from "~/styleConstants";
+import { fullName, githubLink } from "../../constants";
+import { ThemeContext } from "../../styleConstants";
 import { GithubIcon, InvisibleLink } from "../atoms";
 import { Typography } from "../atoms/typography/Typography";
-import { StyleConstant } from "~/typeUtilities";
+import { StyleConstant } from "../../typeUtilities";
 
 const currentYear = new Date().getFullYear();
 const defaultText = `© ${currentYear} ${fullName}`;

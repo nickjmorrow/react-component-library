@@ -1,4 +1,4 @@
-import { StyleConstant } from "~/typeUtilities";
+import { StyleConstant } from "../../../typeUtilities";
 import { CoreColorVariant } from "../types";
 
 export const getColorHover = (

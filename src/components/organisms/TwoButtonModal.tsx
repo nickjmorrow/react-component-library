@@ -2,12 +2,13 @@ import * as React from "react";
 import styled from "styled-components";
 import {
   formattedTextNode,
-  Typography
-} from "~/components/atoms/typography/Typography";
-import { IModalProps } from "~/components/atoms/containers";
-import { PaperModal, Button } from "~/components";
-import { GetComponentProps, StyleConstant } from "~/typeUtilities";
-import { ThemeContext } from "~/styleConstants";
+  Typography,
+  IModalProps,
+  PaperModal,
+  Button
+} from "../atoms";
+import { GetComponentProps, StyleConstant } from "../../typeUtilities";
+import { ThemeContext } from "../../styleConstants";
 
 export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
   isOpen,

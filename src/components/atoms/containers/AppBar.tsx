@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
-import { StyleConstant } from "~/typeUtilities";
-import { StyleVariant } from "~/components/atoms/types";
+import { ThemeContext } from "../../../styleConstants";
+import { StyleConstant } from "../../../typeUtilities";
+import { StyleVariant } from "../../atoms/types";
 
 interface AppBarProps {
   children: React.ReactNode;

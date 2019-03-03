@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import * as React from "react";
-import { colors, transitions } from "~/styleConstants";
+import { ThemeContext } from "../../../styleConstants";
+import { StyleConstant } from "../../../typeUtilities";
 
 interface IProps {
   isToggled: boolean;
@@ -11,12 +12,16 @@ export const Toggle: React.SFC<IProps> = ({
   isToggled,
   onClick: handleClick
 }) => {
+  const { colors, transitions } = React.useContext(ThemeContext);
   const handleClickInternal = (e: React.MouseEvent<HTMLDivElement>) =>
     handleClick(!isToggled);
 
   return (
-    <Wrapper onClick={handleClickInternal}>
-      <Switch isToggled={isToggled} />
+    <Wrapper
+      onClick={handleClickInternal}
+      colors={colors}
+      transitions={transitions}>
+      <Switch isToggled={isToggled} colors={colors} transitions={transitions} />
     </Wrapper>
   );
 };
@@ -24,40 +29,43 @@ export const Toggle: React.SFC<IProps> = ({
 const width = 40;
 const height = 20;
 
-const Wrapper = styled.div`
+const Wrapper = styled("div")<{
+  colors: StyleConstant<"colors">;
+  transitions: StyleConstant<"transitions">;
+}>`
   height: ${height}px;
   width: ${width}px;
-  background-color: ${colors.core.main};
+  background-color: ${p => p.colors.core.main};
   cursor: pointer;
   border-radius: 20px;
   display: flex;
   align-items: center;
   padding: 0px 4px;
-  box-shadow: ${colors.neutral.dark} 0px 1px 2px -1px;
+  box-shadow: ${p => p.colors.neutral.dark} 0px 1px 2px -1px;
   &:hover {
-    background-color: ${colors.core.light};
-    transition: ${transitions.fast};
+    background-color: ${p => p.colors.core.light};
+    transition: ${p => p.transitions.fast};
   }
 `;
 
-interface ISwitchProps {
+const Switch = styled("div")<{
   isToggled: boolean;
-}
-
-const Switch = styled("div")<ISwitchProps>`
+  colors: StyleConstant<"colors">;
+  transitions: StyleConstant<"transitions">;
+}>`
   position: relative;
   height: ${height - 5}px;
   width: ${width / 2}px;
   left: -2px;
   border-radius: ${height}px;
   transform: ${props => `translateX(${props.isToggled ? "120%" : "0%"})`};
-  background-color: ${colors.neutral.light};
-  transition: transform ${transitions.fast} ease-in-out;
-  box-shadow: ${colors.neutral.dark} 1px 0px 2px -1px,
-    ${colors.neutral.dark} -1px 0px 2px -1px,
-    ${colors.neutral.dark} 0px 1px 2px -1px,
-    ${colors.neutral.dark} 0px -1px 2px -1px;
+  background-color: ${p => p.colors.neutral.light};
+  transition: transform ${p => p.transitions.fast} ease-in-out;
+  box-shadow: ${p => p.colors.neutral.dark} 1px 0px 2px -1px,
+    ${p => p.colors.neutral.dark} -1px 0px 2px -1px,
+    ${p => p.colors.neutral.dark} 0px 1px 2px -1px,
+    ${p => p.colors.neutral.dark} 0px -1px 2px -1px;
   &:hover {
-    background-color: ${colors.neutral.light};
+    background-color: ${p => p.colors.neutral.light};
   }
 `;

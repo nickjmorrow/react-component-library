@@ -1,7 +1,7 @@
 import * as React from "react";
 import { hasDuplicates } from "services";
-import { IOption } from "types";
-import { Typography } from "~/components";
+import { IOption } from "../../types";
+import { Typography } from "../atoms";
 import { LabeledCheckbox } from "../molecules";
 
 export const LabeledCheckboxInput: React.SFC<IOwnProps> = ({

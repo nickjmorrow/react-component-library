@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-import { GetComponentProps } from "~/typeUtilities";
-import { googleColors } from "~/styleConstants";
-import { Button, Typography, GoogleIcon } from "~/components/atoms";
+import { GetComponentProps } from "../../../typeUtilities";
+import { googleColors } from "../../../styleConstants";
+import { Button, Typography, GoogleIcon } from "../../atoms";
 
 export const GoogleButton: React.SFC<{ onClick: () => void }> = ({
   onClick: handleClick

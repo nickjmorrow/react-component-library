@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactGoogleLogin, { GoogleLoginResponse } from "react-google-login";
-import { GoogleButton } from "~/components/atoms/buttons/GoogleButton";
+import { GoogleButton } from "../atoms";
 
 export const GoogleLoginButton: React.SFC<IOwnProps> = ({
   handleSuccess,

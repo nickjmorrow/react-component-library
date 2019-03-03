@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IValue } from "~/types";
+import { IValue } from "../../types";
 
 interface OwnProps {
   label: IValue;

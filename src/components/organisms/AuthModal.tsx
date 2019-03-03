@@ -7,11 +7,11 @@ import {
   PasswordInput,
   TextInput,
   Typography
-} from "~/components/atoms";
-import { ThemeContext } from "~/styleConstants";
-import { ILoginInfo, IRegisterInfo } from "~/types";
-import { validateEmail, isRequired } from "~/components/atoms/inputs";
-import { StyleConstant } from "~/typeUtilities";
+} from "../atoms";
+import { ThemeContext } from "../../styleConstants";
+import { ILoginInfo, IRegisterInfo } from "../../types";
+import { validateEmail, isRequired } from "../atoms/inputs";
+import { StyleConstant } from "../../typeUtilities";
 
 export const AuthModal: React.SFC<IProps> = ({
   isOpen,

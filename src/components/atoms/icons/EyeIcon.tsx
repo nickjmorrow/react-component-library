@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IconProps } from "./types";
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "../../../styleConstants";
 import { getColor, getIconSize } from "./iconServices";
 
 export const EyeIcon: React.SFC<

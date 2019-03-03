@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TwoButtonModal } from "~/components/organisms";
+import { TwoButtonModal } from "../organisms";
 
 export const LogOutModal: React.SFC<IOwnProps> = ({
   isOpen,

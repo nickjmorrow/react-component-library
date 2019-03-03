@@ -1,4 +1,4 @@
-import { ThemeInput } from "~/types";
+import { ThemeInput } from "../types";
 import { boxShadowOffsets, colorConstants, fontFamily } from "./styleConstants";
 import {
   generateColorShades,

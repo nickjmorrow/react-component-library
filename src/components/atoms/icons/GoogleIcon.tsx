@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "../../../styleConstants";
 import { DefaultIconSvg, getColor, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
 

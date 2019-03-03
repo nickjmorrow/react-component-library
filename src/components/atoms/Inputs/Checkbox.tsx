@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { StyleConstant } from "~/typeUtilities";
-import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "../../../typeUtilities";
+import { ThemeContext } from "../../../styleConstants";
 
 export const Checkbox: React.SFC<{ fill: string }> = ({ fill }) => {
   const { transitions } = React.useContext(ThemeContext);

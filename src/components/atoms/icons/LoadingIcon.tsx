@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DefaultIconSvg, getColor, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
-import { ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "../../../styleConstants";
 
 export const LoadingIcon: React.SFC<IconProps> = ({
   sizeVariant,
