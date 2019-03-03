@@ -22,7 +22,9 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
 }) => {
   const modalTitle =
     title && typeof title === "string" ? (
-      <Typography sizeVariant={3}>{title}</Typography>
+      <Typography sizeVariant={5} weightVariant={2}>
+        {title}
+      </Typography>
     ) : (
       title
     );
@@ -47,14 +49,13 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
           <Button
             onClick={handleSecondaryClickInternal}
             showBoxShadow={false}
-            styleVariant={"tertiary"}>
+            styleVariant={"tertiary"}
+            textColorVariant={"core"}>
             {secondaryButtonElement}
           </Button>
-          <ButtonWrapper>
-            <Button onClick={handlePrimaryClickInternal} useMargin={false}>
-              {primaryButtonElement}
-            </Button>
-          </ButtonWrapper>
+          <Button onClick={handlePrimaryClickInternal} useMargin={false}>
+            {primaryButtonElement}
+          </Button>
         </ButtonsContainer>
       </Wrapper>
     </PaperModal>
@@ -69,8 +70,8 @@ const ButtonsContainer = styled("div")<{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   padding: 0.75rem ${p => p.spacing.ss2};
-  background-color: ${p => p.colors.neutral.lighter};
 `;
 
 const Wrapper = styled.div`
@@ -81,10 +82,6 @@ const Wrapper = styled.div`
 
 const ChildrenContainer = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   margin: 2rem ${p => p.spacing.ss2};
-`;
-
-const ButtonWrapper = styled.div`
-  margin: 4px 0px 4px 4px;
 `;
 
 const TitleWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`

@@ -1,17 +1,18 @@
-import { itemLevel, SideNav, NavItemProps } from "njm-react-component-library";
+import { itemLevel, NavItemProps, SideNav } from "njm-react-component-library";
 import * as React from "react";
 import { Route } from "react-router";
 import styled from "styled-components";
 import { Buttons } from "./components/demos/Buttons";
-import { SelectDemo } from "./components/demos/SelectDemo";
-import { FileInputDemo } from "./components/demos/FileInputDemo";
-import { AuthModalDemo } from "./components/demos/modals/AuthModalDemo";
-import { InputDemo } from "./components/demos/TextInputDemo";
-import { Colors } from "./components/demos/configurations/Colors";
-import { IconsDemo } from "./components/demos/IconsDemo";
-import { SliderDemo } from "./components/demos/SliderDemo";
 import { Borders } from "./components/demos/configurations/Borders";
+import { Colors } from "./components/demos/configurations/Colors";
+import { FileInputDemo } from "./components/demos/FileInputDemo";
+import { IconsDemo } from "./components/demos/IconsDemo";
 import { LabeledInputDemo } from "./components/demos/LabeledInputDemo";
+import { AuthModalDemo } from "./components/demos/modals/AuthModalDemo";
+import { LogoutModalDemo } from "./components/demos/modals/LogoutModalDemo";
+import { SelectDemo } from "./components/demos/SelectDemo";
+import { SliderDemo } from "./components/demos/SliderDemo";
+import { InputDemo } from "./components/demos/TextInputDemo";
 
 const atomComponents = {
   folderLabel: "Atoms",
@@ -50,6 +51,11 @@ const atomComponents = {
       component: LabeledInputDemo,
       label: "Labeled Input",
       route: "/labeled-input"
+    },
+    {
+      component: LogoutModalDemo,
+      label: "Logout Modal",
+      route: "/logout-modal"
     }
   ]
 };

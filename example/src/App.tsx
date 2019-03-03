@@ -51,5 +51,8 @@ const App: React.SFC = () => {
 export default App;
 
 const Wrapper = styled.div`
-  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: block;
 `;
