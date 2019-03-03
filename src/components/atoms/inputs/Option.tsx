@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Typography } from "~/components/atoms/typography/Typography";
-import { ThemeContext } from "~/styleConstants";
-import { IOption } from "~/types";
-import { StyleConstant } from "~/typeUtilities";
+import { Typography } from "../typography/Typography";
+import { ThemeContext } from "../../../styleConstants";
+import { IOption } from "../../../types";
+import { StyleConstant } from "../../../typeUtilities";
 
 export const Option: React.SFC<{
   option: IOption;

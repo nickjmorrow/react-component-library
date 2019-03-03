@@ -1,14 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
-import { StyleConstant } from "~/typeUtilities";
+import { ThemeContext } from "../../../styleConstants";
+import { StyleConstant } from "../../../typeUtilities";
 import { CoreColorVariant, ColorSet, StyleVariant, ColorState } from "../types";
 import { Typography } from "../typography/Typography";
 import { getBackgroundColorState, getBorderColorState } from "./buttonServices";
 import { ButtonColorVariant } from "./types";
 import PulseLoader from "react-spinners/PulseLoader";
-import { Fade } from "~/components/animations";
-import { getColor as getTypographyColor } from "~/components/atoms/typography";
+import { Fade } from "../../animations";
+import { getColor as getTypographyColor } from "../../atoms/typography";
 import { Link } from "react-router-dom";
 
 interface IDisplayProps {
@@ -32,7 +32,7 @@ type IButtonProps = {
   colorVariant?: ButtonColorVariant;
   styleVariant?: StyleVariant;
   route?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   colorSet?: Partial<ColorSet>;
   isFullWidth?: boolean;
   isLoading?: boolean;

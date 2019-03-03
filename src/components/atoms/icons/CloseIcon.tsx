@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
-import { StyleConstant } from "~/typeUtilities";
+import { ThemeContext } from "../../../styleConstants";
+import { StyleConstant } from "../../../typeUtilities";
 import { getColor, getColorHover, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
 

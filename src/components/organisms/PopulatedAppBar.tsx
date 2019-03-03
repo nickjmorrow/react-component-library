@@ -1,11 +1,9 @@
 import * as React from "react";
 import Media from "react-media";
 import styled from "styled-components";
-import { AppBar, Button } from "~/components/atoms";
-import { ILinkProps, Link } from "~/components/atoms/Link";
-import { formattedTextNode } from "~/components/atoms/typography/Typography";
-import { GetComponentProps } from "~/typeUtilities";
-import { ThemeContext } from "~/styleConstants";
+import { AppBar, Button, Link, ILinkProps, formattedTextNode } from "../atoms";
+import { GetComponentProps } from "../../typeUtilities";
+import { ThemeContext } from "../../styleConstants";
 
 export const PopulatedAppBar: React.SFC<IOwnProps> = ({
   appName,

@@ -1,4 +1,4 @@
-import { StyleConstant } from "~/index";
+import { StyleConstant } from "../../../typeUtilities";
 import { ButtonColorVariant } from "./types";
 import { ColorSet, StyleVariant, ColorState } from "../types";
 import { getColor, getColorHover, getColorActive } from "../typography";

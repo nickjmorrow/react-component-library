@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
-import { Omit, StyleConstant } from "~/typeUtilities";
+import { ThemeContext } from "../../../styleConstants";
+import { Omit, StyleConstant } from "../../../typeUtilities";
 import { getColor, getColorActive, getColorHover } from "./typographyServices";
-import { CoreColorVariant, ColorSet } from "~/components/atoms/types";
+import { CoreColorVariant, ColorSet } from "../../atoms/types";
 
 export const Typography: React.SFC<TypographyProps> = ({
   align = "default",

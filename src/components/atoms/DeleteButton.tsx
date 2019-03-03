@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../../styleConstants";
 import { TrashIcon } from "./icons/TrashIcon";
-import { StyleConstant } from "~/typeUtilities";
+import { StyleConstant } from "../../typeUtilities";
 
 export const DeleteButton: React.SFC<{ onClick: () => void }> = ({
   onClick: handleClick

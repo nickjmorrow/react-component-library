@@ -1,4 +1,4 @@
-import { CoreColorVariant } from "~/components/atoms";
+import { CoreColorVariant } from "../../atoms";
 
 export interface IconProps {
   sizeVariant?: IconSizeVariant;

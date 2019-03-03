@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { CoreColorVariant, Theme } from "~/index";
-import { StyleConstant } from "~/typeUtilities";
+import { Theme } from "../../../types";
+import { StyleConstant } from "../../../typeUtilities";
 import { IconDisplayProps, IconSizeVariant } from "./types";
+import { CoreColorVariant } from "../types";
 
 export const getColor = (
   colorVariant: CoreColorVariant,

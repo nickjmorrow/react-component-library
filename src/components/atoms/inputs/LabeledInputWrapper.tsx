@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
+import { ThemeContext } from "../../../styleConstants";
 import * as React from "react";
-import { StyleConstant } from "~/typeUtilities";
+import { StyleConstant } from "../../../typeUtilities";
 
 export const LabeledInputWrapper: React.SFC<{ onClick: () => void }> = ({
   children,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Transition } from "react-transition-group";
-import { StyleConstant } from "~/index";
-import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "../../typeUtilities";
+import { ThemeContext } from "../../styleConstants";
 
 export const Fade: React.SFC<{
   in: boolean;

@@ -1,11 +1,12 @@
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { IOption } from "types";
-import { Typography } from "~/components/atoms/typography/Typography";
-import { StyleConstant, Fade } from "~/index";
-import { ThemeContext } from "~/styleConstants";
+import { IOption } from "../../../types";
+import { Typography } from "../typography/Typography";
+import { ThemeContext } from "../../../styleConstants";
 import { Option } from "./Option";
+import { Fade } from "../../animations/Fade";
+import { StyleConstant } from "../../../typeUtilities";
 
 export const Select: React.SFC<OwnProps> = ({
   onChange: handleChange,
