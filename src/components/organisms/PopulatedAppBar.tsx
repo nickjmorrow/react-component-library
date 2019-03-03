@@ -45,7 +45,8 @@ export const PopulatedAppBar: React.SFC<IOwnProps> = ({
   const renderedButtons = buttonProps.map(asRenderedButton);
   const formattedAppName = formattedTextNode(appName, {
     sizeVariant: 4,
-    colorVariant: "primaryLight"
+    colorVariant: "primaryLight",
+    weightVariant: 3
   });
   const appNameDisplay = titleLink ? (
     <Link route={titleLink}>{formattedAppName}</Link>

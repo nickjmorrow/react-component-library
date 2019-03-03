@@ -58,10 +58,6 @@ export const Button: React.SFC<IButtonProps> = ({
     return;
   }
 }) => {
-  // TODO: use a ref to change uiState
-  // remember: text only lights up when hovering over text
-  // but we want it to light up when hovering over button
-
   const typographyColorSet =
     styleVariant === "primary"
       ? colorSet
