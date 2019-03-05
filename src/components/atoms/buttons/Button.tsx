@@ -1,14 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext } from "../../../styleConstants";
-import { StyleConstant } from "../../../typeUtilities";
+import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/typeUtilities";
 import { CoreColorVariant, ColorSet, StyleVariant, ColorState } from "../types";
 import { Typography } from "../typography/Typography";
 import { getBackgroundColorState, getBorderColorState } from "./buttonServices";
 import { ButtonColorVariant } from "./types";
 import PulseLoader from "react-spinners/PulseLoader";
 import { Fade } from "../../animations";
-import { getColor as getTypographyColor } from "../../atoms/typography";
+import { getColor as getTypographyColor } from "~/components/";
 import { Link } from "react-router-dom";
 
 interface IDisplayProps {
@@ -41,9 +41,7 @@ type IButtonProps = {
 } & Partial<IDisplayProps> &
   Partial<ColorSet>;
 
-// type myType = React.ComponentType<typeof Typography>['']
-
-export const Button: React.SFC<IButtonProps> = ({
+const ButtonInternal: React.SFC<IButtonProps> = ({
   children,
   colorVariant = "core",
   textColorVariant = "primaryLight",
@@ -207,3 +205,5 @@ const StyledButton = styled("button")<
     transition: all ${props => props.transition} ease-in-out;
   }
 `;
+
+export const Button = React.memo(ButtonInternal);
