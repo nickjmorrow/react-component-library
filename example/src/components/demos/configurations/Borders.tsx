@@ -5,9 +5,9 @@ import {
   ThemeInputsContext,
   Slider,
   Typography
-} from "njm-react-component-library";
+} from "react-component-library";
 
-export const Borders: React.SFC = () => {
+export const Borders: React.FC = () => {
   const {
     colors,
     spacing,

@@ -1,4 +1,4 @@
-import { StyleConstant } from "njm-react-component-library";
+import { StyleConstant } from "react-component-library";
 import styled from "styled-components";
 export const Block = styled("div")<{
   color: string;

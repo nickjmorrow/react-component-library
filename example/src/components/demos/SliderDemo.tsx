@@ -1,6 +1,6 @@
 import * as React from "react";
 import "rc-slider/assets/index.css";
-import { Slider } from "njm-react-component-library";
+import { Slider } from "react-component-library";
 import styled from "styled-components";
 
 export const SliderDemo: React.SFC = () => {

@@ -1,3 +1,5 @@
+import { fontFamily } from "./styleConstants";
+
 const defaultCorePaletteInputs = {
   hue: 220, // hsl(220, 100%, 50%)
   middleLightness: 50,
@@ -120,7 +122,8 @@ export const defaultThemeInputs = {
   transitions: defaultTransitionInputs,
   typography: {
     fontSizes: defaultFontSizeInputs,
-    fontWeights: defaultFontWeightInputs
+    fontWeights: defaultFontWeightInputs,
+    fontFamily
   },
   spacing: defaultSpacingSystemInputs,
   icons: {

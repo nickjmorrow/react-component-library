@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { FileInput } from "njm-react-component-library";
+import { FileInput } from "react-component-library";
 import styled from "styled-components";
 
 export const FileInputDemo: React.SFC = () => {

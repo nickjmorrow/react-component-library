@@ -1,9 +1,9 @@
 import * as React from "react";
-import { TextInput, PasswordInput, Button } from "njm-react-component-library";
+import { TextInput, PasswordInput, Button } from "react-component-library";
 import { DisplayPaper } from "../DisplayPaper";
 import styled from "styled-components";
 
-export const InputDemo: React.SFC = () => {
+export const TextInputDemo: React.SFC = () => {
   const [value, setValue] = React.useState("");
   const twoErrors = [
     "Please enter a valid email address.",

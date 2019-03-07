@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Paper, ThemeContext } from "njm-react-component-library";
+import { Paper, ThemeContext } from "react-component-library";
 
 export const DisplayPaper: React.SFC<{ customStyle?: React.CSSProperties }> = ({
   children,

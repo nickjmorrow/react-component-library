@@ -1,18 +1,21 @@
-import { itemLevel, NavItemProps, SideNav } from "njm-react-component-library";
+import { itemLevel, NavItemProps, SideNav } from "react-component-library";
 import * as React from "react";
 import { Route } from "react-router";
 import styled from "styled-components";
-import { Buttons } from "./components/demos/Buttons";
-import { Borders } from "./components/demos/configurations/Borders";
-import { Colors } from "./components/demos/configurations/Colors";
-import { FileInputDemo } from "./components/demos/FileInputDemo";
-import { IconsDemo } from "./components/demos/IconsDemo";
-import { LabeledInputDemo } from "./components/demos/LabeledInputDemo";
-import { AuthModalDemo } from "./components/demos/modals/AuthModalDemo";
-import { LogoutModalDemo } from "./components/demos/modals/LogoutModalDemo";
-import { SelectDemo } from "./components/demos/SelectDemo";
-import { SliderDemo } from "./components/demos/SliderDemo";
-import { InputDemo } from "./components/demos/TextInputDemo";
+import {
+  TypographyDemo,
+  TextInputDemo,
+  Buttons,
+  SelectDemo,
+  IconsDemo,
+  FileInputDemo,
+  SliderDemo,
+  LabeledInputDemo,
+  LogoutModalDemo,
+  AuthModalDemo,
+  Colors,
+  Borders
+} from "./components/demos";
 
 const atomComponents = {
   folderLabel: "Atoms",
@@ -43,7 +46,7 @@ const atomComponents = {
       route: "/slider"
     },
     {
-      component: InputDemo,
+      component: TextInputDemo,
       label: "Text Input",
       route: "/text-input"
     },
@@ -83,6 +86,11 @@ const themeConfiguration = {
       component: Borders,
       label: "Borders",
       route: "/borders"
+    },
+    {
+      component: TypographyDemo,
+      label: "Typography",
+      route: "/typography"
     }
   ]
 };

@@ -8,7 +8,7 @@ import {
   ThemeInputsContext,
   ArgumentType,
   getMergedThemeInputs
-} from "njm-react-component-library";
+} from "react-component-library";
 import styled from "styled-components";
 import { Block } from "../../shared/Block";
 

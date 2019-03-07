@@ -4,7 +4,7 @@ import {
   Select,
   ThemeContext,
   Typography
-} from "njm-react-component-library";
+} from "react-component-library";
 import * as React from "react";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
@@ -75,7 +75,7 @@ export const Buttons: React.SFC = () => {
         <Button colorVariant="accent">Accent</Button>
         <Button colorVariant="success">Success</Button>
         <Button colorVariant="warning">Warning</Button>
-        <Button colorVariant="danger">Cancel</Button>
+        <Button colorVariant="danger">Danger</Button>
       </DisplayPaper>
       {renderButtonGroupHeader("Secondary")}
       <DisplayPaper customStyle={customStyle}>
@@ -112,7 +112,7 @@ export const Buttons: React.SFC = () => {
           styleVariant="secondary"
           colorVariant="danger"
           useMargin={true}>
-          Cancel
+          Danger
         </Button>
       </DisplayPaper>
       {renderButtonGroupHeader("Tertiary")}
@@ -145,7 +145,7 @@ export const Buttons: React.SFC = () => {
           textColorVariant="danger"
           styleVariant="tertiary"
           colorVariant="danger">
-          Cancel
+          Danger
         </Button>
       </DisplayPaper>
       {renderSectionHeader("Other Props")}

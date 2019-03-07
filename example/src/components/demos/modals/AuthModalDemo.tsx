@@ -2,7 +2,7 @@ import {
   AuthModal,
   Button,
   GoogleLoginButton
-} from "njm-react-component-library";
+} from "react-component-library";
 import * as React from "react";
 import { useState } from "react";
 

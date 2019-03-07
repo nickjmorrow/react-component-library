@@ -3,7 +3,7 @@ import {
   LabeledCheckboxInput,
   IOption,
   LabeledRadioButtonInput
-} from "njm-react-component-library";
+} from "react-component-library";
 import styled from "styled-components";
 
 export const LabeledInputDemo: React.SFC = () => {

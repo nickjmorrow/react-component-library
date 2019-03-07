@@ -6,7 +6,7 @@ import {
   getThemeFromNewInputs,
   getMergedThemeInputs,
   updateThemeInputs
-} from "njm-react-component-library";
+} from "react-component-library";
 import * as React from "react";
 import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
@@ -19,6 +19,9 @@ const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
     core: {
       hue: 330
     }
+  },
+  typography: {
+    fontFamily: { default: "Overpass, sans-serif" }
   }
 };
 

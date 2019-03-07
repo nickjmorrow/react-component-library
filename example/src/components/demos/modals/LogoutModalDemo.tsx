@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LogOutModal, Button } from "njm-react-component-library";
+import { LogOutModal, Button } from "react-component-library";
 
 export const LogoutModalDemo: React.SFC = () => {
   const noOp = () => {

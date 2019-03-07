@@ -10,7 +10,7 @@ import {
   ThemeContext,
   StyleConstant,
   Paper
-} from "njm-react-component-library";
+} from "react-component-library";
 import styled from "styled-components";
 
 export const IconsDemo: React.SFC = () => {

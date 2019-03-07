@@ -5,7 +5,7 @@ import {
   GithubIcon,
   githubLink,
   InvisibleLink
-} from "njm-react-component-library";
+} from "react-component-library";
 import { withRouter, RouterProps } from "react-router";
 
 export const AppBarInternal: React.SFC<RouterProps> = () => {
