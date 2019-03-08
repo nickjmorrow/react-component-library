@@ -13,7 +13,8 @@ export const fontFamily = {
 
 export const colorConstants = {
   background: "hsl(0, 0%, 100%)",
-  transparent: "transparent"
+  transparent: "transparent",
+  shadow: "hsla(0, 0%, 0%, 0.2)"
 };
 
 export const boxShadowOffsets = {

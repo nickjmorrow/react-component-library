@@ -28,7 +28,7 @@ export const getTheme = (themeInputs: ThemeInput) => ({
     danger: generateColorShades(themeInputs.colors.danger)
   },
   transitions: getTransitions(themeInputs.transitions),
-  boxShadow: getBoxShadow(boxShadowOffsets, themeInputs.colors.neutral),
+  boxShadow: getBoxShadow(boxShadowOffsets, colorConstants.shadow),
   border: {
     borderRadius: getBorderRadius(themeInputs.border.borderRadius),
     borderStyle: getBorderStyle(themeInputs.border.borderStyle)
