@@ -71,6 +71,7 @@ const ButtonInternal: React.SFC<IButtonProps> = ({
         allowedUiStates={["active", "hover"]}
         sizeVariant={2}
         weightVariant={2}
+        isInteractive={true}
         colorSet={typographyColorSet}
         style={{ textTransform: "uppercase" }}>
         {children}

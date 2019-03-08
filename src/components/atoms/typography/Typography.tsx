@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ThemeContext } from "../../../styleConstants";
 import { Omit, StyleConstant } from "../../../typeUtilities";
 import { getColor, getColorActive, getColorHover } from "./typographyServices";
@@ -12,6 +12,7 @@ export const Typography: React.SFC<TypographyProps> = ({
   weightVariant = 1,
   colorSet = {} as ColorSet,
   children,
+  isInteractive = false,
   style
 }) => {
   const {
@@ -30,6 +31,7 @@ export const Typography: React.SFC<TypographyProps> = ({
       transition={transitions.fast}
       fontSize={getFontSize(fontSizes, sizeVariant)}
       fontWeight={getFontWeight(fontWeights, weightVariant)}
+      isInteractive={isInteractive}
       style={style}>
       {children}
     </StyledTypography>
@@ -43,14 +45,18 @@ export const StyledTypography = styled("span")<DisplayProps>`
   color: ${p => p.color};
   font-size: ${p => p.fontSize};
   font-weight: ${p => p.fontWeight};
-  &:hover {
-    color: ${p => p.colorHover};
-    transition: color ${p => p.transition};
-  }
-  &:active {
-    color: ${p => p.colorActive};
-    transition: color ${p => p.transition};
-  }
+  ${p =>
+    p.isInteractive &&
+    css<DisplayProps>`
+      &:hover {
+        color: ${p => p.colorHover};
+        transition: color ${p => p.transition};
+      }
+      &:active {
+        color: ${p => p.colorActive};
+        transition: color ${p => p.transition};
+      }
+    `}
 `;
 
 export const formattedTextNode = (
@@ -78,6 +84,7 @@ interface DisplayProps {
   transition: string;
   colorHover: string;
   colorActive: string;
+  isInteractive: boolean;
 }
 
 interface TypographyProps {
@@ -91,6 +98,7 @@ interface TypographyProps {
   colorSet?: Partial<ColorSet>;
   allowedUiStates?: UiState[];
   someProp?: boolean;
+  isInteractive?: boolean;
 }
 
 // helpers

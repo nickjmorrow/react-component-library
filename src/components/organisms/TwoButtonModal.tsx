@@ -1,14 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
+import { ThemeContext } from "../../styleConstants";
+import { GetComponentProps, StyleConstant } from "../../typeUtilities";
 import {
+  Button,
   formattedTextNode,
-  Typography,
   IModalProps,
   PaperModal,
-  Button
+  Typography
 } from "../atoms";
-import { GetComponentProps, StyleConstant } from "../../typeUtilities";
-import { ThemeContext } from "../../styleConstants";
 
 export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
   isOpen,
@@ -37,15 +37,31 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
     handleSecondaryClick();
     handleRequestClose();
   };
-  const { colors, spacing } = React.useContext(ThemeContext);
+  const {
+    colors,
+    spacing,
+    border: { borderRadius }
+  } = React.useContext(ThemeContext);
+
   return (
-    <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
+    <PaperModal
+      isOpen={isOpen}
+      onRequestClose={handleRequestClose}
+      useMargin={false}>
       <Wrapper>
-        <TitleWrapper spacing={spacing}>{modalTitle}</TitleWrapper>
-        <ChildrenContainer spacing={spacing}>
-          {formattedTextNode(children, { colorVariant: "primaryDark" })}
-        </ChildrenContainer>
-        <ButtonsContainer spacing={spacing} colors={colors}>
+        <AboveButtons spacing={spacing}>
+          <TitleWrapper spacing={spacing}>{modalTitle}</TitleWrapper>
+          <ChildrenContainer spacing={spacing}>
+            {formattedTextNode(children, {
+              colorVariant: "primaryDark",
+              sizeVariant: 4
+            })}
+          </ChildrenContainer>
+        </AboveButtons>
+        <ButtonsContainer
+          spacing={spacing}
+          colors={colors}
+          borderRadius={borderRadius}>
           <Button
             onClick={handleSecondaryClickInternal}
             showBoxShadow={false}
@@ -66,18 +82,27 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
 const ButtonsContainer = styled("div")<{
   spacing: StyleConstant<"spacing">;
   colors: StyleConstant<"colors">;
+  borderRadius: StyleConstant<"border">["borderRadius"];
 }>`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding: 0.75rem ${p => p.spacing.ss2};
+  padding: ${({ spacing: { ss8: padding, ss1 } }) => `${ss1} ${padding}`};
+  background-color: ${({ colors }) => colors.neutral.lightest};
+  padding-right: ${p => p.spacing.ss8};
+  border-radius: ${({ borderRadius: { br1 } }) => `0 0 ${br1} ${br1}`};
 `;
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+`;
+
+const AboveButtons = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
+  margin: ${({ spacing: { ss8: margin } }) =>
+    `${margin} ${margin} 0 ${margin}`};
 `;
 
 const ChildrenContainer = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
