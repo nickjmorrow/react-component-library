@@ -13,9 +13,9 @@ export const LabeledInputDemo: React.SFC = () => {
     { label: "Bldue", value: "blue" }
   ];
   // @ts-ignore
-  const [selectedOptions, setSelectedOptions] = React.useState([] as IOption[]);
-  const [selectedOption, setSelectedOption] = React.useState(
-    options[0] as IOption
+  const [selectedOptions, setSelectedOptions] = React.useState<IOption[]>([]);
+  const [selectedOption, setSelectedOption] = React.useState<IOption>(
+    options[0]
   );
   return (
     <Wrapper>

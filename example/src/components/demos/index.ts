@@ -5,5 +5,6 @@ export { LabeledInputDemo } from "./LabeledInputDemo";
 export { SelectDemo } from "./SelectDemo";
 export { SliderDemo } from "./SliderDemo";
 export { TextInputDemo } from "./TextInputDemo";
+export { ExpansionPanelDemo } from "./ExpansionPanelDemo";
 export * from "./configurations";
 export * from "./modals";

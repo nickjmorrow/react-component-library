@@ -14,7 +14,8 @@ import {
   LogoutModalDemo,
   AuthModalDemo,
   Colors,
-  Borders
+  Borders,
+  ExpansionPanelDemo
 } from "./components/demos";
 
 const atomComponents = {
@@ -95,7 +96,23 @@ const themeConfiguration = {
   ]
 };
 
-const components = [atomComponents, modalComponents, themeConfiguration];
+const miscComponents = {
+  folderLabel: "Misc",
+  components: [
+    {
+      component: ExpansionPanelDemo,
+      label: "Expansion Panel Demo",
+      route: "/expansion-panel-demo"
+    }
+  ]
+};
+
+const components = [
+  atomComponents,
+  modalComponents,
+  themeConfiguration,
+  miscComponents
+];
 
 const routes = components.reduce(
   (prev, curr) => {

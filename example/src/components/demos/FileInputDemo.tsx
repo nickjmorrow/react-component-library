@@ -4,7 +4,7 @@ import { FileInput } from "react-component-library";
 import styled from "styled-components";
 
 export const FileInputDemo: React.SFC = () => {
-  const setFile = useState(null as FileList | null)[1];
+  const setFile = useState<FileList | null>(null)[1];
   return (
     <Wrapper>
       <FileInput onChange={setFile} isLoading={false} />
