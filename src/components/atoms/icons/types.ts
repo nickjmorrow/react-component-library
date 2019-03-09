@@ -1,8 +1,9 @@
-import { CoreColorVariant } from "../../atoms";
+import { ColorVariant } from "../../atoms";
 
 export interface IconProps {
   sizeVariant?: IconSizeVariant;
-  colorVariant?: CoreColorVariant;
+  colorVariant?: ColorVariant;
+  svgProps?: React.PropsWithoutRef<JSX.IntrinsicElements["svg"]>;
 }
 
 export interface IconDisplayProps {

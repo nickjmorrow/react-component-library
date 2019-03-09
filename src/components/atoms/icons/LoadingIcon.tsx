@@ -5,7 +5,8 @@ import { ThemeContext } from "../../../styleConstants";
 
 export const LoadingIcon: React.SFC<IconProps> = ({
   sizeVariant,
-  colorVariant
+  colorVariant,
+  svgProps
 }) => {
   const {
     colors,
@@ -13,6 +14,7 @@ export const LoadingIcon: React.SFC<IconProps> = ({
   } = React.useContext(ThemeContext);
   return (
     <DefaultIconSvg
+      {...svgProps}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100"
       size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}

@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Theme } from "../../../types";
 import { StyleConstant } from "../../../typeUtilities";
 import { IconDisplayProps, IconSizeVariant } from "./types";
-import { CoreColorVariant } from "../types";
+import { ColorVariant } from "../types";
 
 export const getColor = (
-  colorVariant: CoreColorVariant,
+  colorVariant: ColorVariant,
   colors: StyleConstant<"colors">
 ) => {
   switch (colorVariant) {
@@ -22,11 +22,17 @@ export const getColor = (
       return colors.core.main;
     case "accent":
       return colors.accent.main;
+    case "success":
+      return colors.success.main;
+    case "warning":
+      return colors.warning.main;
+    case "danger":
+      return colors.danger.main;
   }
 };
 
 export const getColorHover = (
-  colorVariant: CoreColorVariant,
+  colorVariant: ColorVariant,
   colors: StyleConstant<"colors">
 ) => {
   switch (colorVariant) {

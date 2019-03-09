@@ -5,7 +5,8 @@ import { IconProps } from "./types";
 
 export const GoogleIcon: React.SFC<IconProps> = ({
   sizeVariant,
-  colorVariant = "primaryDark"
+  colorVariant = "primaryDark",
+  svgProps
 }) => {
   const {
     colors,
@@ -14,6 +15,7 @@ export const GoogleIcon: React.SFC<IconProps> = ({
 
   return (
     <DefaultIconSvg
+      {...svgProps}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}

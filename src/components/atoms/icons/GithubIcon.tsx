@@ -6,7 +6,8 @@ import { IconProps } from "./types";
 
 export const GithubIcon: React.SFC<IconProps> = ({
   sizeVariant,
-  colorVariant = "primaryDark"
+  colorVariant = "primaryDark",
+  svgProps
 }) => {
   const {
     colors,
@@ -15,6 +16,7 @@ export const GithubIcon: React.SFC<IconProps> = ({
 
   return (
     <Svg
+      {...svgProps}
       xmlns="http://www.w3.org/2000/svg"
       version="1.0"
       viewBox="0 0 120.000000 120.000000"

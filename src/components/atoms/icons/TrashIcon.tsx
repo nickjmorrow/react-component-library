@@ -6,7 +6,8 @@ import { ThemeContext } from "../../../styleConstants";
 
 export const TrashIcon: React.SFC<IconProps> = ({
   sizeVariant = 2,
-  colorVariant
+  colorVariant,
+  svgProps
 }) => {
   const {
     colors,
@@ -14,6 +15,7 @@ export const TrashIcon: React.SFC<IconProps> = ({
   } = React.useContext(ThemeContext);
   return (
     <Svg
+      {...svgProps}
       aria-hidden="true"
       data-icon="trash"
       role="img"

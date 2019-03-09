@@ -4,15 +4,10 @@ import styled from "styled-components";
 import { ThemeContext } from "../../../styleConstants";
 import { getColor, getIconSize } from "./iconServices";
 
-export const EyeIcon: React.SFC<
-  IconProps & { style?: React.CSSProperties; onClick?: () => void }
-> = ({
-  style,
-  onClick: handleClick = () => {
-    return;
-  },
+export const EyeIcon: React.SFC<IconProps> = ({
   sizeVariant = 2,
-  colorVariant = "primaryDark"
+  colorVariant = "primaryDark",
+  svgProps
 }) => {
   const {
     icons: { iconSizes, defaultIconSizeVariant },
@@ -20,6 +15,7 @@ export const EyeIcon: React.SFC<
   } = React.useContext(ThemeContext);
   return (
     <Svg
+      {...svgProps}
       aria-hidden="true"
       focusable="false"
       data-prefix="fas"
@@ -28,9 +24,7 @@ export const EyeIcon: React.SFC<
       cursor="pointer"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
-      style={style}
       size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
-      onClick={handleClick}
       color={getColor(colorVariant, colors)}>
       <path
         fill="currentColor"

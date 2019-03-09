@@ -1,22 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext } from "../../../styleConstants";
-import { StyleConstant } from "../../../typeUtilities";
+import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/typeUtilities";
 import { getColor, getColorHover, getIconSize } from "./iconServices";
 import { IconProps } from "./types";
 
-// TODO: think about circular dependency
-
-interface Props {
-  style?: React.CSSProperties;
-  onClick?(): void;
-}
-
-export const CloseIcon: React.SFC<IOwnProps & Props & IconProps> = ({
-  style,
-  onClick: handleClick = () => {
-    return;
-  },
+export const CloseIcon: React.SFC<IconProps> = ({
   colorVariant = "primaryDark",
   sizeVariant = 2
 }) => {
@@ -28,11 +17,9 @@ export const CloseIcon: React.SFC<IOwnProps & Props & IconProps> = ({
 
   return (
     <Svg
-      style={style}
       size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
       color={getColor(colorVariant, colors)}
       hoverColor={getColorHover(colorVariant, colors)}
-      onClick={handleClick}
       transitions={transitions}
       viewBox="0 0 1000 1000">
       <g>
@@ -45,20 +32,12 @@ export const CloseIcon: React.SFC<IOwnProps & Props & IconProps> = ({
   );
 };
 
-// types
-interface IOwnProps {
-  style?: React.CSSProperties;
-  onClick?: () => void;
-}
-
-interface IDisplayProps {
+const Svg = styled("svg")<{
   size: string;
   color: string;
   transitions: StyleConstant<"transitions">;
   hoverColor: string;
-}
-
-const Svg = styled("svg")<IDisplayProps>`
+}>`
   height: ${p => p.size};
   width: ${p => p.size};
   color: ${p => p.color};
