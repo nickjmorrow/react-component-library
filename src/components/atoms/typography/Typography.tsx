@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
-import { ThemeContext } from "../../../styleConstants";
-import { Omit, StyleConstant } from "../../../typeUtilities";
-import { getColor, getColorActive, getColorHover } from "./typographyServices";
-import { CoreColorVariant, ColorSet } from "../../atoms/types";
+import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/typeUtilities";
+import { ColorSet, ColorVariant } from "~/components/atoms/types";
+import { getColor, getColorActive, getColorHover } from "../atomServices";
 
 export const Typography: React.SFC<TypographyProps> = ({
   align = "default",
@@ -59,18 +59,6 @@ export const StyledTypography = styled("span")<DisplayProps>`
     `}
 `;
 
-export const formattedTextNode = (
-  textNode: React.ReactNode,
-  props: Omit<TypographyProps, "children"> = {}
-): React.ReactNode =>
-  typeof textNode === "string" ? (
-    <Typography {...props}>{textNode}</Typography>
-  ) : (
-    textNode
-  );
-
-type UiState = "hover" | "active";
-
 type Align = "inherit" | "left" | "center" | "right" | "justify" | "default";
 type SizeVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 type WeightVariant = 1 | 2 | 3 | 4 | 5;
@@ -87,17 +75,13 @@ interface DisplayProps {
   isInteractive: boolean;
 }
 
-interface TypographyProps {
+export interface TypographyProps {
   align?: Align;
   sizeVariant?: SizeVariant;
-  colorVariant?: CoreColorVariant;
+  colorVariant?: ColorVariant;
   weightVariant?: WeightVariant;
-  children: React.ReactNode;
   style?: React.CSSProperties;
-  uiState?: UiState;
   colorSet?: Partial<ColorSet>;
-  allowedUiStates?: UiState[];
-  someProp?: boolean;
   isInteractive?: boolean;
 }
 

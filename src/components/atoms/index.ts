@@ -1,6 +1,6 @@
 export { Button } from "./buttons/Button";
 export { Error } from "./Error";
-export { Link, ILinkProps } from "./Link";
+export { Link } from "./Link";
 export { DeleteButton } from "./DeleteButton";
 export { InvisibleLink } from "./InvisibleLink";
 export { FlexCenterWrapper } from "./FlexCenterWrapper";

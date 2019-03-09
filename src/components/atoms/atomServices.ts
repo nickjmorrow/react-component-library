@@ -1,9 +1,9 @@
-import { StyleConstant } from "../../../typeUtilities";
-import { CoreColorVariant } from "../types";
+import { StyleConstant } from "~/index";
+import { ColorVariant } from ".";
 
 export const getColorHover = (
   colors: StyleConstant<"colors">,
-  colorVariant: CoreColorVariant
+  colorVariant: ColorVariant
 ) => {
   switch (colorVariant) {
     case "primaryDark":
@@ -29,7 +29,7 @@ export const getColorHover = (
 
 export const getColorActive = (
   colors: StyleConstant<"colors">,
-  colorVariant: CoreColorVariant
+  colorVariant: ColorVariant
 ) => {
   switch (colorVariant) {
     case "primaryDark":
@@ -55,7 +55,7 @@ export const getColorActive = (
 
 export const getColor = (
   colors: StyleConstant<"colors">,
-  color: CoreColorVariant
+  color: ColorVariant
 ) => {
   switch (color) {
     default:

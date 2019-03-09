@@ -2,14 +2,14 @@ import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
-import { CoreColorVariant, ColorSet, StyleVariant, ColorState } from "../types";
+import { ColorVariant, ColorSet, StyleVariant, ColorState } from "../types";
 import { Typography } from "../typography/Typography";
 import { getBackgroundColorState, getBorderColorState } from "./buttonServices";
 import { ButtonColorVariant } from "./types";
 import PulseLoader from "react-spinners/PulseLoader";
 import { Fade } from "../../animations";
-import { getColor as getTypographyColor } from "~/components/";
 import { Link } from "react-router-dom";
+import { getColor } from "../atomServices";
 
 interface IDisplayProps {
   showBoxShadow?: boolean;
@@ -28,7 +28,7 @@ interface IDisplayProps {
 }
 
 type IButtonProps = {
-  textColorVariant?: CoreColorVariant;
+  textColorVariant?: ColorVariant;
   colorVariant?: ButtonColorVariant;
   styleVariant?: StyleVariant;
   route?: string;
@@ -68,7 +68,6 @@ const ButtonInternal: React.SFC<IButtonProps> = ({
     typeof children === "string" ? (
       <Typography
         colorVariant={textColorVariant}
-        allowedUiStates={["active", "hover"]}
         sizeVariant={2}
         weightVariant={2}
         isInteractive={true}
@@ -119,8 +118,8 @@ const ButtonInternal: React.SFC<IButtonProps> = ({
         style={{ position: "absolute" }}
         transitionVariant={"medium"}>
         <PulseLoader
-          color={getTypographyColor(colors, textColorVariant)}
-          size={7}
+          color={getColor(colors, textColorVariant)}
+          size={8}
           sizeUnit={"px"}
         />
       </Fade>
@@ -185,7 +184,6 @@ const StyledButton = styled("button")<
   word-wrap: no-wrap;
   box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs2};
   min-width: ${p => p.width}px;
-  width: max-content;
   min-height: ${p => p.height}px;
   height: max-content;
   ${p => (p.isFullWidth ? "width: 100%" : "")}

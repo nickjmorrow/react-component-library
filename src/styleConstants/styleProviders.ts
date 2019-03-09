@@ -79,13 +79,12 @@ export const getSpacingSystem = (dssi: ThemeInput["spacing"]) => ({
   ss192: dssi.ss192 + "px"
 });
 
-const convertOffsetsToBoxShadow = (
-  colorInput: ThemeInput["colors"]["neutral"]
-) => (offset: string) => `${offset} ${generateColorShades(colorInput).lighter}`;
+const convertOffsetsToBoxShadow = (colorInput: string) => (offset: string) =>
+  `${offset} ${colorInput}`;
 
 export const getBoxShadow = (
   offsets: typeof boxShadowOffsets,
-  colorInput: ThemeInput["colors"]["neutral"]
+  colorInput: string
 ) => ({
   bs1: offsets.bso1.map(convertOffsetsToBoxShadow(colorInput)).join(", "),
   bs2: offsets.bso2.map(convertOffsetsToBoxShadow(colorInput)).join(", "),
@@ -102,5 +101,6 @@ export const getTransitions = (transitions: ThemeInput["transitions"]) => ({
     fast: transitions.fast,
     medium: transitions.medium,
     slow: transitions.slow
-  }
+  },
+  transitionTimingFunction
 });

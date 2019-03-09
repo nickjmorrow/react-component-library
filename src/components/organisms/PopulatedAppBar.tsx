@@ -1,9 +1,10 @@
 import * as React from "react";
 import Media from "react-media";
 import styled from "styled-components";
-import { AppBar, Button, Link, ILinkProps, formattedTextNode } from "../atoms";
 import { GetComponentProps } from "../../typeUtilities";
-import { ThemeContext } from "../../styleConstants";
+import { AppBar, Button, getFormattedTextNode, Link } from "../atoms";
+
+type LinkProps = GetComponentProps<typeof Link>;
 
 export const PopulatedAppBar: React.SFC<IOwnProps> = ({
   appName,
@@ -15,14 +16,9 @@ export const PopulatedAppBar: React.SFC<IOwnProps> = ({
   onSignInClick: handleSignInClick,
   onLogOutClick: handleLogOutClick
 }) => {
-  const { colors } = React.useContext(ThemeContext);
-  const renderLinks = (linksToRender: ILinkProps[]) =>
+  const renderLinks = (linksToRender: LinkProps[]) =>
     linksToRender.map((l, index) => (
-      <Link
-        key={index}
-        route={l.route}
-        color={colors.background}
-        hoverColor={colors.accent.main}>
+      <Link key={index} route={l.route}>
         {l.children}
       </Link>
     ));
@@ -43,7 +39,7 @@ export const PopulatedAppBar: React.SFC<IOwnProps> = ({
     ? [logOutButtonProps, ...authenticatedButtonProps]
     : unauthenticatedButtonProps;
   const renderedButtons = buttonProps.map(asRenderedButton);
-  const formattedAppName = formattedTextNode(appName, {
+  const formattedAppName = getFormattedTextNode(appName, {
     sizeVariant: 4,
     colorVariant: "primaryLight",
     weightVariant: 3
@@ -78,7 +74,7 @@ type ButtonProps = GetComponentProps<typeof Button>;
 
 // types
 interface IOwnProps {
-  links?: ILinkProps[];
+  links?: LinkProps[];
   appName: React.ReactNode;
   authenticatedButtonProps?: ButtonProps[];
   isAuthenticated: boolean;

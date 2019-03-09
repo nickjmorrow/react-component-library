@@ -19,7 +19,6 @@
     "noUnusedParameters": true,
     "baseUrl": "src",
     "paths": {
-      "@myAlias": [""],
       "~/*": ["*"]
     }
   },

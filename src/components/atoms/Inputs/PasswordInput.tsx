@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-// import { Error } from "../Error";
 import { EyeIcon } from "../icons/EyeIcon";
 import { StyledInput } from "./StyledInput";
 
@@ -14,18 +13,15 @@ interface IOwnProps {
   onChange(value: string): void;
 }
 
-// TODO: add isRequired and validation function with error state
 export const PasswordInput: React.SFC<IOwnProps> = ({
   onChange: handleChange,
   value,
   placeholder = "Password",
   errors
 }) => {
-  type allowedInputTypes = "text" | "password";
-  const [inputType, setInputType] = useState("password" as allowedInputTypes);
+  type AllowedInputType = "text" | "password";
+  const [inputType, setInputType] = useState<AllowedInputType>("password");
   const showPassword = inputType === "text";
-  // TODO: add input validation
-  // const [errorOnBlur] = useState("");
 
   const toggleInputType = () =>
     setInputType(inputType === "text" ? "password" : "text");

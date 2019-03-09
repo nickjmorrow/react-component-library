@@ -32,10 +32,6 @@ export const Select: React.SFC<OwnProps> = ({
   const myContext = React.useContext(ThemeContext);
   const { colors, spacing, border, transitions, boxShadow } = myContext;
 
-  const { borderStyle } = border;
-  console.log(myContext);
-
-  // TODO: use react transition group to fade out on unmount of Options
   return (
     <>
       <Wrapper onMouseLeave={closeMenu} width={spacing.ss32}>
@@ -52,7 +48,7 @@ export const Select: React.SFC<OwnProps> = ({
           spacing={spacing}
           transitions={transitions}
           boxShadow={boxShadow}
-          borderStyle={borderStyle}
+          border={border}
           isMenuVisible={isMenuVisible}
           error={error}>
           <Typography sizeVariant={3}>{currentOption.label}</Typography>
@@ -87,15 +83,13 @@ const Wrapper = styled("div")<{ width: string }>`
   height: 40px;
 `;
 
-interface OptionsDisplayProps {
+const Options = styled("div")<{
   colors: StyleConstant<"colors">;
   spacing: StyleConstant<"spacing">;
   border: StyleConstant<"border">;
   boxShadow: StyleConstant<"boxShadow">;
   transitions: StyleConstant<"transitions">;
-}
-
-const Options = styled("div")<OptionsDisplayProps>`
+}>`
   background-color: ${p => p.colors.background};
   width: inherit;
   display: flex;
@@ -111,50 +105,37 @@ const Options = styled("div")<OptionsDisplayProps>`
   }
 `;
 
-// &.fade-enter {
-//   opacity: 0.01;
-// }
-// &.fade-enter-active {
-//   opacity: 1;
-//   transition: all 500ms ease-in;
-// }
-// &.fade-exit {
-//   opacity: 1;
-// }
-// &.fade-exit-active {
-//   opacity: 0.01;
-//   transition: all 500ms ease-in;
-// }
-
-interface StyledSelectDisplayProps {
+const StyledSelect = styled("div")<{
   colors: StyleConstant<"colors">;
   spacing: StyleConstant<"spacing">;
-  borderStyle: StyleConstant<"border">["borderStyle"];
+  border: StyleConstant<"border">;
   transitions: StyleConstant<"transitions">;
   boxShadow: StyleConstant<"boxShadow">;
   isMenuVisible: boolean;
   error?: string;
-}
-
-const StyledSelect = styled("div")<StyledSelectDisplayProps>`
+}>`
   border: none;
   outline: none;
   appearance: none;
   text-indent: 1px;
   margin-bottom: ${p => p.spacing.ss1};
   padding: ${p => p.spacing.ss2};
-  border-bottom: ${p => p.borderStyle.bs2}
-    ${p => (p.isMenuVisible ? p.colors.core.main : p.colors.neutral.main)};
+  border-bottom: ${p =>
+    `${p.border.borderStyle.bs2} ${
+      p.isMenuVisible ? p.colors.core.main : p.colors.neutral.main
+    }`};
   transition: border-bottom ${p => p.transitions.medium};
   &:hover {
-    border-bottom: ${p => p.borderStyle.bs2}
-      ${p => (p.isMenuVisible ? p.colors.core.main : p.colors.neutral.darker)};
+    border-bottom: ${p =>
+      `${p.border.borderStyle.bs2} ${
+        p.isMenuVisible ? p.colors.core.main : p.colors.neutral.darker
+      }`};
     transition: border-bottom ${p => p.transitions.medium};
     cursor: pointer;
   }
   &:focus,
   &:active {
-    border-bottom: ${p => p.borderStyle.bs2} ${p => p.colors.core.main};
+    border-bottom: ${p => p.border.borderStyle.bs2} ${p => p.colors.core.main};
     transition: border-bottom ${p => p.transitions.medium};
   }
 `;

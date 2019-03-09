@@ -1,2 +1,2 @@
-export { Typography, formattedTextNode } from "./Typography";
-export { getColor, getColorHover, getColorActive } from "./typographyServices";
+export { getFormattedTextNode } from "./typographyServices";
+export { Typography } from "./Typography";

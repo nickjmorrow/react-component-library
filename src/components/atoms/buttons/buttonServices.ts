@@ -1,11 +1,10 @@
 import { StyleConstant } from "../../../typeUtilities";
-import { ButtonColorVariant } from "./types";
-import { ColorSet, StyleVariant, ColorState } from "../types";
-import { getColor, getColorHover, getColorActive } from "../typography";
+import { getColor, getColorActive, getColorHover } from "../atomServices";
+import { ColorSet, ColorState, ColorVariant, StyleVariant } from "../types";
 
 export const getBorderColorState = (
   colors: StyleConstant<"colors">,
-  colorVariant: ButtonColorVariant,
+  colorVariant: ColorVariant,
   colorSet: Partial<ColorSet>,
   styleVariant: StyleVariant
 ): ColorState => ({
@@ -16,7 +15,7 @@ export const getBorderColorState = (
 
 const getBorderColor = (
   colors: StyleConstant<"colors">,
-  colorVariant: ButtonColorVariant,
+  colorVariant: ColorVariant,
   colorSet: Partial<ColorSet>,
   styleVariant: StyleVariant
 ): string => {
@@ -34,7 +33,7 @@ const getBorderColor = (
 
 const getBorderColorHover = (
   colors: StyleConstant<"colors">,
-  colorVariant: ButtonColorVariant,
+  colorVariant: ColorVariant,
   colorSet: Partial<ColorSet>,
   styleVariant: StyleVariant
 ): string => {
@@ -57,7 +56,7 @@ const getBorderColorHover = (
 
 const getBorderColorActive = (
   colors: StyleConstant<"colors">,
-  colorVariant: ButtonColorVariant,
+  colorVariant: ColorVariant,
   colorSet: Partial<ColorSet>,
   styleVariant: StyleVariant
 ): string => {
@@ -80,7 +79,7 @@ const getBorderColorActive = (
 
 export const getBackgroundColorState = (
   colors: StyleConstant<"colors">,
-  colorVariant: ButtonColorVariant,
+  colorVariant: ColorVariant,
   colorSet: Partial<ColorSet>,
   styleVariant: StyleVariant
 ): ColorState => ({
@@ -91,7 +90,7 @@ export const getBackgroundColorState = (
 
 const getBackgroundColorActive = (
   colors: StyleConstant<"colors">,
-  colorVariant: ButtonColorVariant,
+  colorVariant: ColorVariant,
   colorSet: Partial<ColorSet>,
   styleVariant: StyleVariant
 ) => {
@@ -101,23 +100,12 @@ const getBackgroundColorActive = (
   if (colorSet.backgroundColorActive) {
     return colorSet.backgroundColorActive;
   }
-  switch (colorVariant) {
-    case "core":
-      return colors.core.dark;
-    case "accent":
-      return colors.accent.dark;
-    case "success":
-      return colors.success.dark;
-    case "warning":
-      return colors.warning.dark;
-    case "danger":
-      return colors.danger.dark;
-  }
+  return getColorActive(colors, colorVariant);
 };
 
 const getBackgroundColor = (
   colors: StyleConstant<"colors">,
-  colorVariant: ButtonColorVariant,
+  colorVariant: ColorVariant,
   colorSet: Partial<ColorSet>,
   styleVariant: StyleVariant
 ): string => {
@@ -129,23 +117,12 @@ const getBackgroundColor = (
     return colorSet.backgroundColor;
   }
 
-  switch (colorVariant) {
-    case "core":
-      return colors.core.main;
-    case "accent":
-      return colors.accent.main;
-    case "success":
-      return colors.success.main;
-    case "warning":
-      return colors.warning.main;
-    case "danger":
-      return colors.danger.main;
-  }
+  return getColor(colors, colorVariant);
 };
 
 const getBackgroundColorHover = (
   colors: StyleConstant<"colors">,
-  variant: ButtonColorVariant,
+  colorVariant: ColorVariant,
   colorSet: Partial<ColorSet>,
   styleVariant: StyleVariant
 ) => {
@@ -155,16 +132,5 @@ const getBackgroundColorHover = (
   if (colorSet.backgroundColorHover) {
     return colorSet.backgroundColorHover;
   }
-  switch (variant) {
-    case "core":
-      return colors.core.light;
-    case "accent":
-      return colors.accent.light;
-    case "success":
-      return colors.success.light;
-    case "warning":
-      return colors.warning.light;
-    case "danger":
-      return colors.danger.light;
-  }
+  return getColorHover(colors, colorVariant);
 };

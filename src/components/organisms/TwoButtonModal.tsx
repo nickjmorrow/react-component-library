@@ -2,15 +2,11 @@ import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../../styleConstants";
 import { GetComponentProps, StyleConstant } from "../../typeUtilities";
-import {
-  Button,
-  formattedTextNode,
-  IModalProps,
-  PaperModal,
-  Typography
-} from "../atoms";
+import { Button, getFormattedTextNode, PaperModal, Typography } from "../atoms";
 
-export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
+type ModalProps = GetComponentProps<typeof PaperModal>;
+
+export const TwoButtonModal: React.SFC<ModalProps & IOwnProps> = ({
   isOpen,
   children,
   title,
@@ -52,7 +48,7 @@ export const TwoButtonModal: React.SFC<IModalProps & IOwnProps> = ({
         <AboveButtons spacing={spacing}>
           <TitleWrapper spacing={spacing}>{modalTitle}</TitleWrapper>
           <ChildrenContainer spacing={spacing}>
-            {formattedTextNode(children, {
+            {getFormattedTextNode(children, {
               colorVariant: "primaryDark",
               sizeVariant: 4
             })}

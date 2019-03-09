@@ -1,7 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Error } from "../Error";
-import { useState } from "react";
 import { StyledInput } from "./StyledInput";
 
 interface IOwnProps {
@@ -19,8 +17,6 @@ export const TextInput: React.SFC<IOwnProps> = ({
   placeholder,
   errors
 }) => {
-  const [errorOnBlur] = useState("");
-
   const handleChangeInternal = (e: React.ChangeEvent<HTMLInputElement>) =>
     handleChange(e.currentTarget.value);
 
@@ -33,7 +29,6 @@ export const TextInput: React.SFC<IOwnProps> = ({
         errors={errors}
         placeholder={placeholder}
       />
-      <Error>{errorOnBlur}</Error>
     </Wrapper>
   );
 };

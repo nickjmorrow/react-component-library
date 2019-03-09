@@ -32,15 +32,15 @@ export const AuthModal: React.SFC<IProps> = ({
   const fullNameErrors = isRequired(fullName, "full name");
   const passwordErrors = isRequired(password, "password");
 
-  const [displayedEmailErrors, setDisplayedEmailErrors] = useState(
-    [] as string[]
+  const [displayedEmailErrors, setDisplayedEmailErrors] = useState<string[]>(
+    []
   );
-  const [displayedFullNameErrors, setDisplayedFullNameErrors] = useState(
-    [] as string[]
-  );
-  const [displayedPasswordErrors, setDisplayedPasswordErrors] = useState(
-    [] as string[]
-  );
+  const [displayedFullNameErrors, setDisplayedFullNameErrors] = useState<
+    string[]
+  >([]);
+  const [displayedPasswordErrors, setDisplayedPasswordErrors] = useState<
+    string[]
+  >([]);
 
   const loginErrors = [...emailErrors, ...passwordErrors].length > 0;
   const registerErrors =
