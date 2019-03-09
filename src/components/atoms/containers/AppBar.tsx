@@ -4,17 +4,10 @@ import { ThemeContext } from "../../../styleConstants";
 import { StyleConstant } from "../../../typeUtilities";
 import { StyleVariant } from "../../atoms/types";
 
-interface AppBarProps {
-  children: React.ReactNode;
+export const AppBar: React.SFC<{
   styleVariant?: StyleVariant;
   onClick?: () => void;
-}
-
-export const AppBar: React.SFC<AppBarProps> = ({
-  children,
-  styleVariant = "primary",
-  onClick: handleClick
-}) => {
+}> = ({ children, styleVariant = "primary", onClick: handleClick }) => {
   const {
     colors,
     boxShadow,

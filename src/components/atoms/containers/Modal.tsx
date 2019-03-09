@@ -4,11 +4,10 @@ import Radium from "radium";
 import { ThemeContext } from "../../../styleConstants";
 const Style = Radium.Style;
 
-export const Modal: React.SFC<IModalProps> = ({
-  isOpen,
-  children,
-  onRequestClose: handleRequestClose
-}) => {
+export const Modal: React.SFC<{
+  isOpen: boolean;
+  onRequestClose(): void;
+}> = ({ isOpen, children, onRequestClose: handleRequestClose }) => {
   const { boxShadow } = React.useContext(ThemeContext);
   const customStyles = {
     content: {
@@ -55,9 +54,3 @@ export const Modal: React.SFC<IModalProps> = ({
     </>
   );
 };
-
-export interface IModalProps {
-  isOpen: boolean;
-  children: React.ReactNode;
-  onRequestClose(): void;
-}

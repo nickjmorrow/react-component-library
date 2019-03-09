@@ -6,7 +6,11 @@ import { CloseIcon } from "../icons/CloseIcon";
 import { ThemeContext } from "../../../styleConstants";
 import { StyleConstant } from "../../../typeUtilities";
 
-export const PaperModal: React.SFC<IOwnProps> = ({
+export const PaperModal: React.SFC<{
+  isOpen: boolean;
+  useMargin?: boolean;
+  onRequestClose: () => void;
+}> = ({
   children,
   onRequestClose: handleRequestClose,
   isOpen,
@@ -25,27 +29,19 @@ export const PaperModal: React.SFC<IOwnProps> = ({
   );
 };
 
-// types
-interface IOwnProps {
-  isOpen: boolean;
-  children: React.ReactNode;
-  useMargin?: boolean;
-  onRequestClose: () => void;
-}
-
-interface DisplayProps {
+interface WrapperProps {
   spacing: StyleConstant<"spacing">;
   useMargin: boolean;
 }
 
-const Wrapper = styled("div")<DisplayProps>`
+const Wrapper = styled("div")<WrapperProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   ${p =>
     p.useMargin &&
-    css<DisplayProps>`
+    css<WrapperProps>`
       margin: ${p => `${p.spacing.ss8} ${p.spacing.ss8} 0 ${p.spacing.ss8}}`};
     `}
 `;

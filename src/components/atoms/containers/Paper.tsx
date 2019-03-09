@@ -2,19 +2,11 @@ import * as React from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../../../styleConstants";
 
-interface IPaperProps {
-  children: React.ReactNode;
-  color?: string;
-  style?: React.CSSProperties;
-}
-
-interface DisplayProps {
+const StyledPaper = styled("div")<{
   color: string;
   boxShadow: string;
   borderRadius: string;
-}
-
-const StyledPaper = styled("div")<DisplayProps>`
+}>`
   display: inline-flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -23,7 +15,10 @@ const StyledPaper = styled("div")<DisplayProps>`
   border-radius: ${p => p.borderRadius};
 `;
 
-export const Paper: React.SFC<IPaperProps> = ({ children, color, style }) => {
+export const Paper: React.SFC<{
+  color?: string;
+  style?: React.CSSProperties;
+}> = ({ children, color, style }) => {
   const {
     colors,
     boxShadow,
