@@ -1,14 +1,21 @@
 import { ColorVariant } from "../../atoms";
+import { StyleConstant } from "~/typeUtilities";
 
-export interface IconProps {
+type SvgProps = React.PropsWithoutRef<JSX.IntrinsicElements["svg"]>;
+
+type DefaultSvgProps = {
   sizeVariant?: IconSizeVariant;
   colorVariant?: ColorVariant;
-  svgProps?: React.PropsWithoutRef<JSX.IntrinsicElements["svg"]>;
-}
+  style?: React.CSSProperties;
+};
 
-export interface IconDisplayProps {
-  size: string;
-  color: string;
-}
+export type IconProps = DefaultSvgProps & SvgProps;
 
 export type IconSizeVariant = 1 | 2 | 3 | 4;
+export type IconDisplayProps = {
+  sizeVariant: IconSizeVariant;
+  colorVariant: ColorVariant;
+  iconSizes: StyleConstant<"icons">["iconSizes"];
+  colors: StyleConstant<"colors">;
+  transitions: StyleConstant<"transitions">;
+} & SvgProps;

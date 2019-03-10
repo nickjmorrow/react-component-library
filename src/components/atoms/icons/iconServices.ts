@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { Theme } from "../../../types";
 import { StyleConstant } from "../../../typeUtilities";
-import { IconDisplayProps, IconSizeVariant } from "./types";
 import { ColorVariant } from "../types";
+import { IconDisplayProps, IconSizeVariant } from "./types";
 
 export const getColor = (
   colorVariant: ColorVariant,
@@ -46,12 +45,19 @@ export const getColorHover = (
 };
 
 export const DefaultIconSvg = styled("svg")<IconDisplayProps>`
-  height: ${p => p.size};
-  width: ${p => p.size};
-  color: ${p => p.color};
+  height: ${p => getIconSize(p.sizeVariant, p.iconSizes)};
+  width: ${p => getIconSize(p.sizeVariant, p.iconSizes)};
+  color: ${p => getColor(p.colorVariant, p.colors)};
+  transition: color ${p => p.transitions.medium};
+  &:hover {
+    color: ${p => getColorHover(p.colorVariant, p.colors)};
+    transition: color ${p => p.transitions.medium};
+  }
 `;
 
 export const getIconSize = (
-  iconSizeVariant: IconSizeVariant
-): keyof Theme["icons"]["iconSizes"] =>
-  `is${iconSizeVariant}` as keyof Theme["icons"]["iconSizes"];
+  iconSizeVariant: IconSizeVariant,
+  iconSizes: StyleConstant<"icons">["iconSizes"]
+): string => {
+  return iconSizes["is" + iconSizeVariant];
+};

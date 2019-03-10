@@ -1,40 +1,33 @@
 import * as React from "react";
-import { DefaultIconSvg, getColor, getIconSize } from "./iconServices";
+import { DefaultIconSvg } from "./DefaultIconSvg";
 import { IconProps } from "./types";
-import { ThemeContext } from "../../../styleConstants";
 
 export const LoadingIcon: React.SFC<IconProps> = ({
   sizeVariant,
   colorVariant,
-  svgProps
-}) => {
-  const {
-    colors,
-    icons: { iconSizes, defaultIconSizeVariant, defaultIconColorVariant }
-  } = React.useContext(ThemeContext);
-  return (
-    <DefaultIconSvg
-      {...svgProps}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 100 100"
-      size={iconSizes[getIconSize(sizeVariant || defaultIconSizeVariant)]}
-      color={getColor(colorVariant || defaultIconColorVariant, colors)}>
-      <g>
-        <path
-          d="M50 15A35 35 0 1 0 74.787 25.213"
-          fill="none"
-          ng-attr-stroke="{{config.color}}"
-          ng-attr-stroke-width="{{config.width}}"
-          stroke="currentColor"
-          stroke-width="12"
-        />
-        <path
-          ng-attr-d="{{config.darrow}}"
-          ng-attr-fill="{{config.color}}"
-          d="M49 3L49 27L61 15L49 3"
-          fill="currentColor"
-        />
-      </g>
-    </DefaultIconSvg>
-  );
-};
+  ...svgProps
+}) => (
+  <DefaultIconSvg
+    {...svgProps}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 100"
+    sizeVariant={sizeVariant}
+    colorVariant={colorVariant}>
+    <g>
+      <path
+        d="M50 15A35 35 0 1 0 74.787 25.213"
+        fill="none"
+        ng-attr-stroke="{{config.color}}"
+        ng-attr-stroke-width="{{config.width}}"
+        stroke="currentColor"
+        stroke-width="12"
+      />
+      <path
+        ng-attr-d="{{config.darrow}}"
+        ng-attr-fill="{{config.color}}"
+        d="M49 3L49 27L61 15L49 3"
+        fill="currentColor"
+      />
+    </g>
+  </DefaultIconSvg>
+);
