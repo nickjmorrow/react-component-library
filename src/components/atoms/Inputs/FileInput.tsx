@@ -9,6 +9,8 @@ interface FileInputProps {
   onChange(value: FileList | null): void;
 }
 
+// TODO: prop to freeze label to just be initial label
+
 export const FileInput: React.SFC<
   FileInputProps & GetComponentProps<typeof Button>
 > = ({

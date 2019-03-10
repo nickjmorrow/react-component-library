@@ -1,113 +1,49 @@
 import * as React from "react";
-import Media from "react-media";
-import styled from "styled-components";
-import { GetComponentProps } from "../../typeUtilities";
-import { AppBar, Button, getFormattedTextNode, Link } from "../atoms";
+import {
+  AppBar,
+  Typography,
+  GithubIcon,
+  StyleVariant,
+  ColorVariant
+} from "../atoms";
+import { githubLink } from "~/constants";
 
-type LinkProps = GetComponentProps<typeof Link>;
+export const PopulatedAppBar: React.SFC<{
+  appName: React.ReactNode;
+  styleVariant?: StyleVariant;
+}> = ({ appName, styleVariant = "primary" }) => (
+  <AppBar styleVariant={styleVariant}>
+    <Typography
+      sizeVariant={5}
+      weightVariant={2}
+      colorVariant={getColorVariant(styleVariant)}>
+      {appName}
+    </Typography>
+    <a href={githubLink}>
+      <GithubIcon
+        colorVariant={getIconColorVariant(styleVariant)}
+        sizeVariant={3}
+      />
+    </a>
+  </AppBar>
+);
 
-export const PopulatedAppBar: React.SFC<IOwnProps> = ({
-  appName,
-  links = [],
-  isAuthenticated,
-  authenticatedButtonProps = [],
-  maxWidth = 800,
-  titleLink,
-  onSignInClick: handleSignInClick,
-  onLogOutClick: handleLogOutClick
-}) => {
-  const renderLinks = (linksToRender: LinkProps[]) =>
-    linksToRender.map((l, index) => (
-      <Link key={index} route={l.route}>
-        {l.children}
-      </Link>
-    ));
-  const unauthenticatedButtonProps = [
-    { children: "Sign In", onClick: handleSignInClick }
-  ];
-  const logOutButtonProps = {
-    children: "Log Out",
-    onClick: handleLogOutClick
-  };
-
-  const asRenderedButton = ({ children, ...other }: ButtonProps) => (
-    <Button showBoxShadow={false} {...other}>
-      {children}
-    </Button>
-  );
-  const buttonProps = isAuthenticated
-    ? [logOutButtonProps, ...authenticatedButtonProps]
-    : unauthenticatedButtonProps;
-  const renderedButtons = buttonProps.map(asRenderedButton);
-  const formattedAppName = getFormattedTextNode(appName, {
-    sizeVariant: 4,
-    colorVariant: "primaryLight",
-    weightVariant: 3
-  });
-  const appNameDisplay = titleLink ? (
-    <Link route={titleLink}>{formattedAppName}</Link>
-  ) : (
-    formattedAppName
-  );
-  return (
-    <Media query={`(max-width: ${maxWidth}px)`}>
-      {matches =>
-        matches ? (
-          <AppBar>{appNameDisplay}</AppBar>
-        ) : (
-          <AppBar>
-            <FlexWrapper>
-              <TextContainer>
-                {appNameDisplay}
-                <LinkContainer>{renderLinks(links)}</LinkContainer>
-              </TextContainer>
-              <FlexRow>{renderedButtons}</FlexRow>
-            </FlexWrapper>
-          </AppBar>
-        )
-      }
-    </Media>
-  );
+const getColorVariant = (styleVariant: StyleVariant): ColorVariant => {
+  switch (styleVariant) {
+    case "primary":
+      return "secondaryLight";
+    case "secondary":
+    case "tertiary":
+      return "primaryDark";
+  }
 };
 
-type ButtonProps = GetComponentProps<typeof Button>;
-
-// types
-interface IOwnProps {
-  links?: LinkProps[];
-  appName: React.ReactNode;
-  authenticatedButtonProps?: ButtonProps[];
-  isAuthenticated: boolean;
-  currentRoute?: string;
-  maxWidth?: number;
-  titleLink?: string;
-  // TODO: isTitleALink?: boolean
-  onSignInClick(): void;
-  onLogOutClick(): void;
-}
-
-// css
-const FlexRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const FlexWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
-const LinkContainer = styled(FlexRow)`
-  justify-content: space-around;
-  width: 200px;
-  margin-left: 40px;
-`;
-
-const TextContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
+const getIconColorVariant = (styleVariant: StyleVariant): ColorVariant => {
+  switch (styleVariant) {
+    case "primary":
+      return "secondaryLight";
+    case "secondary":
+    case "tertiary":
+      return "secondaryDark";
+  }
+};

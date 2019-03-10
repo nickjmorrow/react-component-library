@@ -43,7 +43,7 @@ const App: React.SFC = () => {
           <Wrapper>
             <LibraryAppBar />
             <Landing />
-            <Footer />
+            <Footer style={{ marginTop: "40px" }} />
           </Wrapper>
         </ThemeInputsContext.Provider>
       </ThemeContext.Provider>

@@ -15,7 +15,8 @@ import {
   AuthModalDemo,
   Colors,
   Borders,
-  ExpansionPanelDemo
+  ExpansionPanelDemo,
+  AppBarDemo
 } from "./components/demos";
 
 const atomComponents = {
@@ -101,8 +102,13 @@ const miscComponents = {
   components: [
     {
       component: ExpansionPanelDemo,
-      label: "Expansion Panel Demo",
-      route: "/expansion-panel-demo"
+      label: "Expansion Panel",
+      route: "/expansion-panel"
+    },
+    {
+      component: AppBarDemo,
+      label: "App Bar",
+      route: "/app-bar"
     }
   ]
 };
@@ -166,7 +172,8 @@ const FlexWrapper = styled.div`
 `;
 
 const RoutesWrapper = styled.div`
-  margin: 24px 0px 24px 32px;
+  margin: 36px;
+  width: 100%;
 `;
 
 // TODO: why are all components being rendered

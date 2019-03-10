@@ -16,7 +16,7 @@ import styled from "styled-components";
 export const IconsDemo: React.SFC = () => {
   const { spacing, colors } = React.useContext(ThemeContext);
   return (
-    <Wrapper>
+    <Wrapper spacing={spacing}>
       <Paper>
         <IconSizes spacing={spacing}>
           <CloseIcon sizeVariant={4} />
@@ -52,11 +52,12 @@ export const IconsDemo: React.SFC = () => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
+  width: ${p => p.spacing.ss64};
 `;
 
 const IconSizes = styled("div")<{ spacing: StyleConstant<"spacing"> }>`

@@ -1,5 +1,6 @@
 import * as React from "react";
 import "rc-slider/assets/index.css";
+// TODO: this should be inline or not need to be created in subscribing packages
 import { Slider } from "react-component-library";
 import styled from "styled-components";
 

@@ -11,7 +11,8 @@ export const AppBar: React.SFC<{
   const {
     colors,
     boxShadow,
-    border: { borderStyle }
+    border: { borderStyle },
+    spacing
   } = React.useContext(ThemeContext);
   return (
     <Wrapper
@@ -19,7 +20,7 @@ export const AppBar: React.SFC<{
       colors={colors}
       borderStyle={borderStyle}
       styleVariant={styleVariant}
-      backgroundColor={getBackgroundColor(colors, styleVariant)}
+      spacing={spacing}
       boxShadow={boxShadow.bs1}>
       <Inner>{children}</Inner>
     </Wrapper>
@@ -35,14 +36,6 @@ const getBackgroundColor = (
     : colors.neutral.lightest;
 };
 
-interface DisplayProps {
-  backgroundColor: string;
-  boxShadow: string;
-  styleVariant: StyleVariant;
-  colors: StyleConstant<"colors">;
-  borderStyle: StyleConstant<"border">["borderStyle"];
-}
-
 const Inner = styled.div`
   margin: 0px 16px;
   width: 95%;
@@ -52,15 +45,33 @@ const Inner = styled.div`
   flex-direction: row;
 `;
 
-const Wrapper = styled("div")<DisplayProps>`
+const Wrapper = styled("div")<{
+  boxShadow: string;
+  styleVariant: StyleVariant;
+  colors: StyleConstant<"colors">;
+  borderStyle: StyleConstant<"border">["borderStyle"];
+  spacing: StyleConstant<"spacing">;
+}>`
   width: 100%;
-  height: 50px;
-  background-color: ${props => props.backgroundColor};
+  height: ${p => p.spacing.ss16};
+  background-color: ${p => getBackgroundColor(p.colors, p.styleVariant)};
   display: flex;
   justify-content: center;
-  box-shadow: ${props => props.boxShadow};
-  ${p =>
-    p.styleVariant === "secondary"
-      ? `border-top: ${p.borderStyle.bs3} ${p.colors.core.main}`
-      : ""}
+  box-shadow: ${p => p.boxShadow};
+  box-sizing: border-box;
+  border-top: ${p => getBorderTop(p.styleVariant, p.borderStyle, p.colors)};
 `;
+
+const getBorderTop = (
+  styleVariant: StyleVariant,
+  borderStyle: StyleConstant<"border">["borderStyle"],
+  colors: StyleConstant<"colors">
+) => {
+  switch (styleVariant) {
+    case "primary":
+    case "tertiary":
+      return "none";
+    case "secondary":
+      return `${borderStyle.bs3} ${colors.core.main}`;
+  }
+};

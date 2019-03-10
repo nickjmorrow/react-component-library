@@ -9,10 +9,10 @@ import { StyleConstant } from "../../typeUtilities";
 const currentYear = new Date().getFullYear();
 const defaultText = `© ${currentYear} ${fullName}`;
 
-// TODO: should have primary, secondary styleVariants
-// should styleVariant be something more like heirarchyVariant?
-// or hierarchyLevel?
-const FooterInternal: React.SFC<IOwnProps> = ({ text = defaultText, style }) => {
+export const Footer: React.FC<{
+  text?: string;
+  style?: React.CSSProperties;
+}> = ({ text = defaultText, style }) => {
   const { colors, spacing } = React.useContext(ThemeContext);
   return (
     <StyledFooter colors={colors} spacing={spacing} style={style}>
@@ -42,10 +42,3 @@ const StyledFooter = styled("div")<DisplayProps>`
   position: absolute;
   bottom: 0;
 `;
-
-interface IOwnProps {
-  text?: string;
-  style?: React.CSSProperties;
-}
-
-export const Footer = React.memo(FooterInternal);
