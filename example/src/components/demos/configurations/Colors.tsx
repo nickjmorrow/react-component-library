@@ -7,7 +7,8 @@ import {
   Slider,
   ThemeInputsContext,
   ArgumentType,
-  getMergedThemeInputs
+  getMergedThemeInputs,
+  ExpansionPanel
 } from "react-component-library";
 import styled from "styled-components";
 import { Block } from "../../shared/Block";
@@ -39,135 +40,144 @@ export const Colors: React.SFC = () => {
     updateThemeInputs(newThemeInput);
   };
   const renderBlocks = (colorShade: ColorShade, colorName: string) => (
-    <Blocks spacing={spacing}>
-      <Typography sizeVariant={4}>{colorName}</Typography>
-      <Wrapper spacing={spacing}>
-        {Object.keys(colorShade).map(shade => (
-          <Block
-            borderRadius={borderRadius}
-            spacing={spacing}
-            color={colorShade[shade]}
-            boxShadow={boxShadow}
-          />
-        ))}
-      </Wrapper>
-      <Parameters>
-        <ColorInput spacing={spacing}>
-          <Typography>Hue: </Typography>
-          <Slider
-            min={0}
-            max={360}
-            value={
-              themeInputs.colors![
-                colorName.toLowerCase() as keyof typeof colors
-              ]!.hue
-            }
-            onChange={value =>
-              handleChange(
-                value,
-                "hue",
-                colorName.toLowerCase() as keyof typeof colors
-              )
-            }
-          />
-        </ColorInput>
-        <ColorInput spacing={spacing}>
-          <Typography>Hue Decrement: </Typography>
-          <Slider
-            min={0}
-            max={100}
-            value={
-              themeInputs.colors![
-                colorName.toLowerCase() as keyof typeof colors
-              ]!.hueDecrement
-            }
-            onChange={value =>
-              handleChange(
-                value,
-                "hueDecrement",
-                colorName.toLowerCase() as keyof typeof colors
-              )
-            }
-          />
-        </ColorInput>
-        <ColorInput spacing={spacing}>
-          <Typography>Middle Lightness: </Typography>
-          <Slider
-            min={0}
-            max={100}
-            value={
-              themeInputs.colors![
-                colorName.toLowerCase() as keyof typeof colors
-              ]!.middleLightness
-            }
-            onChange={value =>
-              handleChange(
-                value,
-                "middleLightness",
-                colorName.toLowerCase() as keyof typeof colors
-              )
-            }
-          />
-        </ColorInput>
-        <ColorInput spacing={spacing}>
-          <Typography>Lightness Increment: </Typography>
-          <Slider
-            min={0}
-            max={100}
-            value={
-              themeInputs.colors![
-                colorName.toLowerCase() as keyof typeof colors
-              ]!.lightnessIncrement
-            }
-            onChange={value =>
-              handleChange(
-                value,
-                "lightnessIncrement",
-                colorName.toLowerCase() as keyof typeof colors
-              )
-            }
-          />
-        </ColorInput>
-        <ColorInput spacing={spacing}>
-          <Typography>Lightness Decrement: </Typography>
-          <Slider
-            min={0}
-            max={100}
-            value={
-              themeInputs.colors![
-                colorName.toLowerCase() as keyof typeof colors
-              ]!.lightnessDecrement
-            }
-            onChange={value =>
-              handleChange(
-                value,
-                "lightnessDecrement",
-                colorName.toLowerCase() as keyof typeof colors
-              )
-            }
-          />
-        </ColorInput>
-        <ColorInput spacing={spacing}>
-          <Typography>Saturation: </Typography>
-          <Slider
-            min={0}
-            max={100}
-            value={
-              themeInputs.colors![
-                colorName.toLowerCase() as keyof typeof colors
-              ]!.saturation
-            }
-            onChange={value =>
-              handleChange(
-                value,
-                "saturation",
-                colorName.toLowerCase() as keyof typeof colors
-              )
-            }
-          />
-        </ColorInput>
-      </Parameters>
-    </Blocks>
+    <React.Fragment key={colorName}>
+      <Typography sizeVariant={4} weightVariant={2}>
+        {colorName}
+      </Typography>
+      <Blocks spacing={spacing}>
+        <ColorsWrapper spacing={spacing}>
+          {Object.keys(colorShade).map(shade => (
+            <Block
+              borderRadius={borderRadius}
+              spacing={spacing}
+              color={colorShade[shade]}
+              boxShadow={boxShadow}
+            />
+          ))}
+        </ColorsWrapper>
+        <ExpansionPanel
+          visibleContent={"Change inputs"}
+          hiddenContent={
+            <Parameters>
+              <ColorInput spacing={spacing}>
+                <Typography>Hue: </Typography>
+                <Slider
+                  min={0}
+                  max={360}
+                  value={
+                    themeInputs.colors![
+                      colorName.toLowerCase() as keyof typeof colors
+                    ]!.hue
+                  }
+                  onChange={value =>
+                    handleChange(
+                      value,
+                      "hue",
+                      colorName.toLowerCase() as keyof typeof colors
+                    )
+                  }
+                />
+              </ColorInput>
+              <ColorInput spacing={spacing}>
+                <Typography>Hue Decrement: </Typography>
+                <Slider
+                  min={0}
+                  max={100}
+                  value={
+                    themeInputs.colors![
+                      colorName.toLowerCase() as keyof typeof colors
+                    ]!.hueDecrement
+                  }
+                  onChange={value =>
+                    handleChange(
+                      value,
+                      "hueDecrement",
+                      colorName.toLowerCase() as keyof typeof colors
+                    )
+                  }
+                />
+              </ColorInput>
+              <ColorInput spacing={spacing}>
+                <Typography>Middle Lightness: </Typography>
+                <Slider
+                  min={0}
+                  max={100}
+                  value={
+                    themeInputs.colors![
+                      colorName.toLowerCase() as keyof typeof colors
+                    ]!.middleLightness
+                  }
+                  onChange={value =>
+                    handleChange(
+                      value,
+                      "middleLightness",
+                      colorName.toLowerCase() as keyof typeof colors
+                    )
+                  }
+                />
+              </ColorInput>
+              <ColorInput spacing={spacing}>
+                <Typography>Lightness Increment: </Typography>
+                <Slider
+                  min={0}
+                  max={100}
+                  value={
+                    themeInputs.colors![
+                      colorName.toLowerCase() as keyof typeof colors
+                    ]!.lightnessIncrement
+                  }
+                  onChange={value =>
+                    handleChange(
+                      value,
+                      "lightnessIncrement",
+                      colorName.toLowerCase() as keyof typeof colors
+                    )
+                  }
+                />
+              </ColorInput>
+              <ColorInput spacing={spacing}>
+                <Typography>Lightness Decrement: </Typography>
+                <Slider
+                  min={0}
+                  max={100}
+                  value={
+                    themeInputs.colors![
+                      colorName.toLowerCase() as keyof typeof colors
+                    ]!.lightnessDecrement
+                  }
+                  onChange={value =>
+                    handleChange(
+                      value,
+                      "lightnessDecrement",
+                      colorName.toLowerCase() as keyof typeof colors
+                    )
+                  }
+                />
+              </ColorInput>
+              <ColorInput spacing={spacing}>
+                <Typography>Saturation: </Typography>
+                <Slider
+                  min={0}
+                  max={100}
+                  value={
+                    themeInputs.colors![
+                      colorName.toLowerCase() as keyof typeof colors
+                    ]!.saturation
+                  }
+                  onChange={value =>
+                    handleChange(
+                      value,
+                      "saturation",
+                      colorName.toLowerCase() as keyof typeof colors
+                    )
+                  }
+                />
+              </ColorInput>
+            </Parameters>
+          }
+        />
+      </Blocks>
+    </React.Fragment>
   );
   const { core, accent, neutral, danger, warning, success } = colors;
 
@@ -184,10 +194,9 @@ export const Colors: React.SFC = () => {
 };
 
 const BlocksWrapper = styled.div``;
-const Wrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
+const ColorsWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   display: flex;
   flex-direction: row;
-  margin-bottom: ${p => p.spacing.ss4};
   flex-wrap: wrap;
 `;
 
@@ -203,8 +212,9 @@ const ColorInput = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
 const Blocks = styled("div")<{
   spacing: StyleConstant<"spacing">;
 }>`
-  margin-bottom: ${p => p.spacing.ss16};
+  margin-bottom: ${p => p.spacing.ss12};
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
 `;

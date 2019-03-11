@@ -2,7 +2,11 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { getFormattedTextNode } from "./typography";
 
-export const Link: React.SFC<Props> = ({ children, route, style }) => {
+export const Link: React.SFC<{
+  route: string;
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}> = ({ children, route, style }) => {
   const defaultLinkStyle = {
     textDecoration: "none"
   };
@@ -16,9 +20,3 @@ export const Link: React.SFC<Props> = ({ children, route, style }) => {
     </RouterLink>
   );
 };
-
-export interface Props {
-  route: string;
-  children: React.ReactNode;
-  style?: React.CSSProperties;
-}

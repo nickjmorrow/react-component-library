@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button rendering default 1`] = `
+<UNDEFINED
+  backgroundColorState={
+    Object {
+      "active": "hsl(220, 55%, 40%)",
+      "hover": "hsl(220, 55%, 60%)",
+      "normal": "hsl(220, 55%, 50%)",
+    }
+  }
+  border={
+    Object {
+      "borderRadius": Object {
+        "br1": "6px",
+        "br2": "6px",
+      },
+      "borderStyle": Object {
+        "bs1": "1px solid",
+        "bs2": "2px solid",
+        "bs3": "5px solid",
+      },
+    }
+  }
+  borderColorState={
+    Object {
+      "active": "hsl(220, 55%, 40%)",
+      "hover": "hsl(220, 55%, 60%)",
+      "normal": "hsl(220, 55%, 50%)",
+    }
+  }
+  boxShadow={
+    Object {
+      "bs1": "0 1px 3px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2)",
+      "bs2": "0 3px 6px hsla(0, 0%, 0%, 0.2), 0 2px 4px hsla(0, 0%, 0%, 0.2)",
+      "bs3": "0 10px 20px hsla(0, 0%, 0%, 0.2), 0 3px 6px hsla(0, 0%, 0%, 0.2)",
+      "bs4": "0 15px 25px hsla(0, 0%, 0%, 0.2), 0 5px 10px hsla(0, 0%, 0%, 0.2)",
+      "bs5": "0 20px 40px hsla(0, 0%, 0%, 0.2)",
+    }
+  }
+  height={0}
+  isFullWidth={false}
+  onClick={[Function]}
+  showBoxShadow={true}
+  spacing={
+    Object {
+      "ss1": "4px",
+      "ss12": "48px",
+      "ss128": "512px",
+      "ss16": "64px",
+      "ss160": "640px",
+      "ss192": "768px",
+      "ss2": "8px",
+      "ss24": "96px",
+      "ss3": "12px",
+      "ss32": "128px",
+      "ss4": "16px",
+      "ss48": "192px",
+      "ss6": "24px",
+      "ss64": "256px",
+      "ss8": "32px",
+      "ss96": "384px",
+    }
+  }
+  styleVariant="primary"
+  transition="350ms cubic-bezier(0.645, 0.045, 0.355, 1.000)"
+  useMargin={true}
+  width={0}
+>
+  <UNDEFINED
+    height={0}
+    width={0}
+  />
+</UNDEFINED>
+`;
+
+exports[`Button rendering primary 1`] = `
+<UNDEFINED
+  backgroundColorState={
+    Object {
+      "active": "hsl(220, 55%, 40%)",
+      "hover": "hsl(220, 55%, 60%)",
+      "normal": "hsl(220, 55%, 50%)",
+    }
+  }
+  border={
+    Object {
+      "borderRadius": Object {
+        "br1": "6px",
+        "br2": "6px",
+      },
+      "borderStyle": Object {
+        "bs1": "1px solid",
+        "bs2": "2px solid",
+        "bs3": "5px solid",
+      },
+    }
+  }
+  borderColorState={
+    Object {
+      "active": "hsl(220, 55%, 40%)",
+      "hover": "hsl(220, 55%, 60%)",
+      "normal": "hsl(220, 55%, 50%)",
+    }
+  }
+  boxShadow={
+    Object {
+      "bs1": "0 1px 3px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2)",
+      "bs2": "0 3px 6px hsla(0, 0%, 0%, 0.2), 0 2px 4px hsla(0, 0%, 0%, 0.2)",
+      "bs3": "0 10px 20px hsla(0, 0%, 0%, 0.2), 0 3px 6px hsla(0, 0%, 0%, 0.2)",
+      "bs4": "0 15px 25px hsla(0, 0%, 0%, 0.2), 0 5px 10px hsla(0, 0%, 0%, 0.2)",
+      "bs5": "0 20px 40px hsla(0, 0%, 0%, 0.2)",
+    }
+  }
+  height={0}
+  isFullWidth={false}
+  onClick={[Function]}
+  showBoxShadow={true}
+  spacing={
+    Object {
+      "ss1": "4px",
+      "ss12": "48px",
+      "ss128": "512px",
+      "ss16": "64px",
+      "ss160": "640px",
+      "ss192": "768px",
+      "ss2": "8px",
+      "ss24": "96px",
+      "ss3": "12px",
+      "ss32": "128px",
+      "ss4": "16px",
+      "ss48": "192px",
+      "ss6": "24px",
+      "ss64": "256px",
+      "ss8": "32px",
+      "ss96": "384px",
+    }
+  }
+  styleVariant="primary"
+  transition="350ms cubic-bezier(0.645, 0.045, 0.355, 1.000)"
+  useMargin={true}
+  width={0}
+>
+  <UNDEFINED
+    height={0}
+    width={0}
+  />
+</UNDEFINED>
+`;
+
+exports[`Button rendering secondary 1`] = `
+<UNDEFINED
+  backgroundColorState={
+    Object {
+      "active": "transparent",
+      "hover": "transparent",
+      "normal": "transparent",
+    }
+  }
+  border={
+    Object {
+      "borderRadius": Object {
+        "br1": "6px",
+        "br2": "6px",
+      },
+      "borderStyle": Object {
+        "bs1": "1px solid",
+        "bs2": "2px solid",
+        "bs3": "5px solid",
+      },
+    }
+  }
+  borderColorState={
+    Object {
+      "active": "hsl(220, 55%, 40%)",
+      "hover": "hsl(220, 55%, 60%)",
+      "normal": "hsl(220, 55%, 50%)",
+    }
+  }
+  boxShadow={
+    Object {
+      "bs1": "0 1px 3px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2)",
+      "bs2": "0 3px 6px hsla(0, 0%, 0%, 0.2), 0 2px 4px hsla(0, 0%, 0%, 0.2)",
+      "bs3": "0 10px 20px hsla(0, 0%, 0%, 0.2), 0 3px 6px hsla(0, 0%, 0%, 0.2)",
+      "bs4": "0 15px 25px hsla(0, 0%, 0%, 0.2), 0 5px 10px hsla(0, 0%, 0%, 0.2)",
+      "bs5": "0 20px 40px hsla(0, 0%, 0%, 0.2)",
+    }
+  }
+  height={0}
+  isFullWidth={false}
+  onClick={[Function]}
+  showBoxShadow={true}
+  spacing={
+    Object {
+      "ss1": "4px",
+      "ss12": "48px",
+      "ss128": "512px",
+      "ss16": "64px",
+      "ss160": "640px",
+      "ss192": "768px",
+      "ss2": "8px",
+      "ss24": "96px",
+      "ss3": "12px",
+      "ss32": "128px",
+      "ss4": "16px",
+      "ss48": "192px",
+      "ss6": "24px",
+      "ss64": "256px",
+      "ss8": "32px",
+      "ss96": "384px",
+    }
+  }
+  styleVariant="secondary"
+  transition="350ms cubic-bezier(0.645, 0.045, 0.355, 1.000)"
+  useMargin={true}
+  width={0}
+>
+  <UNDEFINED
+    height={0}
+    width={0}
+  />
+</UNDEFINED>
+`;
+
+exports[`Button rendering tertiary 1`] = `
+<UNDEFINED
+  backgroundColorState={
+    Object {
+      "active": "transparent",
+      "hover": "transparent",
+      "normal": "transparent",
+    }
+  }
+  border={
+    Object {
+      "borderRadius": Object {
+        "br1": "6px",
+        "br2": "6px",
+      },
+      "borderStyle": Object {
+        "bs1": "1px solid",
+        "bs2": "2px solid",
+        "bs3": "5px solid",
+      },
+    }
+  }
+  borderColorState={
+    Object {
+      "active": "transparent",
+      "hover": "transparent",
+      "normal": "transparent",
+    }
+  }
+  boxShadow={
+    Object {
+      "bs1": "0 1px 3px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2)",
+      "bs2": "0 3px 6px hsla(0, 0%, 0%, 0.2), 0 2px 4px hsla(0, 0%, 0%, 0.2)",
+      "bs3": "0 10px 20px hsla(0, 0%, 0%, 0.2), 0 3px 6px hsla(0, 0%, 0%, 0.2)",
+      "bs4": "0 15px 25px hsla(0, 0%, 0%, 0.2), 0 5px 10px hsla(0, 0%, 0%, 0.2)",
+      "bs5": "0 20px 40px hsla(0, 0%, 0%, 0.2)",
+    }
+  }
+  height={0}
+  isFullWidth={false}
+  onClick={[Function]}
+  showBoxShadow={true}
+  spacing={
+    Object {
+      "ss1": "4px",
+      "ss12": "48px",
+      "ss128": "512px",
+      "ss16": "64px",
+      "ss160": "640px",
+      "ss192": "768px",
+      "ss2": "8px",
+      "ss24": "96px",
+      "ss3": "12px",
+      "ss32": "128px",
+      "ss4": "16px",
+      "ss48": "192px",
+      "ss6": "24px",
+      "ss64": "256px",
+      "ss8": "32px",
+      "ss96": "384px",
+    }
+  }
+  styleVariant="tertiary"
+  transition="350ms cubic-bezier(0.645, 0.045, 0.355, 1.000)"
+  useMargin={true}
+  width={0}
+>
+  <UNDEFINED
+    height={0}
+    width={0}
+  />
+</UNDEFINED>
+`;

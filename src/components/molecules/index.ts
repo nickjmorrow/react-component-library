@@ -3,3 +3,4 @@ export { LabeledCheckbox } from "./LabeledCheckbox";
 export { LabeledRadioButton } from "./LabeledRadioButton";
 export { VerticalNavMenu } from "./VerticalNavMenu";
 export { Footer } from "./Footer";
+export { ExpansionPanel } from "./ExpansionPanel";

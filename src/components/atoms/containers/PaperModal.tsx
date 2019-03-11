@@ -20,7 +20,11 @@ export const PaperModal: React.SFC<{
   return (
     <Modal isOpen={isOpen} onRequestClose={handleRequestClose}>
       <Paper>
-        <CloseIcon onClick={handleRequestClose} style={iconStyle} />
+        <CloseIcon
+          onClick={handleRequestClose}
+          style={iconStyle}
+          sizeVariant={2}
+        />
         <Wrapper useMargin={useMargin} spacing={spacing}>
           {children}
         </Wrapper>
@@ -41,13 +45,14 @@ const Wrapper = styled("div")<WrapperProps>`
   flex-direction: column;
   ${p =>
     p.useMargin &&
-    css<WrapperProps>`
-      margin: ${p => `${p.spacing.ss8} ${p.spacing.ss8} 0 ${p.spacing.ss8}}`};
+    css`
+      margin: ${p.spacing.ss8} ${p.spacing.ss8} 0 ${p.spacing.ss8};
     `}
 `;
 
 const iconStyle: React.CSSProperties = {
   position: "absolute",
   right: "52px",
-  top: "57px"
+  top: "57px",
+  cursor: "pointer"
 };

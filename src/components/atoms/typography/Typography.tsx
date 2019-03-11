@@ -47,14 +47,14 @@ export const StyledTypography = styled("span")<DisplayProps>`
   font-weight: ${p => p.fontWeight};
   ${p =>
     p.isInteractive &&
-    css<DisplayProps>`
+    css`
       &:hover {
-        color: ${p => p.colorHover};
-        transition: color ${p => p.transition};
+        color: ${p.colorHover};
+        transition: color ${p.transition};
       }
       &:active {
-        color: ${p => p.colorActive};
-        transition: color ${p => p.transition};
+        color: ${p.colorActive};
+        transition: color ${p.transition};
       }
     `}
 `;

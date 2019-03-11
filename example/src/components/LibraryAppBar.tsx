@@ -8,7 +8,7 @@ import {
 } from "react-component-library";
 import { withRouter, RouterProps } from "react-router";
 
-export const AppBarInternal: React.SFC<RouterProps> = () => {
+export const AppBarInternal: React.FC<RouterProps> = () => {
   return (
     <AppBar styleVariant={"secondary"}>
       <Typography

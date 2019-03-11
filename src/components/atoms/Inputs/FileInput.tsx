@@ -43,7 +43,7 @@ export const FileInput: React.SFC<
         id="file"
         onChange={handleChangeInternal}
       />
-      <label htmlFor="file" ref={labelRef}>
+      <label htmlFor="file" ref={labelRef} style={{ width: "0" }}>
         <Button
           onClick={handleButtonClick}
           textColorVariant={textColorVariant}
@@ -66,31 +66,6 @@ export const FileInput: React.SFC<
     </>
   );
 };
-
-// const Label = styled("label")<{ for: string }>`
-//   display: inline-block;
-//   width: max-content;
-//   cursor: pointer;
-// `;
-
-// const Label = styled("label")<DisplayProps>`
-//   color: ${props => props.color};
-//   background-color: ${props => props.backgroundColor};
-//   display: inline-block;
-//   padding: ${p => p.spacing.ss2} ${p => p.spacing.ss3};
-//   width: max-content;
-//   border-radius: ${props => props.borderRadius};
-//   cursor: pointer;
-//   box-shadow: ${props => props.boxShadow};
-//   transition: background-color ${props => props.transition};
-//   text-transform: uppercase;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   &:hover {
-//     background-color: ${props => props.backgroundColorHover};
-//   }
-// `;
 
 // TODO: spacing looks kind of weird here, no?
 const StyledFileInput = styled.input`

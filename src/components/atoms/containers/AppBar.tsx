@@ -4,10 +4,16 @@ import { ThemeContext } from "../../../styleConstants";
 import { StyleConstant } from "../../../typeUtilities";
 import { StyleVariant } from "../../atoms/types";
 
-export const AppBar: React.SFC<{
+export const AppBar: React.FC<{
   styleVariant?: StyleVariant;
   onClick?: () => void;
 }> = ({ children, styleVariant = "primary", onClick: handleClick }) => {
+  require("react-dom");
+  // @ts-ignore
+  window.React2 = require("react");
+  // @ts-ignore
+  console.log(window.React1 === window.React2);
+  console.log("yep");
   const {
     colors,
     boxShadow,
@@ -25,15 +31,6 @@ export const AppBar: React.SFC<{
       <Inner>{children}</Inner>
     </Wrapper>
   );
-};
-
-const getBackgroundColor = (
-  colors: StyleConstant<"colors">,
-  styleVariant: StyleVariant
-) => {
-  return styleVariant === "primary"
-    ? colors.core.main
-    : colors.neutral.lightest;
 };
 
 const Inner = styled.div`
@@ -74,4 +71,13 @@ const getBorderTop = (
     case "secondary":
       return `${borderStyle.bs3} ${colors.core.main}`;
   }
+};
+
+const getBackgroundColor = (
+  colors: StyleConstant<"colors">,
+  styleVariant: StyleVariant
+) => {
+  return styleVariant === "primary"
+    ? colors.core.main
+    : colors.neutral.lightest;
 };

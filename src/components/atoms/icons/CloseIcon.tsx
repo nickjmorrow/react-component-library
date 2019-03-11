@@ -12,7 +12,6 @@ export const CloseIcon: React.SFC<IconProps> = ({
       {...svgProps}
       colorVariant={colorVariant}
       sizeVariant={sizeVariant}
-      style={{ cursor: "pointer" }}
       viewBox="0 0 1000 1000">
       <g>
         <path

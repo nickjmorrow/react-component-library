@@ -41,7 +41,7 @@ type IButtonProps = {
 } & Partial<IDisplayProps> &
   Partial<ColorSet>;
 
-const ButtonInternal: React.SFC<IButtonProps> = ({
+export const Button: React.SFC<IButtonProps> = ({
   children,
   colorVariant = "core",
   textColorVariant = "primaryLight",
@@ -204,5 +204,3 @@ const StyledButton = styled("button")<
     transition: all ${props => props.transition} ease-in-out;
   }
 `;
-
-export const Button = React.memo(ButtonInternal);

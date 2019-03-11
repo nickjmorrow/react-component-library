@@ -5,3 +5,4 @@ export { UploadIcon } from "./UploadIcon";
 export { GithubIcon } from "./GithubIcon";
 export { LoadingIcon } from "./LoadingIcon";
 export { CloseIcon } from "./CloseIcon";
+export { ChevronUpIcon } from "./ChevronUpIcon";

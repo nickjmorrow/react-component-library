@@ -1,6 +1,6 @@
 {
   "name": "@nickjmorrow/react-component-library",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Personal component library",
   "author": "nickjmorrow",
   "license": "MIT",
@@ -13,8 +13,7 @@
     "npm": ">=5"
   },
   "scripts": {
-    "test": "cross-env CI=1 react-scripts-ts test --env=jsdom",
-    "test:watch": "react-scripts-ts test --env=jsdom",
+    "test": "react-scripts-ts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "npm run build",
@@ -35,23 +34,25 @@
     "react-router-dom": "^4.3.1",
     "react-spinners": "^0.5.1",
     "react-transition-group": "^2.6.0",
+    "styled-components": "^4.0.0",
     "stream": "0.0.2",
     "ts-node": "^8.0.2"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "styled-components": "^4.0.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
-    "@types/jest": "^23.1.5",
+    "@types/jest": "^24.0.11",
     "@types/radium": "^0.24.2",
     "@types/react": "^16.3.13",
     "@types/react-dom": "^16.0.5",
     "@types/react-modal": "^3.8.0",
     "@types/react-router-dom": "^4.3.1",
+    "@types/react-test-renderer": "^16.8.1",
     "@types/react-transition-group": "^2.0.16",
     "@types/styled-components": "^4.1.4",
     "babel-core": "^6.26.3",
@@ -59,10 +60,12 @@
     "concurrently": "^4.1.0",
     "cross-env": "^5.1.4",
     "gh-pages": "^1.2.0",
+    "jest-styled-components": "^7.0.0-2",
     "module-alias": "^2.2.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-scripts-ts": "^2.16.0",
+    "react-test-renderer": "^16.8.4",
     "rollup": "^0.62.0",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.1.3",
@@ -80,5 +83,10 @@
   ],
   "_moduleAliases": {
     "~": "dist"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "~/(.*)": "<rootDir>/src/$1"
+    }
   }
 }
