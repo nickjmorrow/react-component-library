@@ -1,25 +1,15 @@
 import * as React from "react";
 import { useState } from "react";
-import styled from "styled-components";
-import { EyeIcon } from "../icons/EyeIcon";
+import { EyeIcon } from "../../icons/EyeIcon";
 import { StyledInput } from "./StyledInput";
+import { TextInputProps, AllowedInputType } from "./types";
 
-interface IOwnProps {
-  value: string | number;
-  placeholder?: string;
-  type?: "text" | "password";
-  style?: React.CSSProperties;
-  errors?: string[];
-  onChange(value: string): void;
-}
-
-export const PasswordInput: React.SFC<IOwnProps> = ({
+export const PasswordInput: React.SFC<TextInputProps> = ({
   onChange: handleChange,
   value,
   placeholder = "Password",
   errors
 }) => {
-  type AllowedInputType = "text" | "password";
   const [inputType, setInputType] = useState<AllowedInputType>("password");
   const showPassword = inputType === "text";
 
@@ -30,7 +20,13 @@ export const PasswordInput: React.SFC<IOwnProps> = ({
     handleChange(e.currentTarget.value);
 
   return (
-    <Wrapper>
+    <div
+      style={{
+        display: "flex",
+        height: "min-content",
+        flexDirection: "column",
+        position: "relative"
+      }}>
       <StyledInput
         value={value}
         onChange={handleChangeInternal}
@@ -48,13 +44,6 @@ export const PasswordInput: React.SFC<IOwnProps> = ({
         sizeVariant={2}
         onClick={toggleInputType}
       />
-    </Wrapper>
+    </div>
   );
 };
-
-const Wrapper = styled.div`
-  height: min-content;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;

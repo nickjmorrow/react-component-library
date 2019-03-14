@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
 import { Paper, ChevronUpIcon, getFormattedTextNode } from "../atoms";
-import { ThemeContext } from "../../styleConstants";
-import { StyleConstant } from "../../typeUtilities";
+import { ThemeContext } from "~/styleConstants";
+import { StyleConstant } from "~/typeUtilities";
 
 export const ExpansionPanel: React.FC<{
   visibleContent: React.ReactNode;
@@ -18,8 +18,7 @@ export const ExpansionPanel: React.FC<{
   return (
     <Paper
       style={{
-        width: isFullWidth ? "100%" : "max-content",
-        height: "min-content"
+        width: isFullWidth ? "100%" : "max-content"
       }}>
       <VisibleWrapper
         spacing={spacing}

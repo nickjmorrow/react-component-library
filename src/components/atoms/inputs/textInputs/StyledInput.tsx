@@ -1,22 +1,23 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ThemeContext } from "../../../styleConstants";
-import { StyleConstant } from "../../../typeUtilities";
-import { Typography } from "../typography";
-import { Fade } from "../../animations";
+import { ThemeContext } from "../../../../styleConstants";
+import { StyleConstant } from "../../../../typeUtilities";
+import { Typography } from "../../typography";
+import { Fade } from "../../../animations";
 import { TransitionGroup } from "react-transition-group";
+import { Omit } from "ts-essentials";
+import { TextInputProps } from "./types";
 
-export const StyledInput: React.SFC<{
-  value: React.ReactText;
-  type: InputTypes;
-  placeholder?: string;
-  errors?: string[];
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}> = ({
+export const StyledInput: React.SFC<
+  Omit<TextInputProps, "onChange"> & {
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  }
+> = ({
   value,
-  type,
+  type = "text",
   onChange: handleChange,
   placeholder = "",
+  style,
   errors = []
 }) => {
   const {
@@ -27,9 +28,6 @@ export const StyledInput: React.SFC<{
     boxShadow,
     typography: { fontFamily, fontSizes, fontWeights }
   } = React.useContext(ThemeContext);
-
-  // TODO: handle error removal better (with an animation)
-  // may have to look into transition-group
 
   const renderErrors = (error: string) => (
     <Fade
@@ -58,15 +56,13 @@ export const StyledInput: React.SFC<{
         fontFamily={fontFamily.default}
         fontWeight={fontWeights.fw1}
         type={type}
-        backgroundColor={colors.neutral.lightest}
         transition={transitions.medium}
         borderRadius={borderRadius.br1}
-        focusBorderColor={colors.core.main}
-        defaultBorderColor={colors.transparent}
         borderStyle={borderStyle.bs1}
         onChange={handleChange}
         value={value}
-        placeholder={placeholder}
+        placeholder={placeholder.toString()}
+        style={style}
       />
       <FlexColumn>
         <TransitionGroup>{errors.map(renderErrors)}</TransitionGroup>
@@ -84,12 +80,12 @@ export const Input = styled("input")<DisplayProps>`
   outline: none;
   width: ${p => p.spacing.ss64};
   padding: ${p => p.spacing.ss3};
-  background-color: ${p => p.backgroundColor};
+  background-color: ${p => p.colors.neutral.lightest};
   border-radius: ${p => p.borderRadius};
-  border: ${p => p.borderStyle} ${p => p.defaultBorderColor};
+  border: ${p => p.borderStyle} ${p => p.colors.transparent};
   border-left-width: ${p => (p.hasErrors ? "2px" : p.borderStyle)};
   border-left-color: ${p =>
-    p.hasErrors ? p.colors.danger.light : p.defaultBorderColor};
+    p.hasErrors ? p.colors.danger.light : p.colors.transparent};
   margin-top: ${p => p.spacing.ss3};
   type: ${p => p.type};
   font-weight: ${p => p.fontWeight};
@@ -113,9 +109,6 @@ type InputTypes = "text" | "password";
 interface DisplayProps {
   borderRadius: string;
   transition: string;
-  backgroundColor: string;
-  defaultBorderColor: string;
-  focusBorderColor: string;
   borderStyle: string;
   type: InputTypes;
   fontSize: string;

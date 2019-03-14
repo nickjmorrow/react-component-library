@@ -1,17 +1,8 @@
 import * as React from "react";
-import styled from "styled-components";
 import { StyledInput } from "./StyledInput";
+import { TextInputProps } from "./types";
 
-interface IOwnProps {
-  value: string | number;
-  placeholder?: string;
-  style?: React.CSSProperties;
-  errors?: string[];
-  onChange(value: string): void;
-}
-
-// TODO: add isRequired and validation function with error state
-export const TextInput: React.SFC<IOwnProps> = ({
+export const TextInput: React.SFC<TextInputProps> = ({
   onChange: handleChange,
   value,
   placeholder,
@@ -21,7 +12,12 @@ export const TextInput: React.SFC<IOwnProps> = ({
     handleChange(e.currentTarget.value);
 
   return (
-    <Wrapper>
+    <div
+      style={{
+        height: "min-content",
+        display: "flex",
+        flexDirection: "column"
+      }}>
       <StyledInput
         value={value}
         onChange={handleChangeInternal}
@@ -29,12 +25,6 @@ export const TextInput: React.SFC<IOwnProps> = ({
         errors={errors}
         placeholder={placeholder}
       />
-    </Wrapper>
+    </div>
   );
 };
-
-const Wrapper = styled.div`
-  height: min-content;
-  display: flex;
-  flex-direction: column;
-`;

@@ -5,17 +5,19 @@ import { Typography, Button, UploadIcon, FlexCenterWrapper } from "../../atoms";
 import { GetComponentProps } from "../../../typeUtilities";
 
 interface FileInputProps {
+  id?: string;
   initialLabel?: string;
+  labelOnUpload?: string;
   onChange(value: FileList | null): void;
 }
-
-// TODO: prop to freeze label to just be initial label
 
 export const FileInput: React.SFC<
   FileInputProps & GetComponentProps<typeof Button>
 > = ({
   initialLabel = "upload",
+  labelOnUpload,
   onChange: handleChange,
+  id = "file",
   textColorVariant = "primaryLight",
   ...buttonProps
 }) => {
@@ -24,7 +26,7 @@ export const FileInput: React.SFC<
     const { files } = event.currentTarget;
     const newLabel = files && files[0] ? files[0].name : label;
     handleChange(files);
-    setLabel(newLabel);
+    setLabel(labelOnUpload || newLabel);
   };
 
   const labelRef = React.useRef<HTMLLabelElement>(null);
@@ -36,14 +38,17 @@ export const FileInput: React.SFC<
   };
 
   return (
-    <>
+    <div>
       <StyledFileInput
         type={"file"}
-        name="file"
-        id="file"
+        name={id}
+        id={id}
         onChange={handleChangeInternal}
       />
-      <label htmlFor="file" ref={labelRef} style={{ width: "0" }}>
+      <label
+        htmlFor={id}
+        ref={labelRef}
+        style={{ margin: 0, display: "inline-block" }}>
         <Button
           onClick={handleButtonClick}
           textColorVariant={textColorVariant}
@@ -63,7 +68,7 @@ export const FileInput: React.SFC<
           </FlexCenterWrapper>
         </Button>
       </label>
-    </>
+    </div>
   );
 };
 
@@ -73,6 +78,5 @@ const StyledFileInput = styled.input`
   height: 0.1px;
   opacity: 0;
   overflow: hidden;
-  position: absolute;
   z-index: -1;
 `;
