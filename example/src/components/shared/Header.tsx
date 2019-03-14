@@ -7,7 +7,8 @@ export const Header: React.FC = ({ children }) => {
     <div>
       <Typography
         sizeVariant={5}
-        weightVariant={2}
+        weightVariant={1}
+        colorVariant={"secondaryDark"}
         style={{ marginBottom: spacing.ss4 }}>
         {children}
       </Typography>
