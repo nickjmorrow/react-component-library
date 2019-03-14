@@ -13,11 +13,13 @@ import {
 } from "react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
+import { Header } from "../shared";
 
 export const IconsDemo: React.SFC = () => {
   const { spacing, colors } = React.useContext(ThemeContext);
   return (
     <Wrapper spacing={spacing}>
+      <Header>All Icons</Header>
       <DisplayPaper>
         <IconSizes spacing={spacing}>
           <CloseIcon sizeVariant={4} />
@@ -30,6 +32,7 @@ export const IconsDemo: React.SFC = () => {
           <ChevronUpIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
+      <Header>Icon Sizes</Header>
       <DisplayPaper>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={1} />
@@ -38,12 +41,14 @@ export const IconsDemo: React.SFC = () => {
           <GithubIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
+      <Header>Dark Colors</Header>
       <DisplayPaper>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"primaryDark"} />
           <GithubIcon sizeVariant={4} colorVariant={"secondaryDark"} />
         </IconSizes>
       </DisplayPaper>
+      <Header>Light Colors</Header>
       <DisplayPaper customStyle={{ backgroundColor: colors.neutral.darker }}>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"secondaryLight"} />
@@ -65,4 +70,5 @@ const IconSizes = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   display: grid;
   grid-column-gap: ${p => p.spacing.ss6};
   grid-auto-flow: column;
+  align-items: center;
 `;

@@ -12,6 +12,7 @@ import {
 } from "react-component-library";
 import styled from "styled-components";
 import { Block } from "../../shared/Block";
+import { Header } from "src/components/shared";
 
 export const Colors: React.SFC = () => {
   const {
@@ -41,9 +42,7 @@ export const Colors: React.SFC = () => {
   };
   const renderBlocks = (colorShade: ColorShade, colorName: string) => (
     <React.Fragment key={colorName}>
-      <Typography sizeVariant={4} weightVariant={2}>
-        {colorName}
-      </Typography>
+      <Header>{colorName}</Header>
       <Blocks spacing={spacing}>
         <ColorsWrapper spacing={spacing}>
           {Object.keys(colorShade).map(shade => (

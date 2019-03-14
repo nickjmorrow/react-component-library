@@ -49,7 +49,8 @@ export const Buttons: React.SFC = () => {
   );
 
   const customStyle = {
-    backgroundColor: option.value as string
+    backgroundColor: option.value as string,
+    padding: spacing.ss3
   };
   return (
     <Wrapper>
