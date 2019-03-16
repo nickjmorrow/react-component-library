@@ -1,27 +1,27 @@
-import { itemLevel, NavItemProps, SideNav } from "react-component-library";
 import * as React from "react";
+import { SideNav } from "react-component-library";
 import { Route } from "react-router";
 import styled from "styled-components";
 import {
-  TypographyDemo,
-  TextInputDemo,
+  AppBarDemo,
+  AuthModalDemo,
+  Borders,
   Buttons,
-  SelectDemo,
-  IconsDemo,
+  Colors,
+  ExpansionPanelDemo,
   FileInputDemo,
-  SliderDemo,
+  IconsDemo,
   LabeledInputDemo,
   LogoutModalDemo,
-  AuthModalDemo,
-  Colors,
-  Borders,
-  ExpansionPanelDemo,
-  AppBarDemo
+  SelectDemo,
+  SliderDemo,
+  TextInputDemo,
+  TypographyDemo
 } from "./components/demos";
 
 const atomComponents = {
-  folderLabel: "Atoms",
-  components: [
+  label: "Atoms",
+  navLinks: [
     {
       component: Buttons,
       label: "Buttons",
@@ -66,8 +66,8 @@ const atomComponents = {
 };
 
 const modalComponents = {
-  folderLabel: "Modals",
-  components: [
+  label: "Modals",
+  navLinks: [
     {
       component: AuthModalDemo,
       label: "Auth Modal",
@@ -77,8 +77,8 @@ const modalComponents = {
 };
 
 const themeConfiguration = {
-  folderLabel: "Theme Configurations",
-  components: [
+  label: "Theme Configurations",
+  navLinks: [
     {
       component: Colors,
       label: "Colors",
@@ -98,8 +98,8 @@ const themeConfiguration = {
 };
 
 const miscComponents = {
-  folderLabel: "Misc",
-  components: [
+  label: "Misc",
+  navLinks: [
     {
       component: ExpansionPanelDemo,
       label: "Expansion Panel",
@@ -113,19 +113,19 @@ const miscComponents = {
   ]
 };
 
-const components = [
+const componentFolders = [
   atomComponents,
   modalComponents,
   themeConfiguration,
   miscComponents
 ];
 
-const routes = components.reduce(
+const routes = componentFolders.reduce(
   (prev, curr) => {
     prev.push(
-      ...curr.components.map((c, i) => (
+      ...curr.navLinks.map((c, i) => (
         <Route
-          key={`${c.route}-${i}`}
+          key={`route-${c.route}-${i}`}
           path={c.route}
           component={c.component}
           exact={true}
@@ -137,38 +137,20 @@ const routes = components.reduce(
   [] as React.ReactNode[]
 );
 
-const navInfos = components.reduce(
-  (prev, curr) => {
-    prev.push({
-      label: curr.folderLabel,
-      itemLevel: 1 as itemLevel
-    });
-    prev.push(
-      ...curr.components.map(c => ({
-        route: c.route,
-        label: c.label,
-        itemLevel: 2 as itemLevel
-      }))
-    );
-    return prev;
-  },
-  [] as NavItemProps[]
-);
-
-export const Landing: React.SFC<{}> = () => {
+export const Main: React.SFC<{}> = () => {
   return (
-    <FlexWrapper>
-      <SideNav navInfos={navInfos} />
+    <Wrapper>
+      <SideNav navInfos={componentFolders} />
       <RoutesWrapper>{routes}</RoutesWrapper>
-    </FlexWrapper>
+    </Wrapper>
   );
 };
 
-const FlexWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
-  width: 100%;
+  flex-grow: 1;
 `;
 
 const RoutesWrapper = styled.div`

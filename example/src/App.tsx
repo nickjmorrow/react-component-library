@@ -12,7 +12,7 @@ import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
 import "./App.css";
 import { LibraryAppBar } from "./components/LibraryAppBar";
-import { Landing } from "./Landing";
+import { Main } from "./Main";
 
 const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
   colors: {
@@ -47,7 +47,7 @@ const App: React.SFC = () => {
           }}>
           <Wrapper>
             <LibraryAppBar />
-            <Landing />
+            <Main />
             <Footer style={{ marginTop: "40px" }} />
           </Wrapper>
         </ThemeInputsContext.Provider>
@@ -60,7 +60,8 @@ export default App;
 
 const Wrapper = styled.div`
   min-height: 100vh;
+  width: 100%;
   position: relative;
-  overflow: hidden;
-  display: block;
+  display: flex;
+  flex-direction: column;
 `;
