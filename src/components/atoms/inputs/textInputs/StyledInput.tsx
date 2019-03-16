@@ -86,7 +86,6 @@ export const Input = styled("input")<DisplayProps>`
   border-left-width: ${p => (p.hasErrors ? "2px" : p.borderStyle)};
   border-left-color: ${p =>
     p.hasErrors ? p.colors.danger.light : p.colors.transparent};
-  margin-top: ${p => p.spacing.ss3};
   type: ${p => p.type};
   font-weight: ${p => p.fontWeight};
   font-family: ${p => p.fontFamily};
