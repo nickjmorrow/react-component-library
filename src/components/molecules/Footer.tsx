@@ -31,7 +31,7 @@ interface DisplayProps {
   spacing: StyleConstant<"spacing">;
 }
 
-const StyledFooter = styled("div")<DisplayProps>`
+const StyledFooter = styled("footer")<DisplayProps>`
   background-color: ${p => p.colors.neutral.lightest};
   display: flex;
   align-items: center;
