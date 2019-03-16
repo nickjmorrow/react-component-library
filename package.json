@@ -18,8 +18,9 @@
     "start": "rollup -c -w",
     "prepare": "npm run build",
     "predeploy": "cd example && npm run build",
-    "clear": "rm -rf node_modules package-lock.json example/node_modules example/package-lock.json && npm install && npm install ./examples",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "dev": "concurrently \" npm run start \" \" npm run --prefix example start \"",
+    "clear": "rm -rf node_modules package-lock.json example/node_modules example/package-lock.json && npm install && npm install ./examples"
   },
   "dependencies": {
     "deepmerge": "^3.2.0",
@@ -27,15 +28,17 @@
     "radium": "^0.25.1",
     "rc-slider": "^8.6.5",
     "react-animations": "^1.0.0",
+    "react-collapse": "^4.0.3",
     "react-google-login": "^5.0.0",
     "react-media": "^1.9.2",
     "react-modal": "^3.8.1",
+    "react-motion": "^0.5.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-spinners": "^0.5.1",
     "react-transition-group": "^2.6.0",
-    "styled-components": "^4.0.0",
     "stream": "0.0.2",
+    "styled-components": "^4.0.0",
     "ts-node": "^8.0.2"
   },
   "peerDependencies": {
@@ -49,8 +52,10 @@
     "@types/jest": "^24.0.11",
     "@types/radium": "^0.24.2",
     "@types/react": "^16.3.13",
+    "@types/react-collapse": "^4.0.2",
     "@types/react-dom": "^16.0.5",
     "@types/react-modal": "^3.8.0",
+    "@types/react-motion": "0.0.28",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-test-renderer": "^16.8.1",
     "@types/react-transition-group": "^2.0.16",

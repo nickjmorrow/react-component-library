@@ -45,7 +45,8 @@ export default {
           "isValidElementType",
           "isElement",
           "ForwardRef"
-        ]
+        ],
+        "node_modules/react-collapse/lib/index.js": ["Collapse"]
       }
     })
   ]
