@@ -4,115 +4,171 @@ import styled from "styled-components";
 import { ThemeContext } from "../../styleConstants";
 import { StyleConstant } from "../../typeUtilities";
 import { Link, Typography } from "../atoms";
+import { Collapse } from "react-collapse";
 
-const SideNavInternal: React.SFC<SideNavProps & RouteComponentProps> = ({
+const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
   navInfos,
   location
 }) => {
   const { pathname } = location;
+  const getIsCurrentPathname = (route: string) => route === pathname;
   const { colors, transitions, spacing, boxShadow } = React.useContext(
     ThemeContext
   );
-  return (
-    <Wrapper boxShadow={boxShadow}>
-      <NavItems spacing={spacing}>
-        {navInfos.map((ni, i) => {
-          const content = (
-            <ContentWrapper itemLevel={ni.itemLevel}>
-              <Typography
-                colorVariant={pathname === ni.route ? "core" : "primaryDark"}>
-                {ni.label}
-              </Typography>
-            </ContentWrapper>
-          );
 
-          return (
-            <NavItemWrapper
-              key={i}
-              color={colors.neutral.lightest}
-              transition={transitions.fast}>
-              {ni.route ? (
-                <Link
-                  route={ni.route}
-                  style={{
-                    display: "inline-block",
-                    width: "100%",
-                    height: "100%"
-                  }}>
-                  {content}
-                </Link>
-              ) : (
-                content
-              )}
-            </NavItemWrapper>
-          );
-        })}
-      </NavItems>
-    </Wrapper>
+  const renderNavLink = (navLink: INavLink, i: number): React.ReactNode => {
+    return (
+      <NavElement
+        spacing={spacing}
+        colors={colors}
+        transitions={transitions}
+        key={`nav-element-${i}`}>
+        <Link
+          route={navLink.route}
+          styleVariant={pathname === navLink.route ? "primary" : "secondary"}
+          typographyProps={{ style: { marginLeft: spacing.ss8 } }}
+          style={{
+            width: "100%",
+            height: "100%",
+            padding: `${spacing.ss3} 0`
+          }}>
+          {navLink.label}
+        </Link>
+      </NavElement>
+    );
+  };
+
+  const navItems: React.ReactNodeArray = [];
+
+  const isFolder = (
+    navElementOrFolder: INavLink | FolderInfo
+  ): navElementOrFolder is FolderInfo => {
+    return (navElementOrFolder as FolderInfo).navLinks !== undefined;
+  };
+
+  navInfos.map((navInfo, i) => {
+    navItems.push(
+      isFolder(navInfo) ? (
+        <Folder
+          folderInfo={navInfo}
+          renderNavLink={renderNavLink}
+          key={`folder-${i}`}
+          getIsCurrentPathname={getIsCurrentPathname}
+        />
+      ) : (
+        renderNavLink(navInfo, i)
+      )
+    );
+  });
+
+  return (
+    <div style={{ width: spacing.ss64, boxShadow: boxShadow.bs1 }}>
+      <Nav spacing={spacing} boxShadow={boxShadow}>
+        <Wrapper spacing={spacing}>{navItems}</Wrapper>
+      </Nav>
+    </div>
   );
 };
 
 export const SideNav = withRouter(SideNavInternal);
 
+const Nav = styled("nav")<{
+  spacing: StyleConstant<"spacing">;
+  boxShadow: StyleConstant<"boxShadow">;
+}>`
+  width: ${p => p.spacing.ss64};
+  display: flex;
+  position: sticky;
+  top: 0;
+`;
+
 // css
-const Wrapper = styled("div")<{ boxShadow: StyleConstant<"boxShadow"> }>`
+const Wrapper = styled("div")<{
+  spacing: StyleConstant<"spacing">;
+}>`
   grid-area: nav;
-  display: inline-flex;
+  flex-grow: 1;
+  display: flex;
   flex-direction: column;
-  min-width: 15rem;
-  width: auto;
-  height: max-content;
-  box-shadow: ${p => p.boxShadow.bs1};
-`;
-
-const ContentWrapper = styled("div")<DisplayProps>`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-left: ${p => getMargin(p.itemLevel)};
-`;
-
-const NavItemWrapper = styled("div")<{ color: string; transition: string }>`
-  height: 2rem;
-  display: flex;
-  align-items: center;
   justify-content: flex-start;
+  overflow-y: auto;
+  width: ${p => p.spacing.ss64};
+  padding-top: ${p => p.spacing.ss4};
+`;
+
+const NavElement = styled("div")<{
+  colors: StyleConstant<"colors">;
+  transitions: StyleConstant<"transitions">;
+  spacing: StyleConstant<"spacing">;
+}>`
   cursor: pointer;
+  width: ${p => p.spacing.ss64};
+  transition: background-color ${p => p.transitions.medium};
   &:hover {
-    background-color: ${p => p.color};
-    transition: ${p => p.transition};
+    background-color: ${p => p.colors.neutral.lightest};
+    transition: background-color ${p => p.transitions.medium};
   }
 `;
 
-const NavItems = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
-  margin-top: ${p => p.spacing.ss2};
+const FolderLabel: React.SFC<{ spacing: StyleConstant<"spacing"> }> = ({
+  spacing,
+  children
+}) => (
+  <LabelWrapper spacing={spacing}>
+    <Typography weightVariant={2}>{children}</Typography>
+  </LabelWrapper>
+);
+
+const LabelWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
+  padding: ${p => p.spacing.ss3} 0;
+  margin-left: ${p => p.spacing.ss4};
 `;
 
-const getMargin = (level: itemLevel) => {
-  switch (level) {
-    case 0:
-      return "1em";
-    case 1:
-      return "2em";
-    case 2:
-      return "3em";
-    case 3:
-      return "4em";
-    default:
-      throw new Error(`invalid level: ${level}`);
-  }
+const Folder: React.SFC<{
+  folderInfo: FolderInfo;
+  renderNavLink: (navInfo: INavLink, i: number) => React.ReactNode;
+  getIsCurrentPathname: (route: string) => boolean;
+}> = ({ folderInfo, renderNavLink, getIsCurrentPathname }) => {
+  const initialExpansionState = folderInfo.navLinks
+    .map(nl => nl.route)
+    .reduce((agg, cur) => {
+      return agg || getIsCurrentPathname(cur);
+    }, false);
+  const [isExpanded, setIsExpanded] = React.useState(initialExpansionState);
+  const toggleIsExpanded = () => setIsExpanded(prev => !prev);
+  const { spacing, colors, transitions } = React.useContext(ThemeContext);
+  const innerNavLinkRef = React.useRef<HTMLDivElement>(null);
+  return (
+    <>
+      <NavElement
+        spacing={spacing}
+        colors={colors}
+        transitions={transitions}
+        onClick={toggleIsExpanded}>
+        <FolderLabel spacing={spacing}>{folderInfo.label}</FolderLabel>
+      </NavElement>
+      <Collapse isOpened={isExpanded} springConfig={{ stiffness: 220 }}>
+        <div ref={innerNavLinkRef}>
+          {folderInfo.navLinks.map(renderNavLink)}
+        </div>
+      </Collapse>
+    </>
+  );
 };
 
 // types
-export type NavItemProps = { label: string; route?: string } & DisplayProps;
-interface SideNavProps {
-  navInfos: NavItemProps[];
-  style?: React.CSSProperties;
+export type NavItemProps = { label: string; route?: string };
+
+type FolderInfo = {
+  label: string;
+  navLinks: INavLink[];
+};
+
+interface INavLink {
+  label: string;
+  route: string;
 }
 
-type itemLevel = 0 | 1 | 2 | 3;
-
-interface DisplayProps {
-  itemLevel: itemLevel;
+interface Props {
+  navInfos: Array<FolderInfo | INavLink>;
 }
