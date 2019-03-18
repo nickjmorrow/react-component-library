@@ -61,10 +61,36 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
     );
   });
 
+  const [headerOffset, setHeaderOffset] = React.useState(64);
+  const [footerOffset, setFooterOffset] = React.useState(36);
+  const handleScroll = () => {
+    if (window.scrollY < 64) {
+      setHeaderOffset(64);
+    } else if (headerOffset !== 0) {
+      setHeaderOffset(0);
+    }
+
+    if (document.body.scrollHeight - window.scrollY - window.innerHeight < 36) {
+      setFooterOffset(36);
+    } else if (footerOffset !== 0) {
+      setFooterOffset(0);
+    }
+  };
+  window.addEventListener("scroll", handleScroll);
+
   return (
-    <div style={{ width: spacing.ss64, boxShadow: boxShadow.bs1 }}>
+    <div
+      style={{
+        width: spacing.ss64,
+        boxShadow: boxShadow.bs1
+      }}>
       <Nav spacing={spacing} boxShadow={boxShadow}>
-        <Wrapper spacing={spacing}>{navItems}</Wrapper>
+        <div
+          style={{
+            height: `calc(100vh - ${headerOffset}px - ${footerOffset}px)`
+          }}>
+          <Wrapper spacing={spacing}>{navItems}</Wrapper>
+        </div>
       </Nav>
     </div>
   );
@@ -80,6 +106,8 @@ const Nav = styled("nav")<{
   display: flex;
   position: sticky;
   top: 0;
+  bottom: 0;
+  overflow-y: auto;
 `;
 
 // css

@@ -28,6 +28,21 @@ const atomComponents = {
       route: "/buttons"
     },
     {
+      component: Buttons,
+      label: "Buttons",
+      route: "/buttons"
+    },
+    {
+      component: Buttons,
+      label: "Buttons",
+      route: "/buttons"
+    },
+    {
+      component: Buttons,
+      label: "Buttons",
+      route: "/buttons"
+    },
+    {
       component: SelectDemo,
       label: "Select",
       route: "/select"
@@ -151,6 +166,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   height: 100%;
   flex-grow: 1;
+  margin-bottom: 36px;
 `;
 
 const RoutesWrapper = styled.div`
