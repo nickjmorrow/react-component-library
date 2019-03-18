@@ -62,7 +62,7 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
   });
 
   const [headerOffset, setHeaderOffset] = React.useState(64);
-  const [footerOffset, setFooterOffset] = React.useState(36);
+  const [footerOffset, setFooterOffset] = React.useState(52);
   const handleScroll = () => {
     if (window.scrollY < 64) {
       setHeaderOffset(64);
@@ -70,8 +70,8 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
       setHeaderOffset(0);
     }
 
-    if (document.body.scrollHeight - window.scrollY - window.innerHeight < 36) {
-      setFooterOffset(36);
+    if (document.body.scrollHeight - window.scrollY - window.innerHeight < 52) {
+      setFooterOffset(52);
     } else if (footerOffset !== 0) {
       setFooterOffset(0);
     }
@@ -84,13 +84,12 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
         width: spacing.ss64,
         boxShadow: boxShadow.bs1
       }}>
-      <Nav spacing={spacing} boxShadow={boxShadow}>
-        <div
-          style={{
-            height: `calc(100vh - ${headerOffset}px - ${footerOffset}px)`
-          }}>
-          <Wrapper spacing={spacing}>{navItems}</Wrapper>
-        </div>
+      <Nav
+        spacing={spacing}
+        boxShadow={boxShadow}
+        headerOffset={headerOffset}
+        footerOffset={footerOffset}>
+        <div>{navItems}</div>
       </Nav>
     </div>
   );
@@ -101,27 +100,17 @@ export const SideNav = withRouter(SideNavInternal);
 const Nav = styled("nav")<{
   spacing: StyleConstant<"spacing">;
   boxShadow: StyleConstant<"boxShadow">;
+  headerOffset: number;
+  footerOffset: number;
 }>`
-  width: ${p => p.spacing.ss64};
   display: flex;
   position: sticky;
   top: 0;
   bottom: 0;
   overflow-y: auto;
-`;
-
-// css
-const Wrapper = styled("div")<{
-  spacing: StyleConstant<"spacing">;
-}>`
-  grid-area: nav;
-  flex-grow: 1;
-  display: flex;
+  height: calc(100vh - ${p => p.headerOffset}px - ${p => p.footerOffset}px);
   flex-direction: column;
-  justify-content: flex-start;
-  overflow-y: auto;
-  width: ${p => p.spacing.ss64};
-  padding-top: ${p => p.spacing.ss4};
+  margin-top: ${p => p.spacing.ss4};
 `;
 
 const NavElement = styled("div")<{

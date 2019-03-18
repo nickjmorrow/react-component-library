@@ -28,21 +28,6 @@ const atomComponents = {
       route: "/buttons"
     },
     {
-      component: Buttons,
-      label: "Buttons",
-      route: "/buttons"
-    },
-    {
-      component: Buttons,
-      label: "Buttons",
-      route: "/buttons"
-    },
-    {
-      component: Buttons,
-      label: "Buttons",
-      route: "/buttons"
-    },
-    {
       component: SelectDemo,
       label: "Select",
       route: "/select"
