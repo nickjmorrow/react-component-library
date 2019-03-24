@@ -1,11 +1,11 @@
+import * as React from "react";
 import {
   Button,
-  IOption,
-  Select,
-  ThemeContext,
-  Typography
+  Typography,
+  GoogleButton,
+  LinkedInButton,
+  FacebookButton
 } from "react-component-library";
-import * as React from "react";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
 
@@ -13,73 +13,20 @@ export const Buttons: React.SFC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const toggleIsLoading = () => setIsLoading(!isLoading);
 
-  const { spacing, colors } = React.useContext(ThemeContext);
-
-  const options: IOption[] = [
-    {
-      label: "light",
-      value: colors.neutral.lightest
-    },
-    { label: "medium", value: colors.neutral.main },
-    { label: "dark", value: colors.neutral.dark }
-  ];
-
-  const [option, setOption] = React.useState(options[0]);
-
-  const handleChange = (newOption: IOption) => setOption(newOption);
-
-  const renderButtonGroupHeader = (header: string) => (
-    <Typography
-      sizeVariant={5}
-      colorVariant={"secondaryDark"}
-      style={{ marginBottom: spacing.ss3 }}>
-      {header}
-    </Typography>
-  );
-
-  const renderSectionHeader = (header: string) => (
-    <div>
-      <Typography
-        sizeVariant={6}
-        weightVariant={2}
-        style={{ marginBottom: spacing.ss4 }}>
-        {header}
-      </Typography>
-    </div>
-  );
-
-  const customStyle = {
-    backgroundColor: option.value as string,
-    padding: spacing.ss3
-  };
   return (
     <Wrapper>
-      <DisplayPaper customStyle={{ ...customStyle, display: "none" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            paddingBottom: spacing.ss12
-          }}>
-          <Typography sizeVariant={4}>Change Paper Color</Typography>
-          <Select
-            options={options}
-            onChange={handleChange}
-            currentOption={option}
-          />
-        </div>
-      </DisplayPaper>
-      {renderSectionHeader("Style Variants")}
-      {renderButtonGroupHeader("Primary")}
-      <DisplayPaper customStyle={customStyle}>
+      <Typography styleVariant={1}>Buttons</Typography>
+      <Typography styleVariant={2}>Style Variants</Typography>
+      <Typography styleVariant={3}>Primary</Typography>
+      <DisplayPaper>
         <Button colorVariant="core">Core</Button>
         <Button colorVariant="accent">Accent</Button>
         <Button colorVariant="success">Success</Button>
         <Button colorVariant="warning">Warning</Button>
         <Button colorVariant="danger">Danger</Button>
       </DisplayPaper>
-      {renderButtonGroupHeader("Secondary")}
-      <DisplayPaper customStyle={customStyle}>
+      <Typography styleVariant={3}>Secondary</Typography>
+      <DisplayPaper>
         <Button
           styleVariant="secondary"
           textColorVariant="core"
@@ -116,8 +63,8 @@ export const Buttons: React.SFC = () => {
           Danger
         </Button>
       </DisplayPaper>
-      {renderButtonGroupHeader("Tertiary")}
-      <DisplayPaper customStyle={customStyle}>
+      <Typography styleVariant={3}>Tertiary</Typography>
+      <DisplayPaper>
         <Button
           styleVariant="tertiary"
           textColorVariant="core"
@@ -149,9 +96,9 @@ export const Buttons: React.SFC = () => {
           Danger
         </Button>
       </DisplayPaper>
-      {renderSectionHeader("Other Props")}
-      {renderButtonGroupHeader("Loading")}
-      <DisplayPaper customStyle={customStyle}>
+      <Typography styleVariant={2}>Other Props</Typography>
+      <Typography styleVariant={3}>Loading</Typography>
+      <DisplayPaper>
         <Button
           isLoading={isLoading}
           onClick={toggleIsLoading}
@@ -166,15 +113,11 @@ export const Buttons: React.SFC = () => {
           I'm loading
         </Button>
       </DisplayPaper>
-      {renderButtonGroupHeader("Link Buttons")}
-      <DisplayPaper customStyle={customStyle}>
-        <Button colorVariant={"accent"} link={"google.com"}>
-          Google
-        </Button>
-        <Button link={"facebook.com"}>Facebook</Button>
-        <Button colorVariant={"success"} link={"instagram.com"}>
-          Instagram
-        </Button>
+      <Typography styleVariant={3}>Link Buttons</Typography>
+      <DisplayPaper>
+        <GoogleButton link={"http://google.com"}>Google</GoogleButton>
+        <FacebookButton link={"http://facebook.com"}>Facebook</FacebookButton>
+        <LinkedInButton link={"http://linkedin.com"}>LinkedIn</LinkedInButton>
       </DisplayPaper>
     </Wrapper>
   );
