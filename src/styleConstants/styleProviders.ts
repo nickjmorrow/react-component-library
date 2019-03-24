@@ -38,14 +38,6 @@ export const getIconSize = (disi: ThemeInput["icons"]["iconSizes"]) => ({
   is4: disi.is4 + "px"
 });
 
-export const getFontWeight = (
-  dfwi: ThemeInput["typography"]["fontWeights"]
-) => ({
-  fw1: `${dfwi.fw1}`,
-  fw2: `${dfwi.fw2}`,
-  fw3: `${dfwi.fw3}`
-});
-
 export const getFontSize = (dfsi: ThemeInput["typography"]["fontSizes"]) => ({
   fs1: dfsi.fs1 + "px",
   fs2: dfsi.fs2 + "px",

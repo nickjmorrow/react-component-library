@@ -18,7 +18,7 @@ const defaultNeutralPaletteInputs = {
   ...defaultCorePaletteInputs,
   saturation: 13,
   lightnessIncrement: 13,
-  middleLightness: 55,
+  middleLightness: 57,
   hue: 200 // hsl(200, 13%, 55%)
 };
 
@@ -37,7 +37,7 @@ const defaultWarningPaletteInputs = {
 
 const defaultSuccessPaletteInputs = {
   ...defaultCorePaletteInputs,
-  hue: 120, //hsl(120, 50%, 50%)
+  hue: 120, // hsl(120, 50%, 50%)
   saturation: 50
 };
 
@@ -60,9 +60,15 @@ const defaultIconSizeInputs = {
 };
 
 const defaultFontWeightInputs = {
-  fw1: 400,
-  fw2: 600,
-  fw3: 800
+  fw1: 100,
+  fw2: 200,
+  fw3: 300,
+  fw4: 400,
+  fw5: 500,
+  fw6: 600,
+  fw7: 700,
+  fw8: 800,
+  fw9: 900
 };
 
 const defaultFontSizeInputs = {

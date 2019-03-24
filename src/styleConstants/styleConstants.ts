@@ -14,7 +14,8 @@ export const fontFamily = {
 export const colorConstants = {
   background: "hsl(0, 0%, 100%)",
   transparent: "transparent",
-  shadow: "hsla(0, 0%, 0%, 0.2)"
+  shadow: "hsla(0, 0%, 0%, 0.2)",
+  inherit: "inherit"
 };
 
 export const boxShadowOffsets = {

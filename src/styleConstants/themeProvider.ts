@@ -5,7 +5,6 @@ import {
   getBorderRadius,
   getBorderStyle,
   getFontSize,
-  getFontWeight,
   getIconSize,
   getSpacingSystem,
   getBoxShadow,
@@ -20,6 +19,7 @@ export const getTheme = (themeInputs: ThemeInput) => ({
   colors: {
     background: colorConstants.background,
     transparent: colorConstants.transparent,
+    inherit: colorConstants.inherit,
     core: generateColorShades(themeInputs.colors.core),
     accent: generateColorShades(themeInputs.colors.accent),
     neutral: generateColorShades(themeInputs.colors.neutral),
@@ -36,7 +36,7 @@ export const getTheme = (themeInputs: ThemeInput) => ({
   typography: {
     fontSizes: getFontSize(themeInputs.typography.fontSizes),
     fontFamily: themeInputs.typography.fontFamily,
-    fontWeights: getFontWeight(themeInputs.typography.fontWeights)
+    fontWeights: themeInputs.typography.fontWeights
   },
   spacing: getSpacingSystem(themeInputs.spacing),
   icons: {
