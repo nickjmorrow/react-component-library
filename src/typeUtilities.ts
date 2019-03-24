@@ -14,6 +14,7 @@ export type GetComponentProps<T> = T extends
 
 export type StyleConstant<T extends keyof Theme> = Theme[T];
 
+/* tslint:disable */
 export type ArgumentType<F extends Function> = F extends (
   ...args: infer A
 ) => any
