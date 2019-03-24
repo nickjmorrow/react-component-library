@@ -7,13 +7,8 @@ import { StyleVariant } from "../../atoms/types";
 export const AppBar: React.FC<{
   styleVariant?: StyleVariant;
   onClick?: () => void;
+  children: React.ReactNode;
 }> = ({ children, styleVariant = "primary", onClick: handleClick }) => {
-  require("react-dom");
-  // @ts-ignore
-  window.React2 = require("react");
-  // @ts-ignore
-  console.log(window.React1 === window.React2);
-  console.log("yep");
   const {
     colors,
     boxShadow,
@@ -35,7 +30,7 @@ export const AppBar: React.FC<{
 
 const Inner = styled.div`
   margin: 0px 16px;
-  width: 95%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,10 +61,10 @@ const getBorderTop = (
 ) => {
   switch (styleVariant) {
     case "primary":
-    case "tertiary":
-      return "none";
     case "secondary":
       return `${borderStyle.bs3} ${colors.core.main}`;
+    case "tertiary":
+      return "none";
   }
 };
 
@@ -77,7 +72,11 @@ const getBackgroundColor = (
   colors: StyleConstant<"colors">,
   styleVariant: StyleVariant
 ) => {
-  return styleVariant === "primary"
-    ? colors.core.main
-    : colors.neutral.lightest;
+  switch (styleVariant) {
+    case "primary":
+      return colors.core.main;
+    case "secondary":
+    case "tertiary":
+      return colors.neutral.lightest;
+  }
 };

@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { Typography } from "./typography";
-import { ColorVariant, StyleVariant } from "./types";
 import { GetComponentProps } from "~/typeUtilities";
+import { ColorVariant, StyleVariant } from "./types";
+import { Typography } from "./typography";
 
 export const Link: React.SFC<{
   route: string;
-  children: React.ReactText;
+  children: React.ReactNode;
   style?: React.CSSProperties;
-  styleVariant: StyleVariant;
+  styleVariant?: StyleVariant;
   typographyProps?: GetComponentProps<typeof Typography>;
 }> = ({
   children,
@@ -18,13 +18,19 @@ export const Link: React.SFC<{
   typographyProps
 }) => {
   const customStyle = { ...defaultLinkStyle, ...style };
-  return (
+  const isExternalLink = route.split("")[0] !== "/";
+  const content = (
+    <Typography
+      colorVariant={getColorVariant(styleVariant)}
+      {...typographyProps}>
+      {children}
+    </Typography>
+  );
+  return isExternalLink ? (
+    <a href={route}>{content}</a>
+  ) : (
     <RouterLink to={route} style={customStyle}>
-      <Typography
-        colorVariant={getColorVariant(styleVariant)}
-        {...typographyProps}>
-        {children}
-      </Typography>
+      {content}
     </RouterLink>
   );
 };

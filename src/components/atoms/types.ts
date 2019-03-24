@@ -7,7 +7,9 @@ export type ColorVariant =
   | "accent"
   | "success"
   | "danger"
-  | "warning";
+  | "warning"
+  | "transparent"
+  | "inherit";
 
 export interface ColorSet {
   color: string;
@@ -16,6 +18,9 @@ export interface ColorSet {
   backgroundColor: string;
   backgroundColorHover: string;
   backgroundColorActive: string;
+  borderColor: string;
+  borderColorHover: string;
+  borderColorActive: string;
 }
 
 export type StyleVariant = "primary" | "secondary" | "tertiary";
@@ -25,3 +30,5 @@ export interface ColorState {
   hover: string;
   active: string;
 }
+
+export type UIState = "normal" | "hover" | "active";

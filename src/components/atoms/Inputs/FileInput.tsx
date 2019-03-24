@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Typography, Button, UploadIcon, FlexCenterWrapper } from "../../atoms";
 import { GetComponentProps } from "../../../typeUtilities";
+import { Omit } from "ts-essentials";
 
 interface FileInputProps {
   id?: string;
@@ -12,7 +13,7 @@ interface FileInputProps {
 }
 
 export const FileInput: React.SFC<
-  FileInputProps & GetComponentProps<typeof Button>
+  FileInputProps & Omit<GetComponentProps<typeof Button>, "children">
 > = ({
   initialLabel = "upload",
   labelOnUpload,
@@ -54,10 +55,10 @@ export const FileInput: React.SFC<
           textColorVariant={textColorVariant}
           {...buttonProps}>
           <FlexCenterWrapper>
-            <UploadIcon colorVariant={textColorVariant} sizeVariant={2} />
+            <UploadIcon colorVariant={"inherit"} sizeVariant={2} />
             <Typography
-              colorVariant={textColorVariant}
-              weightVariant={2}
+              colorVariant={"inherit"}
+              weightVariant={5}
               style={{
                 margin: "0",
                 marginLeft: "6px",

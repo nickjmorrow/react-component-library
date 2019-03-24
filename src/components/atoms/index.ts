@@ -1,4 +1,3 @@
-export { Button } from "./buttons/Button";
 export { Error } from "./Error";
 export { Link } from "./Link";
 export { DeleteButton } from "./DeleteButton";
