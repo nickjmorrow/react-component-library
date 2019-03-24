@@ -5,7 +5,6 @@ import {
   GetComponentProps,
   ThemeContext
 } from "react-component-library";
-import { Header } from "src/components/shared";
 import styled from "styled-components";
 
 type TypographyProp = GetComponentProps<typeof Typography>;
@@ -45,7 +44,10 @@ export const TypographyDemo: React.FC = () => {
 
   return (
     <>
-      <Header>Size Variants</Header>
+      <div>
+        <Typography styleVariant={1}>Typography</Typography>
+      </div>
+      <Typography styleVariant={2}>Size Variants</Typography>
       <DisplayPaper
         customStyle={{
           flexDirection: "column",
@@ -61,7 +63,7 @@ export const TypographyDemo: React.FC = () => {
           </Wrapper>
         ))}
       </DisplayPaper>
-      <Header>Color Variants</Header>
+      <Typography styleVariant={2}>Color Variants</Typography>
       <DisplayPaper
         customStyle={{
           flexDirection: "column",
@@ -70,7 +72,7 @@ export const TypographyDemo: React.FC = () => {
         }}>
         {colorVariants.map(renderColorVariant)}
       </DisplayPaper>
-      <Header>Dark Color Variants</Header>
+      <Typography styleVariant={2}>Dark Color Variants</Typography>
       <DisplayPaper
         customStyle={{
           flexDirection: "column",
@@ -79,7 +81,7 @@ export const TypographyDemo: React.FC = () => {
         }}>
         {darkColorVariants.map(renderColorVariant)}
       </DisplayPaper>
-      <Header>Light Color Variants</Header>
+      <Typography styleVariant={2}>Light Color Variants</Typography>
       <DisplayPaper
         customStyle={{
           flexDirection: "column",
@@ -102,7 +104,7 @@ const renderColorVariant = (
     <Typography
       colorVariant={colorVariant}
       sizeVariant={4}
-      weightVariant={1}
+      weightVariant={4}
       key={index}>
       {cvs[0].toLocaleUpperCase() + cvs.slice(1, cvs.length)} Color
     </Typography>

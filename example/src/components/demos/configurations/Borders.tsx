@@ -19,9 +19,10 @@ export const Borders: React.FC = () => {
   } = React.useContext(ThemeInputsContext);
   return (
     <>
-      <Typography sizeVariant={4} weightVariant={2}>
-        {"Border Radius"}
-      </Typography>
+      <div>
+        <Typography styleVariant={1}>Borders</Typography>
+      </div>
+      <Typography styleVariant={2}>Border Radius</Typography>
       <Block
         color={colors.core.main}
         spacing={spacing}

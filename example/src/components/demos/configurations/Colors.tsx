@@ -1,18 +1,17 @@
 import * as React from "react";
 import {
-  ThemeContext,
-  ColorShade,
-  Typography,
-  StyleConstant,
-  Slider,
-  ThemeInputsContext,
   ArgumentType,
+  ColorShade,
+  ExpansionPanel,
   getMergedThemeInputs,
-  ExpansionPanel
+  Slider,
+  StyleConstant,
+  ThemeContext,
+  ThemeInputsContext,
+  Typography
 } from "react-component-library";
 import styled from "styled-components";
 import { Block } from "../../shared/Block";
-import { Header } from "src/components/shared";
 
 export const Colors: React.SFC = () => {
   const {
@@ -42,7 +41,7 @@ export const Colors: React.SFC = () => {
   };
   const renderBlocks = (colorShade: ColorShade, colorName: string) => (
     <React.Fragment key={colorName}>
-      <Header>{colorName}</Header>
+      <Typography styleVariant={2}>{colorName}</Typography>
       <Blocks spacing={spacing}>
         <ColorsWrapper spacing={spacing}>
           {Object.keys(colorShade).map(shade => (
@@ -181,14 +180,17 @@ export const Colors: React.SFC = () => {
   const { core, accent, neutral, danger, warning, success } = colors;
 
   return (
-    <BlocksWrapper>
-      {renderBlocks(core, "Core")}
-      {renderBlocks(accent, "Accent")}
-      {renderBlocks(neutral, "Neutral")}
-      {renderBlocks(danger, "Danger")}
-      {renderBlocks(warning, "Warning")}
-      {renderBlocks(success, "Success")}
-    </BlocksWrapper>
+    <>
+      <Typography styleVariant={1}>Colors</Typography>
+      <BlocksWrapper>
+        {renderBlocks(core, "Core")}
+        {renderBlocks(accent, "Accent")}
+        {renderBlocks(neutral, "Neutral")}
+        {renderBlocks(danger, "Danger")}
+        {renderBlocks(warning, "Warning")}
+        {renderBlocks(success, "Success")}
+      </BlocksWrapper>
+    </>
   );
 };
 
