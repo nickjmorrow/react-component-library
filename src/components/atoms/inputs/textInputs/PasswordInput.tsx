@@ -38,7 +38,7 @@ export const PasswordInput: React.SFC<TextInputProps> = ({
         style={{
           position: "absolute",
           right: "10px",
-          top: "24px"
+          top: "14px"
         }}
         colorVariant={showPassword ? "primaryDark" : "secondaryDark"}
         sizeVariant={2}

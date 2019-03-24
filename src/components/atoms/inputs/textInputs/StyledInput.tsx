@@ -54,7 +54,7 @@ export const StyledInput: React.SFC<
         spacing={spacing}
         fontSize={fontSizes.fs3}
         fontFamily={fontFamily.default}
-        fontWeight={fontWeights.fw1}
+        fontWeights={fontWeights}
         type={type}
         transition={transitions.medium}
         borderRadius={borderRadius.br1}
@@ -87,7 +87,7 @@ export const Input = styled("input")<DisplayProps>`
   border-left-color: ${p =>
     p.hasErrors ? p.colors.danger.light : p.colors.transparent};
   type: ${p => p.type};
-  font-weight: ${p => p.fontWeight};
+  font-weight: ${p => p.fontWeights.fw4};
   font-family: ${p => p.fontFamily};
   font-size: ${p => p.fontSize};
   box-sizing: border-box;
@@ -112,7 +112,7 @@ interface DisplayProps {
   type: InputTypes;
   fontSize: string;
   fontFamily: string;
-  fontWeight: string;
+  fontWeights: StyleConstant<"typography">["fontWeights"];
   boxShadow: StyleConstant<"boxShadow">;
   spacing: StyleConstant<"spacing">;
   hasErrors: boolean;
