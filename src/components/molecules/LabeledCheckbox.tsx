@@ -55,7 +55,7 @@ const CheckboxWrapper = styled("div")<{
   border: 1px solid ${props => props.color};
   border-radius: ${p => p.borderRadius.br1};
   box-shadow: ${p => p.boxShadow.bs1};
-  transition: border ${p => p.transitions.fast};
+  transition: border ${p => p.transitions.medium};
 `;
 
 interface IProps {

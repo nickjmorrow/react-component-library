@@ -40,11 +40,11 @@ const RadioButton = styled("div")<IRadioButtonProps>`
   border-radius: ${length}px;
   border: 1px solid
     ${props =>
-      props.isChecked ? props.colors.core.main : props.colors.core.light};
+      props.isChecked ? props.colors.core.main : props.colors.neutral.dark};
   box-shadow: ${p => p.boxShadow.bs1};
   background-color: ${props =>
     props.isChecked ? props.colors.core.main : props.colors.transparent};
-  transition: background-color ${p => p.transitions.fast} ease-in-out;
+  transition: background-color ${p => p.transitions.medium} ease-in-out;
 `;
 
 interface IRadioButtonProps {
