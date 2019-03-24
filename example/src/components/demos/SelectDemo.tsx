@@ -1,4 +1,9 @@
-import { IOption, Select, ThemeContext } from "react-component-library";
+import {
+  IOption,
+  Select,
+  ThemeContext,
+  Typography
+} from "react-component-library";
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
@@ -40,6 +45,7 @@ export const SelectDemo: React.SFC = () => {
 
   return (
     <>
+      <Typography styleVariant={1}>Select</Typography>
       <DisplayPaper customStyle={paperStyles}>
         <SelectWrapper>
           <Select

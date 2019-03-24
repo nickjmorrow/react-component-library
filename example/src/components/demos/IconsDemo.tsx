@@ -9,17 +9,18 @@ import {
   StyleConstant,
   ThemeContext,
   TrashIcon,
-  UploadIcon
+  UploadIcon,
+  Typography
 } from "react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
-import { Header } from "../shared";
 
 export const IconsDemo: React.SFC = () => {
   const { spacing, colors } = React.useContext(ThemeContext);
   return (
     <Wrapper spacing={spacing}>
-      <Header>All Icons</Header>
+      <Typography styleVariant={1}>Icons</Typography>
+      <Typography styleVariant={2}>All Icons</Typography>
       <DisplayPaper>
         <IconSizes spacing={spacing}>
           <CloseIcon sizeVariant={4} />
@@ -32,7 +33,7 @@ export const IconsDemo: React.SFC = () => {
           <ChevronUpIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-      <Header>Icon Sizes</Header>
+      <Typography styleVariant={2}>Icon Sizes</Typography>
       <DisplayPaper>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={1} />
@@ -41,14 +42,14 @@ export const IconsDemo: React.SFC = () => {
           <GithubIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-      <Header>Dark Colors</Header>
+      <Typography styleVariant={2}>Dark Colors</Typography>
       <DisplayPaper>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"primaryDark"} />
           <GithubIcon sizeVariant={4} colorVariant={"secondaryDark"} />
         </IconSizes>
       </DisplayPaper>
-      <Header>Light Colors</Header>
+      <Typography styleVariant={2}>Light Colors</Typography>
       <DisplayPaper customStyle={{ backgroundColor: colors.neutral.darker }}>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"secondaryLight"} />

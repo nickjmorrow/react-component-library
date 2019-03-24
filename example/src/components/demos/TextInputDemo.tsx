@@ -1,5 +1,10 @@
 import * as React from "react";
-import { TextInput, PasswordInput, Button } from "react-component-library";
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Typography
+} from "react-component-library";
 import { DisplayPaper } from "../DisplayPaper";
 import styled from "styled-components";
 
@@ -30,22 +35,28 @@ export const TextInputDemo: React.SFC = () => {
     alignItems: "flex-start"
   };
   return (
-    <DisplayPaper customStyle={style}>
-      <InputsWrapper>
-        <TextInput
-          value={value}
-          onChange={setValue}
-          errors={errorSequence[pointer]}
-        />
-        <PasswordInput value={value} onChange={setValue} />
-      </InputsWrapper>
-      <Button onClick={toggleErrors} useMargin={false}>
-        Toggle Errors
-      </Button>
-    </DisplayPaper>
+    <>
+      <Typography styleVariant={1}>Text Input</Typography>
+      <DisplayPaper customStyle={style}>
+        <InputsWrapper>
+          <TextInput
+            value={value}
+            onChange={setValue}
+            errors={errorSequence[pointer]}
+          />
+          <PasswordInput value={value} onChange={setValue} />
+        </InputsWrapper>
+        <Button onClick={toggleErrors} useMargin={false}>
+          Toggle Errors
+        </Button>
+      </DisplayPaper>
+    </>
   );
 };
 
 const InputsWrapper = styled.div`
   margin-bottom: 24px;
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 16px;
 `;

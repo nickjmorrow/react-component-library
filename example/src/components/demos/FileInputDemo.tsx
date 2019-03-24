@@ -1,16 +1,16 @@
 import * as React from "react";
 import { useState } from "react";
-import { FileInput } from "react-component-library";
+import { FileInput, Typography } from "react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
-import { Header } from "../shared";
 
 export const FileInputDemo: React.SFC = () => {
   const setFile = useState<FileList | null>(null)[1];
   return (
     <Wrapper>
+      <Typography styleVariant={1}>File Input</Typography>
       <div>
-        <Header>Core</Header>
+        <Typography styleVariant={2}>Core</Typography>
         <DisplayPaper>
           <FileInput onChange={setFile} isLoading={false} />
           <FileInput
@@ -28,7 +28,7 @@ export const FileInputDemo: React.SFC = () => {
         </DisplayPaper>
       </div>
       <div>
-        <Header>Accent</Header>
+        <Typography styleVariant={2}>Accent</Typography>
         <DisplayPaper>
           <FileInput onChange={setFile} colorVariant={"accent"} />
           <FileInput
@@ -46,7 +46,7 @@ export const FileInputDemo: React.SFC = () => {
         </DisplayPaper>
       </div>
       <div>
-        <Header>Upload Label</Header>
+        <Typography styleVariant={2}>Upload Label</Typography>
         <DisplayPaper>
           <FileInput
             id={"uploadable"}

@@ -1,7 +1,8 @@
 import {
   AuthModal,
   Button,
-  GoogleLoginButton
+  GoogleLoginButton,
+  Typography
 } from "react-component-library";
 import * as React from "react";
 import { useState } from "react";
@@ -21,6 +22,10 @@ export const AuthModalDemo: React.SFC = () => {
 
   return (
     <>
+      <Typography styleVariant={1}>Auth Modal</Typography>
+      <Button onClick={toggleAuthModal} useMargin={false}>
+        Toggle Auth Modal
+      </Button>
       <AuthModal
         isOpen={isOpen}
         onLoginClick={defaultFunc}
@@ -38,7 +43,6 @@ export const AuthModalDemo: React.SFC = () => {
           )
         ]}
       />
-      <Button onClick={toggleAuthModal}>Toggle Auth Modal</Button>
     </>
   );
 };
