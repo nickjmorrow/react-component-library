@@ -1,5 +1,6 @@
 import { StyleConstant } from "~/index";
 import { ColorVariant } from ".";
+import { UIState } from "./types";
 
 export const getColorHover = (
   colors: StyleConstant<"colors">,
@@ -11,9 +12,9 @@ export const getColorHover = (
     case "secondaryDark":
       return colors.neutral.darker;
     case "primaryLight":
-      return colors.background;
-    case "secondaryLight":
       return colors.neutral.lightest;
+    case "secondaryLight":
+      return colors.neutral.lighter;
     case "core":
       return colors.core.light;
     case "accent":
@@ -24,8 +25,14 @@ export const getColorHover = (
       return colors.warning.light;
     case "danger":
       return colors.danger.light;
+    case "transparent":
+      return colors.transparent;
+    case "inherit":
+      return colors.inherit;
   }
 };
+
+// TODO: make exception class for Throw.if
 
 export const getColorActive = (
   colors: StyleConstant<"colors">,
@@ -37,9 +44,9 @@ export const getColorActive = (
     case "secondaryDark":
       return colors.neutral.main;
     case "primaryLight":
-      return colors.background;
+      return colors.neutral.light;
     case "secondaryLight":
-      return colors.neutral.lightest;
+      return colors.neutral.main;
     case "core":
       return colors.core.dark;
     case "accent":
@@ -50,6 +57,10 @@ export const getColorActive = (
       return colors.warning.dark;
     case "danger":
       return colors.danger.dark;
+    case "transparent":
+      return colors.transparent;
+    case "inherit":
+      return colors.inherit;
   }
 };
 
@@ -64,9 +75,9 @@ export const getColor = (
     case "secondaryDark":
       return colors.neutral.main;
     case "primaryLight":
-      return colors.background;
+      return colors.neutral.lighter;
     case "secondaryLight":
-      return colors.neutral.lightest;
+      return colors.neutral.light;
     case "core":
       return colors.core.main;
     case "accent":
@@ -77,5 +88,20 @@ export const getColor = (
       return colors.warning.main;
     case "danger":
       return colors.danger.main;
+    case "transparent":
+      return colors.transparent;
+    case "inherit":
+      return colors.inherit;
+  }
+};
+
+export const getColorFunc = (uiState: UIState) => {
+  switch (uiState) {
+    case "normal":
+      return getColor;
+    case "hover":
+      return getColorHover;
+    case "active":
+      return getColorActive;
   }
 };
