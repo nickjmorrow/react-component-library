@@ -1,26 +1,10 @@
 import * as React from "react";
-import {
-  AppBar,
-  Typography,
-  GithubIcon,
-  githubLink,
-  InvisibleLink
-} from "react-component-library";
-import { withRouter, RouterProps } from "react-router";
+import { PopulatedAppBar } from "react-component-library";
+import { RouterProps, withRouter } from "react-router";
 
 export const AppBarInternal: React.FC<RouterProps> = () => {
   return (
-    <AppBar styleVariant={"secondary"}>
-      <Typography
-        sizeVariant={6}
-        colorVariant={"primaryDark"}
-        weightVariant={3}>
-        Component Library
-      </Typography>
-      <InvisibleLink href={githubLink}>
-        <GithubIcon sizeVariant={3} colorVariant={"secondaryDark"} />
-      </InvisibleLink>
-    </AppBar>
+    <PopulatedAppBar styleVariant={"secondary"} appName={"Component Library"} />
   );
 };
 

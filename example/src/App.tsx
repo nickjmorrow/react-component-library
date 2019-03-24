@@ -17,16 +17,29 @@ import { Main } from "./Main";
 const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
   colors: {
     core: {
-      hue: 220,
-      middleLightness: 59,
-      saturation: 42
+      hue: 210,
+      middleLightness: 50,
+      saturation: 60
     },
     accent: {
-      hue: 333
+      hue: 267
+    },
+    success: {
+      hue: 148,
+      saturation: 55
+    },
+    warning: {
+      hue: 49,
+      hueDecrement: 6,
+      lightnessDecrement: 4,
+      saturation: 72
+    },
+    danger: {
+      hue: 344
     }
   },
   typography: {
-    fontFamily: { default: "Overpass, sans-serif" }
+    fontFamily: { default: "Work Sans, sans-serif" }
   }
 };
 
