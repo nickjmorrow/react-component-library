@@ -18,7 +18,7 @@ export const TwoButtonModal: React.SFC<ModalProps & IOwnProps> = ({
 }) => {
   const modalTitle =
     title && typeof title === "string" ? (
-      <Typography sizeVariant={5} weightVariant={2}>
+      <Typography sizeVariant={5} weightVariant={5}>
         {title}
       </Typography>
     ) : (

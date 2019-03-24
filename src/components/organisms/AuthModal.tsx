@@ -142,7 +142,7 @@ export const AuthModal: React.SFC<IProps> = ({
     <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
       <Typography
         sizeVariant={6}
-        weightVariant={2}
+        weightVariant={5}
         style={{ alignSelf: "flex-start" }}>
         {"Sign In"}
       </Typography>
@@ -186,6 +186,9 @@ interface IProps {
 
 const InputWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   margin-top: ${p => p.spacing.ss6};
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: ${p => p.spacing.ss2};
 `;
 
 const ButtonContainer = styled("div")<{ verticalMargin: string }>`

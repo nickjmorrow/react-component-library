@@ -132,7 +132,7 @@ const FolderLabel: React.SFC<{ spacing: StyleConstant<"spacing"> }> = ({
   children
 }) => (
   <LabelWrapper spacing={spacing}>
-    <Typography weightVariant={2}>{children}</Typography>
+    <Typography weightVariant={5}>{children}</Typography>
   </LabelWrapper>
 );
 

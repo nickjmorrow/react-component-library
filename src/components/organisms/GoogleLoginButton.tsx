@@ -8,19 +8,23 @@ export const GoogleLoginButton: React.SFC<IOwnProps> = ({
     return;
   },
   clientId
-}) => (
-  <ReactGoogleLogin
-    clientId={clientId}
-    buttonText={"Sign In With Google"}
-    onSuccess={handleSuccess}
-    render={renderButton}
-    onFailure={handleFailure}
-  />
-);
-
-const renderButton:
-  | ((props?: { onClick: () => void } | undefined) => JSX.Element)
-  | undefined = renderProps => <GoogleButton onClick={renderProps!.onClick} />;
+}) => {
+  const renderButton:
+    | ((props?: { onClick: () => void } | undefined) => JSX.Element)
+    | undefined = renderProps => (
+    <GoogleButton isFullWidth={true} onClick={renderProps!.onClick}>
+      Sign In With Google
+    </GoogleButton>
+  );
+  return (
+    <ReactGoogleLogin
+      clientId={clientId}
+      onSuccess={handleSuccess}
+      render={renderButton}
+      onFailure={handleFailure}
+    />
+  );
+};
 
 // types
 interface IOwnProps {

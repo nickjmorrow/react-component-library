@@ -11,8 +11,6 @@ export const LabeledCheckboxInput: React.SFC<IOwnProps> = ({
   options,
   text = ""
 }) => {
-  // checkArguments(options, selectedOptions);
-
   const handleClickInternal = (selectedOption: IOption) => {
     handleClick(getNewSelectedOptions(selectedOption, selectedOptions), name);
   };
