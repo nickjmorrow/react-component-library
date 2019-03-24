@@ -1,38 +1,38 @@
 import * as React from "react";
+import { Link } from "~/components/atoms";
+import PulseLoader from "react-spinners/PulseLoader";
 import styled from "styled-components";
 import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
-import { ColorVariant, ColorSet, StyleVariant, ColorState } from "../types";
-import { Typography } from "../typography/Typography";
-import { getBackgroundColorState, getBorderColorState } from "./buttonServices";
-import { ButtonColorVariant } from "./types";
-import PulseLoader from "react-spinners/PulseLoader";
 import { Fade } from "../../animations";
-import { Link } from "react-router-dom";
-import { getColor } from "../atomServices";
+import { getColorFunc } from "../atomServices";
+import { ColorSet, ColorVariant, StyleVariant } from "../types";
+import { getFormattedTextNode } from "../typography";
+import { getBackgroundColor, getBorderColor, getColor } from "./buttonServices";
 
 interface IDisplayProps {
+  colorVariant: ColorVariant;
+  styleVariant: StyleVariant;
+  colorSet: ColorSet;
   showBoxShadow?: boolean;
   useMargin?: boolean;
   style?: React.CSSProperties;
-  backgroundColorState: ColorState;
-  borderColorState: ColorState;
   boxShadow: StyleConstant<"boxShadow">;
   border: StyleConstant<"border">;
+  colors: StyleConstant<"colors">;
+  spacing: StyleConstant<"spacing">;
   transition: string;
   isFullWidth: boolean;
-  styleVariant: StyleVariant;
-  spacing: StyleConstant<"spacing">;
   width: number;
   height: number;
 }
 
 type IButtonProps = {
   textColorVariant?: ColorVariant;
-  colorVariant?: ButtonColorVariant;
+  colorVariant?: ColorVariant;
   styleVariant?: StyleVariant;
   route?: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
   colorSet?: Partial<ColorSet>;
   isFullWidth?: boolean;
   isLoading?: boolean;
@@ -56,32 +56,19 @@ export const Button: React.SFC<IButtonProps> = ({
     return;
   }
 }) => {
-  const typographyColorSet =
-    styleVariant === "primary"
-      ? colorSet
-      : {
-          color: colorSet.backgroundColor,
-          colorHover: colorSet.backgroundColorHover,
-          colorActive: colorSet.backgroundColorActive
-        };
-  const formattedChildren =
-    typeof children === "string" ? (
-      <Typography
-        colorVariant={textColorVariant}
-        sizeVariant={2}
-        weightVariant={2}
-        isInteractive={true}
-        colorSet={typographyColorSet}
-        style={{ textTransform: "uppercase" }}>
-        {children}
-      </Typography>
-    ) : (
-      children
-    );
-
   const { colors, transitions, boxShadow, spacing, border } = React.useContext(
     ThemeContext
   );
+
+  const formattedChildren = getFormattedTextNode(children, {
+    colorVariant: "inherit",
+    sizeVariant: 2,
+    weightVariant: 5,
+    isInteractive: false,
+    style: {
+      textTransform: "uppercase"
+    }
+  });
 
   const innerWrapperRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
@@ -97,20 +84,6 @@ export const Button: React.SFC<IButtonProps> = ({
     }
   }
 
-  const backgroundColorState = getBackgroundColorState(
-    colors,
-    colorVariant,
-    colorSet,
-    styleVariant
-  );
-
-  const borderColorState = getBorderColorState(
-    colors,
-    colorVariant,
-    colorSet,
-    styleVariant
-  );
-
   const loadingFade = (
     <>
       <Fade
@@ -118,7 +91,7 @@ export const Button: React.SFC<IButtonProps> = ({
         style={{ position: "absolute" }}
         transitionVariant={"medium"}>
         <PulseLoader
-          color={getColor(colors, textColorVariant)}
+          color={getColorFunc("normal")(colors, textColorVariant)}
           size={8}
           sizeUnit={"px"}
         />
@@ -131,27 +104,28 @@ export const Button: React.SFC<IButtonProps> = ({
 
   const content = (
     <StyledButton
+      colorVariant={colorVariant}
+      styleVariant={styleVariant}
+      colorSet={colorSet}
+      colors={colors}
       isFullWidth={isFullWidth}
       width={width}
       height={height}
-      backgroundColorState={backgroundColorState}
-      borderColorState={borderColorState}
       showBoxShadow={showBoxShadow}
       useMargin={useMargin}
       onClick={handleClick}
       transition={transitions.medium}
       border={border}
-      styleVariant={styleVariant}
       boxShadow={boxShadow}
       spacing={spacing}>
       <InnerWrapper width={width} height={height} ref={innerWrapperRef}>
-        {isLoading != undefined ? loadingFade : formattedChildren}
+        {isLoading !== undefined ? loadingFade : formattedChildren}
       </InnerWrapper>
     </StyledButton>
   );
 
   return link ? (
-    <Link to={link} style={{ textDecoration: "none" }}>
+    <Link route={link} style={{ textDecoration: "none" }}>
       {content}
     </Link>
   ) : (
@@ -170,11 +144,18 @@ const InnerWrapper = styled("div")<{ width: number; height: number }>`
 const StyledButton = styled("button")<
   IDisplayProps & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
 >`
-  color: ${p => (p.styleVariant === "secondary" ? p.backgroundColor : p.color)};
-  background-color: ${p => p.backgroundColorState.normal};
+  border: ${p => p.border.borderStyle.bs2};
+  color: ${p =>
+    p.colorSet.color ||
+    getColor(p.colors, p.colorVariant, p.styleVariant, "normal")};
+  background-color: ${p =>
+    p.colorSet.backgroundColor ||
+    getBackgroundColor(p.colors, p.colorVariant, p.styleVariant, "normal")};
+  border-color: ${p =>
+    p.colorSet.borderColor ||
+    getBorderColor(p.colors, p.colorVariant, p.styleVariant, "normal")};
   border-radius: ${props => props.border.borderRadius.br1};
-  border: ${p => `${p.border.borderStyle.bs2} ${p.borderColorState.normal}`};
-  padding: ${p => p.spacing.ss3 + " " + p.spacing.ss4};
+  padding: ${p => `${p.spacing.ss3} ${p.spacing.ss4}`};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,23 +165,34 @@ const StyledButton = styled("button")<
   word-wrap: no-wrap;
   box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs2};
   min-width: ${p => p.width}px;
-  min-height: ${p => p.height}px;
+  min-height: ${p => p.height} / px;
   height: max-content;
   ${p => (p.isFullWidth ? "width: 100%" : "")}
-  transition: box-shadow ${p => p.transition},
-    background-color ${p => p.transition}, border-color ${p => p.transition};
+  transition-property: box-shadow, background-color, border-color;
+  transition: ${p => p.transition};
   &:hover {
-    border-color: ${p => p.borderColorState.hover};
-    background-color: ${p => p.backgroundColorState.hover};
+    border-color: ${p =>
+      p.colorSet.borderColorHover ||
+      getBorderColor(p.colors, p.colorVariant, p.styleVariant, "hover")};
+    background-color: ${p =>
+      p.colorSet.backgroundColorHover ||
+      getBackgroundColor(p.colors, p.colorVariant, p.styleVariant, "hover")};
     color: ${p =>
-      p.styleVariant === "secondary" ? p.backgroundColorHover : p.colorHover};
+      p.colorSet.colorHover ||
+      getColor(p.colors, p.colorVariant, p.styleVariant, "hover")};
     box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs1};
     transition: all ${props => props.transition} ease-in-out;
   }
   &:active {
-    border-color: ${p => p.borderColorState.active};
-    background-color: ${p => p.backgroundColorState.active};
-    color: ${props => props.colorActive};
+    border-color: ${p =>
+      p.colorSet.borderColorActive ||
+      getBorderColor(p.colors, p.colorVariant, p.styleVariant, "active")};
+    background-color: ${p =>
+      p.colorSet.backgroundColorActive ||
+      getBackgroundColor(p.colors, p.colorVariant, p.styleVariant, "active")};
+    color: ${p =>
+      p.colorSet.colorActive ||
+      getColor(p.colors, p.colorVariant, p.styleVariant, "active")};
     transition: all ${props => props.transition} ease-in-out;
   }
 `;
