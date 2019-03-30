@@ -35,15 +35,15 @@ const Wrapper = styled("div")<{
 }>`
   height: ${height}px;
   width: ${width}px;
-  background-color: ${p => p.colors.core.main};
+  background-color: ${p => p.colors.core.cs5};
   cursor: pointer;
   border-radius: 20px;
   display: flex;
   align-items: center;
   padding: 0px 4px;
-  box-shadow: ${p => p.colors.neutral.dark} 0px 1px 2px -1px;
+  box-shadow: ${p => p.colors.neutral.cs6} 0px 1px 2px -1px;
   &:hover {
-    background-color: ${p => p.colors.core.light};
+    background-color: ${p => p.colors.neutral.cs3};
     transition: ${p => p.transitions.fast};
   }
 `;
@@ -59,13 +59,13 @@ const Switch = styled("div")<{
   left: -2px;
   border-radius: ${height}px;
   transform: ${props => `translateX(${props.isToggled ? "120%" : "0%"})`};
-  background-color: ${p => p.colors.neutral.light};
+  background-color: ${p => p.colors.neutral.cs3};
   transition: transform ${p => p.transitions.fast} ease-in-out;
-  box-shadow: ${p => p.colors.neutral.dark} 1px 0px 2px -1px,
-    ${p => p.colors.neutral.dark} -1px 0px 2px -1px,
-    ${p => p.colors.neutral.dark} 0px 1px 2px -1px,
-    ${p => p.colors.neutral.dark} 0px -1px 2px -1px;
+  box-shadow: ${p => p.colors.neutral.cs6} 1px 0px 2px -1px,
+    ${p => p.colors.neutral.cs6} -1px 0px 2px -1px,
+    ${p => p.colors.neutral.cs6} 0px 1px 2px -1px,
+    ${p => p.colors.neutral.cs6} 0px -1px 2px -1px;
   &:hover {
-    background-color: ${p => p.colors.neutral.light};
+    background-color: ${p => p.colors.neutral.cs3};
   }
 `;

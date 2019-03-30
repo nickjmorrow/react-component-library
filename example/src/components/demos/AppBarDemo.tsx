@@ -5,7 +5,8 @@ import {
   PopulatedAppBar,
   StyleConstant,
   ThemeContext,
-  Typography
+  Typography,
+  ColorVariant
 } from "react-component-library";
 import styled from "styled-components";
 
@@ -49,34 +50,25 @@ export const AppBarDemo: React.FC = () => {
       <SectionWrapper spacing={spacing}>
         <Typography styleVariant={2}>Primary</Typography>
         <AppBar styleVariant={"primary"}>
-          <Typography
-            sizeVariant={5}
-            weightVariant={5}
-            colorVariant={"primaryLight"}>
+          <AppNameTypography colorVariant={"primaryLight"}>
             My AppBar
-          </Typography>
+          </AppNameTypography>
         </AppBar>
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
         <Typography styleVariant={2}>Secondary</Typography>
         <AppBar styleVariant={"secondary"}>
-          <Typography
-            sizeVariant={5}
-            weightVariant={5}
-            colorVariant={"primaryDark"}>
+          <AppNameTypography colorVariant={"primaryDark"}>
             My AppBar
-          </Typography>
+          </AppNameTypography>
         </AppBar>
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
         <Typography styleVariant={2}>Tertiary</Typography>
         <AppBar styleVariant={"tertiary"}>
-          <Typography
-            sizeVariant={5}
-            weightVariant={5}
-            colorVariant={"primaryDark"}>
+          <AppNameTypography colorVariant={"primaryDark"}>
             My AppBar
-          </Typography>
+          </AppNameTypography>
         </AppBar>
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
@@ -85,12 +77,9 @@ export const AppBarDemo: React.FC = () => {
           appName={"With Components"}
           styleVariant={"tertiary"}
           rightComponents={rightComponents}>
-          <Typography
-            sizeVariant={5}
-            weightVariant={5}
-            colorVariant={"primaryDark"}>
+          <AppNameTypography colorVariant={"primaryDark"}>
             My AppBar
-          </Typography>
+          </AppNameTypography>
         </PopulatedAppBar>
       </SectionWrapper>
     </Wrapper>
@@ -105,3 +94,11 @@ const Wrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
 const SectionWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   margin-bottom: ${p => p.spacing.ss8};
 `;
+
+const AppNameTypography: React.FC<{ colorVariant: ColorVariant }> = ({
+  colorVariant
+}) => (
+  <Typography sizeVariant={6} weightVariant={5} colorVariant={colorVariant}>
+    My AppBar
+  </Typography>
+);

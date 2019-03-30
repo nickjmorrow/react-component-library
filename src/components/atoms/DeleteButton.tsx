@@ -4,6 +4,7 @@ import { ThemeContext } from "../../styleConstants";
 import { TrashIcon } from "./icons/TrashIcon";
 import { StyleConstant } from "../../typeUtilities";
 
+// TODO: do something about this / move it elsewhere / generalize it
 export const DeleteButton: React.SFC<{ onClick: () => void }> = ({
   onClick: handleClick
 }) => {
@@ -36,7 +37,7 @@ const StyledDeleteButton = styled("div")<DisplayProps>`
   width: ${props => props.spacing.ss2};
   height: ${props => props.spacing.ss2};
   border-radius: ${props => props.borderRadius}px;
-  background-color: ${p => p.colors.core.dark};
+  background-color: ${p => p.colors.core.cs7};
   display: flex;
   justify-content: center;
   align-items: center;

@@ -87,7 +87,7 @@ export const TypographyDemo: React.FC = () => {
           flexDirection: "column",
           alignItems: "flex-start",
           height: "100px",
-          backgroundColor: colors.neutral.dark
+          backgroundColor: colors.neutral.cs6
         }}>
         {lightColorVariants.map(renderColorVariant)}
       </DisplayPaper>

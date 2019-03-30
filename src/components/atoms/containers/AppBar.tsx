@@ -62,7 +62,7 @@ const getBorderTop = (
   switch (styleVariant) {
     case "primary":
     case "secondary":
-      return `${borderStyle.bs3} ${colors.core.main}`;
+      return `${borderStyle.bs3} ${colors.core.cs5}`;
     case "tertiary":
       return "none";
   }
@@ -74,9 +74,9 @@ const getBackgroundColor = (
 ) => {
   switch (styleVariant) {
     case "primary":
-      return colors.core.main;
+      return colors.core.cs5;
     case "secondary":
     case "tertiary":
-      return colors.neutral.lightest;
+      return colors.neutral.cs2;
   }
 };

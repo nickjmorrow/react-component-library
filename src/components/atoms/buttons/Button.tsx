@@ -9,6 +9,8 @@ import { getColorFunc } from "../atomServices";
 import { ColorSet, ColorVariant, StyleVariant } from "../types";
 import { getFormattedTextNode } from "../typography";
 import { getBackgroundColor, getBorderColor, getColor } from "./buttonServices";
+/* tslint:disable-next-line */
+const equal = require("fast-deep-equal");
 
 interface IDisplayProps {
   colorVariant: ColorVariant;
@@ -41,97 +43,125 @@ type IButtonProps = {
 } & Partial<IDisplayProps> &
   Partial<ColorSet>;
 
-export const Button: React.SFC<IButtonProps> = ({
-  children,
-  colorVariant = "core",
-  textColorVariant = "primaryLight",
-  styleVariant = "primary",
-  showBoxShadow = true,
-  useMargin = true,
-  isFullWidth = false,
-  isLoading,
-  link,
-  colorSet = {} as ColorSet,
-  onClick: handleClick = () => {
-    return;
+export const Button: React.SFC<IButtonProps> = React.memo(
+  ({
+    children,
+    colorVariant = "core" as ColorVariant,
+    textColorVariant = "primaryLight" as ColorVariant,
+    styleVariant = "primary" as StyleVariant,
+    showBoxShadow = true,
+    useMargin = true,
+    isFullWidth = false,
+    isLoading,
+    link,
+    colorSet = {} as ColorSet,
+    onClick: handleClick = () => {
+      return;
+    }
+  }) => {
+    const {
+      colors,
+      transitions,
+      boxShadow,
+      spacing,
+      border
+    } = React.useContext(ThemeContext);
+
+    const formattedChildren = getFormattedTextNode(children, {
+      colorVariant: "inherit",
+      sizeVariant: 2,
+      weightVariant: 5,
+      isInteractive: false,
+      style: {
+        textTransform: "uppercase"
+      }
+    });
+
+    const innerWrapperRef = React.useRef<HTMLDivElement>(null);
+    const [width, setWidth] = React.useState(0);
+    const [height, setHeight] = React.useState(0);
+
+    if (innerWrapperRef && innerWrapperRef.current) {
+      if (innerWrapperRef.current.clientWidth > width) {
+        setWidth(innerWrapperRef.current.clientWidth);
+      }
+
+      if (innerWrapperRef.current.clientHeight > height) {
+        setHeight(innerWrapperRef.current.clientHeight);
+      }
+    }
+
+    const loadingFade = (
+      <>
+        <Fade
+          in={isLoading as boolean}
+          style={{ position: "absolute" }}
+          transitionVariant={"medium"}>
+          <PulseLoader
+            color={getColorFunc("normal")(colors, textColorVariant)}
+            size={8}
+            sizeUnit={"px"}
+          />
+        </Fade>
+        <Fade in={!isLoading} transitionVariant={"medium"}>
+          {formattedChildren}
+        </Fade>
+      </>
+    );
+
+    const content = (
+      <StyledButton
+        colorVariant={colorVariant}
+        styleVariant={styleVariant}
+        colorSet={colorSet}
+        colors={colors}
+        isFullWidth={isFullWidth}
+        width={width}
+        height={height}
+        showBoxShadow={showBoxShadow}
+        useMargin={useMargin}
+        onClick={handleClick}
+        transition={transitions.medium}
+        border={border}
+        boxShadow={boxShadow}
+        spacing={spacing}>
+        <InnerWrapper width={width} height={height} ref={innerWrapperRef}>
+          {isLoading !== undefined ? loadingFade : formattedChildren}
+        </InnerWrapper>
+      </StyledButton>
+    );
+
+    return link ? (
+      <Link route={link} style={{ textDecoration: "none" }}>
+        {content}
+      </Link>
+    ) : (
+      content
+    );
+  },
+  (prevProps, nextProps) => {
+    return (
+      prevProps.textColorVariant === nextProps.textColorVariant &&
+      prevProps.colorVariant === nextProps.colorVariant &&
+      prevProps.styleVariant === nextProps.styleVariant &&
+      prevProps.route === nextProps.route &&
+      equal(prevProps.colorSet, nextProps.colorSet) &&
+      prevProps.isFullWidth === nextProps.isFullWidth &&
+      prevProps.isLoading === nextProps.isLoading &&
+      prevProps.link === nextProps.link
+    );
   }
-}) => {
-  const { colors, transitions, boxShadow, spacing, border } = React.useContext(
-    ThemeContext
-  );
+);
 
-  const formattedChildren = getFormattedTextNode(children, {
-    colorVariant: "inherit",
-    sizeVariant: 2,
-    weightVariant: 5,
-    isInteractive: false,
-    style: {
-      textTransform: "uppercase"
-    }
-  });
-
-  const innerWrapperRef = React.useRef<HTMLDivElement>(null);
-  const [width, setWidth] = React.useState(0);
-  const [height, setHeight] = React.useState(0);
-
-  if (innerWrapperRef && innerWrapperRef.current) {
-    if (innerWrapperRef.current.clientWidth > width) {
-      setWidth(innerWrapperRef.current.clientWidth);
-    }
-
-    if (innerWrapperRef.current.clientHeight > height) {
-      setHeight(innerWrapperRef.current.clientHeight);
-    }
-  }
-
-  const loadingFade = (
-    <>
-      <Fade
-        in={isLoading as boolean}
-        style={{ position: "absolute" }}
-        transitionVariant={"medium"}>
-        <PulseLoader
-          color={getColorFunc("normal")(colors, textColorVariant)}
-          size={8}
-          sizeUnit={"px"}
-        />
-      </Fade>
-      <Fade in={!isLoading} transitionVariant={"medium"}>
-        {formattedChildren}
-      </Fade>
-    </>
-  );
-
-  const content = (
-    <StyledButton
-      colorVariant={colorVariant}
-      styleVariant={styleVariant}
-      colorSet={colorSet}
-      colors={colors}
-      isFullWidth={isFullWidth}
-      width={width}
-      height={height}
-      showBoxShadow={showBoxShadow}
-      useMargin={useMargin}
-      onClick={handleClick}
-      transition={transitions.medium}
-      border={border}
-      boxShadow={boxShadow}
-      spacing={spacing}>
-      <InnerWrapper width={width} height={height} ref={innerWrapperRef}>
-        {isLoading !== undefined ? loadingFade : formattedChildren}
-      </InnerWrapper>
-    </StyledButton>
-  );
-
-  return link ? (
-    <Link route={link} style={{ textDecoration: "none" }}>
-      {content}
-    </Link>
-  ) : (
-    content
-  );
-};
+// textColorVariant?: ColorVariant;
+// colorVariant?: ColorVariant;
+// styleVariant?: StyleVariant;
+// route?: string;
+// children: React.ReactNode;
+// colorSet?: Partial<ColorSet>;
+// isFullWidth?: boolean;
+// isLoading?: boolean;
+// link?: string;
 
 const InnerWrapper = styled("div")<{ width: number; height: number }>`
   min-width: ${p => p.width}px;

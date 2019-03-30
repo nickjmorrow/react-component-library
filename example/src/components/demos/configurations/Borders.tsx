@@ -24,7 +24,7 @@ export const Borders: React.FC = () => {
       </div>
       <Typography styleVariant={2}>Border Radius</Typography>
       <Block
-        color={colors.core.main}
+        color={colors.core.cs5}
         spacing={spacing}
         borderRadius={borderRadius}
       />

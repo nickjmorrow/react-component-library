@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Paper, ThemeContext } from "react-component-library";
+/* tslint:disable-next-line */
 
-export const DisplayPaper: React.SFC<{ customStyle?: React.CSSProperties }> = ({
-  children,
-  customStyle
-}) => {
+export const DisplayPaper: React.SFC<{
+  customStyle?: React.CSSProperties;
+}> = ({ children, customStyle }) => {
   const { spacing } = React.useContext(ThemeContext);
   const style = {
     marginBottom: spacing.ss12,

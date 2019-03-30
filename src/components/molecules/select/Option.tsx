@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Typography } from "../typography/Typography";
-import { ThemeContext } from "../../../styleConstants";
-import { IOption } from "../../../types";
-import { StyleConstant } from "../../../typeUtilities";
+import { Typography } from "~/components/atoms/typography";
+import { ThemeContext } from "~/styleConstants";
+import { IOption } from "~/types";
+import { StyleConstant } from "~/typeUtilities";
 
 export const Option: React.SFC<{
   option: IOption;
@@ -41,7 +41,7 @@ const StyledOption = styled("div")<{
   cursor: pointer;
   transition: background-color ${p => p.transitions.fast};
   &:hover {
-    background-color: ${p => p.colors.neutral.lightest};
+    background-color: ${p => p.colors.neutral.cs3};
     transition: background-color ${p => p.transitions.fast};
     border-radius: ${p => p.borderRadius.br1};
   }

@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { IOption } from "../../../types";
-import { Typography } from "../typography/Typography";
-import { ThemeContext } from "../../../styleConstants";
+import { IOption } from "~/types";
+import { Typography, Fade } from "~/components";
+import { ThemeContext } from "~/styleConstants";
 import { Option } from "./Option";
-import { Fade } from "../../animations/Fade";
-import { StyleConstant } from "../../../typeUtilities";
+
+import { StyleConstant } from "~/typeUtilities";
 
 export const Select: React.SFC<OwnProps> = ({
   onChange: handleChange,
@@ -19,7 +19,7 @@ export const Select: React.SFC<OwnProps> = ({
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const toggleIsMenuVisible = () => {
-    setIsMenuVisible(isMenuVisible => !isMenuVisible);
+    setIsMenuVisible(currentIsMenuVisible => !currentIsMenuVisible);
   };
 
   const closeMenu = () => setIsMenuVisible(false);
@@ -122,20 +122,20 @@ const StyledSelect = styled("div")<{
   padding: ${p => p.spacing.ss2};
   border-bottom: ${p =>
     `${p.border.borderStyle.bs2} ${
-      p.isMenuVisible ? p.colors.core.main : p.colors.neutral.main
+      p.isMenuVisible ? p.colors.core.cs5 : p.colors.neutral.cs5
     }`};
   transition: border-bottom ${p => p.transitions.medium};
   &:hover {
     border-bottom: ${p =>
       `${p.border.borderStyle.bs2} ${
-        p.isMenuVisible ? p.colors.core.main : p.colors.neutral.darker
+        p.isMenuVisible ? p.colors.core.cs5 : p.colors.neutral.cs7
       }`};
     transition: border-bottom ${p => p.transitions.medium};
     cursor: pointer;
   }
   &:focus,
   &:active {
-    border-bottom: ${p => p.border.borderStyle.bs2} ${p => p.colors.core.main};
+    border-bottom: ${p => p.border.borderStyle.bs2} ${p => p.colors.core.cs5};
     transition: border-bottom ${p => p.transitions.medium};
   }
 `;

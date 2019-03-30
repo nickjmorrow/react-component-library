@@ -9,7 +9,8 @@ export type ColorVariant =
   | "danger"
   | "warning"
   | "transparent"
-  | "inherit";
+  | "inherit"
+  | "background";
 
 export interface ColorSet {
   color: string;

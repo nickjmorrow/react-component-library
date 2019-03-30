@@ -6,6 +6,7 @@ const defaultCorePaletteInputs = {
   lightnessIncrement: 10,
   lightnessDecrement: 10,
   saturation: 55,
+  saturationIncrement: 5,
   hueDecrement: 0
 };
 
@@ -16,10 +17,11 @@ const defaultAccentPaletteInputs = {
 
 const defaultNeutralPaletteInputs = {
   ...defaultCorePaletteInputs,
-  saturation: 13,
-  lightnessIncrement: 13,
-  middleLightness: 57,
-  hue: 200 // hsl(200, 13%, 55%)
+  saturation: 10,
+  middleLightness: 60,
+  lightnessIncrement: 12,
+  lightnessDecrement: 10,
+  hue: 200 // hsl(200, 10%, 50%)
 };
 
 const defaultDangerPaletteInputs = {

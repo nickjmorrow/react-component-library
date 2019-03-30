@@ -5,13 +5,14 @@ import { ThemeContext } from "../../styleConstants";
 import { StyleConstant } from "../../typeUtilities";
 import { Link, Typography } from "../atoms";
 import { Collapse } from "react-collapse";
+/* tslint:disable-next-line */
+const equal = require("fast-deep-equal");
 
 const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
   navInfos,
   location
 }) => {
-  const { pathname } = location;
-  const getIsCurrentPathname = (route: string) => route === pathname;
+  const { pathname: currentRoute } = location;
   const { colors, transitions, spacing, boxShadow } = React.useContext(
     ThemeContext
   );
@@ -25,7 +26,9 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
         key={`nav-element-${i}`}>
         <Link
           route={navLink.route}
-          styleVariant={pathname === navLink.route ? "primary" : "secondary"}
+          styleVariant={
+            currentRoute === navLink.route ? "primary" : "secondary"
+          }
           typographyProps={{ style: { marginLeft: spacing.ss8 } }}
           style={{
             width: "100%",
@@ -53,7 +56,7 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
           folderInfo={navInfo}
           renderNavLink={renderNavLink}
           key={`folder-${i}`}
-          getIsCurrentPathname={getIsCurrentPathname}
+          currentRoute={currentRoute}
         />
       ) : (
         renderNavLink(navInfo, i)
@@ -122,7 +125,7 @@ const NavElement = styled("div")<{
   width: ${p => p.spacing.ss64};
   transition: background-color ${p => p.transitions.medium};
   &:hover {
-    background-color: ${p => p.colors.neutral.lightest};
+    background-color: ${p => p.colors.neutral.cs2};
     transition: background-color ${p => p.transitions.medium};
   }
 `;
@@ -144,34 +147,58 @@ const LabelWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
 const Folder: React.SFC<{
   folderInfo: FolderInfo;
   renderNavLink: (navInfo: INavLink, i: number) => React.ReactNode;
-  getIsCurrentPathname: (route: string) => boolean;
-}> = ({ folderInfo, renderNavLink, getIsCurrentPathname }) => {
-  const initialExpansionState = folderInfo.navLinks
-    .map(nl => nl.route)
-    .reduce((agg, cur) => {
-      return agg || getIsCurrentPathname(cur);
-    }, false);
-  const [isExpanded, setIsExpanded] = React.useState(initialExpansionState);
-  const toggleIsExpanded = () => setIsExpanded(prev => !prev);
-  const { spacing, colors, transitions } = React.useContext(ThemeContext);
-  const innerNavLinkRef = React.useRef<HTMLDivElement>(null);
-  return (
-    <>
-      <NavElement
-        spacing={spacing}
-        colors={colors}
-        transitions={transitions}
-        onClick={toggleIsExpanded}>
-        <FolderLabel spacing={spacing}>{folderInfo.label}</FolderLabel>
-      </NavElement>
-      <Collapse isOpened={isExpanded} springConfig={{ stiffness: 220 }}>
-        <div ref={innerNavLinkRef}>
-          {folderInfo.navLinks.map(renderNavLink)}
-        </div>
-      </Collapse>
-    </>
-  );
-};
+  currentRoute: string;
+}> = React.memo(
+  ({ folderInfo, renderNavLink, currentRoute }) => {
+    const initialExpansionState = folderInfo.navLinks
+      .map(nl => nl.route)
+      .reduce((agg, cur) => {
+        return agg || currentRoute === cur;
+      }, false);
+    const [isExpanded, setIsExpanded] = React.useState(initialExpansionState);
+    const toggleIsExpanded = () => setIsExpanded(prev => !prev);
+    const { spacing, colors, transitions } = React.useContext(ThemeContext);
+    const innerNavLinkRef = React.useRef<HTMLDivElement>(null);
+    return (
+      <>
+        <NavElement
+          spacing={spacing}
+          colors={colors}
+          transitions={transitions}
+          onClick={toggleIsExpanded}>
+          <FolderLabel spacing={spacing}>{folderInfo.label}</FolderLabel>
+        </NavElement>
+        <Collapse isOpened={isExpanded} springConfig={{ stiffness: 220 }}>
+          <div ref={innerNavLinkRef}>
+            {folderInfo.navLinks.map(renderNavLink)}
+          </div>
+        </Collapse>
+      </>
+    );
+  },
+  (prevProps, nextProps) => {
+    const doesFolderContainChangingLink = (
+      folderInfo: FolderInfo,
+      folderPrevProps: typeof prevProps,
+      folderNextProps: typeof nextProps
+    ) =>
+      folderInfo.navLinks.some(
+        nl =>
+          nl.route === folderNextProps.currentRoute ||
+          nl.route === folderPrevProps.currentRoute
+      );
+
+    return (
+      equal(prevProps.folderInfo, nextProps.folderInfo) &&
+      !doesFolderContainChangingLink(
+        nextProps.folderInfo,
+        prevProps,
+        nextProps
+      ) &&
+      !doesFolderContainChangingLink(prevProps.folderInfo, prevProps, nextProps)
+    );
+  }
+);
 
 // types
 export type NavItemProps = { label: string; route?: string };

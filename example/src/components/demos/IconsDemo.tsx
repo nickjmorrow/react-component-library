@@ -50,7 +50,7 @@ export const IconsDemo: React.SFC = () => {
         </IconSizes>
       </DisplayPaper>
       <Typography styleVariant={2}>Light Colors</Typography>
-      <DisplayPaper customStyle={{ backgroundColor: colors.neutral.darker }}>
+      <DisplayPaper customStyle={{ backgroundColor: colors.neutral.cs7 }}>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"secondaryLight"} />
           <GithubIcon sizeVariant={4} colorVariant={"primaryLight"} />

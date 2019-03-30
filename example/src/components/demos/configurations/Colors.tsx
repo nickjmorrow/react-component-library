@@ -171,6 +171,25 @@ export const Colors: React.SFC = () => {
                   }
                 />
               </ColorInput>
+              <ColorInput spacing={spacing}>
+                <Typography>Saturation Increment: </Typography>
+                <Slider
+                  min={0}
+                  max={100}
+                  value={
+                    themeInputs.colors![
+                      colorName.toLowerCase() as keyof typeof colors
+                    ]!.saturationIncrement
+                  }
+                  onChange={value =>
+                    handleChange(
+                      value,
+                      "saturationIncrement",
+                      colorName.toLowerCase() as keyof typeof colors
+                    )
+                  }
+                />
+              </ColorInput>
             </Parameters>
           }
         />

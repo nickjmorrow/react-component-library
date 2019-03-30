@@ -1,6 +1,5 @@
-export { LabelWithIcon } from "./LabelWithIcon";
-export { LabeledCheckbox } from "./LabeledCheckbox";
-export { LabeledRadioButton } from "./LabeledRadioButton";
-export { VerticalNavMenu } from "./VerticalNavMenu";
-export { Footer } from "./Footer";
 export { ExpansionPanel } from "./ExpansionPanel";
+export { LabelWithIcon } from "./LabelWithIcon";
+export { VerticalNavMenu } from "./VerticalNavMenu";
+export * from "./inputs";
+export * from "./select";

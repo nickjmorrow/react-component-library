@@ -32,7 +32,7 @@ interface DisplayProps {
 }
 
 const StyledFooter = styled("footer")<DisplayProps>`
-  background-color: ${p => p.colors.neutral.lightest};
+  background-color: ${p => p.colors.neutral.cs2};
   display: flex;
   align-items: center;
   justify-content: space-between;

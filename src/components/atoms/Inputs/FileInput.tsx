@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { Typography, Button, UploadIcon, FlexCenterWrapper } from "../../atoms";
-import { GetComponentProps } from "../../../typeUtilities";
 import { Omit } from "ts-essentials";
+import { GetComponentProps } from "../../../typeUtilities";
+import { Button, Typography, UploadIcon } from "../../atoms";
 
 interface FileInputProps {
   id?: string;
@@ -54,7 +54,12 @@ export const FileInput: React.SFC<
           onClick={handleButtonClick}
           textColorVariant={textColorVariant}
           {...buttonProps}>
-          <FlexCenterWrapper>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
             <UploadIcon colorVariant={"inherit"} sizeVariant={2} />
             <Typography
               colorVariant={"inherit"}
@@ -66,7 +71,7 @@ export const FileInput: React.SFC<
               }}>
               {label}
             </Typography>
-          </FlexCenterWrapper>
+          </div>
         </Button>
       </label>
     </div>

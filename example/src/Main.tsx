@@ -158,6 +158,3 @@ const RoutesWrapper = styled.div`
   margin: 36px;
   width: 100%;
 `;
-
-// TODO: why are all components being rendered
-// and not just those matched to the current route?

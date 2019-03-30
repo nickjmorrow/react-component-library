@@ -51,7 +51,7 @@ export const PopulatedAppBar: React.SFC<{
 const getColorVariant = (styleVariant: StyleVariant): ColorVariant => {
   switch (styleVariant) {
     case "primary":
-      return "secondaryLight";
+      return "background";
     case "secondary":
     case "tertiary":
       return "primaryDark";

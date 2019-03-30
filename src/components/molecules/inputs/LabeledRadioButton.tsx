@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import { InputWrapper, LabeledInputWrapper } from "../atoms/inputs";
-import { Typography } from "../atoms/typography/Typography";
-import { ThemeContext } from "../../styleConstants";
-import { IOption } from "../../types";
-import { StyleConstant } from "../../typeUtilities";
+import { ThemeContext } from "../../../styleConstants";
+import { IOption } from "../../../types";
+import { StyleConstant } from "../../../typeUtilities";
+import { Typography } from "../../atoms/typography/Typography";
+import { LabeledInputWrapper } from "./LabeledInputWrapper";
 
 export const LabeledRadioButton: React.SFC<IProps> = ({
   option,
@@ -16,20 +16,26 @@ export const LabeledRadioButton: React.SFC<IProps> = ({
   };
   const { boxShadow, colors, transitions } = React.useContext(ThemeContext);
 
+  const renderInput = () => (
+    <RadioButton
+      isChecked={isChecked}
+      boxShadow={boxShadow}
+      colors={colors}
+      transitions={transitions}
+    />
+  );
+
+  const renderLabel = () => (
+    <Typography colorVariant={isChecked ? "core" : "primaryDark"}>
+      {option.label}
+    </Typography>
+  );
   return (
-    <LabeledInputWrapper onClick={handleClickInternal}>
-      <InputWrapper>
-        <RadioButton
-          isChecked={isChecked}
-          boxShadow={boxShadow}
-          colors={colors}
-          transitions={transitions}
-        />
-      </InputWrapper>
-      <Typography colorVariant={isChecked ? "core" : "primaryDark"}>
-        {option.label}
-      </Typography>
-    </LabeledInputWrapper>
+    <LabeledInputWrapper
+      onClick={handleClickInternal}
+      renderInput={renderInput}
+      renderLabel={renderLabel}
+    />
   );
 };
 
@@ -40,10 +46,10 @@ const RadioButton = styled("div")<IRadioButtonProps>`
   border-radius: ${length}px;
   border: 1px solid
     ${props =>
-      props.isChecked ? props.colors.core.main : props.colors.neutral.dark};
+      props.isChecked ? props.colors.core.cs5 : props.colors.neutral.cs6};
   box-shadow: ${p => p.boxShadow.bs1};
   background-color: ${props =>
-    props.isChecked ? props.colors.core.main : props.colors.transparent};
+    props.isChecked ? props.colors.core.cs5 : props.colors.transparent};
   transition: background-color ${p => p.transitions.medium} ease-in-out;
 `;
 

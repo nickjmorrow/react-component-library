@@ -3,14 +3,16 @@ import { ThemeContext } from "../../../styleConstants";
 import * as React from "react";
 import { StyleConstant } from "../../../typeUtilities";
 
-export const LabeledInputWrapper: React.SFC<{ onClick: () => void }> = ({
-  children,
-  onClick: handleClick
-}) => {
+export const LabeledInputWrapper: React.SFC<{
+  onClick: () => void;
+  renderInput: () => React.ReactNode;
+  renderLabel: () => React.ReactNode;
+}> = ({ renderInput, renderLabel, onClick: handleClick }) => {
   const { spacing } = React.useContext(ThemeContext);
   return (
     <StyledLabeledInputWrapper spacing={spacing} onClick={handleClick}>
-      {children}
+      {renderInput()}
+      <InputWrapper>{renderLabel()}</InputWrapper>
     </StyledLabeledInputWrapper>
   );
 };
@@ -18,10 +20,11 @@ export const LabeledInputWrapper: React.SFC<{ onClick: () => void }> = ({
 const StyledLabeledInputWrapper = styled("div")<{
   spacing: StyleConstant<"spacing">;
 }>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   cursor: pointer;
-  height: 20px;
-  margin: ${p => p.spacing.ss4} 0px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: ${p => p.spacing.ss4};
+  justify-content: flex-start;
 `;
+
+export const InputWrapper = styled.div``;

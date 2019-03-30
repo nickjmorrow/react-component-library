@@ -29,6 +29,7 @@ export const StyledInput: React.SFC<
     typography: { fontFamily, fontSizes, fontWeights }
   } = React.useContext(ThemeContext);
 
+  // TODO: save off somewhere else so error styling can be reused
   const renderErrors = (error: string) => (
     <Fade
       in={errors.length > 0}
@@ -80,12 +81,12 @@ export const Input = styled("input")<DisplayProps>`
   outline: none;
   width: ${p => p.spacing.ss64};
   padding: ${p => p.spacing.ss3};
-  background-color: ${p => p.colors.neutral.lightest};
+  background-color: ${p => p.colors.neutral.cs2};
   border-radius: ${p => p.borderRadius};
   border: ${p => p.borderStyle} ${p => p.colors.transparent};
   border-left-width: ${p => (p.hasErrors ? "2px" : p.borderStyle)};
   border-left-color: ${p =>
-    p.hasErrors ? p.colors.danger.light : p.colors.transparent};
+    p.hasErrors ? p.colors.danger.cs3 : p.colors.transparent};
   type: ${p => p.type};
   font-weight: ${p => p.fontWeights.fw4};
   font-family: ${p => p.fontFamily};

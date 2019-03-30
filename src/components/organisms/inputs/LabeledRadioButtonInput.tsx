@@ -1,7 +1,7 @@
 import * as React from "react";
-import { LabeledRadioButton } from "../molecules";
-import { IOption } from "../../types";
-import { Typography } from "../atoms";
+import { LabeledRadioButton } from "../../molecules";
+import { IOption } from "../../../types";
+import { Typography } from "../../atoms";
 
 export const LabeledRadioButtonInput: React.SFC<IProps> = ({
   options,

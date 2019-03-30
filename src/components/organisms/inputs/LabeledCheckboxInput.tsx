@@ -1,49 +1,42 @@
 import * as React from "react";
 import { hasDuplicates } from "services";
-import { IOption } from "../../types";
-import { Typography } from "../atoms";
-import { LabeledCheckbox } from "../molecules";
+import { IOption } from "../../../types";
+import { LabeledCheckbox } from "../../molecules";
+import { LabeledInputsWrapper } from "./LabeledInputsWrapper";
 
-export const LabeledCheckboxInput: React.SFC<IOwnProps> = ({
-  onClick: handleClick,
-  name,
-  selectedOptions,
-  options,
-  text = ""
-}) => {
-  const handleClickInternal = (selectedOption: IOption) => {
-    handleClick(getNewSelectedOptions(selectedOption, selectedOptions), name);
-  };
-
-  return (
-    <div>
-      <Typography>{text}</Typography>
-      {options.map(option => (
-        <LabeledCheckbox
-          option={option}
-          key={option.value}
-          isToggled={
-            selectedOptions.find(so => so.value === option.value) !== undefined
-          }
-          onClick={handleClickInternal}
-        />
-      ))}
-    </div>
-  );
-};
-
-interface IOwnProps {
+export const LabeledCheckboxInput: React.SFC<{
   options: IOption[];
   selectedOptions: IOption[];
   name?: string;
   text?: string;
   onClick(newSelectedOptions: IOption[], name?: string): void;
-}
+}> = ({ onClick: handleClick, name, selectedOptions, options, text = "" }) => {
+  const handleClickInternal = (selectedOption: IOption) => {
+    handleClick(getNewSelectedOptions(selectedOption, selectedOptions), name);
+  };
+
+  // TODO: this isn't working as I expect it to :)
+  return (
+    <LabeledInputsWrapper
+      text={text}
+      renderInputs={() =>
+        options.map(option => (
+          <LabeledCheckbox
+            option={option}
+            key={option.value}
+            isToggled={selectedOptions.some(so => so.value === option.value)}
+            onClick={handleClickInternal}
+          />
+        ))
+      }
+    />
+  );
+};
 
 const wasAlreadySelected = (
   selectedOption: IOption,
   selectedOptions: IOption[]
-) => selectedOptions.find(so => so.value === selectedOption.value);
+) => selectedOptions.some(so => so.value === selectedOption.value);
 
 const getNewSelectedOptions = (
   newSelectedOption: IOption,

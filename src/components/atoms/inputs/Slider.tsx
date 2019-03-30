@@ -31,9 +31,9 @@ export const Slider: React.SFC<IProps> = ({
 
   const handleStyle = {
     border: borderStyle[1],
-    borderColor: colors.core.dark,
-    boxShadow: isClicking ? `0 0 5px ${colors.core.main}` : "none",
-    backgroundColor: colors.core.lightest,
+    borderColor: colors.core.cs7,
+    boxShadow: isClicking ? `0 0 5px ${colors.core.cs5}` : "none",
+    backgroundColor: colors.core.cs1,
     transition: `box-shadow ${transitions.medium}`
   };
 
@@ -46,10 +46,10 @@ export const Slider: React.SFC<IProps> = ({
         onChange={handleChange}
         handleStyle={handleStyle}
         railStyle={{
-          backgroundColor: colors.neutral.main,
+          backgroundColor: colors.neutral.cs5,
           width: spacing.ss48
         }}
-        trackStyle={{ backgroundColor: colors.core.main }}
+        trackStyle={{ backgroundColor: colors.core.cs5 }}
         onBeforeChange={() => setIsClicking(false)}
         onAfterChange={() => setIsClicking(true)}
       />
