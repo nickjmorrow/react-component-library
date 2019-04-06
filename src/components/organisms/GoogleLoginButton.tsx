@@ -1,13 +1,17 @@
 import * as React from "react";
 import ReactGoogleLogin, { GoogleLoginResponse } from "react-google-login";
 import { GoogleButton } from "../atoms";
+import { GetComponentProps } from "~/typeUtilities";
 
-export const GoogleLoginButton: React.SFC<IOwnProps> = ({
+export const GoogleLoginButton: React.SFC<
+  IOwnProps & GetComponentProps<typeof ReactGoogleLogin>
+> = ({
   handleSuccess,
   handleFailure = () => {
     return;
   },
-  clientId
+  clientId,
+  ...props
 }) => {
   const renderButton:
     | ((props?: { onClick: () => void } | undefined) => JSX.Element)
@@ -22,6 +26,7 @@ export const GoogleLoginButton: React.SFC<IOwnProps> = ({
       onSuccess={handleSuccess}
       render={renderButton}
       onFailure={handleFailure}
+      {...props}
     />
   );
 };
