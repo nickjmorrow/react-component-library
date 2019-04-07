@@ -17,7 +17,11 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
     ThemeContext
   );
 
-  const renderNavLink = (navLink: INavLink, i: number): React.ReactNode => {
+  const renderNavLink = (
+    navLink: INavLink,
+    marginLeft: string,
+    i: number
+  ): React.ReactNode => {
     return (
       <NavElement
         spacing={spacing}
@@ -29,7 +33,7 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
           styleVariant={
             currentRoute === navLink.route ? "primary" : "secondary"
           }
-          typographyProps={{ style: { marginLeft: spacing.ss8 } }}
+          typographyProps={{ style: { marginLeft } }}
           style={{
             width: "100%",
             height: "100%",
@@ -59,11 +63,12 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
           currentRoute={currentRoute}
         />
       ) : (
-        renderNavLink(navInfo, i)
+        renderNavLink(navInfo, spacing.ss4, i)
       )
     );
   });
 
+  // TODO: clean up
   const [headerOffset, setHeaderOffset] = React.useState(64);
   const [footerOffset, setFooterOffset] = React.useState(52);
   const handleScroll = () => {
@@ -146,7 +151,11 @@ const LabelWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
 
 const Folder: React.SFC<{
   folderInfo: FolderInfo;
-  renderNavLink: (navInfo: INavLink, i: number) => React.ReactNode;
+  renderNavLink: (
+    navInfo: INavLink,
+    marginLeft: string,
+    i: number
+  ) => React.ReactNode;
   currentRoute: string;
 }> = React.memo(
   ({ folderInfo, renderNavLink, currentRoute }) => {
@@ -170,7 +179,9 @@ const Folder: React.SFC<{
         </NavElement>
         <Collapse isOpened={isExpanded} springConfig={{ stiffness: 220 }}>
           <div ref={innerNavLinkRef}>
-            {folderInfo.navLinks.map(renderNavLink)}
+            {folderInfo.navLinks.map((nl, i) =>
+              renderNavLink(nl, spacing.ss8, i)
+            )}
           </div>
         </Collapse>
       </>

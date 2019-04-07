@@ -9,14 +9,21 @@ export const Link: React.SFC<{
   children: React.ReactNode;
   style?: React.CSSProperties;
   styleVariant?: StyleVariant;
+  isInline?: boolean;
   typographyProps?: GetComponentProps<typeof Typography>;
 }> = ({
   children,
   route,
   style,
   styleVariant = "primary",
+  isInline = false,
   typographyProps
 }) => {
+  const defaultLinkStyle = {
+    textDecoration: "none",
+    display: isInline ? "inline" : "flex",
+    alignItems: "center"
+  };
   const customStyle = { ...defaultLinkStyle, ...style };
   const isExternalLink = route.split("")[0] !== "/";
   const content = (
@@ -33,12 +40,6 @@ export const Link: React.SFC<{
       {content}
     </RouterLink>
   );
-};
-
-const defaultLinkStyle = {
-  textDecoration: "none",
-  display: "flex",
-  alignItems: "center"
 };
 
 const getColorVariant = (styleVariant: StyleVariant): ColorVariant => {

@@ -63,4 +63,6 @@ const VisibleWrapper = styled(BaseWrapper)<{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: ${p => p.spacing.ss16};
+  box-sizing: border-box;
 `;

@@ -8,10 +8,12 @@ import {
   StyleConstant,
   ThemeContext,
   ThemeInputsContext,
-  Typography
+  Typography,
+  Link
 } from "react-component-library";
 import styled from "styled-components";
 import { Block } from "../../shared/Block";
+import { DescriptionContainer } from "src/components/shared";
 
 export const Colors: React.SFC = () => {
   const { colors, spacing } = React.useContext(ThemeContext);
@@ -191,6 +193,22 @@ export const Colors: React.SFC = () => {
   return (
     <>
       <Typography styleVariant={1}>Colors</Typography>
+      <DescriptionContainer>
+        <Typography>
+          Inputs to a color like saturation, lightness, and hue are all
+          configurable. While system colors cannot be individually overriden,
+          components like{" "}
+          <Link route={"/buttons"} isInline={true}>
+            Button
+          </Link>{" "}
+          or{" "}
+          <Link route={"/typography"} isInline={true}>
+            Typography
+          </Link>{" "}
+          support color overrides. This structure promotes consistency across
+          the application while allowing for one-off departures.
+        </Typography>
+      </DescriptionContainer>
       <BlocksWrapper>
         {renderBlocks(core, "Core")}
         {renderBlocks(accent, "Accent")}
