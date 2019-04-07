@@ -39,7 +39,7 @@ const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
     }
   },
   typography: {
-    fontFamily: { default: "Work Sans, sans-serif" }
+    fontFamily: { default: "Mukta, sans-serif" }
   }
 };
 

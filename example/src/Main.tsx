@@ -16,8 +16,10 @@ import {
   SelectDemo,
   SliderDemo,
   TextInputDemo,
-  TypographyDemo
+  TypographyDemo,
+  BoxShadowDemo
 } from "./components/demos";
+import { SpacingDemo } from "./components/demos/configurations/SpacingDemo";
 
 const atomComponents = {
   label: "Atoms",
@@ -77,7 +79,7 @@ const modalComponents = {
 };
 
 const themeConfiguration = {
-  label: "Theme Configurations",
+  label: "Style System",
   navLinks: [
     {
       component: Colors,
@@ -93,6 +95,16 @@ const themeConfiguration = {
       component: TypographyDemo,
       label: "Typography",
       route: "/typography"
+    },
+    {
+      component: BoxShadowDemo,
+      label: "Box Shadow",
+      route: "/box-shadow"
+    },
+    {
+      component: SpacingDemo,
+      label: "Spacing",
+      route: "/spacing"
     }
   ]
 };
@@ -114,9 +126,9 @@ const miscComponents = {
 };
 
 const componentFolders = [
+  themeConfiguration,
   atomComponents,
   modalComponents,
-  themeConfiguration,
   miscComponents
 ];
 

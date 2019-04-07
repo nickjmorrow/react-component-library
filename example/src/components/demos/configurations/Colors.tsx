@@ -14,12 +14,7 @@ import styled from "styled-components";
 import { Block } from "../../shared/Block";
 
 export const Colors: React.SFC = () => {
-  const {
-    colors,
-    spacing,
-    border: { borderRadius },
-    boxShadow
-  } = React.useContext(ThemeContext);
+  const { colors, spacing } = React.useContext(ThemeContext);
 
   const { themeInputs, updateThemeInputs } = React.useContext(
     ThemeInputsContext
@@ -45,12 +40,7 @@ export const Colors: React.SFC = () => {
       <Blocks spacing={spacing}>
         <ColorsWrapper spacing={spacing}>
           {Object.keys(colorShade).map(shade => (
-            <Block
-              borderRadius={borderRadius}
-              spacing={spacing}
-              color={colorShade[shade]}
-              boxShadow={boxShadow}
-            />
+            <Block color={colorShade[shade]} />
           ))}
         </ColorsWrapper>
         <ExpansionPanel
