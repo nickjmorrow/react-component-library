@@ -23,5 +23,5 @@ export const boxShadowOffsets = {
   bso2: ["0 3px 6px", "0 2px 4px"],
   bso3: ["0 10px 20px", "0 3px 6px"],
   bso4: ["0 15px 25px", "0 5px 10px"],
-  bso5: ["0 20px 40px"]
+  bso5: ["0 20px 40px", "0 7px 14px"]
 };

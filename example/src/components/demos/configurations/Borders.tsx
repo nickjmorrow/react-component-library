@@ -1,18 +1,14 @@
 import * as React from "react";
-import { Block } from "src/components/shared/Block";
 import {
+  Slider,
   ThemeContext,
   ThemeInputsContext,
-  Slider,
   Typography
 } from "react-component-library";
+import { Block } from "src/components/shared/Block";
 
 export const Borders: React.FC = () => {
-  const {
-    colors,
-    spacing,
-    border: { borderRadius }
-  } = React.useContext(ThemeContext);
+  const { colors } = React.useContext(ThemeContext);
   const {
     themeInputs: { border },
     updateThemeInputs
@@ -23,11 +19,7 @@ export const Borders: React.FC = () => {
         <Typography styleVariant={1}>Borders</Typography>
       </div>
       <Typography styleVariant={2}>Border Radius</Typography>
-      <Block
-        color={colors.core.cs5}
-        spacing={spacing}
-        borderRadius={borderRadius}
-      />
+      <Block color={colors.core.cs5} />
       <Slider
         min={0}
         max={20}
