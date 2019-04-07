@@ -25,6 +25,7 @@ const StyledLabeledInputWrapper = styled("div")<{
   grid-auto-flow: column;
   grid-column-gap: ${p => p.spacing.ss4};
   justify-content: flex-start;
+  margin: auto 0;
 `;
 
 export const InputWrapper = styled.div``;

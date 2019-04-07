@@ -20,6 +20,8 @@ import {
   BoxShadowDemo
 } from "./components/demos";
 import { SpacingDemo } from "./components/demos/configurations/SpacingDemo";
+import { GettingStarted } from "./components/GettingStarted";
+import { Principles } from "./components/Principles";
 
 const atomComponents = {
   label: "Atoms",
@@ -53,27 +55,43 @@ const atomComponents = {
       component: TextInputDemo,
       label: "Text Input",
       route: "/text-input"
-    },
-    {
-      component: LabeledInputDemo,
-      label: "Labeled Input",
-      route: "/labeled-input"
-    },
-    {
-      component: LogoutModalDemo,
-      label: "Logout Modal",
-      route: "/logout-modal"
     }
   ]
 };
 
-const modalComponents = {
-  label: "Modals",
+const moleculeComponents = {
+  label: "Molecules",
   navLinks: [
+    {
+      component: LabeledInputDemo,
+      label: "Labeled Inputs",
+      route: "/labeled-inputs"
+    },
+    {
+      component: ExpansionPanelDemo,
+      label: "Expansion Panel",
+      route: "/expansion-panel"
+    }
+  ]
+};
+
+const organismComponents = {
+  label: "Organisms",
+  navLinks: [
+    {
+      component: LogoutModalDemo,
+      label: "Logout Modal",
+      route: "/logout-modal"
+    },
     {
       component: AuthModalDemo,
       label: "Auth Modal",
       route: "/auth-modal"
+    },
+    {
+      component: AppBarDemo,
+      label: "App Bar",
+      route: "/app-bar"
     }
   ]
 };
@@ -109,30 +127,35 @@ const themeConfiguration = {
   ]
 };
 
-const miscComponents = {
-  label: "Misc",
-  navLinks: [
-    {
-      component: ExpansionPanelDemo,
-      label: "Expansion Panel",
-      route: "/expansion-panel"
-    },
-    {
-      component: AppBarDemo,
-      label: "App Bar",
-      route: "/app-bar"
-    }
-  ]
-};
-
 const componentFolders = [
   themeConfiguration,
   atomComponents,
-  modalComponents,
-  miscComponents
+  moleculeComponents,
+  organismComponents
 ];
 
-const routes = componentFolders.reduce(
+const navLinks = [
+  {
+    label: "Getting Started",
+    route: "/getting-started",
+    component: GettingStarted
+  },
+  {
+    label: "Principles",
+    route: "/principles",
+    component: Principles
+  }
+];
+
+const navLinkRoutes = navLinks.map((nl, i) => (
+  <Route
+    key={`route-${nl.route}-${i}`}
+    path={nl.route}
+    component={nl.component}
+  />
+));
+
+const folderRoutes = componentFolders.reduce(
   (prev, curr) => {
     prev.push(
       ...curr.navLinks.map((c, i) => (
@@ -149,10 +172,13 @@ const routes = componentFolders.reduce(
   [] as React.ReactNode[]
 );
 
+const routes = [...folderRoutes, ...navLinkRoutes];
+const navInfos = [...navLinks, ...componentFolders];
+
 export const Main: React.SFC<{}> = () => {
   return (
     <Wrapper>
-      <SideNav navInfos={componentFolders} />
+      <SideNav navInfos={navInfos} />
       <RoutesWrapper>{routes}</RoutesWrapper>
     </Wrapper>
   );
