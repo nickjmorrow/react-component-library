@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AddIcon } from "../AddIcon";
+import { EditIcon } from "../EditIcon";
 import { IconProps } from "../types";
 import { StyleVariant } from "../../types";
 import { IconButtonContainer } from "./IconButtonContainer";
@@ -9,7 +9,7 @@ interface Props {
   isDisabled?: boolean;
 }
 
-export const AddIconButton: React.FC<IconProps & Props> = ({
+export const EditIconButton: React.FC<IconProps & Props> = ({
   styleVariant,
   colorVariant = "core",
   isDisabled,
@@ -20,7 +20,7 @@ export const AddIconButton: React.FC<IconProps & Props> = ({
       styleVariant={styleVariant}
       colorVariant={colorVariant}
       isDisabled={isDisabled}>
-      <AddIcon
+      <EditIcon
         colorVariant={"inherit"}
         {...props}
         style={{ display: "block" }}
