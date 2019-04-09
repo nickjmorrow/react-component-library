@@ -103,7 +103,7 @@ export const Buttons: React.SFC = () => {
           isLoading={isLoading}
           onClick={toggleIsLoading}
           textColorVariant={"primaryLight"}>
-          I'm loading
+          He's loading!
         </Button>
         <Button
           isLoading={isLoading}
@@ -118,6 +118,18 @@ export const Buttons: React.SFC = () => {
         <GoogleButton link={"http://google.com"}>Google</GoogleButton>
         <FacebookButton link={"http://facebook.com"}>Facebook</FacebookButton>
         <LinkedInButton link={"http://linkedin.com"}>LinkedIn</LinkedInButton>
+      </DisplayPaper>
+      <Typography styleVariant={3}>Disabled</Typography>
+      <DisplayPaper>
+        <Button isDisabled={true} styleVariant={"primary"}>
+          Primary
+        </Button>
+        <Button isDisabled={true} styleVariant={"secondary"}>
+          Secondary
+        </Button>
+        <Button isDisabled={true} styleVariant={"tertiary"}>
+          Tertiary
+        </Button>
       </DisplayPaper>
     </Wrapper>
   );
