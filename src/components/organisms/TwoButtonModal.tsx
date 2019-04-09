@@ -49,7 +49,7 @@ export const TwoButtonModal: React.SFC<ModalProps & IOwnProps> = ({
           <TitleWrapper spacing={spacing}>{modalTitle}</TitleWrapper>
           <ChildrenContainer spacing={spacing}>
             {getFormattedTextNode(children, {
-              colorVariant: "primaryDark",
+              colorVariant: "secondaryDark",
               sizeVariant: 4
             })}
           </ChildrenContainer>
