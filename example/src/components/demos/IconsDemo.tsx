@@ -10,7 +10,8 @@ import {
   ThemeContext,
   TrashIcon,
   UploadIcon,
-  Typography
+  Typography,
+  AddIconButton
 } from "react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
@@ -54,6 +55,11 @@ export const IconsDemo: React.SFC = () => {
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"secondaryLight"} />
           <GithubIcon sizeVariant={4} colorVariant={"primaryLight"} />
+        </IconSizes>
+      </DisplayPaper>
+      <DisplayPaper customStyle={{ backgroundColor: colors.neutral.cs7 }}>
+        <IconSizes spacing={spacing}>
+          <AddIconButton styleVariant={"primary"} sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
     </Wrapper>

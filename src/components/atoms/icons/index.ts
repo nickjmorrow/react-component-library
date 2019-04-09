@@ -6,3 +6,5 @@ export { GithubIcon } from "./GithubIcon";
 export { LoadingIcon } from "./LoadingIcon";
 export { CloseIcon } from "./CloseIcon";
 export { ChevronUpIcon } from "./ChevronUpIcon";
+export { AddIcon } from "./AddIcon";
+export * from "./iconButtons";

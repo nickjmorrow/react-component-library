@@ -6,7 +6,7 @@ import { ThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
 import { Fade } from "../../animations";
 import { getColorFunc } from "../atomServices";
-import { ColorSet, ColorVariant, StyleVariant } from "../types";
+import { ColorSet, ColorVariant, StyleVariant, UIState } from "../types";
 import { getFormattedTextNode } from "../typography";
 import { getBackgroundColor, getBorderColor, getColor } from "./buttonServices";
 
@@ -14,7 +14,7 @@ interface IDisplayProps {
   colorVariant: ColorVariant;
   styleVariant: StyleVariant;
   colorSet: ColorSet;
-  showBoxShadow?: boolean;
+  showBoxShadow: boolean;
   useMargin?: boolean;
   style?: React.CSSProperties;
   boxShadow: StyleConstant<"boxShadow">;
@@ -25,6 +25,7 @@ interface IDisplayProps {
   isFullWidth: boolean;
   width: number;
   height: number;
+  isDisabled: boolean;
 }
 
 type IButtonProps = {
@@ -37,6 +38,7 @@ type IButtonProps = {
   isFullWidth?: boolean;
   isLoading?: boolean;
   link?: string;
+  isDisabled?: boolean;
   onClick?(): void;
 } & Partial<IDisplayProps> &
   Partial<ColorSet>;
@@ -49,13 +51,19 @@ export const Button: React.SFC<IButtonProps> = ({
   showBoxShadow = true,
   useMargin = true,
   isFullWidth = false,
-  isLoading,
+  isDisabled = false,
+  isLoading = false,
   link,
   colorSet = {} as ColorSet,
   onClick: handleClick = () => {
     return;
   }
 }) => {
+  const handleClickInternal = () => {
+    if (!isDisabled) {
+      handleClick();
+    }
+  };
   const { colors, transitions, boxShadow, spacing, border } = React.useContext(
     ThemeContext
   );
@@ -104,6 +112,7 @@ export const Button: React.SFC<IButtonProps> = ({
 
   const content = (
     <StyledButton
+      isDisabled={isDisabled}
       colorVariant={colorVariant}
       styleVariant={styleVariant}
       colorSet={colorSet}
@@ -113,7 +122,7 @@ export const Button: React.SFC<IButtonProps> = ({
       height={height}
       showBoxShadow={showBoxShadow}
       useMargin={useMargin}
-      onClick={handleClick}
+      onClick={handleClickInternal}
       transition={transitions.medium}
       border={border}
       boxShadow={boxShadow}
@@ -141,29 +150,42 @@ const InnerWrapper = styled("div")<{ width: number; height: number }>`
   justify-content: center;
 `;
 
+// TODO: don't change boxShadow amount if isDisabled = true
 const StyledButton = styled("button")<
   IDisplayProps & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
 >`
   border: ${p => p.border.borderStyle.bs2};
   color: ${p =>
     p.colorSet.color ||
-    getColor(p.colors, p.colorVariant, p.styleVariant, "normal")};
+    getColor(p.colors, p.colorVariant, p.styleVariant, "normal", p.isDisabled)};
   background-color: ${p =>
     p.colorSet.backgroundColor ||
-    getBackgroundColor(p.colors, p.colorVariant, p.styleVariant, "normal")};
+    getBackgroundColor(
+      p.colors,
+      p.colorVariant,
+      p.styleVariant,
+      "normal",
+      p.isDisabled
+    )};
   border-color: ${p =>
     p.colorSet.borderColor ||
-    getBorderColor(p.colors, p.colorVariant, p.styleVariant, "normal")};
+    getBorderColor(
+      p.colors,
+      p.colorVariant,
+      p.styleVariant,
+      "normal",
+      p.isDisabled
+    )};
   border-radius: ${props => props.border.borderRadius.br1};
   padding: ${p => `${p.spacing.ss3} ${p.spacing.ss4}`};
   display: flex;
   justify-content: center;
   align-items: center;
   margin: ${props => (props.useMargin ? props.spacing.ss4 : 0)};
-  cursor: pointer;
+  cursor: ${p => (p.isDisabled ? "not-allowed" : "pointer")};
   outline: none;
   word-wrap: no-wrap;
-  box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs2};
+  box-shadow: ${p => getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, 'normal')};
   min-width: ${p => p.width}px;
   min-height: ${p => p.height} / px;
   height: max-content;
@@ -173,26 +195,87 @@ const StyledButton = styled("button")<
   &:hover {
     border-color: ${p =>
       p.colorSet.borderColorHover ||
-      getBorderColor(p.colors, p.colorVariant, p.styleVariant, "hover")};
+      getBorderColor(
+        p.colors,
+        p.colorVariant,
+        p.styleVariant,
+        "hover",
+        p.isDisabled
+      )};
     background-color: ${p =>
       p.colorSet.backgroundColorHover ||
-      getBackgroundColor(p.colors, p.colorVariant, p.styleVariant, "hover")};
+      getBackgroundColor(
+        p.colors,
+        p.colorVariant,
+        p.styleVariant,
+        "hover",
+        p.isDisabled
+      )};
     color: ${p =>
       p.colorSet.colorHover ||
-      getColor(p.colors, p.colorVariant, p.styleVariant, "hover")};
-    box-shadow: ${props => props.showBoxShadow && props.boxShadow.bs1};
-    transition: all ${props => props.transition} ease-in-out;
+      getColor(
+        p.colors,
+        p.colorVariant,
+        p.styleVariant,
+        "hover",
+        p.isDisabled
+      )};
+    box-shadow: ${p => getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, 'hover')};
+    transition: ${p => !p.isDisabled && `all ${p.transition} ease-in-out`}};
   }
   &:active {
     border-color: ${p =>
       p.colorSet.borderColorActive ||
-      getBorderColor(p.colors, p.colorVariant, p.styleVariant, "active")};
+      getBorderColor(
+        p.colors,
+        p.colorVariant,
+        p.styleVariant,
+        "active",
+        p.isDisabled
+      )};
     background-color: ${p =>
       p.colorSet.backgroundColorActive ||
-      getBackgroundColor(p.colors, p.colorVariant, p.styleVariant, "active")};
+      getBackgroundColor(
+        p.colors,
+        p.colorVariant,
+        p.styleVariant,
+        "active",
+        p.isDisabled
+      )};
     color: ${p =>
       p.colorSet.colorActive ||
-      getColor(p.colors, p.colorVariant, p.styleVariant, "active")};
-    transition: all ${props => props.transition} ease-in-out;
+      getColor(
+        p.colors,
+        p.colorVariant,
+        p.styleVariant,
+        "active",
+        p.isDisabled
+      )};
+    box-shadow: ${p => getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, 'active')};
+    transition: ${p => !p.isDisabled && `all ${p.transition} ease-in-out`}};
   }
 `;
+
+const getBoxShadow = (
+  boxShadow: StyleConstant<'boxShadow'>,
+  isDisabled: boolean,
+  showBoxShadow: boolean,
+  uiState: UIState
+) => {
+  if (!showBoxShadow) {
+    return 'none';
+  }
+
+  if (isDisabled) {
+    return boxShadow.bs2;
+  }
+
+  switch (uiState) {
+    case "normal":
+      return boxShadow.bs3;
+    case "hover":
+      return boxShadow.bs2;
+    case "active":
+      return boxShadow.bs1;
+  }
+}
