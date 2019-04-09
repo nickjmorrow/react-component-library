@@ -11,7 +11,9 @@ import {
   TrashIcon,
   UploadIcon,
   Typography,
-  AddIconButton
+  AddIconButton,
+  CloseIconButton,
+  EditIconButton
 } from "react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
@@ -57,9 +59,71 @@ export const IconsDemo: React.SFC = () => {
           <GithubIcon sizeVariant={4} colorVariant={"primaryLight"} />
         </IconSizes>
       </DisplayPaper>
-      <DisplayPaper customStyle={{ backgroundColor: colors.neutral.cs7 }}>
+      <DisplayPaper
+        customStyle={{
+          display: "grid",
+          gridAutoFlow: "row",
+          gridRowGap: "16px"
+        }}>
         <IconSizes spacing={spacing}>
           <AddIconButton styleVariant={"primary"} sizeVariant={4} />
+          <AddIconButton styleVariant={"secondary"} sizeVariant={4} />
+          <AddIconButton styleVariant={"tertiary"} sizeVariant={4} />
+          <AddIconButton
+            isDisabled={true}
+            styleVariant={"primary"}
+            sizeVariant={4}
+          />
+          <AddIconButton
+            isDisabled={true}
+            styleVariant={"secondary"}
+            sizeVariant={4}
+          />
+          <AddIconButton
+            isDisabled={true}
+            styleVariant={"tertiary"}
+            sizeVariant={4}
+          />
+        </IconSizes>
+        <IconSizes spacing={spacing}>
+          <CloseIconButton styleVariant={"primary"} sizeVariant={4} />
+          <CloseIconButton styleVariant={"secondary"} sizeVariant={4} />
+          <CloseIconButton styleVariant={"tertiary"} sizeVariant={4} />
+          <CloseIconButton
+            isDisabled={true}
+            styleVariant={"primary"}
+            sizeVariant={4}
+          />
+          <CloseIconButton
+            isDisabled={true}
+            styleVariant={"secondary"}
+            sizeVariant={4}
+          />
+          <CloseIconButton
+            isDisabled={true}
+            styleVariant={"tertiary"}
+            sizeVariant={4}
+          />
+        </IconSizes>
+        <IconSizes spacing={spacing}>
+          <EditIconButton styleVariant={"primary"} sizeVariant={4} />
+          <EditIconButton styleVariant={"secondary"} sizeVariant={4} />
+          <EditIconButton styleVariant={"tertiary"} sizeVariant={4} />
+          <EditIconButton
+            isDisabled={true}
+            styleVariant={"primary"}
+            sizeVariant={4}
+          />
+          <EditIconButton
+            isDisabled={true}
+            styleVariant={"secondary"}
+            sizeVariant={4}
+          />
+          <EditIconButton
+            isDisabled={true}
+            styleVariant={"tertiary"}
+            sizeVariant={4}
+          />
         </IconSizes>
       </DisplayPaper>
     </Wrapper>
