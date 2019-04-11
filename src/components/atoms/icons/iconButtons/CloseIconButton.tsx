@@ -1,18 +1,14 @@
 import * as React from "react";
 import { CloseIcon } from "../CloseIcon";
 import { IconProps } from "../types";
-import { StyleVariant } from "../../types";
 import { IconButtonContainer } from "./IconButtonContainer";
+import { IconButtonProps } from "./types";
 
-interface Props {
-  styleVariant: StyleVariant;
-  isDisabled?: boolean;
-}
-
-export const CloseIconButton: React.FC<IconProps & Props> = ({
-  styleVariant,
+export const CloseIconButton: React.FC<IconProps & IconButtonProps> = ({
+  styleVariant = "primary",
   colorVariant = "core",
-  isDisabled,
+  isDisabled = false,
+  showBoxShadow = true,
   ...props
 }) => {
   return (

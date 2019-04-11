@@ -1,18 +1,14 @@
 import * as React from "react";
 import { EditIcon } from "../EditIcon";
 import { IconProps } from "../types";
-import { StyleVariant } from "../../types";
 import { IconButtonContainer } from "./IconButtonContainer";
+import { IconButtonProps } from "./types";
 
-interface Props {
-  styleVariant: StyleVariant;
-  isDisabled?: boolean;
-}
-
-export const EditIconButton: React.FC<IconProps & Props> = ({
-  styleVariant,
+export const EditIconButton: React.FC<IconProps & IconButtonProps> = ({
+  styleVariant = "primary",
   colorVariant = "core",
-  isDisabled,
+  isDisabled = false,
+  showBoxShadow = true,
   ...props
 }) => {
   return (

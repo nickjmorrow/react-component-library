@@ -6,7 +6,8 @@ export const TextInput: React.SFC<TextInputProps> = ({
   onChange: handleChange,
   value,
   placeholder,
-  errors
+  errors,
+  style
 }) => {
   const handleChangeInternal = (e: React.ChangeEvent<HTMLInputElement>) =>
     handleChange(e.currentTarget.value);
@@ -24,6 +25,7 @@ export const TextInput: React.SFC<TextInputProps> = ({
         type={"text"}
         errors={errors}
         placeholder={placeholder}
+        style={style}
       />
     </div>
   );

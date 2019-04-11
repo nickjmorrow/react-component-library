@@ -20,6 +20,9 @@ import { DisplayPaper } from "../DisplayPaper";
 
 export const IconsDemo: React.SFC = () => {
   const { spacing, colors } = React.useContext(ThemeContext);
+  const noOp = () => {
+    return;
+  };
   return (
     <Wrapper spacing={spacing}>
       <Typography styleVariant={1}>Icons</Typography>
@@ -66,63 +69,108 @@ export const IconsDemo: React.SFC = () => {
           gridRowGap: "16px"
         }}>
         <IconSizes spacing={spacing}>
-          <AddIconButton styleVariant={"primary"} sizeVariant={4} />
-          <AddIconButton styleVariant={"secondary"} sizeVariant={4} />
-          <AddIconButton styleVariant={"tertiary"} sizeVariant={4} />
+          <AddIconButton
+            onClick={noOp}
+            styleVariant={"primary"}
+            sizeVariant={4}
+          />
+          <AddIconButton
+            onClick={noOp}
+            styleVariant={"secondary"}
+            sizeVariant={4}
+          />
+          <AddIconButton
+            onClick={noOp}
+            styleVariant={"tertiary"}
+            sizeVariant={4}
+          />
           <AddIconButton
             isDisabled={true}
             styleVariant={"primary"}
             sizeVariant={4}
+            onClick={noOp}
           />
           <AddIconButton
             isDisabled={true}
             styleVariant={"secondary"}
             sizeVariant={4}
+            onClick={noOp}
           />
           <AddIconButton
             isDisabled={true}
             styleVariant={"tertiary"}
             sizeVariant={4}
+            onClick={noOp}
           />
         </IconSizes>
         <IconSizes spacing={spacing}>
-          <CloseIconButton styleVariant={"primary"} sizeVariant={4} />
-          <CloseIconButton styleVariant={"secondary"} sizeVariant={4} />
-          <CloseIconButton styleVariant={"tertiary"} sizeVariant={4} />
+          <CloseIconButton
+            onClick={noOp}
+            styleVariant={"primary"}
+            sizeVariant={4}
+          />
+          <CloseIconButton
+            onClick={noOp}
+            styleVariant={"secondary"}
+            sizeVariant={4}
+          />
+          <CloseIconButton
+            onClick={noOp}
+            styleVariant={"tertiary"}
+            sizeVariant={4}
+          />
           <CloseIconButton
             isDisabled={true}
             styleVariant={"primary"}
             sizeVariant={4}
+            onClick={noOp}
           />
           <CloseIconButton
             isDisabled={true}
             styleVariant={"secondary"}
             sizeVariant={4}
+            onClick={noOp}
           />
           <CloseIconButton
             isDisabled={true}
             styleVariant={"tertiary"}
             sizeVariant={4}
+            onClick={noOp}
           />
         </IconSizes>
         <IconSizes spacing={spacing}>
-          <EditIconButton styleVariant={"primary"} sizeVariant={4} />
-          <EditIconButton styleVariant={"secondary"} sizeVariant={4} />
-          <EditIconButton styleVariant={"tertiary"} sizeVariant={4} />
+          <EditIconButton
+            onClick={noOp}
+            styleVariant={"primary"}
+            sizeVariant={4}
+          />
+          <EditIconButton
+            onClick={noOp}
+            styleVariant={"secondary"}
+            sizeVariant={4}
+          />
+          <EditIconButton
+            onClick={noOp}
+            styleVariant={"tertiary"}
+            sizeVariant={4}
+          />
           <EditIconButton
             isDisabled={true}
             styleVariant={"primary"}
             sizeVariant={4}
+            onClick={noOp}
           />
           <EditIconButton
             isDisabled={true}
             styleVariant={"secondary"}
             sizeVariant={4}
+            onClick={noOp}
           />
           <EditIconButton
             isDisabled={true}
             styleVariant={"tertiary"}
             sizeVariant={4}
+            onClick={noOp}
           />
         </IconSizes>
       </DisplayPaper>
