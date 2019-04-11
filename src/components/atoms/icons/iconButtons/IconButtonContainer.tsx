@@ -96,6 +96,8 @@ const Wrapper = styled("div")<
   border-radius: 100%;
   transition: all ${p => p.transitions.fast};
   cursor: pointer;
+  width: min-content;
+  height: min-content;
   box-shadow: ${p =>
     getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, "normal")};
   background-color: ${p =>
