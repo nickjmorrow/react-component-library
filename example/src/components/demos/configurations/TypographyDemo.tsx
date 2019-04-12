@@ -145,6 +145,8 @@ export const TypographyDemo: React.FC = () => {
           );
         })}
       </DisplayPaper>
+      <Typography styleVariant={2}>Style Variants</Typography>
+      <DisplayPaper />
     </>
   );
 };

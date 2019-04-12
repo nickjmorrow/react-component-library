@@ -9,13 +9,16 @@ export const AddIconButton: React.FC<IconProps & IconButtonProps> = ({
   colorVariant = "core",
   isDisabled = false,
   showBoxShadow = true,
+  onClick: handleClick,
   ...props
 }) => {
   return (
     <IconButtonContainer
       styleVariant={styleVariant}
+      showBoxShadow={showBoxShadow}
       colorVariant={colorVariant}
-      isDisabled={isDisabled}>
+      isDisabled={isDisabled}
+      onClick={handleClick}>
       <AddIcon
         colorVariant={"inherit"}
         {...props}
