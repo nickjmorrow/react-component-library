@@ -9,13 +9,16 @@ export const EditIconButton: React.FC<IconProps & IconButtonProps> = ({
   colorVariant = "core",
   isDisabled = false,
   showBoxShadow = true,
+  onClick: handleClick,
   ...props
 }) => {
   return (
     <IconButtonContainer
       styleVariant={styleVariant}
       colorVariant={colorVariant}
-      isDisabled={isDisabled}>
+      isDisabled={isDisabled}
+      onClick={handleClick}
+      showBoxShadow={showBoxShadow}>
       <EditIcon
         colorVariant={"inherit"}
         {...props}

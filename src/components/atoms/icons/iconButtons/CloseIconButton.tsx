@@ -9,13 +9,16 @@ export const CloseIconButton: React.FC<IconProps & IconButtonProps> = ({
   colorVariant = "core",
   isDisabled = false,
   showBoxShadow = true,
+  onClick: handleClick,
   ...props
 }) => {
   return (
     <IconButtonContainer
+      onClick={handleClick}
       styleVariant={styleVariant}
       colorVariant={colorVariant}
-      isDisabled={isDisabled}>
+      isDisabled={isDisabled}
+      showBoxShadow={showBoxShadow}>
       <CloseIcon
         colorVariant={"inherit"}
         {...props}

@@ -14,14 +14,28 @@ interface Props {
   isDisabled?: boolean;
 }
 
-export const IconButtonContainer: React.FC<IconProps & Props> = ({
+export const IconButtonContainer: React.FC<
+  IconProps & Props & { onClick: () => void }
+> = ({
   styleVariant,
   showBoxShadow = true,
   colorVariant = "core",
   isDisabled = false,
+  onClick: handleClick,
   children
 }) => {
-  const { colors, transitions, boxShadow } = React.useContext(ThemeContext);
+  const {
+    colors,
+    transitions,
+    boxShadow,
+    border: { borderStyle }
+  } = React.useContext(ThemeContext);
+
+  const handleClickInternal = () => {
+    if (!isDisabled) {
+      handleClick();
+    }
+  };
 
   return (
     <Wrapper
@@ -31,7 +45,9 @@ export const IconButtonContainer: React.FC<IconProps & Props> = ({
       showBoxShadow={showBoxShadow}
       colorVariant={colorVariant}
       boxShadow={boxShadow}
-      isDisabled={isDisabled}>
+      isDisabled={isDisabled}
+      onClick={handleClickInternal}
+      borderStyle={borderStyle}>
       <IconWrapper
         colors={colors}
         transitions={transitions}
@@ -90,12 +106,13 @@ const Wrapper = styled("div")<
     boxShadow: StyleConstant<"boxShadow">;
     showBoxShadow: boolean;
     isDisabled: boolean;
+    borderStyle: StyleConstant<"border">["borderStyle"];
   }
 >`
-  border: 2px solid;
+  border: ${p => p.borderStyle.bs2};
   border-radius: 100%;
   transition: all ${p => p.transitions.fast};
-  cursor: pointer;
+  cursor: ${p => (p.isDisabled ? "not-allowed" : "pointer")};
   width: min-content;
   height: min-content;
   box-shadow: ${p =>

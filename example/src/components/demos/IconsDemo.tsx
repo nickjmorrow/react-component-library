@@ -62,6 +62,7 @@ export const IconsDemo: React.SFC = () => {
           <GithubIcon sizeVariant={4} colorVariant={"primaryLight"} />
         </IconSizes>
       </DisplayPaper>
+      <Typography styleVariant={2}>Icon Buttons</Typography>
       <DisplayPaper
         customStyle={{
           display: "grid",
@@ -73,6 +74,7 @@ export const IconsDemo: React.SFC = () => {
             onClick={noOp}
             styleVariant={"primary"}
             sizeVariant={4}
+            colorVariant={"core"}
           />
           <AddIconButton
             onClick={noOp}

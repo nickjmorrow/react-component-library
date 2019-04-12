@@ -17,7 +17,7 @@ export const EditIcon: React.SFC<IconProps> = ({
       <path
         fill="currentColor"
         d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"
-        transform="translate(0,1)"
+        transform="translate(2,3),scale(0.8)"
       />
     </DefaultIconSvg>
   );

@@ -52,6 +52,7 @@ export const SelectDemo: React.SFC = () => {
             options={options}
             currentOption={currentOption}
             onChange={setOption}
+            id={1}
           />
         </SelectWrapper>
         <SelectWrapper>
