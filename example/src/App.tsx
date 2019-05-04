@@ -40,7 +40,8 @@ const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
   },
   typography: {
     fontFamily: { default: "Mukta, sans-serif" }
-  }
+  },
+  defaultShowBoxShadow: false
 };
 
 const App: React.SFC = () => {

@@ -5,7 +5,7 @@ import { StyleConstant } from "../../../typeUtilities";
 
 interface IProps {
   isToggled: boolean;
-  onClick(isChecked: boolean): void;
+  onClick: (isChecked: boolean) => void;
 }
 
 export const Toggle: React.SFC<IProps> = ({
@@ -13,8 +13,7 @@ export const Toggle: React.SFC<IProps> = ({
   onClick: handleClick
 }) => {
   const { colors, transitions } = React.useContext(ThemeContext);
-  const handleClickInternal = (e: React.MouseEvent<HTMLDivElement>) =>
-    handleClick(!isToggled);
+  const handleClickInternal = () => handleClick(isToggled);
 
   return (
     <Wrapper
@@ -43,7 +42,7 @@ const Wrapper = styled("div")<{
   padding: 0px 4px;
   box-shadow: ${p => p.colors.neutral.cs6} 0px 1px 2px -1px;
   &:hover {
-    background-color: ${p => p.colors.neutral.cs3};
+    background-color: ${p => p.colors.core.cs3};
     transition: ${p => p.transitions.fast};
   }
 `;

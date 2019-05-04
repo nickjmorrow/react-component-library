@@ -63,7 +63,7 @@ export const TypographyDemo: React.FC = () => {
       </DescriptionContainer>
       <Typography styleVariant={2}>Size Variants</Typography>
       <DisplayPaper
-        customStyle={{
+        style={{
           flexDirection: "column",
           alignItems: "flex-start",
           width: "400px"
@@ -79,7 +79,7 @@ export const TypographyDemo: React.FC = () => {
       </DisplayPaper>
       <Typography styleVariant={2}>Color Variants</Typography>
       <DisplayPaper
-        customStyle={{
+        style={{
           flexDirection: "column",
           alignItems: "flex-start",
           height: "200px"
@@ -88,7 +88,7 @@ export const TypographyDemo: React.FC = () => {
       </DisplayPaper>
       <Typography styleVariant={2}>Dark Color Variants</Typography>
       <DisplayPaper
-        customStyle={{
+        style={{
           flexDirection: "column",
           alignItems: "flex-start",
           height: "100px"
@@ -97,7 +97,7 @@ export const TypographyDemo: React.FC = () => {
       </DisplayPaper>
       <Typography styleVariant={2}>Light Color Variants</Typography>
       <DisplayPaper
-        customStyle={{
+        style={{
           flexDirection: "column",
           alignItems: "flex-start",
           height: "100px",
@@ -121,7 +121,7 @@ export const TypographyDemo: React.FC = () => {
           for more information about fallback weights.
         </Typography>
       </DescriptionContainer>
-      <DisplayPaper customStyle={{ display: "grid", gridAutoFlow: "row" }}>
+      <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         {Object.keys(fontWeights).map(key => {
           const weightVariant = parseInt(
             key.replace(/^\D+/g, ""),

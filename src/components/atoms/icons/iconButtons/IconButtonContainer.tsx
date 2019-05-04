@@ -22,7 +22,8 @@ export const IconButtonContainer: React.FC<
   colorVariant = "core",
   isDisabled = false,
   onClick: handleClick,
-  children
+  children,
+  style
 }) => {
   const {
     colors,
@@ -47,7 +48,8 @@ export const IconButtonContainer: React.FC<
       boxShadow={boxShadow}
       isDisabled={isDisabled}
       onClick={handleClickInternal}
-      borderStyle={borderStyle}>
+      borderStyle={borderStyle}
+      style={style}>
       <IconWrapper
         colors={colors}
         transitions={transitions}
@@ -99,15 +101,16 @@ const IconWrapper = styled("div")<
 `;
 
 const Wrapper = styled("div")<
-  Props & {
-    colors: StyleConstant<"colors">;
-    transitions: StyleConstant<"transitions">;
-    colorVariant: ColorVariant;
-    boxShadow: StyleConstant<"boxShadow">;
-    showBoxShadow: boolean;
-    isDisabled: boolean;
-    borderStyle: StyleConstant<"border">["borderStyle"];
-  }
+  Props &
+    React.PropsWithoutRef<JSX.IntrinsicElements["div"]> & {
+      colors: StyleConstant<"colors">;
+      transitions: StyleConstant<"transitions">;
+      colorVariant: ColorVariant;
+      boxShadow: StyleConstant<"boxShadow">;
+      showBoxShadow: boolean;
+      isDisabled: boolean;
+      borderStyle: StyleConstant<"border">["borderStyle"];
+    }
 >`
   border: ${p => p.borderStyle.bs2};
   border-radius: 100%;
@@ -250,7 +253,7 @@ const getBoxShadow = (
 
   switch (uiState) {
     case "normal":
-      return boxShadow.bs3;
+      return "none";
     case "hover":
       return boxShadow.bs2;
     case "active":

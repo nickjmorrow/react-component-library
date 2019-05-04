@@ -26,3 +26,10 @@ export const boxShadowOffsets = {
   bso4: ["0 15px 25px", "0 5px 10px"],
   bso5: ["0 20px 40px", "0 7px 14px"]
 };
+
+export const defaultShowBoxShadow = true;
+
+// TODO: think about this, probably not right
+export const mediaWidth = {
+  mobileLandscape: "700px"
+};

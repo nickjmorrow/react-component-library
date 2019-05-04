@@ -4,10 +4,10 @@ import {
   generateColorShades,
   getBorderRadius,
   getBorderStyle,
+  getBoxShadow,
   getFontSize,
   getIconSize,
   getSpacingSystem,
-  getBoxShadow,
   getTransitions
 } from "./styleProviders";
 import {
@@ -29,6 +29,7 @@ export const getTheme = (themeInputs: ThemeInput) => ({
   },
   transitions: getTransitions(themeInputs.transitions),
   boxShadow: getBoxShadow(boxShadowOffsets, colorConstants.shadow),
+  defaultShowBoxShadow: themeInputs.defaultShowBoxShadow,
   border: {
     borderRadius: getBorderRadius(themeInputs.border.borderRadius),
     borderStyle: getBorderStyle(themeInputs.border.borderStyle)

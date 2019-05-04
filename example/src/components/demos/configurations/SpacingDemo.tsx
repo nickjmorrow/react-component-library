@@ -27,7 +27,7 @@ export const SpacingDemo: React.FC = () => {
     <React.Fragment>
       <Typography styleVariant={1}>Spacing</Typography>
       <DisplayPaper
-        customStyle={{
+        style={{
           display: "flex",
           flexDirection: "row",
           maxWidth: "none",

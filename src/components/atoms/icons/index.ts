@@ -7,4 +7,5 @@ export { LoadingIcon } from "./LoadingIcon";
 export { CloseIcon } from "./CloseIcon";
 export { ChevronUpIcon } from "./ChevronUpIcon";
 export { AddIcon } from "./AddIcon";
+export { MenuIcon } from "./MenuIcon";
 export * from "./iconButtons";

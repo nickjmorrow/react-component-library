@@ -10,24 +10,40 @@ const equal = require("fast-deep-equal");
 
 const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
   navInfos,
-  location
+  location,
+  showBoxShadow,
+  onLinkClick: handleLinkClick = () => {
+    return;
+  },
+  styleApi = {}
 }) => {
   const { pathname: currentRoute } = location;
-  const { colors, transitions, spacing, boxShadow } = React.useContext(
-    ThemeContext
-  );
+  const {
+    colors,
+    transitions,
+    spacing,
+    boxShadow,
+    defaultShowBoxShadow
+  } = React.useContext(ThemeContext);
+
+  // TODO: naming
+  const finalShowBoxShadow =
+    showBoxShadow === undefined ? defaultShowBoxShadow : showBoxShadow;
 
   const renderNavLink = (
     navLink: INavLink,
     marginLeft: string,
-    i: number
+    i: number,
+    handleLinkClickArg: () => void
   ): React.ReactNode => {
     return (
       <NavElement
         spacing={spacing}
         colors={colors}
         transitions={transitions}
-        key={`nav-element-${i}`}>
+        key={`nav-element-${i}`}
+        style={styleApi.navElementStyle}
+        onClick={handleLinkClickArg}>
         <Link
           route={navLink.route}
           styleVariant={
@@ -53,7 +69,7 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
     return (navElementOrFolder as FolderInfo).navLinks !== undefined;
   };
 
-  navInfos.map((navInfo, i) => {
+  navInfos.forEach((navInfo, i) => {
     navItems.push(
       isFolder(navInfo) ? (
         <Folder
@@ -61,9 +77,11 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
           renderNavLink={renderNavLink}
           key={`folder-${i}`}
           currentRoute={currentRoute}
+          style={styleApi.navElementStyle}
+          handleLinkClick={handleLinkClick}
         />
       ) : (
-        renderNavLink(navInfo, spacing.ss4, i)
+        renderNavLink(navInfo, spacing.ss4, i, handleLinkClick)
       )
     );
   });
@@ -90,13 +108,15 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
     <div
       style={{
         width: spacing.ss64,
-        boxShadow: boxShadow.bs1
+        boxShadow: finalShowBoxShadow ? boxShadow.bs1 : "none",
+        ...styleApi.wrapperStyle
       }}>
       <Nav
         spacing={spacing}
         boxShadow={boxShadow}
         headerOffset={headerOffset}
-        footerOffset={footerOffset}>
+        footerOffset={footerOffset}
+        style={styleApi.navStyle}>
         <div>{navItems}</div>
       </Nav>
     </div>
@@ -125,12 +145,17 @@ const NavElement = styled("div")<{
   colors: StyleConstant<"colors">;
   transitions: StyleConstant<"transitions">;
   spacing: StyleConstant<"spacing">;
+  style?: React.CSSProperties;
 }>`
   cursor: pointer;
   width: ${p => p.spacing.ss64};
   transition: background-color ${p => p.transitions.medium};
   &:hover {
     background-color: ${p => p.colors.neutral.cs2};
+    transition: background-color ${p => p.transitions.medium};
+  }
+  &:active {
+    background-color: ${p => p.colors.neutral.cs3};
     transition: background-color ${p => p.transitions.medium};
   }
 `;
@@ -154,11 +179,14 @@ const Folder: React.SFC<{
   renderNavLink: (
     navInfo: INavLink,
     marginLeft: string,
-    i: number
+    i: number,
+    handleLinkClick: () => void
   ) => React.ReactNode;
   currentRoute: string;
+  style?: React.CSSProperties;
+  handleLinkClick: () => void;
 }> = React.memo(
-  ({ folderInfo, renderNavLink, currentRoute }) => {
+  ({ folderInfo, renderNavLink, currentRoute, style, handleLinkClick }) => {
     const initialExpansionState = folderInfo.navLinks
       .map(nl => nl.route)
       .reduce((agg, cur) => {
@@ -174,13 +202,14 @@ const Folder: React.SFC<{
           spacing={spacing}
           colors={colors}
           transitions={transitions}
-          onClick={toggleIsExpanded}>
+          onClick={toggleIsExpanded}
+          style={style}>
           <FolderLabel spacing={spacing}>{folderInfo.label}</FolderLabel>
         </NavElement>
         <Collapse isOpened={isExpanded} springConfig={{ stiffness: 220 }}>
           <div ref={innerNavLinkRef}>
             {folderInfo.navLinks.map((nl, i) =>
-              renderNavLink(nl, spacing.ss8, i)
+              renderNavLink(nl, spacing.ss8, i, handleLinkClick)
             )}
           </div>
         </Collapse>
@@ -226,4 +255,11 @@ interface INavLink {
 
 interface Props {
   navInfos: Array<FolderInfo | INavLink>;
+  showBoxShadow?: boolean;
+  onLinkClick?: () => void;
+  styleApi?: {
+    wrapperStyle?: React.CSSProperties;
+    navElementStyle?: React.CSSProperties;
+    navStyle?: React.CSSProperties;
+  };
 }

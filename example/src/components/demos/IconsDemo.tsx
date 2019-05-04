@@ -13,7 +13,8 @@ import {
   Typography,
   AddIconButton,
   CloseIconButton,
-  EditIconButton
+  EditIconButton,
+  MenuIcon
 } from "react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
@@ -37,6 +38,7 @@ export const IconsDemo: React.SFC = () => {
           <TrashIcon sizeVariant={4} />
           <UploadIcon sizeVariant={4} />
           <ChevronUpIcon sizeVariant={4} />
+          <MenuIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
       <Typography styleVariant={2}>Icon Sizes</Typography>
@@ -56,7 +58,7 @@ export const IconsDemo: React.SFC = () => {
         </IconSizes>
       </DisplayPaper>
       <Typography styleVariant={2}>Light Colors</Typography>
-      <DisplayPaper customStyle={{ backgroundColor: colors.neutral.cs7 }}>
+      <DisplayPaper style={{ backgroundColor: colors.neutral.cs7 }}>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"secondaryLight"} />
           <GithubIcon sizeVariant={4} colorVariant={"primaryLight"} />
@@ -64,7 +66,7 @@ export const IconsDemo: React.SFC = () => {
       </DisplayPaper>
       <Typography styleVariant={2}>Icon Buttons</Typography>
       <DisplayPaper
-        customStyle={{
+        style={{
           display: "grid",
           gridAutoFlow: "row",
           gridRowGap: "16px"

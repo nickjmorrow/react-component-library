@@ -23,7 +23,7 @@ export const PaperModal: React.SFC<{
         <CloseIcon
           onClick={handleRequestClose}
           style={iconStyle}
-          sizeVariant={2}
+          sizeVariant={4}
         />
         <Wrapper useMargin={useMargin} spacing={spacing}>
           {children}
@@ -52,7 +52,7 @@ const Wrapper = styled("div")<WrapperProps>`
 
 const iconStyle: React.CSSProperties = {
   position: "absolute",
-  right: "52px",
-  top: "57px",
+  right: "44px",
+  top: "54px",
   cursor: "pointer"
 };

@@ -1,4 +1,6 @@
 export { Borders } from "./Borders";
-export { Colors } from "./Colors";
-export { TypographyDemo } from "./TypographyDemo";
 export { BoxShadowDemo } from "./BoxShadowDemo";
+export { Colors } from "./Colors";
+export { SpacingDemo } from "./SpacingDemo";
+export { StyleConstants } from "./StyleConstants";
+export { TypographyDemo } from "./TypographyDemo";

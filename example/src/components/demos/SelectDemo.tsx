@@ -46,13 +46,12 @@ export const SelectDemo: React.SFC = () => {
   return (
     <>
       <Typography styleVariant={1}>Select</Typography>
-      <DisplayPaper customStyle={paperStyles}>
+      <DisplayPaper style={paperStyles}>
         <SelectWrapper>
           <Select
             options={options}
             currentOption={currentOption}
             onChange={setOption}
-            id={1}
           />
         </SelectWrapper>
         <SelectWrapper>
@@ -73,7 +72,7 @@ export const SelectDemo: React.SFC = () => {
           />
         </SelectWrapper>
       </DisplayPaper>
-      <DisplayPaper customStyle={paperStyles}>
+      <DisplayPaper style={paperStyles}>
         <SelectWrapper>
           <Select
             options={options}
