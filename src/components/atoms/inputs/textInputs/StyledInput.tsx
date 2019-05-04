@@ -26,6 +26,7 @@ export const StyledInput: React.SFC<
     border: { borderRadius, borderStyle },
     spacing,
     boxShadow,
+    defaultShowBoxShadow,
     typography: { fontFamily, fontSizes, fontWeights }
   } = React.useContext(ThemeContext);
 
@@ -49,6 +50,7 @@ export const StyledInput: React.SFC<
   return (
     <>
       <Input
+        defaultShowBoxShadow={defaultShowBoxShadow}
         boxShadow={boxShadow}
         colors={colors}
         hasErrors={errors.length > 0}
@@ -95,11 +97,11 @@ export const Input = styled("input")<DisplayProps>`
   transition: box-shadow ${p => p.transition},
     border-left-color ${p => p.transition};
   &:hover {
-    box-shadow: ${p => p.boxShadow.bs1};
+    box-shadow: ${p => p.defaultShowBoxShadow && p.boxShadow.bs1};
     transition: box-shadow ${p => p.transition};
   }
   &:focus {
-    box-shadow: ${p => p.boxShadow.bs2};
+    box-shadow: ${p => p.defaultShowBoxShadow && p.boxShadow.bs2};
     transition: all ${p => p.transition};
   }
 `;
@@ -118,4 +120,5 @@ interface DisplayProps {
   spacing: StyleConstant<"spacing">;
   hasErrors: boolean;
   colors: StyleConstant<"colors">;
+  defaultShowBoxShadow: boolean;
 }

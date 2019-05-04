@@ -4,14 +4,14 @@ import {
   Button,
   PopulatedAppBar,
   StyleConstant,
-  ThemeContext,
   Typography,
-  ColorVariant
+  ColorVariant,
+  useThemeContext
 } from "react-component-library";
 import styled from "styled-components";
 
 export const AppBarDemo: React.FC = () => {
-  const { spacing } = React.useContext(ThemeContext);
+  const { spacing } = useThemeContext();
   const rightComponents = (
     <>
       <Button

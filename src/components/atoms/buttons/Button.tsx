@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Link } from "~/components/atoms";
 import PulseLoader from "react-spinners/PulseLoader";
 import styled from "styled-components";
-import { ThemeContext } from "~/styleConstants";
+import { Link } from "~/components/atoms";
+import { useThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
 import { Fade } from "../../animations";
 import { getColorFunc } from "../atomServices";
@@ -26,6 +26,7 @@ interface IDisplayProps {
   width: number;
   height: number;
   isDisabled: boolean;
+  defaultShouldShowBoxShadow: boolean;
 }
 
 type IButtonProps = {
@@ -54,6 +55,7 @@ export const Button: React.SFC<IButtonProps> = ({
   isDisabled = false,
   isLoading = false,
   link,
+  style,
   colorSet = {} as ColorSet,
   onClick: handleClick = () => {
     return;
@@ -64,9 +66,14 @@ export const Button: React.SFC<IButtonProps> = ({
       handleClick();
     }
   };
-  const { colors, transitions, boxShadow, spacing, border } = React.useContext(
-    ThemeContext
-  );
+  const {
+    colors,
+    transitions,
+    boxShadow,
+    spacing,
+    border,
+    defaultShowBoxShadow
+  } = useThemeContext();
 
   const formattedChildren = getFormattedTextNode(children, {
     colorVariant: "inherit",
@@ -112,6 +119,8 @@ export const Button: React.SFC<IButtonProps> = ({
 
   const content = (
     <StyledButton
+      style={style}
+      defaultShouldShowBoxShadow={defaultShowBoxShadow}
       isDisabled={isDisabled}
       colorVariant={colorVariant}
       styleVariant={styleVariant}
@@ -185,7 +194,9 @@ const StyledButton = styled("button")<
   cursor: ${p => (p.isDisabled ? "not-allowed" : "pointer")};
   outline: none;
   word-wrap: no-wrap;
-  box-shadow: ${p => getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, 'normal')};
+  box-shadow: ${p =>
+    p.defaultShouldShowBoxShadow &&
+    getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, "normal")};
   min-width: ${p => p.width}px;
   min-height: ${p => p.height} / px;
   height: max-content;
@@ -220,7 +231,9 @@ const StyledButton = styled("button")<
         "hover",
         p.isDisabled
       )};
-    box-shadow: ${p => getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, 'hover')};
+    box-shadow: ${p =>
+      p.defaultShouldShowBoxShadow &&
+      getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, "hover")};
     transition: ${p => !p.isDisabled && `all ${p.transition} ease-in-out`}};
   }
   &:active {
@@ -251,19 +264,21 @@ const StyledButton = styled("button")<
         "active",
         p.isDisabled
       )};
-    box-shadow: ${p => getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, 'active')};
+    box-shadow: ${p =>
+      p.defaultShouldShowBoxShadow &&
+      getBoxShadow(p.boxShadow, p.isDisabled, p.showBoxShadow, "active")};
     transition: ${p => !p.isDisabled && `all ${p.transition} ease-in-out`}};
   }
 `;
 
 const getBoxShadow = (
-  boxShadow: StyleConstant<'boxShadow'>,
+  boxShadow: StyleConstant<"boxShadow">,
   isDisabled: boolean,
   showBoxShadow: boolean,
   uiState: UIState
 ) => {
   if (!showBoxShadow) {
-    return 'none';
+    return "none";
   }
 
   if (isDisabled) {
@@ -278,4 +293,4 @@ const getBoxShadow = (
     case "active":
       return boxShadow.bs1;
   }
-}
+};

@@ -19,6 +19,8 @@ export const ThemeInputsContext = React.createContext({
 
 export const ThemeContext = React.createContext(getTheme(defaultThemeInputs));
 
+export const useThemeContext = () => React.useContext(ThemeContext);
+
 export const getMergedThemeInputs = (
   newThemeInputs: DeepPartial<typeof defaultThemeInputs>
 ) =>

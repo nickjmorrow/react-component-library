@@ -10,7 +10,7 @@ export const CloseIconButton: React.FC<IconProps & IconButtonProps> = ({
   isDisabled = false,
   showBoxShadow = true,
   onClick: handleClick,
-  ...props
+  style
 }) => {
   return (
     <IconButtonContainer
@@ -18,12 +18,9 @@ export const CloseIconButton: React.FC<IconProps & IconButtonProps> = ({
       styleVariant={styleVariant}
       colorVariant={colorVariant}
       isDisabled={isDisabled}
-      showBoxShadow={showBoxShadow}>
-      <CloseIcon
-        colorVariant={"inherit"}
-        {...props}
-        style={{ display: "block" }}
-      />
+      showBoxShadow={showBoxShadow}
+      style={style}>
+      <CloseIcon colorVariant={"inherit"} style={{ display: "block" }} />
     </IconButtonContainer>
   );
 };

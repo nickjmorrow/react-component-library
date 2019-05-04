@@ -97,6 +97,7 @@ type SizeVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 type WeightVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 type StyleVariant = 1 | 2 | 3;
 
+// TODO: <Code></Code> component
 interface DisplayProps {
   color: string;
   align: string;

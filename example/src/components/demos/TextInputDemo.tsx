@@ -37,7 +37,7 @@ export const TextInputDemo: React.SFC = () => {
   return (
     <>
       <Typography styleVariant={1}>Text Input</Typography>
-      <DisplayPaper customStyle={style}>
+      <DisplayPaper style={style}>
         <InputsWrapper>
           <TextInput
             value={value}
