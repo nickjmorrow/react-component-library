@@ -12,6 +12,7 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
   navInfos,
   location,
   showBoxShadow,
+  marginTop,
   onLinkClick: handleLinkClick = () => {
     return;
   },
@@ -116,6 +117,7 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
         boxShadow={boxShadow}
         headerOffset={headerOffset}
         footerOffset={footerOffset}
+        marginTop={marginTop || spacing.ss4}
         style={styleApi.navStyle}>
         <div>{navItems}</div>
       </Nav>
@@ -130,6 +132,7 @@ const Nav = styled("nav")<{
   boxShadow: StyleConstant<"boxShadow">;
   headerOffset: number;
   footerOffset: number;
+  marginTop: string;
 }>`
   display: flex;
   position: sticky;
@@ -138,7 +141,7 @@ const Nav = styled("nav")<{
   overflow-y: auto;
   height: calc(100vh - ${p => p.headerOffset}px - ${p => p.footerOffset}px);
   flex-direction: column;
-  margin-top: ${p => p.spacing.ss4};
+  margin-top: ${p => p.marginTop};
 `;
 
 const NavElement = styled("div")<{
@@ -256,6 +259,7 @@ interface INavLink {
 interface Props {
   navInfos: Array<FolderInfo | INavLink>;
   showBoxShadow?: boolean;
+  marginTop?: string;
   onLinkClick?: () => void;
   styleApi?: {
     wrapperStyle?: React.CSSProperties;

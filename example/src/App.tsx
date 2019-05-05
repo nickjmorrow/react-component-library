@@ -51,6 +51,7 @@ const App: React.SFC = () => {
     newThemeInputs: ArgumentType<typeof updateThemeInputs>[0]
   ): void => setThemeInputs(updateThemeInputs(newThemeInputs));
 
+  console.log(process.env.PUBLIC_URL);
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>

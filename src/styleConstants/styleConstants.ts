@@ -8,7 +8,8 @@ export const transitionTimingFunction =
   "cubic-bezier(0.645, 0.045, 0.355, 1.000)";
 
 export const fontFamily = {
-  default: "Roboto, sans-serif"
+  default: "Roboto, sans-serif",
+  title: "Oleo Script Swash Caps, cursive"
 };
 
 
