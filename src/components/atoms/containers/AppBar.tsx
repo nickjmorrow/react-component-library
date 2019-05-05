@@ -59,6 +59,7 @@ const Wrapper = styled("div")<{
   spacing: StyleConstant<"spacing">;
 }>`
   width: 100%;
+  position: relative;
   height: ${p => p.spacing.ss16};
   background-color: ${p => getBackgroundColor(p.colors, p.styleVariant)};
   display: flex;

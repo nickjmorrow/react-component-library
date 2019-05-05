@@ -7,9 +7,10 @@ export const Fade: React.SFC<{
   in: boolean;
   transitionVariant?: keyof StyleConstant<"transitions">;
   style?: React.CSSProperties;
-  styleKeys?: any[]; //TODO: this should be array of html style css attributes
+  styleKeys?: any[]; // TODO: this should be array of html style css attributes
   mounted?: React.CSSProperties;
   unmounted?: React.CSSProperties;
+  enterTimeout?: number;
 }> = ({
   children,
   in: inProp,
@@ -17,7 +18,8 @@ export const Fade: React.SFC<{
   styleKeys = [],
   unmounted: customUnmounted = {},
   mounted: customMounted = {},
-  transitionVariant = "fast"
+  transitionVariant = "fast",
+  enterTimeout = 0
 }) => {
   const defaultMounted = { opacity: 1 };
   const defaultUnmounted = { opacity: 0 };
@@ -53,7 +55,7 @@ export const Fade: React.SFC<{
   return (
     <Transition
       in={inProp}
-      timeout={{ enter: 0, exit: duration }}
+      timeout={{ enter: enterTimeout, exit: duration }}
       unmountOnExit={true}>
       {state => (
         <div style={{ ...defaultStyle, ...transitionStyles[state] }}>

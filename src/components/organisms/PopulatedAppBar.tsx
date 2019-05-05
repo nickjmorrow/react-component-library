@@ -6,7 +6,8 @@ import {
   StyleVariant,
   ColorVariant,
   Link,
-  MenuIcon
+  MenuIcon,
+  MenuButton
 } from "../atoms";
 import { githubLink } from "~/constants";
 import { ThemeContext, mediaWidth } from "~/styleConstants";
@@ -23,6 +24,7 @@ export const PopulatedAppBar: React.SFC<{
   rightComponents?: React.ReactNode;
   leftComponents?: React.ReactNode;
   showBoxShadow?: boolean;
+  menuLength?: "long" | "short";
   navInfos?: GetComponentProps<typeof SideNav>["navInfos"];
 }> = ({
   appName,
@@ -30,7 +32,8 @@ export const PopulatedAppBar: React.SFC<{
   leftComponents,
   rightComponents,
   showBoxShadow,
-  navInfos
+  navInfos,
+  menuLength = "long"
 }) => {
   const { spacing, defaultShowBoxShadow } = React.useContext(ThemeContext);
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
@@ -40,6 +43,12 @@ export const PopulatedAppBar: React.SFC<{
   );
 
   // TODO: handle case where no navInfos are passed in
+  const useLongMenu = menuLength === "long";
+  const iconStyle = {
+    position: "absolute",
+    right: "15px",
+    cursor: "pointer"
+  };
   return (
     <Media query={`(max-width: ${mediaWidth.mobileLandscape})`}>
       {(matches: boolean) => (
@@ -61,10 +70,25 @@ export const PopulatedAppBar: React.SFC<{
           <div style={{ display: "flex", alignItems: "center" }}>
             {rightComponents}
             {matches ? (
-              <MenuIcon
-                style={{ position: "absolute", right: "15px" }}
-                onClick={() => setIsMenuVisible(!isMenuVisible)}
-              />
+              useLongMenu ? (
+                <MenuIcon
+                  style={iconStyle as React.CSSProperties}
+                  colorVariant={getIconColorVariant(styleVariant)}
+                  onClick={() => setIsMenuVisible(!isMenuVisible)}
+                />
+              ) : (
+                <MenuButton
+                  colorVariant={getIconColorVariant(styleVariant)}
+                  styleApi={{
+                    iconStyle: iconStyle as React.CSSProperties,
+                    styledOptionList: {
+                      marginLeft: "-70px",
+                      marginTop: "20px"
+                    }
+                  }}
+                  navLinks={navInfos as Array<{ label: string; route: string }>}
+                />
+              )
             ) : (
               <a href={githubLink} style={{ marginLeft: spacing.ss4 }}>
                 <GithubIcon

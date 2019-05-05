@@ -4,12 +4,13 @@ import {
   Typography,
   GoogleButton,
   LinkedInButton,
-  FacebookButton
+  FacebookButton,
+  MenuButton
 } from "react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
 
-export const Buttons: React.SFC = () => {
+export const ButtonsDemo: React.SFC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const toggleIsLoading = () => setIsLoading(!isLoading);
 
@@ -130,6 +131,27 @@ export const Buttons: React.SFC = () => {
         <Button isDisabled={true} styleVariant={"tertiary"}>
           Tertiary
         </Button>
+      </DisplayPaper>
+      <Typography styleVariant={3}>Menu Buttons</Typography>
+      <DisplayPaper
+        style={{
+          display: "grid",
+          gridAutoFlow: "column",
+          gridColumnGap: "64px"
+        }}>
+        <MenuButton
+          navLinks={[
+            { label: "Dog", route: "/dog" },
+            { label: "Cat", route: "/cat" }
+          ]}
+        />
+        <MenuButton
+          navLinks={[
+            { label: "Dog", route: "/dog" },
+            { label: "Cat", route: "/cat" }
+          ]}
+          align={"right"}
+        />
       </DisplayPaper>
     </Wrapper>
   );

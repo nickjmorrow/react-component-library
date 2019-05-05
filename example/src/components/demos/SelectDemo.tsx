@@ -1,12 +1,11 @@
+import * as React from "react";
+import { useState } from "react";
 import {
   IOption,
   Select,
   ThemeContext,
   Typography
 } from "react-component-library";
-import * as React from "react";
-import { useState } from "react";
-import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
 
 const options: IOption[] = [
@@ -35,11 +34,10 @@ export const SelectDemo: React.SFC = () => {
 
   const paperStyles = {
     marginBottom: spacing.ss12,
-    display: "flex",
-    flexDirection: "row" as "column",
-    justifyContent: "space-around",
-    alignItems: "center",
-    width: spacing.ss128,
+    display: "grid",
+    gridAutoFlow: "column",
+    gridColumnGap: spacing.ss4,
+    maxWidth: spacing.ss128,
     padding: `${spacing.ss8} ${spacing.ss3}`
   };
 
@@ -47,22 +45,22 @@ export const SelectDemo: React.SFC = () => {
     <>
       <Typography styleVariant={1}>Select</Typography>
       <DisplayPaper style={paperStyles}>
-        <SelectWrapper>
+        <div>
           <Select
             options={options}
             currentOption={currentOption}
             onChange={setOption}
           />
-        </SelectWrapper>
-        <SelectWrapper>
+        </div>
+        <div>
           <Select
             helperText={"Some helper text"}
             options={options}
             currentOption={currentOption}
             onChange={setOption}
           />
-        </SelectWrapper>
-        <SelectWrapper style={{ marginTop: "-36px" }}>
+        </div>
+        <div style={{ marginTop: "-36px" }}>
           <Select
             label={"someLabel"}
             helperText={"Some helper text"}
@@ -70,26 +68,26 @@ export const SelectDemo: React.SFC = () => {
             currentOption={currentOption}
             onChange={setOption}
           />
-        </SelectWrapper>
+        </div>
       </DisplayPaper>
       <DisplayPaper style={paperStyles}>
-        <SelectWrapper>
+        <div>
           <Select
             options={options}
             currentOption={currentOption}
             onChange={setOption}
             error={"Some error text"}
           />
-        </SelectWrapper>
-        <SelectWrapper>
+        </div>
+        <div>
           <Select
             helperText={"Some helper text"}
             options={options}
             currentOption={currentOption}
             onChange={setOption}
           />
-        </SelectWrapper>
-        <SelectWrapper style={{ marginTop: "-36px" }}>
+        </div>
+        <div style={{ marginTop: "-36px" }}>
           <Select
             label={"someLabel"}
             helperText={"Some helper text"}
@@ -97,10 +95,8 @@ export const SelectDemo: React.SFC = () => {
             currentOption={currentOption}
             onChange={setOption}
           />
-        </SelectWrapper>
+        </div>
       </DisplayPaper>
     </>
   );
 };
-
-const SelectWrapper = styled.div``;

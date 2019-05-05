@@ -21,6 +21,7 @@ import { GettingStarted } from "./components/GettingStarted";
 import { Principles } from "./components/Principles";
 import { Route } from "react-router";
 import * as React from "react";
+import { FadeDemo } from "./components/demos/FadeDemo";
 
 const atomComponents = {
   label: "Atoms",
@@ -122,6 +123,11 @@ const themeConfiguration = {
       component: SpacingDemo,
       label: "Spacing",
       route: "/spacing"
+    },
+    {
+      component: FadeDemo,
+      label: "Fade Animation",
+      route: "/fade-animation"
     },
     {
       component: StyleConstants,

@@ -2,22 +2,28 @@ import { StyleConstant, ThemeContext } from "react-component-library";
 import styled from "styled-components";
 import * as React from "react";
 
-export const Block: React.FC<{ color: string; boxShadow?: string }> = ({
-  color,
-  boxShadow: boxShadowOverride
-}) => {
+export const Block: React.FC<
+  {
+    color?: string;
+    boxShadow?: string;
+  } & React.PropsWithoutRef<JSX.IntrinsicElements["div"]>
+> = ({ color, boxShadow: boxShadowOverride, ...props }) => {
   const {
     spacing,
     border: { borderRadius },
-    boxShadow
+    boxShadow,
+    colors
   } = React.useContext(ThemeContext);
+
+  const finalColor = color || colors.core.cs5;
 
   return (
     <StyledBlock
-      color={color}
+      color={finalColor}
       spacing={spacing}
       borderRadius={borderRadius}
       boxShadow={boxShadowOverride || boxShadow.bs1}
+      {...props}
     />
   );
 };
