@@ -1,5 +1,5 @@
 export { AppBarDemo } from "./AppBarDemo";
-export { Buttons } from "./Buttons";
+export { ButtonsDemo as Buttons } from "./ButtonsDemo";
 export { ExpansionPanelDemo } from "./ExpansionPanelDemo";
 export { FileInputDemo } from "./FileInputDemo";
 export { IconsDemo } from "./IconsDemo";

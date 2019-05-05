@@ -6,6 +6,7 @@ import { ThemeContext } from "~/styleConstants";
 import { IOption } from "~/types";
 import { StyleConstant } from "~/typeUtilities";
 import { Option } from "./Option";
+import { StyledOptionList } from "./StyledOptionList";
 
 export const Select: React.SFC<{
   options: IOption[];
@@ -26,7 +27,7 @@ export const Select: React.SFC<{
 }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const toggleIsMenuVisible = () =>
-    setIsMenuVisible(isMenuVisible => !isMenuVisible);
+    setIsMenuVisible(currentIsMenuVisible => !currentIsMenuVisible);
 
   const handleClickOption = (option: IOption) => {
     setIsMenuVisible(false);
@@ -88,17 +89,11 @@ export const Select: React.SFC<{
           <Typography sizeVariant={3}>{currentOption.label}</Typography>
         </StyledSelect>
         <Fade in={isMenuVisible}>
-          <Options
-            boxShadow={boxShadow}
-            colors={colors}
-            spacing={spacing}
-            border={border}
-            transitions={transitions}
-            className="fade">
+          <StyledOptionList>
             {options.map(o => (
               <Option key={o.value} onClick={handleClickOption} option={o} />
             ))}
-          </Options>
+          </StyledOptionList>
         </Fade>
         {belowText && (
           <Typography
@@ -115,28 +110,6 @@ export const Select: React.SFC<{
 const Wrapper = styled("div")<{ width: string }>`
   width: ${p => p.width};
   height: 40px;
-`;
-
-const Options = styled("div")<{
-  colors: StyleConstant<"colors">;
-  spacing: StyleConstant<"spacing">;
-  border: StyleConstant<"border">;
-  boxShadow: StyleConstant<"boxShadow">;
-  transitions: StyleConstant<"transitions">;
-}>`
-  background-color: ${p => p.colors.background};
-  width: inherit;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  z-index: 1;
-  box-shadow: ${p => p.boxShadow.bs1};
-  border-radius: ${p => p.border.borderRadius.br2};
-  transition: box-shadow ${p => p.transitions.slow};
-  &:hover {
-    box-shadow: ${p => p.boxShadow.bs2};
-    transition: box-shadow ${p => p.transitions.slow};
-  }
 `;
 
 const StyledSelect = styled("div")<{
