@@ -17,6 +17,7 @@ export const MobileMenu: React.FC<{
       />
       <SideNav
         navInfos={navInfos}
+        marginTop={"0"}
         styleApi={{
           navElementStyle: { width: "100%" },
           wrapperStyle: { width: "100%" },
@@ -29,7 +30,7 @@ export const MobileMenu: React.FC<{
 };
 
 const Wrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   margin: 0;

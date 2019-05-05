@@ -17,6 +17,7 @@ export const Typography: React.SFC<TypographyProps> = ({
   children,
   align = "default",
   isInteractive = false,
+  fontFamilyVariant = "default",
   style
 }) => {
   const {
@@ -60,7 +61,7 @@ export const Typography: React.SFC<TypographyProps> = ({
       }
       colorHover={colorSet.colorHover || getColorHover(colors, newColorVariant)}
       align={align}
-      fontFamily={fontFamily.default}
+      fontFamily={fontFamily[fontFamilyVariant]}
       transition={transitions.fast}
       fontSize={getFontSize(fontSizes, newSizeVariant)}
       fontWeight={getFontWeight(fontWeights, newWeightVariant)}
@@ -118,6 +119,7 @@ export interface TypographyProps {
   styleVariant?: StyleVariant;
   style?: React.CSSProperties;
   colorSet?: Partial<ColorSet>;
+  fontFamilyVariant?: keyof StyleConstant<"typography">["fontFamily"];
   isInteractive?: boolean;
 }
 

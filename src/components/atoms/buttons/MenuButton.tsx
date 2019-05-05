@@ -1,14 +1,13 @@
 import * as React from "react";
-import { MenuIcon } from "../icons";
-import styled from "styled-components";
-import { useThemeContext } from "~/styleConstants";
 import {
-  Typography,
+  ColorVariant,
   Fade,
   StyledOption,
   StyledOptionList,
-  ColorVariant
+  Typography
 } from "~/components";
+import { useThemeContext } from "~/styleConstants";
+import { MenuIcon } from "../icons";
 import { Link } from "../Link";
 
 export const MenuButton: React.FC<{
@@ -31,31 +30,31 @@ export const MenuButton: React.FC<{
   const { spacing } = useThemeContext();
   const finalOptionWidth = optionMinWidth || spacing.ss32;
   return (
-    <div style={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
+    <>
       <MenuIcon
         colorVariant={colorVariant}
         onClick={() => setIsMenuVisible(isVisible => !isVisible)}
         style={styleApi.iconStyle}
       />
-      <Fade in={isMenuVisible}>
-        <MenuWrapper>
-          <StyledOptionList
-            style={{
-              marginLeft: align === "left" ? "-122px" : "0px",
-              ...styleApi.styledOptionList
-            }}>
-            {navLinks.map(nl => (
-              <Link route={nl.route}>
-                <StyledOption style={{ minWidth: finalOptionWidth }}>
-                  <Typography>{nl.label}</Typography>
-                </StyledOption>
-              </Link>
-            ))}
-          </StyledOptionList>
-        </MenuWrapper>
+      <Fade in={isMenuVisible} style={{ position: "absolute" }}>
+        <StyledOptionList
+          style={{
+            marginLeft: align === "left" ? "-122px" : "0px",
+            right: "0px",
+            ...styleApi.styledOptionList,
+            width:
+              (styleApi.styledOptionList && styleApi.styledOptionList.width) ||
+              "min-content"
+          }}>
+          {navLinks.map(nl => (
+            <Link route={nl.route}>
+              <StyledOption style={{ minWidth: finalOptionWidth }}>
+                <Typography>{nl.label}</Typography>
+              </StyledOption>
+            </Link>
+          ))}
+        </StyledOptionList>
       </Fade>
-    </div>
+    </>
   );
 };
-
-const MenuWrapper = styled.div``;

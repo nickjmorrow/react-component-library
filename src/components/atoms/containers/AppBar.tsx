@@ -49,6 +49,7 @@ const Inner = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  position: relative;
 `;
 
 const Wrapper = styled("div")<{

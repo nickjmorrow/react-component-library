@@ -26,6 +26,7 @@ export const PopulatedAppBar: React.SFC<{
   showBoxShadow?: boolean;
   menuLength?: "long" | "short";
   navInfos?: GetComponentProps<typeof SideNav>["navInfos"];
+  styledOptionWidth?: string;
 }> = ({
   appName,
   styleVariant = "primary",
@@ -33,7 +34,8 @@ export const PopulatedAppBar: React.SFC<{
   rightComponents,
   showBoxShadow,
   navInfos,
-  menuLength = "long"
+  menuLength = "long",
+  styledOptionWidth
 }) => {
   const { spacing, defaultShowBoxShadow } = React.useContext(ThemeContext);
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
@@ -43,10 +45,11 @@ export const PopulatedAppBar: React.SFC<{
   );
 
   // TODO: handle case where no navInfos are passed in
+  // TODO: clean up
   const useLongMenu = menuLength === "long";
   const iconStyle = {
     position: "absolute",
-    right: "15px",
+    right: "0px",
     cursor: "pointer"
   };
   return (
@@ -59,45 +62,45 @@ export const PopulatedAppBar: React.SFC<{
           <div style={{ display: "flex", alignItems: "flex-end" }}>
             <Link route={"/"}>
               <Typography
-                sizeVariant={6}
+                sizeVariant={7}
                 weightVariant={5}
+                fontFamilyVariant={"title"}
                 colorVariant={getColorVariant(styleVariant)}>
                 {appName}
               </Typography>
             </Link>
             {leftComponents}
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {rightComponents}
-            {matches ? (
-              useLongMenu ? (
-                <MenuIcon
-                  style={iconStyle as React.CSSProperties}
-                  colorVariant={getIconColorVariant(styleVariant)}
-                  onClick={() => setIsMenuVisible(!isMenuVisible)}
-                />
-              ) : (
-                <MenuButton
-                  colorVariant={getIconColorVariant(styleVariant)}
-                  styleApi={{
-                    iconStyle: iconStyle as React.CSSProperties,
-                    styledOptionList: {
-                      marginLeft: "-70px",
-                      marginTop: "20px"
-                    }
-                  }}
-                  navLinks={navInfos as Array<{ label: string; route: string }>}
-                />
-              )
+          {rightComponents}
+          {matches ? (
+            useLongMenu ? (
+              <MenuIcon
+                style={iconStyle as React.CSSProperties}
+                colorVariant={getIconColorVariant(styleVariant)}
+                onClick={() => setIsMenuVisible(!isMenuVisible)}
+              />
             ) : (
-              <a href={githubLink} style={{ marginLeft: spacing.ss4 }}>
-                <GithubIcon
-                  colorVariant={getIconColorVariant(styleVariant)}
-                  sizeVariant={3}
-                />
-              </a>
-            )}
-          </div>
+              <MenuButton
+                colorVariant={getIconColorVariant(styleVariant)}
+                styleApi={{
+                  iconStyle: iconStyle as React.CSSProperties,
+                  styledOptionList: {
+                    marginLeft: "0px",
+                    marginTop: "20px",
+                    width: styledOptionWidth
+                  }
+                }}
+                navLinks={navInfos as Array<{ label: string; route: string }>}
+              />
+            )
+          ) : (
+            <a href={githubLink} style={{ marginLeft: spacing.ss4 }}>
+              <GithubIcon
+                colorVariant={getIconColorVariant(styleVariant)}
+                sizeVariant={3}
+              />
+            </a>
+          )}
 
           <Fade
             in={isMenuVisible && navInfos !== undefined}
