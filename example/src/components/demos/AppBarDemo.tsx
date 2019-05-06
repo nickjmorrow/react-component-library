@@ -14,7 +14,7 @@ const sampleMenuOptions = [
   { label: "Bergundy", route: "/bergundy" },
   {
     label: "Maroon",
-    route: "/maroon"
+    route: "/app-bar"
   },
   { label: "Dark Red", route: "/dark-red" }
 ];
