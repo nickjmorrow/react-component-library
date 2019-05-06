@@ -4,37 +4,39 @@ import { useThemeContext } from "~/styleConstants";
 import * as React from "react";
 
 export const StyledOption: React.FC<
-  React.PropsWithoutRef<JSX.IntrinsicElements["div"]>
-> = ({ ...props }) => {
-  const {
-    spacing,
-    colors,
-    transitions,
-    border: { borderRadius }
-  } = useThemeContext();
+  React.PropsWithoutRef<JSX.IntrinsicElements["div"]> & Props
+> = ({ isSelected = false, ...props }) => {
+  const { spacing, colors, transitions } = useThemeContext();
   return (
     <StyledOptionInternal
       spacing={spacing}
       colors={colors}
       transitions={transitions}
-      borderRadius={borderRadius}
+      isSelected={isSelected}
       {...props}
     />
   );
 };
 
-export const StyledOptionInternal = styled("div")<{
-  spacing: StyleConstant<"spacing">;
-  colors: StyleConstant<"colors">;
-  transitions: StyleConstant<"transitions">;
-  borderRadius: StyleConstant<"border">["borderRadius"];
-}>`
+export const StyledOptionInternal = styled("div")<
+  {
+    spacing: StyleConstant<"spacing">;
+    colors: StyleConstant<"colors">;
+    transitions: StyleConstant<"transitions">;
+  } & Required<Props>
+>`
   padding: ${({ spacing }) => spacing.ss3};
   cursor: pointer;
+  background-color: ${p =>
+    p.isSelected ? p.colors.neutral.cs3 : p.colors.background};
   transition: background-color ${p => p.transitions.fast};
   &:hover {
-    background-color: ${p => p.colors.neutral.cs2};
+    background-color: ${p =>
+      p.isSelected ? p.colors.neutral.cs3 : p.colors.neutral.cs2};
     transition: background-color ${p => p.transitions.fast};
-    border-radius: ${p => p.borderRadius.br1};
   }
 `;
+
+interface Props {
+  isSelected?: boolean;
+}

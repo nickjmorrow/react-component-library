@@ -8,39 +8,40 @@ import { Option } from "./Option";
 import { StyledOptionList } from "./StyledOptionList";
 import { StyledSelect } from "./StyledSelect";
 
-export const Select: React.SFC<{
+export const Multiselect: React.SFC<{
   options: IOption[];
-  currentOption: IOption;
-  id?: string | number;
-  includeNoneOptionAfterSelection?: boolean;
+  currentOptions: IOption[];
   label?: string;
   helperText?: string;
   error?: string;
-  numVisibleOptions?: number;
-  onChange(option: IOption): void;
+  placeholder?: string;
+  onChange(options: IOption[]): void;
 }> = ({
   onChange: handleChange,
-  currentOption,
+  currentOptions,
   options,
   label,
   helperText,
   error = "",
-  numVisibleOptions
+  placeholder = " "
 }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const toggleIsMenuVisible = () =>
     setIsMenuVisible(currentIsMenuVisible => !currentIsMenuVisible);
 
   const handleClickOption = (option: IOption) => {
-    setIsMenuVisible(false);
-    handleChange(option);
+    const newOptions = currentOptions.some(co => co.value === option.value)
+      ? currentOptions.filter(co => co.value !== option.value)
+      : [...currentOptions, option];
+    handleChange(newOptions);
   };
 
   const { spacing } = useThemeContext();
 
-  // TODO: can this and handleClick be shared?
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  // TODO: can this be shared? can this be a custom hook?
+  // same for the wrapperRef above
   const handleClick = (e: React.MouseEvent | Event) => {
     // @ts-ignore
     if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
@@ -69,6 +70,18 @@ export const Select: React.SFC<{
   const hasError = error.length > 0;
   const belowText = error || helperText;
 
+  const currentOptionsLength = currentOptions.length;
+  const currentOptionsLabels = (currentOptionsLength &&
+    currentOptions.map((co, i) => (
+      <Typography key={co.value} sizeVariant={3} style={{ display: "inline" }}>
+        {i === currentOptionsLength - 1 ? co.label : `${co.label}, ` + " "}
+      </Typography>
+    ))) || (
+    <Typography colorVariant={"secondaryDark"} sizeVariant={3}>
+      {placeholder}
+    </Typography>
+  );
+
   return (
     <div ref={wrapperRef}>
       <Wrapper width={spacing.ss32}>
@@ -83,12 +96,17 @@ export const Select: React.SFC<{
           onClick={(e: React.MouseEvent) => handleClick(e)}
           isMenuVisible={isMenuVisible}
           hasError={hasError}>
-          <Typography sizeVariant={3}>{currentOption.label}</Typography>
+          {currentOptionsLabels}
         </StyledSelect>
-        <Fade in={isMenuVisible} mountOnEnter={true} unmountOnExit={true}>
-          <StyledOptionList numVisibleOptions={numVisibleOptions}>
+        <Fade in={isMenuVisible}>
+          <StyledOptionList>
             {options.map(o => (
-              <Option key={o.value} onClick={handleClickOption} option={o} />
+              <Option
+                key={o.value}
+                onClick={handleClickOption}
+                option={o}
+                isSelected={currentOptions.some(co => co.value === o.value)}
+              />
             ))}
           </StyledOptionList>
         </Fade>
@@ -104,6 +122,7 @@ export const Select: React.SFC<{
   );
 };
 
+// TODO: can this be shared with Select.tsx?
 const Wrapper = styled("div")<{ width: string }>`
   width: ${p => p.width};
   height: 40px;
