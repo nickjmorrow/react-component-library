@@ -11,6 +11,8 @@ export const Fade: React.SFC<{
   mounted?: React.CSSProperties;
   unmounted?: React.CSSProperties;
   enterTimeout?: number;
+  mountOnEnter?: boolean;
+  unmountOnExit?: boolean;
 }> = ({
   children,
   in: inProp,
@@ -19,7 +21,9 @@ export const Fade: React.SFC<{
   unmounted: customUnmounted = {},
   mounted: customMounted = {},
   transitionVariant = "fast",
-  enterTimeout = 0
+  enterTimeout = 0,
+  mountOnEnter = false,
+  unmountOnExit = false
 }) => {
   const defaultMounted = { opacity: 1 };
   const defaultUnmounted = { opacity: 0 };
@@ -56,7 +60,8 @@ export const Fade: React.SFC<{
     <Transition
       in={inProp}
       timeout={{ enter: enterTimeout, exit: duration }}
-      unmountOnExit={true}>
+      unmountOnExit={unmountOnExit}
+      mountOnEnter={mountOnEnter}>
       {state => (
         <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
           {children}

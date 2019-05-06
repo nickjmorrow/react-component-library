@@ -36,7 +36,11 @@ export const MenuButton: React.FC<{
         onClick={() => setIsMenuVisible(isVisible => !isVisible)}
         style={styleApi.iconStyle}
       />
-      <Fade in={isMenuVisible} style={{ position: "absolute" }}>
+      <Fade
+        in={isMenuVisible}
+        style={{ position: "absolute" }}
+        mountOnEnter={true}
+        unmountOnExit={true}>
         <StyledOptionList
           style={{
             marginLeft: align === "left" ? "-122px" : "0px",
@@ -44,7 +48,8 @@ export const MenuButton: React.FC<{
             ...styleApi.styledOptionList,
             width:
               (styleApi.styledOptionList && styleApi.styledOptionList.width) ||
-              "min-content"
+              "min-content",
+            zIndex: isMenuVisible ? 99 : -1
           }}>
           {navLinks.map(nl => (
             <Link route={nl.route}>
