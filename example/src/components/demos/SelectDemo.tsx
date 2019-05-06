@@ -4,7 +4,8 @@ import {
   IOption,
   Select,
   ThemeContext,
-  Typography
+  Typography,
+  Multiselect
 } from "react-component-library";
 import { DisplayPaper } from "../DisplayPaper";
 
@@ -24,11 +25,16 @@ const options: IOption[] = [
   {
     value: "4",
     label: "four"
+  },
+  {
+    value: "5",
+    label: "five"
   }
 ];
 
 export const SelectDemo: React.SFC = () => {
   const [currentOption, setOption] = useState(options[0]);
+  const [currentOptions, setOptions] = useState([options[0]]);
 
   const { spacing } = React.useContext(ThemeContext);
 
@@ -42,7 +48,7 @@ export const SelectDemo: React.SFC = () => {
   };
 
   return (
-    <>
+    <div style={{ marginBottom: spacing.ss48 }}>
       <Typography styleVariant={1}>Select</Typography>
       <DisplayPaper style={paperStyles}>
         <div>
@@ -58,6 +64,7 @@ export const SelectDemo: React.SFC = () => {
             options={options}
             currentOption={currentOption}
             onChange={setOption}
+            numVisibleOptions={3.5}
           />
         </div>
         <div style={{ marginTop: "-36px" }}>
@@ -67,6 +74,7 @@ export const SelectDemo: React.SFC = () => {
             options={options}
             currentOption={currentOption}
             onChange={setOption}
+            numVisibleOptions={3}
           />
         </div>
       </DisplayPaper>
@@ -97,6 +105,17 @@ export const SelectDemo: React.SFC = () => {
           />
         </div>
       </DisplayPaper>
-    </>
+      <Typography styleVariant={2}>Multiselect</Typography>
+      <DisplayPaper style={paperStyles}>
+        <div>
+          <Multiselect
+            options={options}
+            currentOptions={currentOptions}
+            onChange={setOptions}
+            placeholder={"Select cities"}
+          />
+        </div>
+      </DisplayPaper>
+    </div>
   );
 };
