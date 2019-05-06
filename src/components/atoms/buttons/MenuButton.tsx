@@ -38,9 +38,12 @@ export const MenuButton: React.FC<{
       />
       <Fade
         in={isMenuVisible}
-        style={{ position: "absolute" }}
+        style={{ position: "absolute", zIndex: 5 }}
         mountOnEnter={true}
-        unmountOnExit={true}>
+        unmountOnExit={true}
+        mounted={{ transform: "translateY(0px)" }}
+        unmounted={{ transform: "translateY(-180px)" }}
+        styleKeys={["transform"]}>
         <StyledOptionList
           style={{
             marginLeft: align === "left" ? "-122px" : "0px",
@@ -52,7 +55,7 @@ export const MenuButton: React.FC<{
             zIndex: isMenuVisible ? 99 : -1
           }}>
           {navLinks.map(nl => (
-            <Link route={nl.route}>
+            <Link route={nl.route} onClick={() => setIsMenuVisible(false)}>
               <StyledOption style={{ minWidth: finalOptionWidth }}>
                 <Typography>{nl.label}</Typography>
               </StyledOption>

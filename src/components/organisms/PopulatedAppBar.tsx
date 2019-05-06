@@ -104,9 +104,12 @@ export const PopulatedAppBar: React.SFC<{
 
           <Fade
             in={isMenuVisible && navInfos !== undefined}
-            style={{ position: "absolute", top: "0px", left: "0px" }}
+            style={{ position: "fixed", top: "0px", left: "0px" }}
             mountOnEnter={true}
-            unmountOnExit={true}>
+            unmountOnExit={true}
+            mounted={{ transform: "translateY(0px)" }}
+            unmounted={{ transform: "translateY(-300px)" }}
+            styleKeys={["transform"]}>
             <MobileMenu
               navInfos={navInfos!}
               onClose={() => setIsMenuVisible(false)}

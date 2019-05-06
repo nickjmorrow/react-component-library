@@ -10,6 +10,7 @@ export const Link: React.SFC<{
   style?: React.CSSProperties;
   styleVariant?: StyleVariant;
   isInline?: boolean;
+  onClick?: () => void;
   typographyProps?: GetComponentProps<typeof Typography>;
 }> = ({
   children,
@@ -17,7 +18,8 @@ export const Link: React.SFC<{
   style,
   styleVariant = "primary",
   isInline = false,
-  typographyProps
+  typographyProps,
+  onClick: handleClick
 }) => {
   const defaultLinkStyle = {
     textDecoration: "none",
@@ -34,9 +36,11 @@ export const Link: React.SFC<{
     </Typography>
   );
   return isExternalLink ? (
-    <a href={route}>{content}</a>
+    <a href={route} onClick={handleClick}>
+      {content}
+    </a>
   ) : (
-    <RouterLink to={route} style={customStyle}>
+    <RouterLink to={route} style={customStyle} onClick={handleClick}>
       {content}
     </RouterLink>
   );
