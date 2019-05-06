@@ -5,14 +5,15 @@ import { StyledOption } from "./StyledOption";
 
 export const Option: React.SFC<{
   option: IOption;
+  isSelected?: boolean;
   onClick(Option: IOption): void;
-}> = ({ option, onClick: handleClick }) => {
+}> = ({ option, onClick: handleClick, isSelected }) => {
   const handleClickInternal = () => {
     handleClick(option);
   };
 
   return (
-    <StyledOption onClick={handleClickInternal}>
+    <StyledOption onClick={handleClickInternal} isSelected={isSelected}>
       <Typography>{option.label}</Typography>
     </StyledOption>
   );
