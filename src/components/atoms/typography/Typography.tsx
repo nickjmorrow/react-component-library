@@ -111,7 +111,7 @@ interface DisplayProps {
   isInteractive: boolean;
 }
 
-export interface TypographyProps {
+export type TypographyProps = {
   align?: Align;
   sizeVariant?: SizeVariant;
   colorVariant?: ColorVariant;
@@ -121,7 +121,7 @@ export interface TypographyProps {
   colorSet?: Partial<ColorSet>;
   fontFamilyVariant?: keyof StyleConstant<"typography">["fontFamily"];
   isInteractive?: boolean;
-}
+} & React.PropsWithoutRef<JSX.IntrinsicElements["span"]>;
 
 type ConcreteVariant = {
   colorVariant: ColorVariant;
