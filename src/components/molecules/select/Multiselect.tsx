@@ -98,7 +98,7 @@ export const Multiselect: React.SFC<{
           hasError={hasError}>
           {currentOptionsLabels}
         </StyledSelect>
-        <Fade in={isMenuVisible}>
+        <Fade in={isMenuVisible} unmountOnExit={true} mountOnEnter={true}>
           <StyledOptionList>
             {options.map(o => (
               <Option
