@@ -14,7 +14,12 @@ import {
   AddIconButton,
   CloseIconButton,
   EditIconButton,
-  MenuIcon
+  MenuIcon,
+  RainIcon,
+  WindIcon,
+  HumidityIcon,
+  CloudIcon,
+  SunIcon
 } from "react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
@@ -28,7 +33,7 @@ export const IconsDemo: React.SFC = () => {
     <Wrapper spacing={spacing}>
       <Typography styleVariant={1}>Icons</Typography>
       <Typography styleVariant={2}>All Icons</Typography>
-      <DisplayPaper>
+      <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         <IconSizes spacing={spacing}>
           <CloseIcon sizeVariant={4} />
           <EyeIcon sizeVariant={4} />
@@ -39,6 +44,11 @@ export const IconsDemo: React.SFC = () => {
           <UploadIcon sizeVariant={4} />
           <ChevronUpIcon sizeVariant={4} />
           <MenuIcon sizeVariant={4} />
+          <RainIcon sizeVariant={4} />
+          <SunIcon sizeVariant={4} />
+          <WindIcon sizeVariant={4} />
+          <HumidityIcon sizeVariant={4} />
+          <CloudIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
       <Typography styleVariant={2}>Icon Sizes</Typography>
