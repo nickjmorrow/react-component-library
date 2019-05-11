@@ -15,8 +15,9 @@ export const SunIcon: React.SFC<IconProps> = ({
     y="0px"
     width="512px"
     height="512px"
-    viewBox="60 40 420 420"
-    enable-background="new 0 0 512 512">
+    viewBox="40 40 420 420"
+    enable-background="new 0 0 512 512"
+    transform="scale(1.1,1.1)">
     <g>
       <g>
         <path

@@ -13,7 +13,8 @@ export const HumidityIcon: React.SFC<IconProps> = ({
     colorVariant={colorVariant}
     x="0px"
     y="0px"
-    viewBox="0 0 512 512">
+    viewBox="0 0 512 512"
+    transform="scale(0.8,0.8)">
     <g>
       <g>
         <path
