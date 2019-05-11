@@ -11,6 +11,7 @@ export const StyledSelect: React.FC<Props> = ({
   ...props
 }) => {
   const { colors, spacing, border, transitions, boxShadow } = useThemeContext();
+
   return (
     <StyledSelectInternal
       colors={colors}
@@ -49,6 +50,8 @@ const StyledSelectInternal = styled("div")<
       p.hasError
     )}`};
   transition: border-bottom ${p => p.transitions.medium};
+
+  overflow-y: scroll;
   &:hover {
     border-bottom: ${p =>
       `${p.border.borderStyle.bs2} ${getBorderColor(

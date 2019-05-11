@@ -113,6 +113,7 @@ export const SelectDemo: React.SFC = () => {
             currentOptions={currentOptions}
             onChange={setOptions}
             placeholder={"Select cities"}
+            numVisibleOptions={3}
           />
         </div>
       </DisplayPaper>

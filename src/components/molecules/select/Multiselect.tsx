@@ -15,6 +15,7 @@ export const Multiselect: React.SFC<{
   helperText?: string;
   error?: string;
   placeholder?: string;
+  numVisibleOptions?: number;
   onChange(options: IOption[]): void;
 }> = ({
   onChange: handleChange,
@@ -23,7 +24,8 @@ export const Multiselect: React.SFC<{
   label,
   helperText,
   error = "",
-  placeholder = " "
+  placeholder = " ",
+  numVisibleOptions
 }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const toggleIsMenuVisible = () =>
@@ -99,7 +101,7 @@ export const Multiselect: React.SFC<{
           {currentOptionsLabels}
         </StyledSelect>
         <Fade in={isMenuVisible} unmountOnExit={true} mountOnEnter={true}>
-          <StyledOptionList>
+          <StyledOptionList numVisibleOptions={numVisibleOptions}>
             {options.map(o => (
               <Option
                 key={o.value}
