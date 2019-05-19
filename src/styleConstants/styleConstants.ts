@@ -12,6 +12,7 @@ export const fontFamily = {
   title: "Oleo Script Swash Caps, cursive"
 };
 
+
 export const colorConstants = {
   background: "hsl(0, 0%, 100%)",
   transparent: "transparent",
