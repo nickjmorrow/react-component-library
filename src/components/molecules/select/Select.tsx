@@ -85,13 +85,12 @@ export const Select: React.SFC<{
           hasError={hasError}>
           <Typography sizeVariant={3}>{currentOption.label}</Typography>
         </StyledSelect>
-        <Fade in={isMenuVisible} mountOnEnter={true} unmountOnExit={true}>
-          <StyledOptionList numVisibleOptions={numVisibleOptions}>
+        {isMenuVisible && <StyledOptionList numVisibleOptions={numVisibleOptions}>
             {options.map(o => (
               <Option key={o.value} onClick={handleClickOption} option={o} />
             ))}
-          </StyledOptionList>
-        </Fade>
+          </StyledOptionList>}
+          
         {belowText && (
           <Typography
             sizeVariant={1}
