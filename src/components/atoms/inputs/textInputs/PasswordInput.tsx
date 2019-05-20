@@ -4,11 +4,12 @@ import { EyeIcon } from "../../icons/EyeIcon";
 import { StyledInput } from "./StyledInput";
 import { TextInputProps, AllowedInputType } from "./types";
 
+
 export const PasswordInput: React.SFC<TextInputProps> = ({
   onChange: handleChange,
   value,
   placeholder = "Password",
-  errors
+  errors,
 }) => {
   const [inputType, setInputType] = useState<AllowedInputType>("password");
   const showPassword = inputType === "text";
@@ -38,7 +39,7 @@ export const PasswordInput: React.SFC<TextInputProps> = ({
         style={{
           position: "absolute",
           right: "10px",
-          top: "14px"
+          top: "17px"
         }}
         colorVariant={showPassword ? "primaryDark" : "secondaryDark"}
         sizeVariant={2}

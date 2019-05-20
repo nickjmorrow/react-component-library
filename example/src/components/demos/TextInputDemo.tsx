@@ -8,8 +8,11 @@ import {
 import { DisplayPaper } from "../DisplayPaper";
 import styled from "styled-components";
 
+const possibleValues = ["h", "he", "hell", "help", "helper", "hello"];
+
 export const TextInputDemo: React.SFC = () => {
   const [value, setValue] = React.useState("");
+  const [otherValue, setOtherValue] = React.useState("");
   const twoErrors = [
     "Please enter a valid email address.",
     "Something else related to the email address."
@@ -49,6 +52,10 @@ export const TextInputDemo: React.SFC = () => {
         <Button onClick={toggleErrors} useMargin={false}>
           Toggle Errors
         </Button>
+      </DisplayPaper>
+      <Typography styleVariant={2}>Autocomplete</Typography>
+      <DisplayPaper>
+        <TextInput value={otherValue} onChange={(currentOtherValue: string) => setOtherValue(currentOtherValue)} possibleValues={possibleValues} />
       </DisplayPaper>
     </>
   );
