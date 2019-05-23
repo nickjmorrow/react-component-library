@@ -23,6 +23,7 @@
     "clear": "rm -rf node_modules package-lock.json example/node_modules example/package-lock.json && npm install && npm install ./examples"
   },
   "dependencies": {
+    "@nickjmorrow/algorithms": "^1.0.1",
     "deepmerge": "^3.2.0",
     "emitter": "0.0.5",
     "fast-deep-equal": "^2.0.1",

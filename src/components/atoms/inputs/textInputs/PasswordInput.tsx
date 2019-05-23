@@ -2,13 +2,15 @@ import * as React from "react";
 import { useState } from "react";
 import { EyeIcon } from "../../icons/EyeIcon";
 import { StyledInput } from "./StyledInput";
-import { TextInputProps, AllowedInputType } from "./types";
+import { AllowedInputType } from "./types";
 
-export const PasswordInput: React.SFC<TextInputProps> = ({
-  onChange: handleChange,
-  value,
+
+export const PasswordInput: React.SFC<{errors: string[]} & React.PropsWithoutRef<JSX.IntrinsicElements["input"]>> = ({
   placeholder = "Password",
-  errors
+  errors,
+  value,
+  onChange : handleChange = () => { return; },
+  ...props
 }) => {
   const [inputType, setInputType] = useState<AllowedInputType>("password");
   const showPassword = inputType === "text";
@@ -17,7 +19,7 @@ export const PasswordInput: React.SFC<TextInputProps> = ({
     setInputType(inputType === "text" ? "password" : "text");
 
   const handleChangeInternal = (e: React.ChangeEvent<HTMLInputElement>) =>
-    handleChange(e.currentTarget.value);
+    handleChange(e);
 
   return (
     <div
@@ -33,12 +35,13 @@ export const PasswordInput: React.SFC<TextInputProps> = ({
         type={inputType}
         placeholder={placeholder}
         errors={errors}
+        {...props}
       />
       <EyeIcon
         style={{
           position: "absolute",
           right: "10px",
-          top: "14px"
+          top: "17px"
         }}
         colorVariant={showPassword ? "primaryDark" : "secondaryDark"}
         sizeVariant={2}

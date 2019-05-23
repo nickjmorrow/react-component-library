@@ -10,26 +10,47 @@ const equal = require("fast-deep-equal");
 
 const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
   navInfos,
-  location
+  location,
+  showBoxShadow,
+  marginTop,
+  onLinkClick: handleLinkClick = () => {
+    return;
+  },
+  styleApi = {}
 }) => {
   const { pathname: currentRoute } = location;
-  const { colors, transitions, spacing, boxShadow } = React.useContext(
-    ThemeContext
-  );
+  const {
+    colors,
+    transitions,
+    spacing,
+    boxShadow,
+    defaultShowBoxShadow
+  } = React.useContext(ThemeContext);
 
-  const renderNavLink = (navLink: INavLink, i: number): React.ReactNode => {
+  // TODO: naming
+  const finalShowBoxShadow =
+    showBoxShadow === undefined ? defaultShowBoxShadow : showBoxShadow;
+
+  const renderNavLink = (
+    navLink: INavLink,
+    marginLeft: string,
+    i: number,
+    handleLinkClickArg: () => void
+  ): React.ReactNode => {
     return (
       <NavElement
         spacing={spacing}
         colors={colors}
         transitions={transitions}
-        key={`nav-element-${i}`}>
+        key={`nav-element-${i}`}
+        style={styleApi.navElementStyle}
+        onClick={handleLinkClickArg}>
         <Link
           route={navLink.route}
           styleVariant={
             currentRoute === navLink.route ? "primary" : "secondary"
           }
-          typographyProps={{ style: { marginLeft: spacing.ss8 } }}
+          typographyProps={{ style: { marginLeft } }}
           style={{
             width: "100%",
             height: "100%",
@@ -49,7 +70,7 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
     return (navElementOrFolder as FolderInfo).navLinks !== undefined;
   };
 
-  navInfos.map((navInfo, i) => {
+  navInfos.forEach((navInfo, i) => {
     navItems.push(
       isFolder(navInfo) ? (
         <Folder
@@ -57,13 +78,16 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
           renderNavLink={renderNavLink}
           key={`folder-${i}`}
           currentRoute={currentRoute}
+          style={styleApi.navElementStyle}
+          handleLinkClick={handleLinkClick}
         />
       ) : (
-        renderNavLink(navInfo, i)
+        renderNavLink(navInfo, spacing.ss4, i, handleLinkClick)
       )
     );
   });
 
+  // TODO: clean up
   const [headerOffset, setHeaderOffset] = React.useState(64);
   const [footerOffset, setFooterOffset] = React.useState(52);
   const handleScroll = () => {
@@ -85,13 +109,16 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
     <div
       style={{
         width: spacing.ss64,
-        boxShadow: boxShadow.bs1
+        boxShadow: finalShowBoxShadow ? boxShadow.bs1 : "none",
+        ...styleApi.wrapperStyle
       }}>
       <Nav
         spacing={spacing}
         boxShadow={boxShadow}
         headerOffset={headerOffset}
-        footerOffset={footerOffset}>
+        footerOffset={footerOffset}
+        marginTop={marginTop || spacing.ss4}
+        style={styleApi.navStyle}>
         <div>{navItems}</div>
       </Nav>
     </div>
@@ -105,6 +132,7 @@ const Nav = styled("nav")<{
   boxShadow: StyleConstant<"boxShadow">;
   headerOffset: number;
   footerOffset: number;
+  marginTop: string;
 }>`
   display: flex;
   position: sticky;
@@ -113,19 +141,24 @@ const Nav = styled("nav")<{
   overflow-y: auto;
   height: calc(100vh - ${p => p.headerOffset}px - ${p => p.footerOffset}px);
   flex-direction: column;
-  margin-top: ${p => p.spacing.ss4};
+  margin-top: ${p => p.marginTop};
 `;
 
 const NavElement = styled("div")<{
   colors: StyleConstant<"colors">;
   transitions: StyleConstant<"transitions">;
   spacing: StyleConstant<"spacing">;
+  style?: React.CSSProperties;
 }>`
   cursor: pointer;
   width: ${p => p.spacing.ss64};
   transition: background-color ${p => p.transitions.medium};
   &:hover {
     background-color: ${p => p.colors.neutral.cs2};
+    transition: background-color ${p => p.transitions.medium};
+  }
+  &:active {
+    background-color: ${p => p.colors.neutral.cs3};
     transition: background-color ${p => p.transitions.medium};
   }
 `;
@@ -146,10 +179,17 @@ const LabelWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
 
 const Folder: React.SFC<{
   folderInfo: FolderInfo;
-  renderNavLink: (navInfo: INavLink, i: number) => React.ReactNode;
+  renderNavLink: (
+    navInfo: INavLink,
+    marginLeft: string,
+    i: number,
+    handleLinkClick: () => void
+  ) => React.ReactNode;
   currentRoute: string;
+  style?: React.CSSProperties;
+  handleLinkClick: () => void;
 }> = React.memo(
-  ({ folderInfo, renderNavLink, currentRoute }) => {
+  ({ folderInfo, renderNavLink, currentRoute, style, handleLinkClick }) => {
     const initialExpansionState = folderInfo.navLinks
       .map(nl => nl.route)
       .reduce((agg, cur) => {
@@ -165,12 +205,15 @@ const Folder: React.SFC<{
           spacing={spacing}
           colors={colors}
           transitions={transitions}
-          onClick={toggleIsExpanded}>
+          onClick={toggleIsExpanded}
+          style={style}>
           <FolderLabel spacing={spacing}>{folderInfo.label}</FolderLabel>
         </NavElement>
         <Collapse isOpened={isExpanded} springConfig={{ stiffness: 220 }}>
           <div ref={innerNavLinkRef}>
-            {folderInfo.navLinks.map(renderNavLink)}
+            {folderInfo.navLinks.map((nl, i) =>
+              renderNavLink(nl, spacing.ss8, i, handleLinkClick)
+            )}
           </div>
         </Collapse>
       </>
@@ -215,4 +258,12 @@ interface INavLink {
 
 interface Props {
   navInfos: Array<FolderInfo | INavLink>;
+  showBoxShadow?: boolean;
+  marginTop?: string;
+  onLinkClick?: () => void;
+  styleApi?: {
+    wrapperStyle?: React.CSSProperties;
+    navElementStyle?: React.CSSProperties;
+    navStyle?: React.CSSProperties;
+  };
 }

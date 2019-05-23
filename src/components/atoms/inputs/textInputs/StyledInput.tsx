@@ -1,33 +1,23 @@
 import * as React from "react";
-import styled from "styled-components";
-import { ThemeContext } from "../../../../styleConstants";
-import { StyleConstant } from "../../../../typeUtilities";
-import { Typography } from "../../typography";
-import { Fade } from "../../../animations";
 import { TransitionGroup } from "react-transition-group";
-import { Omit } from "ts-essentials";
-import { TextInputProps } from "./types";
+import styled from "styled-components";
+import { useThemeContext } from "../../../../styleConstants";
+import { StyleConstant } from "../../../../typeUtilities";
+import { Fade } from "../../../animations";
+import { Typography } from "../../typography";
 
 export const StyledInput: React.SFC<
-  Omit<TextInputProps, "onChange"> & {
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  }
-> = ({
-  value,
-  type = "text",
-  onChange: handleChange,
-  placeholder = "",
-  style,
-  errors = []
-}) => {
+  {errors: string[] } & React.HTMLProps<HTMLInputElement>> = ({
+  errors = [], ...props}) => {
   const {
     colors,
     transitions,
     border: { borderRadius, borderStyle },
     spacing,
     boxShadow,
+    defaultShowBoxShadow,
     typography: { fontFamily, fontSizes, fontWeights }
-  } = React.useContext(ThemeContext);
+  } = useThemeContext();
 
   // TODO: save off somewhere else so error styling can be reused
   const renderErrors = (error: string) => (
@@ -46,9 +36,12 @@ export const StyledInput: React.SFC<
       </Typography>
     </Fade>
   );
-  return (
-    <>
-      <Input
+
+  // TODO: Figure out the types for this
+  const input = (
+    // @ts-ignore
+    <Input
+        defaultShowBoxShadow={defaultShowBoxShadow}
         boxShadow={boxShadow}
         colors={colors}
         hasErrors={errors.length > 0}
@@ -56,15 +49,16 @@ export const StyledInput: React.SFC<
         fontSize={fontSizes.fs3}
         fontFamily={fontFamily.default}
         fontWeights={fontWeights}
-        type={type}
         transition={transitions.medium}
         borderRadius={borderRadius.br1}
         borderStyle={borderStyle.bs1}
-        onChange={handleChange}
-        value={value}
-        placeholder={placeholder.toString()}
-        style={style}
+        {...props}
       />
+  )
+
+  return (
+    <>
+      {input}
       <FlexColumn>
         <TransitionGroup>{errors.map(renderErrors)}</TransitionGroup>
       </FlexColumn>
@@ -95,11 +89,11 @@ export const Input = styled("input")<DisplayProps>`
   transition: box-shadow ${p => p.transition},
     border-left-color ${p => p.transition};
   &:hover {
-    box-shadow: ${p => p.boxShadow.bs1};
+    box-shadow: ${p => p.defaultShowBoxShadow && p.boxShadow.bs1};
     transition: box-shadow ${p => p.transition};
   }
   &:focus {
-    box-shadow: ${p => p.boxShadow.bs2};
+    box-shadow: ${p => p.defaultShowBoxShadow && p.boxShadow.bs2};
     transition: all ${p => p.transition};
   }
 `;
@@ -110,7 +104,6 @@ interface DisplayProps {
   borderRadius: string;
   transition: string;
   borderStyle: string;
-  type: InputTypes;
   fontSize: string;
   fontFamily: string;
   fontWeights: StyleConstant<"typography">["fontWeights"];
@@ -118,4 +111,5 @@ interface DisplayProps {
   spacing: StyleConstant<"spacing">;
   hasErrors: boolean;
   colors: StyleConstant<"colors">;
+  defaultShowBoxShadow: boolean;
 }

@@ -16,15 +16,15 @@ export const getColorHover = (
     case "secondaryLight":
       return colors.neutral.cs2;
     case "core":
-      return colors.core.cs3;
+      return colors.core.cs4;
     case "accent":
-      return colors.accent.cs3;
+      return colors.accent.cs4;
     case "success":
-      return colors.success.cs3;
+      return colors.success.cs4;
     case "warning":
-      return colors.warning.cs3;
+      return colors.warning.cs4;
     case "danger":
-      return colors.danger.cs3;
+      return colors.danger.cs4;
     case "transparent":
       return colors.transparent;
     case "inherit":

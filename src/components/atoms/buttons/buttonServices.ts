@@ -6,11 +6,15 @@ export const getBorderColor = (
   colors: StyleConstant<"colors">,
   colorVariant: ColorVariant,
   styleVariant: StyleVariant,
-  uiState: UIState
+  uiState: UIState,
+  isDisabled: boolean
 ): string => {
   switch (styleVariant) {
     case "primary":
     case "secondary":
+      if (isDisabled) {
+        return colors.neutral.cs5;
+      }
       return getColorFunc(uiState)(colors, colorVariant);
     case "tertiary":
       return colors.transparent;
@@ -23,10 +27,14 @@ export const getBackgroundColor = (
   colors: StyleConstant<"colors">,
   colorVariant: ColorVariant,
   styleVariant: StyleVariant,
-  uiState: UIState
+  uiState: UIState,
+  isDisabled: boolean
 ): string => {
   switch (styleVariant) {
     case "primary":
+      if (isDisabled) {
+        return colors.neutral.cs5;
+      }
       return getColorFunc(uiState)(colors, colorVariant);
     case "secondary":
     case "tertiary":
@@ -38,13 +46,17 @@ export const getColor = (
   colors: StyleConstant<"colors">,
   colorVariant: ColorVariant,
   styleVariant: StyleVariant,
-  uiState: UIState
+  uiState: UIState,
+  isDisabled: boolean
 ) => {
   switch (styleVariant) {
     case "primary":
       return colors.background;
     case "secondary":
     case "tertiary":
+      if (isDisabled) {
+        return colors.neutral.cs5;
+      }
       return getColorFunc(uiState)(colors, colorVariant);
   }
 };

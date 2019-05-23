@@ -49,7 +49,7 @@ export const TwoButtonModal: React.SFC<ModalProps & IOwnProps> = ({
           <TitleWrapper spacing={spacing}>{modalTitle}</TitleWrapper>
           <ChildrenContainer spacing={spacing}>
             {getFormattedTextNode(children, {
-              colorVariant: "primaryDark",
+              colorVariant: "secondaryDark",
               sizeVariant: 4
             })}
           </ChildrenContainer>
@@ -85,7 +85,7 @@ const ButtonsContainer = styled("div")<{
   justify-content: flex-end;
   align-items: center;
   padding: ${({ spacing: { ss8: padding, ss1 } }) => `${ss1} ${padding}`};
-  background-color: ${({ colors }) => colors.neutral.cs3};
+  background-color: ${({ colors }) => colors.neutral.cs2};
   padding-right: ${p => p.spacing.ss8};
   border-radius: ${({ borderRadius: { br1 } }) => `0 0 ${br1} ${br1}`};
 `;

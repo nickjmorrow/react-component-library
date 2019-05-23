@@ -18,7 +18,8 @@ const StyledPaper = styled("div")<{
 export const Paper: React.SFC<{
   color?: string;
   style?: React.CSSProperties;
-}> = ({ children, color, style }) => {
+  props?: React.HTMLProps<HTMLDivElement>;
+}> = ({ children, color, style, ...props }) => {
   const {
     colors,
     boxShadow,
@@ -29,7 +30,8 @@ export const Paper: React.SFC<{
       style={style}
       color={color || colors.background}
       boxShadow={boxShadow.bs1}
-      borderRadius={borderRadius.br1}>
+      borderRadius={borderRadius.br1}
+      {...props}>
       {children}
     </StyledPaper>
   );

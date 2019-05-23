@@ -92,7 +92,7 @@ export const AuthModal: React.SFC<IProps> = ({
   const emailInput = (
     <TextInput
       value={email}
-      onChange={setEmail}
+      onChange={(e) => setEmail(e.currentTarget.value)}
       placeholder={"Email"}
       errors={displayedEmailErrors}
     />
@@ -100,7 +100,7 @@ export const AuthModal: React.SFC<IProps> = ({
   const passwordInput = (
     <PasswordInput
       value={password}
-      onChange={setPassword}
+      onChange={(e) => setPassword(e.currentTarget.value)}
       placeholder={"Password"}
       type={"password"}
       errors={displayedPasswordErrors}
@@ -112,7 +112,7 @@ export const AuthModal: React.SFC<IProps> = ({
       {emailInput}
       <TextInput
         value={fullName}
-        onChange={setFullName}
+        onChange={(e) => setFullName(e.currentTarget.value)}
         placeholder={"Full Name"}
         errors={displayedFullNameErrors}
       />

@@ -21,7 +21,6 @@ export const Slider: React.SFC<IProps> = ({
   spacingVariant = "ss64",
   onChange: handleChange
 }) => {
-  const [isClicking, setIsClicking] = React.useState(false);
   const {
     spacing,
     colors,
@@ -30,9 +29,8 @@ export const Slider: React.SFC<IProps> = ({
   } = React.useContext(ThemeContext);
 
   const handleStyle = {
-    border: borderStyle[1],
+    border: borderStyle.bs2,
     borderColor: colors.core.cs7,
-    boxShadow: isClicking ? `0 0 5px ${colors.core.cs5}` : "none",
     backgroundColor: colors.core.cs1,
     transition: `box-shadow ${transitions.medium}`
   };
@@ -50,8 +48,6 @@ export const Slider: React.SFC<IProps> = ({
           width: spacing.ss48
         }}
         trackStyle={{ backgroundColor: colors.core.cs5 }}
-        onBeforeChange={() => setIsClicking(false)}
-        onAfterChange={() => setIsClicking(true)}
       />
       <ValueWrapper>
         <Typography sizeVariant={3}>{value}</Typography>

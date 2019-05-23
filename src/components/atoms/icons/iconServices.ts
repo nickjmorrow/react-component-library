@@ -7,10 +7,10 @@ export const DefaultIconSvg = styled("svg")<IconDisplayProps>`
   height: ${p => getIconSize(p.sizeVariant, p.iconSizes)};
   width: ${p => getIconSize(p.sizeVariant, p.iconSizes)};
   color: ${p => getColor(p.colors, p.colorVariant)};
-  transition: color ${p => p.transitions.medium};
+  transition: color ${p => p.transitions.fast};
   &:hover {
     color: ${p => getColorHover(p.colors, p.colorVariant)};
-    transition: color ${p => p.transitions.medium};
+    transition: color ${p => p.transitions.fast};
   }
 `;
 

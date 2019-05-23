@@ -2,7 +2,7 @@ import * as React from "react";
 import { DefaultIconSvg } from "./DefaultIconSvg";
 import { IconProps } from "./types";
 
-export const CloseIcon: React.SFC<IconProps> = ({
+export const EditIcon: React.SFC<IconProps> = ({
   colorVariant,
   sizeVariant,
   ...svgProps
@@ -10,13 +10,14 @@ export const CloseIcon: React.SFC<IconProps> = ({
   return (
     <DefaultIconSvg
       xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
       {...svgProps}
       colorVariant={colorVariant}
-      sizeVariant={sizeVariant}
-      viewBox="0 0 24 24">
+      sizeVariant={sizeVariant}>
       <path
         fill="currentColor"
-        d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"
+        d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"
+        transform="translate(2,3),scale(0.8)"
       />
     </DefaultIconSvg>
   );
