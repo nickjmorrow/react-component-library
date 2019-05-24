@@ -1,25 +1,25 @@
-import * as React from 'react';
-import { StyledInput } from './StyledInput';
-import { TextInputProps } from './types';
 import { Trie } from '@nickjmorrow/algorithms';
+import * as React from 'react';
 import { StyledOptionList } from '~/components/molecules';
 import { Option } from '~/components/molecules/select/Option';
 import { useThemeContext } from '~/styleConstants';
-import { InputHTMLAttributes } from 'react';
+import { StyledInput } from './StyledInput';
 
 export const TextInput: React.SFC<{
 	style?: React.CSSProperties;
 	errors?: string[];
 	possibleValues?: string[];
 	numEligibleValues?: number;
+	setValue?: (newValue: string) => void;
 	value: string;
   } & React.PropsWithoutRef<JSX.IntrinsicElements["input"]>> = ({
 	placeholder,
 	errors = [],
 	style,
-	possibleValues,
+	possibleValues = [],
 	numEligibleValues = 3,
 	value = '',
+	setValue = () => { return; },
 	onChange : handleChange = () => { return; },
 	...props
 }) => {
@@ -31,20 +31,12 @@ export const TextInput: React.SFC<{
 		}
 	};
 
-	const inputRef = React.useRef<HTMLInputElement>(null);
-
 	const [trie] = React.useState(new Trie(possibleValues));
 	const eligibleWords = trie.getEligibleWords(value.toString());
 
 	const shouldShowEligibleWords = value.length > 0;
 
 	const { spacing } = useThemeContext();
-
-	const setValue = (newValue: string) => {
-		inputRef.current!.value = newValue;
-	}
-
-	
 
 	return (
 		<div
@@ -61,7 +53,7 @@ export const TextInput: React.SFC<{
 				errors={errors}
 				placeholder={placeholder}
 				style={style}
-				ref={inputRef}
+				value={value}
 				{...props}
 			/>
 			{shouldShowEligibleWords && showMenu && (

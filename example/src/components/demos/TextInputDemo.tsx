@@ -34,6 +34,25 @@ export const TextInputDemo: React.SFC = () => {
     flexDirection: "column" as "column",
     alignItems: "flex-start"
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    console.log(e.key);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const currentValue = e.currentTarget.value;
+    setValue(currentValue);
+  }
+
+  const possibleWords = [
+    "Minnesota", "Missouri", "Michigan", "Montana", "Mexico", "Marmalade", "Mint"
+  ];
+
+  const setValueInternal = (newValue: string) => {
+    console.log('setting value: ' + newValue);
+    setValue(newValue);
+  }
+
   return (
     <>
       <Typography styleVariant={1}>Text Input</Typography>
@@ -41,14 +60,26 @@ export const TextInputDemo: React.SFC = () => {
         <InputsWrapper>
           <TextInput
             value={value}
-            onChange={setValue}
+            onChange={e => handleChange(e)}
             errors={errorSequence[pointer]}
+            onKeyPress={e => handleKeyDown(e)}
           />
-          <PasswordInput value={value} onChange={setValue} />
+          <PasswordInput
+            value={value}
+            onChange={(e) => handleChange(e)}
+          />
         </InputsWrapper>
         <Button onClick={toggleErrors} useMargin={false}>
           Toggle Errors
         </Button>
+      </DisplayPaper>
+      <DisplayPaper>
+        <TextInput
+          value={value}
+          onChange={e => handleChange(e)}
+          setValue={setValueInternal}
+          possibleValues={possibleWords}
+        />
       </DisplayPaper>
     </>
   );

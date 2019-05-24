@@ -5,9 +5,9 @@ import { StyledInput } from "./StyledInput";
 import { AllowedInputType } from "./types";
 
 
-export const PasswordInput: React.SFC<{errors: string[]} & React.PropsWithoutRef<JSX.IntrinsicElements["input"]>> = ({
+export const PasswordInput: React.SFC<{errors?: string[]} & React.PropsWithoutRef<JSX.IntrinsicElements["input"]>> = ({
   placeholder = "Password",
-  errors,
+  errors = [],
   value,
   onChange : handleChange = () => { return; },
   ...props

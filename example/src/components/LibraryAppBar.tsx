@@ -4,7 +4,7 @@ import { RouterProps, withRouter } from "react-router";
 
 export const AppBarInternal: React.FC<RouterProps> = () => {
   return (
-    <PopulatedAppBar styleVariant={"secondary"} appName={"Component Library"} />
+    <PopulatedAppBar styleVariant={"secondary"} appName={"Personal Component Library"} />
   );
 };
 
