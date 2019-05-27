@@ -12,7 +12,7 @@ export const TextInput: React.SFC<{
 	numEligibleValues?: number;
 	setValue?: (newValue: string) => void;
 	value: string;
-  } & React.PropsWithoutRef<JSX.IntrinsicElements["input"]>> = ({
+  } & React.HTMLProps<HTMLInputElement>> = ({
 	placeholder,
 	errors = [],
 	style,
@@ -30,8 +30,8 @@ export const TextInput: React.SFC<{
 			setShowMenu(true);
 		}
 	};
-
-	const [trie] = React.useState(new Trie(possibleValues));
+	const [trie] = React.useState(new Trie());
+	trie.addWordsToTrie(possibleValues);
 	const eligibleWords = trie.getEligibleWords(value.toString());
 
 	const shouldShowEligibleWords = value.length > 0;
@@ -65,6 +65,8 @@ export const TextInput: React.SFC<{
 								key={ew}
 								option={{ value: ew, label: ew }}
 								onClick={(e) => {
+									console.log(ew);
+									
 									setValue(ew);
 									setShowMenu(false);
 								}}

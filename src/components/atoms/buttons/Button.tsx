@@ -34,7 +34,6 @@ type IButtonProps = {
   colorVariant?: ColorVariant;
   styleVariant?: StyleVariant;
   route?: string;
-  children: React.ReactNode;
   colorSet?: Partial<ColorSet>;
   isFullWidth?: boolean;
   isLoading?: boolean;

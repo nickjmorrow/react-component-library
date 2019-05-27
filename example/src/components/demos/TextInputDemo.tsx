@@ -39,7 +39,7 @@ export const TextInputDemo: React.SFC = () => {
     console.log(e.key);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const currentValue = e.currentTarget.value;
     setValue(currentValue);
   }
@@ -48,10 +48,29 @@ export const TextInputDemo: React.SFC = () => {
     "Minnesota", "Missouri", "Michigan", "Montana", "Mexico", "Marmalade", "Mint"
   ];
 
+  const tvShowNames = [
+    'the wire',
+    '6teen',
+    'spongebob squarepants',
+    'scream queens',
+    'dragula',
+    'rupaul\'s drag race',
+    'supernatural',
+    'sailor moon',
+    'danny phantom',
+    'mr robot',
+    'narcos',
+    'game of thrones'
+  ];
+
   const setValueInternal = (newValue: string) => {
     console.log('setting value: ' + newValue);
     setValue(newValue);
   }
+
+  const myRef = React.useRef<HTMLInputElement>(null);
+
+  // myRef.current && myRef.current.focu
 
   return (
     <>
@@ -63,6 +82,7 @@ export const TextInputDemo: React.SFC = () => {
             onChange={e => handleChange(e)}
             errors={errorSequence[pointer]}
             onKeyPress={e => handleKeyDown(e)}
+            ref={myRef}
           />
           <PasswordInput
             value={value}
@@ -76,9 +96,9 @@ export const TextInputDemo: React.SFC = () => {
       <DisplayPaper>
         <TextInput
           value={value}
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
           setValue={setValueInternal}
-          possibleValues={possibleWords}
+          possibleValues={tvShowNames}
         />
       </DisplayPaper>
     </>

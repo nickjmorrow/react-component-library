@@ -1,4 +1,19 @@
 language: node_js
 node_js:
-  - 9
-  - 8
+  - stable
+cache:
+  directories:
+    - node_modules
+    - example/node_modules
+script:
+  - npm install -g -D rollup
+  - npm run build
+  - npm run --prefix example build
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: "$GITHUB_TOKEN"
+    keep_history: true
+    on:
+      branch: master
+    local_dir: example/build

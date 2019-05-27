@@ -36,7 +36,7 @@ export default {
     resolve(),
     typescript({
       rollupCommonJSResolveHack: true,
-      clean: true
+      objectHashIgnoreUnknownHack: true
     }),
     commonjs({
       include: "node_modules/**",

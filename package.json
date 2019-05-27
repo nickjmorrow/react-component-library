@@ -1,6 +1,6 @@
 {
   "name": "@nickjmorrow/react-component-library",
-  "version": "0.0.23",
+  "version": "0.0.26",
   "description": "Personal component library",
   "author": "nickjmorrow",
   "license": "MIT",
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "react-scripts-ts test --env=jsdom",
-    "build": "rollup -c",
+    "build": "rollup -c && tsc --emitDeclarationOnly",
     "start": "rollup -c -w",
     "prepare": "npm run build",
     "predeploy": "cd example && npm run build",

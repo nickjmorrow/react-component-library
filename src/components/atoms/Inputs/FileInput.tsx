@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { Omit } from "ts-essentials";
 import { GetComponentProps } from "../../../typeUtilities";
 import { Button, Typography, UploadIcon } from "../../atoms";
 
@@ -13,7 +12,7 @@ interface FileInputProps {
 }
 
 export const FileInput: React.SFC<
-  FileInputProps & Omit<GetComponentProps<typeof Button>, "children">
+  FileInputProps & GetComponentProps<typeof Button>
 > = ({
   initialLabel = "upload",
   labelOnUpload,
