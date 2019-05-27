@@ -6,7 +6,6 @@ cache:
     - node_modules
     - example/node_modules
 script:
-  - npm install -g -D rollup
   - npm run build
   - npm run --prefix example build
 deploy:
