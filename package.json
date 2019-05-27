@@ -18,9 +18,7 @@
     "build": "rollup -c && tsc --emitDeclarationOnly",
     "start": "rollup -c -w",
     "predeploy": "cd example && npm run build",
-    "deploy": "gh-pages -d example/build",
-    "dev": "concurrently \" npm run start \" \" npm run --prefix example start \"",
-    "clear": "rm -rf node_modules package-lock.json example/node_modules example/package-lock.json && npm install && npm install ./examples"
+    "deploy": "gh-pages -d example/build"
   },
   "dependencies": {
     "@nickjmorrow/algorithms": "^1.0.2",
