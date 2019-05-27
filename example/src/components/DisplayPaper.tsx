@@ -3,10 +3,12 @@ import { Paper, ThemeContext } from "react-component-library";
 /* tslint:disable-next-line */
 
 export const DisplayPaper: React.SFC<{
-  customStyle?: React.CSSProperties;
-}> = ({ children, customStyle }) => {
+  style?: React.CSSProperties;
+  onClick?: () => void;
+  props?: React.HTMLProps<HTMLDivElement>;
+}> = ({ children, style, ...props }) => {
   const { spacing } = React.useContext(ThemeContext);
-  const style = {
+  const defaultStyle = {
     marginBottom: spacing.ss12,
     width: "max-content",
     display: "flex",
@@ -16,5 +18,9 @@ export const DisplayPaper: React.SFC<{
     maxWidth: "700px",
     padding: spacing.ss6
   };
-  return <Paper style={{ ...style, ...customStyle }}>{children}</Paper>;
+  return (
+    <Paper {...props} style={{ ...defaultStyle, ...style }}>
+      {children}
+    </Paper>
+  );
 };

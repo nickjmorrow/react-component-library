@@ -8,8 +8,11 @@ import {
 import { DisplayPaper } from "../DisplayPaper";
 import styled from "styled-components";
 
+const possibleValues = ["h", "he", "hell", "help", "helper", "hello"];
+
 export const TextInputDemo: React.SFC = () => {
   const [value, setValue] = React.useState("");
+  const [otherValue, setOtherValue] = React.useState("");
   const twoErrors = [
     "Please enter a valid email address.",
     "Something else related to the email address."
@@ -34,72 +37,25 @@ export const TextInputDemo: React.SFC = () => {
     flexDirection: "column" as "column",
     alignItems: "flex-start"
   };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    console.log(e.key);
-  };
-
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const currentValue = e.currentTarget.value;
-    setValue(currentValue);
-  }
-
-  const possibleWords = [
-    "Minnesota", "Missouri", "Michigan", "Montana", "Mexico", "Marmalade", "Mint"
-  ];
-
-  const tvShowNames = [
-    'the wire',
-    '6teen',
-    'spongebob squarepants',
-    'scream queens',
-    'dragula',
-    'rupaul\'s drag race',
-    'supernatural',
-    'sailor moon',
-    'danny phantom',
-    'mr robot',
-    'narcos',
-    'game of thrones'
-  ];
-
-  const setValueInternal = (newValue: string) => {
-    console.log('setting value: ' + newValue);
-    setValue(newValue);
-  }
-
-  const myRef = React.useRef<HTMLInputElement>(null);
-
-  // myRef.current && myRef.current.focu
-
   return (
     <>
       <Typography styleVariant={1}>Text Input</Typography>
-      <DisplayPaper customStyle={style}>
+      <DisplayPaper style={style}>
         <InputsWrapper>
           <TextInput
             value={value}
-            onChange={e => handleChange(e)}
+            onChange={(e) => setValue(e.currentTarget.value)}
             errors={errorSequence[pointer]}
-            onKeyPress={e => handleKeyDown(e)}
-            ref={myRef}
           />
-          <PasswordInput
-            value={value}
-            onChange={(e) => handleChange(e)}
-          />
+          <PasswordInput value={value} onChange={(e) => setValue(e.currentTarget.value)} />
         </InputsWrapper>
         <Button onClick={toggleErrors} useMargin={false}>
           Toggle Errors
         </Button>
       </DisplayPaper>
+      <Typography styleVariant={2}>Autocomplete</Typography>
       <DisplayPaper>
-        <TextInput
-          value={value}
-          onChange={handleChange}
-          setValue={setValueInternal}
-          possibleValues={tvShowNames}
-        />
+        <TextInput value={otherValue} onChange={(e) => setOtherValue(e.currentTarget.value)} possibleValues={possibleValues} />
       </DisplayPaper>
     </>
   );

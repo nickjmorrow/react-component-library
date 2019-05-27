@@ -16,7 +16,7 @@
     "test": "react-scripts-ts test --env=jsdom",
     "prebuild": "npm install",
     "build": "rollup -c && tsc --emitDeclarationOnly",
-    "start": "rollup -c -w",
+    "dev": "rollup -c -w",
     "predeploy": "cd example && npm run build",
     "deploy": "gh-pages -d example/build"
   },

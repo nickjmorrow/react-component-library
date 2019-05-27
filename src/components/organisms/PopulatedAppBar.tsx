@@ -68,7 +68,7 @@ export const PopulatedAppBar: React.SFC<{
 					styleVariant={styleVariant}
 					showBoxShadow={finalShowBoxShadow}
 				>
-					<div style={{ display: 'flex', alignItems: 'flex-end' }}>
+					<div style={{ display: 'flex', alignItems: 'center' }}>
 						<Link route={'/'}>
 							<Typography
 								sizeVariant={7}
@@ -81,6 +81,7 @@ export const PopulatedAppBar: React.SFC<{
 						</Link>
 						{leftComponents}
 					</div>
+					<div style={{display: 'flex', alignItems: 'center'}}>
 					{rightComponents}
 					{matches && navInfos.length > 0 ? (
 						useLongMenu ? (
@@ -108,6 +109,7 @@ export const PopulatedAppBar: React.SFC<{
 							<GithubIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
 						</a>
 					)}
+					</div>
 
 					<Fade
 						in={isMenuVisible && navInfos !== undefined}

@@ -17,7 +17,7 @@ import { Main } from "./Main";
 const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
   colors: {
     core: {
-      hue: 0,
+      hue: 210,
       middleLightness: 50,
       saturation: 60
     },
@@ -39,8 +39,9 @@ const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
     }
   },
   typography: {
-    fontFamily: { default: "Work Sans, sans-serif", title: "Muli, sans-serif" }
-  }
+    fontFamily: { default: "Mukta, sans-serif" }
+  },
+  defaultShowBoxShadow: false
 };
 
 const App: React.SFC = () => {
@@ -50,6 +51,7 @@ const App: React.SFC = () => {
     newThemeInputs: ArgumentType<typeof updateThemeInputs>[0]
   ): void => setThemeInputs(updateThemeInputs(newThemeInputs));
 
+  console.log(process.env.PUBLIC_URL);
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>

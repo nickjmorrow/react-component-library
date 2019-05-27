@@ -2,16 +2,25 @@ import * as React from "react";
 import {
   AppBar,
   Button,
+  ColorVariant,
   PopulatedAppBar,
   StyleConstant,
-  ThemeContext,
   Typography,
-  ColorVariant
+  useThemeContext
 } from "react-component-library";
 import styled from "styled-components";
 
+const sampleMenuOptions = [
+  { label: "Bergundy", route: "/bergundy" },
+  {
+    label: "Maroon",
+    route: "/app-bar"
+  },
+  { label: "Dark Red", route: "/dark-red" }
+];
+
 export const AppBarDemo: React.FC = () => {
-  const { spacing } = React.useContext(ThemeContext);
+  const { spacing } = useThemeContext();
   const rightComponents = (
     <>
       <Button
@@ -30,20 +39,31 @@ export const AppBarDemo: React.FC = () => {
       </Button>
     </>
   );
+
+//   const leftComponents = (
+// 	  <Typography colorVariant={'primaryLight'}>About</Typography>
+//   )
+
   return (
     <Wrapper spacing={spacing}>
       <Typography styleVariant={1}>App Bar</Typography>
       <SectionWrapper spacing={spacing}>
         <Typography styleVariant={2}>Populated AppBar</Typography>
-        <div style={{ display: "grid", gridRowGap: "20px" }}>
-          <PopulatedAppBar appName={"Primary Populated"} />
+        <div style={{ display: "grid", gridRowGap: "48px" }}>
+          <PopulatedAppBar
+            appName={"Primary Populated"}
+            navInfos={sampleMenuOptions}
+          />
           <PopulatedAppBar
             styleVariant={"secondary"}
             appName={"Secondary Populated"}
+            navInfos={sampleMenuOptions}
+            menuLength={"short"}
           />
           <PopulatedAppBar
             styleVariant={"tertiary"}
             appName={"Tertiary Populated"}
+            navInfos={sampleMenuOptions}
           />
         </div>
       </SectionWrapper>
@@ -73,14 +93,18 @@ export const AppBarDemo: React.FC = () => {
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
         <Typography styleVariant={2}>With Components</Typography>
-        <PopulatedAppBar
-          appName={"With Components"}
-          styleVariant={"tertiary"}
-          rightComponents={rightComponents}>
-          <AppNameTypography colorVariant={"primaryDark"}>
-            My AppBar
-          </AppNameTypography>
-        </PopulatedAppBar>
+        <div style={{ display: "grid", gridRowGap: "20px" }}>
+          <PopulatedAppBar
+            appName={"Lorem"}
+            styleVariant={"tertiary"}
+            rightComponents={rightComponents}
+			leftComponents={rightComponents}
+            navInfos={sampleMenuOptions}>
+            <AppNameTypography colorVariant={"primaryDark"}>
+              My AppBar
+            </AppNameTypography>
+          </PopulatedAppBar>
+        </div>
       </SectionWrapper>
     </Wrapper>
   );
@@ -89,6 +113,7 @@ export const AppBarDemo: React.FC = () => {
 const Wrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   width: 100%;
   max-width: ${p => p.spacing.ss192};
+  margin-bottom: ${p => p.spacing.ss16};
 `;
 
 const SectionWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
