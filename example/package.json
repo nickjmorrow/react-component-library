@@ -15,6 +15,7 @@
   "scripts": {
     "remove-singletons": "rm -rf ./node_modules/react-component-library/node_modules/react ./node_modules/react-component-library/node_modules/react-dom",
     "start": "npm run remove-singletons && react-scripts-ts start",
+    "prebuild": "npm install",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
