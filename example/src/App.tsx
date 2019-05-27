@@ -17,7 +17,7 @@ import { Main } from "./Main";
 const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
   colors: {
     core: {
-      hue: 210,
+      hue: 0,
       middleLightness: 50,
       saturation: 60
     },
