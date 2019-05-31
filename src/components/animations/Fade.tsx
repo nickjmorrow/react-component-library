@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Transition } from "react-transition-group";
-import { StyleConstant } from "../../typeUtilities";
+import { StyleConstant, GetComponentProps } from "../../typeUtilities";
 import { ThemeContext } from "../../styleConstants";
+
+type TransitionProps = GetComponentProps<typeof Transition>;
 
 export const Fade: React.SFC<{
   in: boolean;
@@ -13,7 +15,7 @@ export const Fade: React.SFC<{
   enterTimeout?: number;
   mountOnEnter?: boolean;
   unmountOnExit?: boolean;
-}> = ({
+} & Omit<TransitionProps, 'timeout'>> = ({
   children,
   in: inProp,
   style,
@@ -23,7 +25,8 @@ export const Fade: React.SFC<{
   transitionVariant = "fast",
   enterTimeout = 0,
   mountOnEnter = false,
-  unmountOnExit = false
+  unmountOnExit = false,
+  ...props
 }) => {
   const defaultMounted = { opacity: 1 };
   const defaultUnmounted = { opacity: 0 };
@@ -61,7 +64,8 @@ export const Fade: React.SFC<{
       in={inProp}
       timeout={{ enter: enterTimeout, exit: duration }}
       unmountOnExit={unmountOnExit}
-      mountOnEnter={mountOnEnter}>
+      mountOnEnter={mountOnEnter}
+	  {...props}>
       {state => (
         <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
           {children}

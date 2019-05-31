@@ -25,6 +25,11 @@ export const FadeDemo: React.FC = () => {
           />
         </Fade>
       ))}
+      {blockNumbers.map(bn => (
+        <Fade in={true} appear={true} enterTimeout={bn**2*50}>
+          <Block />
+        </Fade>
+      ))}
     </Wrapper>
   );
 };
