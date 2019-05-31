@@ -1,5 +1,5 @@
 import { ThemeInput } from "../types";
-import { boxShadowOffsets, colorConstants } from "./styleConstants";
+import { boxShadowOffsets, colorConstants, lineHeight } from "./styleConstants";
 import {
   generateColorShades,
   getBorderRadius,
@@ -37,7 +37,8 @@ export const getTheme = (themeInputs: ThemeInput) => ({
   typography: {
     fontSizes: getFontSize(themeInputs.typography.fontSizes),
     fontFamily: themeInputs.typography.fontFamily,
-    fontWeights: themeInputs.typography.fontWeights
+    fontWeights: themeInputs.typography.fontWeights,
+	lineHeight: lineHeight
   },
   spacing: getSpacingSystem(themeInputs.spacing),
   icons: {

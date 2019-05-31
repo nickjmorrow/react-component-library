@@ -4,6 +4,7 @@ import { ThemeContext, defaultShowBoxShadow } from "../../../styleConstants";
 import { StyleConstant } from "../../../typeUtilities";
 import { StyleVariant } from "../../atoms/types";
 import { getFinalShowBoxShadow } from "~/styleConstants/themeUtilities";
+import { PAGE_MARGIN_SPACING_KEY } from "~/constants";
 
 export const AppBar: React.FC<{
   styleVariant?: StyleVariant;
@@ -37,13 +38,13 @@ export const AppBar: React.FC<{
       styleVariant={styleVariant}
       spacing={spacing}
       boxShadow={finalShowBoxShadow ? boxShadow.bs1 : "none"}>
-      <Inner style={style}>{children}</Inner>
+      <Inner spacing={spacing} style={style}>{children}</Inner>
     </Wrapper>
   );
 };
 
-const Inner = styled.div`
-  margin: 0px 16px;
+const Inner = styled('div')<{spacing: StyleConstant<'spacing'>}>`
+  margin: 0px ${p => p.spacing[PAGE_MARGIN_SPACING_KEY]};
   width: 100%;
   display: flex;
   justify-content: space-between;

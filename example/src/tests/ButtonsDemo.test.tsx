@@ -15,8 +15,3 @@
 // // it("renders correctly", () => {
 // //   const tree = renderer.render(<Buttons />);
 // //   expect(tree).toMatchSnapshot();
-// // });
-
-it("", () => {
-  expect(true).toBe(true);
-});

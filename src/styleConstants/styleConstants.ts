@@ -9,9 +9,13 @@ export const transitionTimingFunction =
 
 export const fontFamily = {
   default: "Roboto, sans-serif",
-  title: "Oleo Script Swash Caps, cursive"
+  title: "Oleo Script Swash Caps, cursive",
+  monospace: 'Fira Mono, monospace'
 };
 
+export const lineHeight = {
+	default: '26px'
+}
 
 export const colorConstants = {
   background: "hsl(0, 0%, 100%)",

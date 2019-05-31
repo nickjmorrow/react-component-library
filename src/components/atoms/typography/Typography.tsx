@@ -1,10 +1,10 @@
+import * as deepMergeProxy from 'deepmerge';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import { ThemeContext } from '~/styleConstants';
-import { StyleConstant } from '~/typeUtilities';
 import { ColorSet, ColorVariant } from '~/components/atoms/types';
+import { useThemeContext } from '~/styleConstants';
+import { StyleConstant } from '~/typeUtilities';
 import { getColor, getColorActive, getColorHover } from '../atomServices';
-import * as deepMergeProxy from 'deepmerge';
 const deepMerge: typeof deepMergeProxy = (deepMergeProxy as any).default || deepMergeProxy;
 
 export const Typography: React.SFC<TypographyProps> = ({
@@ -23,8 +23,8 @@ export const Typography: React.SFC<TypographyProps> = ({
 		colors,
 		transitions,
 		spacing,
-		typography: { fontFamily, fontSizes, fontWeights },
-	} = React.useContext(ThemeContext);
+		typography: { fontFamily, fontSizes, fontWeights, lineHeight },
+	} = useThemeContext();
 
 	const defaultVariants: ConcreteVariant = {
 		colorVariant: 'primaryDark',
@@ -59,6 +59,7 @@ export const Typography: React.SFC<TypographyProps> = ({
 			fontSize={getFontSize(fontSizes, newSizeVariant)}
 			fontWeight={getFontWeight(fontWeights, newWeightVariant)}
 			isInteractive={isInteractive}
+			lineHeight={lineHeight}
 			style={newStyle}
 		>
 			{children}
@@ -73,6 +74,7 @@ export const StyledTypography = styled('span')<DisplayProps>`
 	color: ${p => p.color};
 	font-size: ${p => p.fontSize};
 	font-weight: ${p => p.fontWeight};
+	line-height: ${p => p.lineHeight.default};
 	${p =>
 		p.isInteractive &&
 		css`
@@ -103,6 +105,7 @@ interface DisplayProps {
 	colorHover: string;
 	colorActive: string;
 	isInteractive: boolean;
+	lineHeight: StyleConstant<'typography'>['lineHeight'];
 }
 
 export type TypographyProps = {

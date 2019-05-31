@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AppBar, Typography, GithubIcon, StyleVariant, ColorVariant, Link, MenuIcon, MenuButton } from '../atoms';
-import { githubLink } from '~/constants';
+import { GITHUB_LINK } from '~/constants';
 import { ThemeContext, mediaWidth } from '~/styleConstants';
 import { getFinalShowBoxShadow } from '~/styleConstants/themeUtilities';
 import Media from 'react-media';
@@ -52,7 +52,6 @@ export const PopulatedAppBar: React.SFC<{
 	const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 	const finalShowBoxShadow = getFinalShowBoxShadow(showBoxShadow, defaultShowBoxShadow);
 
-	// TODO: handle case where no navInfos are passed in
 	// TODO: clean up
 	const useLongMenu = menuLength === 'long';
 	const iconStyle = {
@@ -105,7 +104,7 @@ export const PopulatedAppBar: React.SFC<{
 							/>
 						)
 					) : (
-						<a href={githubLink} style={{ marginLeft: spacing.ss4 }}>
+						<a href={GITHUB_LINK} style={{ marginLeft: spacing.ss4 }}>
 							<GithubIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
 						</a>
 					)}

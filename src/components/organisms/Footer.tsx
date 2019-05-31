@@ -1,13 +1,13 @@
 import * as React from "react";
 import styled from "styled-components";
-import { fullName, githubLink } from "../../constants";
+import { FULL_NAME, GITHUB_LINK } from "../../constants";
 import { ThemeContext } from "../../styleConstants";
 import { GithubIcon, InvisibleLink } from "../atoms";
 import { Typography } from "../atoms/typography/Typography";
 import { StyleConstant } from "../../typeUtilities";
 
 const currentYear = new Date().getFullYear();
-const defaultText = `© ${currentYear} ${fullName}`;
+const defaultText = `© ${currentYear} ${FULL_NAME}`;
 
 export const Footer: React.FC<{
   text?: string;
@@ -19,7 +19,7 @@ export const Footer: React.FC<{
       <Typography colorVariant="secondaryDark" sizeVariant={2}>
         {text}
       </Typography>
-      <InvisibleLink href={githubLink}>
+      <InvisibleLink href={GITHUB_LINK}>
         <GithubIcon sizeVariant={2} colorVariant={"secondaryDark"} />
       </InvisibleLink>
     </StyledFooter>

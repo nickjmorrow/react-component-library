@@ -5,6 +5,7 @@ import { ThemeContext } from "../../styleConstants";
 import { StyleConstant } from "../../typeUtilities";
 import { Link, Typography } from "../atoms";
 import { Collapse } from "react-collapse";
+import { PAGE_MARGIN_SPACING_KEY } from "~/constants";
 /* tslint:disable-next-line */
 const equal = require("fast-deep-equal");
 
@@ -82,23 +83,25 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
           handleLinkClick={handleLinkClick}
         />
       ) : (
-        renderNavLink(navInfo, spacing.ss4, i, handleLinkClick)
+        renderNavLink(navInfo, spacing[PAGE_MARGIN_SPACING_KEY], i, handleLinkClick)
       )
     );
   });
 
   // TODO: clean up
-  const [headerOffset, setHeaderOffset] = React.useState(64);
-  const [footerOffset, setFooterOffset] = React.useState(52);
+  const DEFAULT_HEADER_OFFSET = 62;
+  const DEFAULT_FOOTER_OFFSET =  52;
+  const [headerOffset, setHeaderOffset] = React.useState(DEFAULT_HEADER_OFFSET);
+  const [footerOffset, setFooterOffset] = React.useState(DEFAULT_FOOTER_OFFSET);
   const handleScroll = () => {
-    if (window.scrollY < 64) {
-      setHeaderOffset(64);
+    if (window.scrollY < DEFAULT_HEADER_OFFSET) {
+      setHeaderOffset(DEFAULT_HEADER_OFFSET);
     } else if (headerOffset !== 0) {
       setHeaderOffset(0);
     }
 
     if (document.body.scrollHeight - window.scrollY - window.innerHeight < 52) {
-      setFooterOffset(52);
+      setFooterOffset(DEFAULT_FOOTER_OFFSET);
     } else if (footerOffset !== 0) {
       setFooterOffset(0);
     }
@@ -174,7 +177,7 @@ const FolderLabel: React.SFC<{ spacing: StyleConstant<"spacing"> }> = ({
 
 const LabelWrapper = styled("div")<{ spacing: StyleConstant<"spacing"> }>`
   padding: ${p => p.spacing.ss3} 0;
-  margin-left: ${p => p.spacing.ss4};
+  margin-left: ${p => p.spacing.ss6};
 `;
 
 const Folder: React.SFC<{
@@ -212,7 +215,7 @@ const Folder: React.SFC<{
         <Collapse isOpened={isExpanded} springConfig={{ stiffness: 220 }}>
           <div ref={innerNavLinkRef}>
             {folderInfo.navLinks.map((nl, i) =>
-              renderNavLink(nl, spacing.ss8, i, handleLinkClick)
+              renderNavLink(nl, spacing.ss12, i, handleLinkClick)
             )}
           </div>
         </Collapse>
