@@ -1,3 +1,5 @@
+import { StyleConstant } from "~/typeUtilities";
+
 export const transitions = {
   fast: "0.15s",
   medium: "0.3s",
@@ -13,9 +15,17 @@ export const fontFamily = {
   monospace: 'Fira Mono, monospace'
 };
 
-export const lineHeight = {
-	default: '26px'
+export const lineHeight : {
+	[K in 'default']: keyof StyleConstant<'spacing'>;
+} = {
+	default: 'ss6'
 }
+
+export const horizontalWidth: {
+	[K in 'paragraph']: keyof StyleConstant<'spacing'>;
+} = {
+	paragraph: 'ss160'
+};
 
 export const colorConstants = {
   background: "hsl(0, 0%, 100%)",

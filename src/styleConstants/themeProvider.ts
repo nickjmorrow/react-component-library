@@ -1,19 +1,7 @@
 import { ThemeInput } from "../types";
-import { boxShadowOffsets, colorConstants, lineHeight } from "./styleConstants";
-import {
-  generateColorShades,
-  getBorderRadius,
-  getBorderStyle,
-  getBoxShadow,
-  getFontSize,
-  getIconSize,
-  getSpacingSystem,
-  getTransitions
-} from "./styleProviders";
-import {
-  defaultIconColorVariant,
-  defaultIconSizeVariant
-} from "./styleVariants";
+import { boxShadowOffsets, colorConstants } from "./styleConstants";
+import { generateColorShades, getBorderRadius, getBorderStyle, getBoxShadow, getFontSize, getIconSize, getSpacingSystem, getTransitions } from "./styleProviders";
+import { defaultIconColorVariant, defaultIconSizeVariant } from "./styleVariants";
 
 export const getTheme = (themeInputs: ThemeInput) => ({
   colors: {
@@ -38,9 +26,10 @@ export const getTheme = (themeInputs: ThemeInput) => ({
     fontSizes: getFontSize(themeInputs.typography.fontSizes),
     fontFamily: themeInputs.typography.fontFamily,
     fontWeights: themeInputs.typography.fontWeights,
-	lineHeight: lineHeight
+	lineHeight: themeInputs.typography.lineHeight
   },
   spacing: getSpacingSystem(themeInputs.spacing),
+  horizontalWidth: themeInputs.horizontalWidth,
   icons: {
     iconSizes: getIconSize(themeInputs.icons.iconSizes),
     defaultIconSizeVariant,

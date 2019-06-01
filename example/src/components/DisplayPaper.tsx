@@ -10,6 +10,7 @@ export const DisplayPaper: React.SFC<{
   const { spacing } = React.useContext(ThemeContext);
   const defaultStyle = {
     marginBottom: spacing.ss12,
+	marginTop: spacing.ss6,
     width: "max-content",
     display: "flex",
     flexDirection: "row" as "row",

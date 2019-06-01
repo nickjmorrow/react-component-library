@@ -25,14 +25,13 @@ export const Slider: React.SFC<IProps> = ({
     spacing,
     colors,
     border: { borderStyle },
-    transitions
   } = React.useContext(ThemeContext);
 
   const handleStyle = {
     border: borderStyle.bs2,
     borderColor: colors.core.cs7,
-    backgroundColor: colors.core.cs1,
-    transition: `box-shadow ${transitions.medium}`
+    backgroundColor: colors.neutral.cs1,
+	boxShadow: 'none'
   };
 
   return (
@@ -44,7 +43,7 @@ export const Slider: React.SFC<IProps> = ({
         onChange={handleChange}
         handleStyle={handleStyle}
         railStyle={{
-          backgroundColor: colors.neutral.cs5,
+          backgroundColor: colors.neutral.cs3,
           width: spacing.ss48
         }}
         trackStyle={{ backgroundColor: colors.core.cs5 }}

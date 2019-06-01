@@ -50,6 +50,7 @@ export const Typography: React.SFC<TypographyProps> = ({
 
 	return (
 		<StyledTypography
+			spacing={spacing}
 			color={colorSet.color || getColor(colors, newColorVariant)}
 			colorActive={colorSet.colorActive || getColorActive(colors, newColorVariant)}
 			colorHover={colorSet.colorHover || getColorHover(colors, newColorVariant)}
@@ -74,7 +75,7 @@ export const StyledTypography = styled('span')<DisplayProps>`
 	color: ${p => p.color};
 	font-size: ${p => p.fontSize};
 	font-weight: ${p => p.fontWeight};
-	line-height: ${p => p.lineHeight.default};
+	line-height: ${p => p.spacing[p.lineHeight.default]};
 	${p =>
 		p.isInteractive &&
 		css`
@@ -106,6 +107,7 @@ interface DisplayProps {
 	colorActive: string;
 	isInteractive: boolean;
 	lineHeight: StyleConstant<'typography'>['lineHeight'];
+	spacing: StyleConstant<'spacing'>;
 }
 
 export type TypographyProps = {
@@ -163,9 +165,6 @@ const getOtherVariants = (styleVariant: StyleVariant, spacing: StyleConstant<'sp
 				colorVariant: 'secondaryDark',
 				weightVariant: 3,
 				sizeVariant: 4,
-				style: {
-					marginBottom: spacing.ss4,
-				},
 			};
 		}
 	}

@@ -1,4 +1,4 @@
-import { fontFamily, defaultShowBoxShadow, lineHeight } from "./styleConstants";
+import { fontFamily, defaultShowBoxShadow, lineHeight, horizontalWidth } from "./styleConstants";
 
 const defaultCorePaletteInputs = {
   hue: 220, // hsl(220, 100%, 50%)
@@ -136,6 +136,7 @@ export const defaultThemeInputs = {
 	lineHeight
   },
   spacing: defaultSpacingSystemInputs,
+  horizontalWidth: horizontalWidth,
   icons: {
     iconSizes: defaultIconSizeInputs
   }
