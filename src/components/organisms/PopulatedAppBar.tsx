@@ -96,8 +96,7 @@ export const PopulatedAppBar: React.SFC<{
 								styleApi={{
 									iconStyle: iconStyle as React.CSSProperties,
 									styledOptionList: {
-										marginLeft: '0px',
-										marginTop: '20px',
+										marginLeft: '0',
 										width: styledOptionWidth,
 									},
 								}}
