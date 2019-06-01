@@ -5,6 +5,8 @@ import { Option } from '~/components/molecules/select/Option';
 import { useThemeContext } from '~/styleConstants';
 import { StyledInput } from './StyledInput';
 
+
+
 export const TextInput: React.SFC<{
 	style?: React.CSSProperties;
 	errors?: string[];

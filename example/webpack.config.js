@@ -5,18 +5,23 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+	publicPath: "/"
   },
   devServer: {
     contentBase: "./dist",
-    https: true
+    https: true,
+	historyApiFallback: true
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: "awesome-typescript-loader",
-        exclude: /node_modules/
+        exclude: [
+			path.resolve(__dirname, 'node_modules'),
+			path.resolve(__dirname, "dist")
+		]
       },
       {
         enforce: "pre",
@@ -31,7 +36,12 @@ module.exports = {
   },
   devtool: "inline-source-map",
   resolve: {
-    extensions: [".tsx", ".ts", ".js"]
+    extensions: [".tsx", ".ts", ".js"],
+	alias: {
+		"styled-components": path.resolve("node_modules", "styled-components"),
+		"react": path.resolve("node_modules", "react"),
+		"react-dom": path.resolve("node_modules", "react-dom")
+	}
   },
   plugins: [
     // new CleanWebpackPlugin(),

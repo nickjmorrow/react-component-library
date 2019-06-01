@@ -30,6 +30,7 @@
     "jest",
     "src/setupTests.ts",
 	"cypress",
-	"webpack.config.js"
+	"webpack.config.js",
+	"dist"
   ]
 }

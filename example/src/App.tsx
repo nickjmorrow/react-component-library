@@ -14,6 +14,14 @@ import "./App.css";
 import { LibraryAppBar } from "./components/LibraryAppBar";
 import { Main } from "./Main";
 
+// Add this in your component file
+// @ts-ignore
+require('react-dom');
+// @ts-ignore
+window.React2 = require('react');
+// @ts-ignore
+console.log(window.React1 === window.React2);
+
 const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
   colors: {
     core: {
