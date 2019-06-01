@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ThemeContext } from "react-component-library";
+import { ThemeContext } from "@nickjmorrow/react-component-library";
 
 export const DescriptionContainer: React.FC = ({ children }) => {
   const { spacing } = React.useContext(ThemeContext);

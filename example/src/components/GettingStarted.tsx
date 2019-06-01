@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography, useThemeContext } from 'react-component-library';
+import { Typography, useThemeContext } from "@nickjmorrow/react-component-library";
 import { DisplayPaper } from './DisplayPaper';
 
 export const GettingStarted: React.FC = () => {

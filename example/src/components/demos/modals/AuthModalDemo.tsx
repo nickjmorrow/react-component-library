@@ -3,7 +3,7 @@ import {
   Button,
   GoogleLoginButton,
   Typography
-} from "react-component-library";
+} from "@nickjmorrow/react-component-library";
 import * as React from "react";
 import { useState } from "react";
 

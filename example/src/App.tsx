@@ -6,7 +6,7 @@ import {
   getThemeFromNewInputs,
   getMergedThemeInputs,
   updateThemeInputs
-} from "react-component-library";
+} from "@nickjmorrow/react-component-library";
 import * as React from "react";
 import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";

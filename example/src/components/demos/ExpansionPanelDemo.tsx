@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ExpansionPanel, Typography } from "react-component-library";
+import { ExpansionPanel, Typography } from "@nickjmorrow/react-component-library";
 
 export const ExpansionPanelDemo: React.FC = () => {
   return (

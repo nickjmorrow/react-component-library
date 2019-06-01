@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Typography, ThemeContext } from "react-component-library";
-import { DisplayPaper } from "src/components/DisplayPaper";
-import { Block } from "src/components/shared";
+import { Typography, ThemeContext } from "@nickjmorrow/react-component-library";
+import { DisplayPaper } from "../../../components/DisplayPaper";
+import { Block } from "../../../components/shared";
 
 export const BoxShadowDemo: React.FC = () => {
   const { colors, boxShadow } = React.useContext(ThemeContext);

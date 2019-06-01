@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Fade, Toggle } from "react-component-library";
+import { Fade, Toggle } from "@nickjmorrow/react-component-library";
 import { Block } from "../shared";
 import styled from "styled-components";
 // import { TransitionGroup } from "react-transition-group";

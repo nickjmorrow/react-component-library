@@ -10,10 +10,10 @@ import {
   ThemeInputsContext,
   Typography,
   Link
-} from "react-component-library";
+} from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 import { Block } from "../../shared/Block";
-import { DescriptionContainer } from "src/components/shared";
+import { DescriptionContainer } from "../../../components/shared";
 
 export const Colors: React.SFC = () => {
   const { colors, spacing } = React.useContext(ThemeContext);

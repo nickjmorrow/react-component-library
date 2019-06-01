@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SideNav, mediaWidth } from 'react-component-library';
+import { SideNav, mediaWidth } from "@nickjmorrow/react-component-library";
 import styled from 'styled-components';
 import { navInfos, routes } from './componentRoutes';
 import Media from 'react-media';

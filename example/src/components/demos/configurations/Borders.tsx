@@ -4,8 +4,8 @@ import {
   ThemeContext,
   ThemeInputsContext,
   Typography
-} from "react-component-library";
-import { Block } from "src/components/shared/Block";
+} from "@nickjmorrow/react-component-library";
+import { Block } from "../../../components/shared/Block";
 
 export const Borders: React.FC = () => {
   const { colors } = React.useContext(ThemeContext);

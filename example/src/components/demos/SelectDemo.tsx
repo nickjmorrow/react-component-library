@@ -6,7 +6,7 @@ import {
   ThemeContext,
   Typography,
   Multiselect
-} from "react-component-library";
+} from "@nickjmorrow/react-component-library";
 import { DisplayPaper } from "../DisplayPaper";
 
 const options: IOption[] = [

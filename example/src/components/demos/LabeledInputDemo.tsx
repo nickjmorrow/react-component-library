@@ -6,7 +6,7 @@ import {
   Typography,
   StyleConstant,
   ThemeContext
-} from "react-component-library";
+} from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
 

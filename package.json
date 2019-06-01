@@ -39,13 +39,8 @@
     "react-transition-group": "^2.6.0",
     "stream": "0.0.2",
     "styled-components": "^4.0.0",
-    "ts-node": "^8.0.2"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.5.4",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "styled-components": "^4.0.0"
+	"react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
@@ -81,7 +76,8 @@
     "rollup-plugin-url": "^1.4.0",
     "ts-essentials": "^2.0.0",
     "tsconfig-paths": "^3.8.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.1",
+	"ts-node": "^8.0.2"
   },
   "files": [
     "dist"

@@ -1,4 +1,4 @@
-import { StyleConstant, ThemeContext } from "react-component-library";
+import { StyleConstant, ThemeContext } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 import * as React from "react";
 

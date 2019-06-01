@@ -20,7 +20,7 @@ import {
   HumidityIcon,
   CloudIcon,
   SunIcon
-} from "react-component-library";
+} from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
 

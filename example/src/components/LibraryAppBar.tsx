@@ -1,7 +1,7 @@
 import * as React from "react";
-import { PopulatedAppBar } from "react-component-library";
+import { PopulatedAppBar } from "@nickjmorrow/react-component-library";
 import { RouterProps, withRouter } from "react-router";
-import { navInfos } from "src/componentRoutes";
+import { navInfos } from "../componentRoutes";
 
 export const AppBarInternal: React.FC<RouterProps> = () => {
   return (

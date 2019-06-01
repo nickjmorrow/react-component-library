@@ -6,8 +6,8 @@ import {
   ThemeInputsContext,
   ArgumentType,
   Button
-} from "react-component-library";
-import { DescriptionContainer } from "src/components/shared";
+} from "@nickjmorrow/react-component-library";
+import { DescriptionContainer } from "../../../components/shared";
 
 export const StyleConstants: React.FC = () => {
   const { defaultShowBoxShadow } = React.useContext(ThemeContext);

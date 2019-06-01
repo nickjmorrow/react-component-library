@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Typography, StyleConstant, ThemeContext } from 'react-component-library';
-import { DisplayPaper } from 'src/components/DisplayPaper';
+import { Typography, StyleConstant, ThemeContext } from "@nickjmorrow/react-component-library";
+import { DisplayPaper } from '../../../components/DisplayPaper';
 import styled from 'styled-components';
 
 export const SpacingDemo: React.FC = () => {

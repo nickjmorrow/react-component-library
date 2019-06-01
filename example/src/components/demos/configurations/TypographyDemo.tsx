@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { DisplayPaper } from '../../DisplayPaper';
-import { Typography, GetComponentProps, ThemeContext, Link } from 'react-component-library';
+import { Typography, GetComponentProps, ThemeContext, Link } from "@nickjmorrow/react-component-library";
 import styled from 'styled-components';
-import { DescriptionContainer } from 'src/components/shared';
+import { DescriptionContainer } from '../../../components/shared';
 
 type TypographyProp = GetComponentProps<typeof Typography>;
 

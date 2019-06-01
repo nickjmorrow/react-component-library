@@ -15,7 +15,7 @@ npm install --save react-component-library
 ```tsx
 import * as React from 'react'
 
-import MyComponent from 'react-component-library'
+import MyComponent from "@nickjmorrow/react-component-library"
 
 class Example extends React.Component {
   render () {

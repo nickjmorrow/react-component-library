@@ -7,7 +7,7 @@ import {
   StyleConstant,
   Typography,
   useThemeContext
-} from "react-component-library";
+} from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 
 const sampleMenuOptions = [

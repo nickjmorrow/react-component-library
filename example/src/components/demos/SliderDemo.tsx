@@ -1,7 +1,7 @@
 import "rc-slider/assets/index.css";
 import * as React from "react";
 // TODO: this should be inline or not need to be created in subscribing packages
-import { Slider, Typography, useThemeContext } from "react-component-library";
+import { Slider, Typography, useThemeContext } from "@nickjmorrow/react-component-library";
 import { DisplayPaper } from '../DisplayPaper';
 
 export const SliderDemo: React.SFC = () => {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { FileInput, Typography } from "react-component-library";
+import { FileInput, Typography } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
 

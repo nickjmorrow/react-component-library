@@ -4,7 +4,7 @@ import {
   PasswordInput,
   Button,
   Typography
-} from "react-component-library";
+} from "@nickjmorrow/react-component-library";
 import { DisplayPaper } from "../DisplayPaper";
 import styled from "styled-components";
 

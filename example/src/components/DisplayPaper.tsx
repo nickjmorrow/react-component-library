@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Paper, ThemeContext } from "react-component-library";
+import { Paper, ThemeContext } from "@nickjmorrow/react-component-library";
 /* tslint:disable-next-line */
 
 export const DisplayPaper: React.SFC<{
