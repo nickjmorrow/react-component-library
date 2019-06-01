@@ -58,8 +58,7 @@ export const TextInput: React.SFC<{
 				value={value}
 				{...props}
 			/>
-			{shouldShowEligibleWords && showMenu && (
-				<StyledOptionList style={{ top: '53px', minWidth: spacing.ss48 }}>
+				<StyledOptionList isMenuVisible={shouldShowEligibleWords && showMenu} style={{ top: '53px', minWidth: spacing.ss48 }}>
 					{eligibleWords
 						.filter((e, i) => i < numEligibleValues)
 						.map(ew => (
@@ -75,7 +74,7 @@ export const TextInput: React.SFC<{
 							/>
 						))}
 				</StyledOptionList>
-			)}
+			
 		</div>
-	);
+	)
 };

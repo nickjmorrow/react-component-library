@@ -112,7 +112,7 @@ export const PopulatedAppBar: React.SFC<{
 
 					<Fade
 						in={isMenuVisible && navInfos !== undefined}
-						style={{ position: 'fixed', top: '0px', left: '0px' }}
+						style={{ position: 'fixed', top: '0px', left: '0px', zIndex: 99 }}
 						mountOnEnter={true}
 						unmountOnExit={true}
 						mounted={{ transform: 'translateY(0px)' }}

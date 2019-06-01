@@ -29,25 +29,25 @@ export const MenuButton: React.FC<{
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
   const { spacing } = useThemeContext();
   const finalOptionWidth = optionMinWidth || spacing.ss32;
+  // TODO: develop system for z-indices
   return (
-    <>
+    <div style={{position: 'relative'}}>
       <MenuIcon
         colorVariant={colorVariant}
         onClick={() => setIsMenuVisible(isVisible => !isVisible)}
         style={styleApi.iconStyle}
       />
-      <Fade
-        in={isMenuVisible}
-        style={{ position: "absolute", zIndex: 5 }}
-        mountOnEnter={true}
-        unmountOnExit={true}
-        mounted={{ transform: "translateY(0px)" }}
-        unmounted={{ transform: "translateY(-180px)" }}
-        styleKeys={["transform"]}>
         <StyledOptionList
+			isMenuVisible={isMenuVisible}
+			styleApi={{
+				collapse: {
+					position: 'absolute',
+					top: '48px',
+					zIndex: 1
+				}
+			}}
           style={{
             marginLeft: align === "left" ? "-122px" : "0px",
-            right: "0px",
             ...styleApi.styledOptionList,
             width:
               (styleApi.styledOptionList && styleApi.styledOptionList.width) ||
@@ -62,7 +62,6 @@ export const MenuButton: React.FC<{
             </Link>
           ))}
         </StyledOptionList>
-      </Fade>
-    </>
+    </div>
   );
 };

@@ -2,15 +2,23 @@ import * as React from "react";
 import styled from "styled-components";
 import { useThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
+import { Collapse } from "react-collapse";
+
+interface StyleApi {
+	collapse?: React.CSSProperties;
+}
 
 export const StyledOptionList: React.FC<
   {
     children: React.ReactNode;
     numVisibleOptions?: number;
+	isMenuVisible: boolean;
+	styleApi?: StyleApi;
   } & React.PropsWithoutRef<JSX.IntrinsicElements["div"]>
-> = ({ children, numVisibleOptions, ...props }) => {
+> = ({ children, numVisibleOptions, isMenuVisible, styleApi = {}, ...props }) => {
   const { colors, spacing, border, boxShadow, transitions } = useThemeContext();
   return (
+	  <Collapse style={styleApi.collapse} isOpened={isMenuVisible} springConfig={{ stiffness: 220 }}> 
     <StyledOptionListInternal
       colors={colors}
       spacing={spacing}
@@ -18,9 +26,11 @@ export const StyledOptionList: React.FC<
       boxShadow={boxShadow}
       transitions={transitions}
       numVisibleOptions={numVisibleOptions}
-      {...props}>
+      {...props}
+    >
       {children}
     </StyledOptionListInternal>
+	</Collapse>
   );
 };
 
@@ -39,21 +49,14 @@ const StyledOptionListInternal = styled("div")<
   width: inherit;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  z-index: 1;
-  box-shadow: ${p => p.boxShadow.bs1};
+  border: ${p => p.border.borderStyle.bs1} ${p => p.colors.neutral.cs3};
   border-radius: ${p => p.border.borderRadius.br2};
-  transition: box-shadow ${p => p.transitions.slow};
-  height: ${({ numVisibleOptions }) =>
+  max-height: ${({ numVisibleOptions }) =>
     numVisibleOptions
       ? `${numVisibleOptions * OPTION_ELEMENT_HEIGHT}px`
-      : "auto"};
+      : "none"};
   overflow-y: ${({ numVisibleOptions }) =>
     numVisibleOptions ? "scroll" : "auto"};
-  &:hover {
-    box-shadow: ${p => p.boxShadow.bs2};
-    transition: box-shadow ${p => p.transitions.slow};
-  }
 `;
 
 interface Props {

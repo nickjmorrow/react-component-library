@@ -27,6 +27,7 @@ export const StyledOptionInternal = styled("div")<
 >`
   padding: ${({ spacing }) => spacing.ss3};
   cursor: pointer;
+  z-index: 1;
   background-color: ${p =>
     p.isSelected ? p.colors.neutral.cs3 : p.colors.background};
   transition: background-color ${p => p.transitions.fast};

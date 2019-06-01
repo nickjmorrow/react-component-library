@@ -1,6 +1,6 @@
 {
   "name": "@nickjmorrow/react-component-library",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "Personal component library",
   "author": "nickjmorrow",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "prebuild": "npm install",
     "build": "rollup -c && tsc --emitDeclarationOnly",
     "dev": "tsc --emitDeclarationOnly && rollup -c -w",
-    "predeploy": "npm run --prefix example build",
+    "predeploy": "npm run build && npm run --prefix example build",
     "deploy": "gh-pages -d example/dist"
   },
   "dependencies": {

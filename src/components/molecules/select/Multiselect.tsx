@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Fade, Typography } from "~/components";
+import { Typography } from "~/components";
 import { useThemeContext } from "~/styleConstants";
 import { IOption } from "~/types";
 import { Option } from "./Option";
@@ -100,8 +100,7 @@ export const Multiselect: React.SFC<{
           hasError={hasError}>
           {currentOptionsLabels}
         </StyledSelect>
-        <Fade in={isMenuVisible} unmountOnExit={true} mountOnEnter={true}>
-          <StyledOptionList numVisibleOptions={numVisibleOptions}>
+          <StyledOptionList numVisibleOptions={numVisibleOptions} isMenuVisible={isMenuVisible}>
             {options.map(o => (
               <Option
                 key={o.value}
@@ -111,7 +110,6 @@ export const Multiselect: React.SFC<{
               />
             ))}
           </StyledOptionList>
-        </Fade>
         {belowText && (
           <Typography
             sizeVariant={1}

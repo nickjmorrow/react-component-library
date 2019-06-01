@@ -47,6 +47,8 @@ export const SelectDemo: React.SFC = () => {
     padding: `${spacing.ss8} ${spacing.ss3}`
   };
 
+  const MARGIN_TOP_OFFSET = '-48px';
+
   return (
     <div style={{ marginBottom: spacing.ss48 }}>
       <Typography styleVariant={1}>Select</Typography>
@@ -67,7 +69,7 @@ export const SelectDemo: React.SFC = () => {
             numVisibleOptions={3.5}
           />
         </div>
-        <div style={{ marginTop: "-36px" }}>
+        <div style={{ marginTop: MARGIN_TOP_OFFSET }}>
           <Select
             label={"someLabel"}
             helperText={"Some helper text"}
@@ -95,7 +97,7 @@ export const SelectDemo: React.SFC = () => {
             onChange={setOption}
           />
         </div>
-        <div style={{ marginTop: "-36px" }}>
+        <div style={{ marginTop: MARGIN_TOP_OFFSET }}>
           <Select
             label={"someLabel"}
             helperText={"Some helper text"}

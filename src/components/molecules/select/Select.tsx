@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import { Collapse } from 'react-collapse';
 import styled from "styled-components";
-import { Fade, Typography } from "~/components";
+import { Typography, StyledOptionList } from "~/components";
 import { useThemeContext } from "~/styleConstants";
 import { IOption } from "~/types";
 import { Option } from "./Option";
-import { StyledOptionList } from "./StyledOptionList";
 import { StyledSelect } from "./StyledSelect";
 
 export const Select: React.SFC<{
@@ -85,16 +85,18 @@ export const Select: React.SFC<{
           hasError={hasError}>
           <Typography sizeVariant={3}>{currentOption.label}</Typography>
         </StyledSelect>
-        {isMenuVisible && <StyledOptionList numVisibleOptions={numVisibleOptions}>
+        <StyledOptionList numVisibleOptions={numVisibleOptions} isMenuVisible={isMenuVisible}>
             {options.map(o => (
               <Option key={o.value} onClick={handleClickOption} option={o} />
             ))}
-          </StyledOptionList>}
+          </StyledOptionList>
+		
           
         {belowText && (
           <Typography
             sizeVariant={1}
-            colorVariant={error ? "danger" : "secondaryDark"}>
+            colorVariant={error ? "danger" : "secondaryDark"}
+			style={{position: 'absolute', bottom: label ? 'none' : '-30px'}}>
             {belowText}
           </Typography>
         )}
@@ -106,4 +108,5 @@ export const Select: React.SFC<{
 const Wrapper = styled("div")<{ width: string }>`
   width: ${p => p.width};
   height: 40px;
+  position: relative;
 `;
