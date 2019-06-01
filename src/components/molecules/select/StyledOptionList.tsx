@@ -15,14 +15,20 @@ export const StyledOptionList: React.FC<
 	isMenuVisible: boolean;
 	styleApi?: StyleApi;
   } & React.PropsWithoutRef<JSX.IntrinsicElements["div"]>
-> = ({ children, numVisibleOptions, isMenuVisible, styleApi = {}, ...props }) => {
-  const { colors, spacing, border, boxShadow, transitions } = useThemeContext();
+> = ({ children, numVisibleOptions, isMenuVisible, styleApi = { collapse: {} }, ...props }) => {
+  const { colors, spacing, border: { borderRadius }, boxShadow, transitions } = useThemeContext();
+  const defaultCollapseStyle = {
+	  boxShadow: boxShadow.bs1,
+	  borderRadius: borderRadius.br1,
+	  backgroundColor: colors.background
+  }
+  const collapseStyle={...defaultCollapseStyle, ...styleApi.collapse};
   return (
-	  <Collapse style={styleApi.collapse} isOpened={isMenuVisible} springConfig={{ stiffness: 220 }}> 
+	  <Collapse style={collapseStyle} isOpened={isMenuVisible} springConfig={{ stiffness: 220 }}> 
     <StyledOptionListInternal
       colors={colors}
       spacing={spacing}
-      border={border}
+      borderRadius={borderRadius}
       boxShadow={boxShadow}
       transitions={transitions}
       numVisibleOptions={numVisibleOptions}
@@ -40,7 +46,7 @@ const StyledOptionListInternal = styled("div")<
   {
     colors: StyleConstant<"colors">;
     spacing: StyleConstant<"spacing">;
-    border: StyleConstant<"border">;
+    borderRadius: StyleConstant<"border">['borderRadius'];
     boxShadow: StyleConstant<"boxShadow">;
     transitions: StyleConstant<"transitions">;
   } & Props
@@ -49,8 +55,6 @@ const StyledOptionListInternal = styled("div")<
   width: inherit;
   display: flex;
   flex-direction: column;
-  border: ${p => p.border.borderStyle.bs1} ${p => p.colors.neutral.cs3};
-  border-radius: ${p => p.border.borderRadius.br2};
   max-height: ${({ numVisibleOptions }) =>
     numVisibleOptions
       ? `${numVisibleOptions * OPTION_ELEMENT_HEIGHT}px`

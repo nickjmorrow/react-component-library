@@ -29,7 +29,7 @@ export const StyledOptionInternal = styled("div")<
   cursor: pointer;
   z-index: 1;
   background-color: ${p =>
-    p.isSelected ? p.colors.neutral.cs3 : p.colors.background};
+    p.isSelected ? p.colors.neutral.cs3 : p.colors.neutral.cs1};
   transition: background-color ${p => p.transitions.fast};
   &:hover {
     background-color: ${p =>

@@ -55,7 +55,7 @@ export const TextInputDemo: React.SFC = () => {
       </DisplayPaper>
       <Typography styleVariant={2}>Autocomplete</Typography>
       <DisplayPaper>
-        <TextInput value={otherValue} onChange={(e) => setOtherValue(e.currentTarget.value)} possibleValues={possibleValues} />
+        <TextInput value={otherValue} setValue={(value: string) => setOtherValue(value)} onChange={(e) => setOtherValue(e.currentTarget.value)} possibleValues={possibleValues} />
       </DisplayPaper>
     </>
   );

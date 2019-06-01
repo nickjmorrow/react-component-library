@@ -58,6 +58,7 @@ export const PopulatedAppBar: React.SFC<{
 		position: 'absolute',
 		right: '0px',
 		cursor: 'pointer',
+		top: '14px',
 	};
 	return (
 		<Media query={`(max-width: ${mediaWidth.mobileLandscape})`}>

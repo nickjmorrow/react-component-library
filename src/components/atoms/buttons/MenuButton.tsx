@@ -31,7 +31,7 @@ export const MenuButton: React.FC<{
   const finalOptionWidth = optionMinWidth || spacing.ss32;
   // TODO: develop system for z-indices
   return (
-    <div style={{position: 'relative'}}>
+    <div>
       <MenuIcon
         colorVariant={colorVariant}
         onClick={() => setIsMenuVisible(isVisible => !isVisible)}

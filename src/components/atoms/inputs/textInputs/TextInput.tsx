@@ -13,6 +13,7 @@ export const TextInput: React.SFC<{
 	possibleValues?: string[];
 	numEligibleValues?: number;
 	setValue?: (newValue: string) => void;
+	onChange: (event: React.FormEvent<HTMLInputElement>) => void;
 	value: string;
   } & React.HTMLProps<HTMLInputElement>> = ({
 	placeholder,
@@ -22,7 +23,7 @@ export const TextInput: React.SFC<{
 	numEligibleValues = 3,
 	value = '',
 	setValue = () => { return; },
-	onChange : handleChange = () => { return; },
+	onChange : handleChange,
 	...props
 }) => {
 	const [showMenu, setShowMenu] = React.useState(true);
@@ -58,7 +59,7 @@ export const TextInput: React.SFC<{
 				value={value}
 				{...props}
 			/>
-				<StyledOptionList isMenuVisible={shouldShowEligibleWords && showMenu} style={{ top: '53px', minWidth: spacing.ss48 }}>
+				<StyledOptionList styleApi={{collapse: { position: 'absolute', top: '48px'}}}isMenuVisible={shouldShowEligibleWords && showMenu} style={{ top: '53px', minWidth: spacing.ss48 }}>
 					{eligibleWords
 						.filter((e, i) => i < numEligibleValues)
 						.map(ew => (

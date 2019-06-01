@@ -41,7 +41,7 @@ export const PasswordInput: React.SFC<{errors?: string[]} & React.PropsWithoutRe
         style={{
           position: "absolute",
           right: "10px",
-          top: "17px"
+          top: "12px"
         }}
         colorVariant={showPassword ? "primaryDark" : "secondaryDark"}
         sizeVariant={2}
