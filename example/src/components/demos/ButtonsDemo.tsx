@@ -163,6 +163,10 @@ export const ButtonsDemo: React.SFC = () => {
           align={"right"}
         />
       </DisplayPaper>
+	  <Typography styleVariant={3}>Custom Buttons</Typography>
+	  <DisplayPaper>
+		  <Button style={{backgroundImage: 'linear-gradient(120deg, purple, pink)', border: 'none'}}>Gradient</Button>
+	  </DisplayPaper>
     </Wrapper>
   );
 };

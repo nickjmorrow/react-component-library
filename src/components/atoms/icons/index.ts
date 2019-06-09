@@ -15,6 +15,8 @@ export { TrashIcon } from "./TrashIcon";
 export { UploadIcon } from "./UploadIcon";
 export { WindIcon } from "./WindIcon";
 export { SunIcon } from "./SunIcon";
+export { ShareIcon } from './ShareIcon';
+export { ArrowIcon } from './ArrowIcon';
 export * from "./iconButtons";
 export * from './programmingIcons';
 export * from "./iconServices";

@@ -32,7 +32,7 @@ export const Button: React.SFC<IButtonProps> = ({
   colorVariant = "core",
   textColorVariant = "primaryLight",
   styleVariant = 1,
-  weightVariant = 5,
+  weightVariant = 7,
   showBoxShadow = true,
   useMargin = true,
   isFullWidth = false,
@@ -188,6 +188,7 @@ const StyledButton = styled("button")<
     getBoxShadow(p.theme.boxShadow, p.isDisabled, p.showBoxShadow, "normal")};
   min-width: ${p => p.width}px;
   min-height: ${p => p.height} / px;
+  width: max-content;
   height: max-content;
   ${p => (p.isFullWidth ? "width: 100%" : "")}
   transition-property: box-shadow, background-color, border-color;

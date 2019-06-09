@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { DisplayPaper } from '../../DisplayPaper';
-import { Typography, GetComponentProps, ThemeContext, Link } from "@nickjmorrow/react-component-library";
+import { Typography, GetComponentProps, ThemeContext, Link, BulletPointTypography } from "@nickjmorrow/react-component-library";
 import styled from 'styled-components';
 import { DescriptionContainer } from '../../../components/shared';
+
 
 type TypographyProp = GetComponentProps<typeof Typography>;
 
@@ -115,6 +116,11 @@ export const TypographyDemo: React.FC = () => {
 			</DisplayPaper>
 			<Typography styleVariant={2}>Style Variants</Typography>
 			<DisplayPaper />
+			<Typography style={{display: 'block'}} styleVariant={2}>Bullet Point Typography</Typography>
+			<DisplayPaper><BulletPointTypography>Hello, world!</BulletPointTypography></DisplayPaper>
+			<Typography style={{display: 'block'}} styleVariant={2}>Links</Typography>
+			<Typography>Hello, I am a <Typography link={''}>link to someplace.</Typography></Typography>
+
 		</>
 	);
 };

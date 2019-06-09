@@ -5,9 +5,21 @@ import { ColorSet, ColorVariant, StyleVariant, WeightVariant } from '~/component
 import { useThemeContext } from '~/styleConstants';
 import { StyleConstant } from '~/typeUtilities';
 import { getColor, getColorActive, getColorHover } from '../atomServices';
+import { Theme } from '~/types';
 const deepMerge: typeof deepMergeProxy = (deepMergeProxy as any).default || deepMergeProxy;
 
-export const Typography: React.SFC<TypographyProps> = ({
+export const Typography: React.SFC<{
+	align?: Align;
+	sizeVariant?: SizeVariant;
+	colorVariant?: ColorVariant;
+	weightVariant?: WeightVariant;
+	styleVariant?: StyleVariant;
+	style?: React.CSSProperties;
+	colorSet?: ColorSet;
+	fontFamilyVariant?: FontFamilyVariant;
+	isInteractive?: boolean;
+	link?: string;
+} & React.PropsWithoutRef<JSX.IntrinsicElements['span']>> = ({
 	colorVariant,
 	sizeVariant,
 	weightVariant,
@@ -18,13 +30,10 @@ export const Typography: React.SFC<TypographyProps> = ({
 	isInteractive = false,
 	fontFamilyVariant = 'default',
 	style,
+	link
 }) => {
-	const {
-		colors,
-		transitions,
-		spacing,
-		typography: { fontFamily, fontSizes, fontWeights, lineHeight },
-	} = useThemeContext();
+	const theme = useThemeContext();
+	const { spacing } = theme;
 
 	const defaultVariants: ConcreteVariant = {
 		colorVariant: 'primaryDark',
@@ -48,78 +57,81 @@ export const Typography: React.SFC<TypographyProps> = ({
 		selectedVariants,
 	);
 
-	return (
+	const content = (
 		<StyledTypography
-			spacing={spacing}
-			color={colorSet.color || getColor(colors, newColorVariant)}
-			colorActive={colorSet.colorActive || getColorActive(colors, newColorVariant)}
-			colorHover={colorSet.colorHover || getColorHover(colors, newColorVariant)}
 			align={align}
-			fontFamily={fontFamily[fontFamilyVariant]}
-			transition={transitions.fast}
-			fontSize={getFontSize(fontSizes, newSizeVariant)}
-			fontWeight={getFontWeight(fontWeights, newWeightVariant)}
+			theme={theme}
+			colorVariant={link === undefined ? newColorVariant : 'core'}
+			sizeVariant={newSizeVariant}
+			weightVariant={newWeightVariant}
+			fontFamilyVariant={fontFamilyVariant}
+			colorSet={colorSet}
 			isInteractive={isInteractive}
-			lineHeight={lineHeight}
 			style={newStyle}
 		>
 			{children}
 		</StyledTypography>
 	);
+
+	return link === undefined ? content : <StyledLink href="" theme={theme}>{content}</StyledLink>
 };
 
-export const StyledTypography = styled('span')<DisplayProps>`
+const StyledLink = styled('a')<{theme: Theme}>`
+	position: relative;
+	text-decoration: none;
+	&:hover:before {
+		visibility: visible;
+		width: 100%;
+	}
+	&:before {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 2px;
+		bottom: -1px;
+		left: 0;
+		background-image: linear-gradient(90deg, ${p => `${p.theme.colors.core.cs5}, ${p.theme.colors.accent.cs5}`});
+		visibility: hidden;
+		transition: ${p => p.theme.transitions.medium};
+	}
+`;
+
+export const StyledTypography = styled('span')<{
+	align: string;
+	isInteractive: boolean;
+	colorVariant: ColorVariant;
+	fontFamilyVariant: FontFamilyVariant;
+	weightVariant: WeightVariant;
+	sizeVariant: SizeVariant;
+	theme: Theme;
+	colorSet: ColorSet;
+}>`
 	display: inline-block;
-	font-family: ${p => p.fontFamily};
 	text-align: ${p => p.align};
-	color: ${p => p.color};
-	font-size: ${p => p.fontSize};
-	font-weight: ${p => p.fontWeight};
-	line-height: ${p => p.spacing[p.lineHeight.default]};
+	color: ${p => p.colorSet.color || getColor(p.theme.colors, p.colorVariant)};
+	font-family: ${p => p.theme.typography.fontFamily[p.fontFamilyVariant]};
+	font-size: ${p => getFontSize(p.theme.typography.fontSizes, p.sizeVariant)};
+	font-weight: ${p => getFontWeight(p.theme.typography.fontWeights, p.weightVariant)};
+	line-height: ${p => p.theme.spacing[p.theme.typography.lineHeight.default]};
 	${p =>
 		p.isInteractive &&
 		css`
 			&:hover {
-				color: ${p.colorHover};
-				transition: color ${p.transition};
+				color: ${p.colorSet.colorHover || getColorHover(p.theme.colors, p.colorVariant)};
+				transition: color ${p.theme.transitions.medium};
 			}
 			&:active {
-				color: ${p.colorActive};
-				transition: color ${p.transition};
+				color: ${p.colorSet.colorActive || getColorActive(p.theme.colors, p.colorVariant)};
+				transition: color ${p.theme.transitions.medium};
 			}
 		`}
 `;
 
 type Align = 'inherit' | 'left' | 'center' | 'right' | 'justify' | 'default';
 type SizeVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+type FontFamilyVariant = keyof StyleConstant<'typography'>['fontFamily']
 
 
-// TODO: <Code></Code> component
-interface DisplayProps {
-	color: string;
-	align: string;
-	fontSize: string;
-	fontWeight: string;
-	fontFamily: string;
-	transition: string;
-	colorHover: string;
-	colorActive: string;
-	isInteractive: boolean;
-	lineHeight: StyleConstant<'typography'>['lineHeight'];
-	spacing: StyleConstant<'spacing'>;
-}
-
-export type TypographyProps = {
-	align?: Align;
-	sizeVariant?: SizeVariant;
-	colorVariant?: ColorVariant;
-	weightVariant?: WeightVariant;
-	styleVariant?: StyleVariant;
-	style?: React.CSSProperties;
-	colorSet?: Partial<ColorSet>;
-	fontFamilyVariant?: keyof StyleConstant<'typography'>['fontFamily'];
-	isInteractive?: boolean;
-} & React.PropsWithoutRef<JSX.IntrinsicElements['span']>;
 
 type ConcreteVariant = {
 	colorVariant: ColorVariant;
