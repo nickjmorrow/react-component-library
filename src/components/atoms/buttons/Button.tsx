@@ -24,6 +24,7 @@ type IButtonProps = {
   showBoxShadow?: boolean;
   useMargin?: boolean;
   style?: React.CSSProperties;
+  typographyStyle?: React.CSSProperties;
   onClick?(): void;
 };
 
@@ -40,6 +41,7 @@ export const Button: React.SFC<IButtonProps> = ({
   isLoading = false,
   link,
   style,
+  typographyStyle,
   colorSet = {} as ColorSet,
   onClick: handleClick = () => {
     return;
@@ -61,7 +63,8 @@ export const Button: React.SFC<IButtonProps> = ({
     weightVariant: weightVariant,
     isInteractive: false,
     style: {
-      textTransform: "uppercase"
+      textTransform: "uppercase",
+	  ...typographyStyle
     }
   });
 
