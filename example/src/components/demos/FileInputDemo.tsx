@@ -15,13 +15,13 @@ export const FileInputDemo: React.SFC = () => {
           <FileInput onChange={setFile} isLoading={false} />
           <FileInput
             onChange={setFile}
-            styleVariant="secondary"
+            styleVariant={2}
             textColorVariant="core"
             colorVariant="core"
           />
           <FileInput
             onChange={setFile}
-            styleVariant="tertiary"
+            styleVariant={3}
             textColorVariant="core"
             colorVariant="core"
           />
@@ -33,13 +33,13 @@ export const FileInputDemo: React.SFC = () => {
           <FileInput onChange={setFile} colorVariant={"accent"} />
           <FileInput
             onChange={setFile}
-            styleVariant="secondary"
+            styleVariant={2}
             textColorVariant="accent"
             colorVariant="accent"
           />
           <FileInput
             onChange={setFile}
-            styleVariant="tertiary"
+            styleVariant={3}
             textColorVariant="accent"
             colorVariant="accent"
           />
@@ -51,7 +51,7 @@ export const FileInputDemo: React.SFC = () => {
           <FileInput
             id={"uploadable"}
             onChange={setFile}
-            styleVariant={"primary"}
+            styleVariant={1}
             labelOnUpload={"Uploaded!"}
           />
         </DisplayPaper>

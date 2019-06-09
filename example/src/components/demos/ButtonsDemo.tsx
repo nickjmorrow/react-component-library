@@ -29,14 +29,14 @@ export const ButtonsDemo: React.SFC = () => {
       <Typography styleVariant={3}>Secondary</Typography>
       <DisplayPaper>
         <Button
-          styleVariant="secondary"
+          styleVariant={2}
           textColorVariant="core"
           colorVariant="core"
           useMargin={true}>
           Core
         </Button>
         <Button
-          styleVariant="secondary"
+          styleVariant={2}
           textColorVariant="accent"
           colorVariant="accent"
           useMargin={true}>
@@ -44,21 +44,21 @@ export const ButtonsDemo: React.SFC = () => {
         </Button>
         <Button
           textColorVariant="success"
-          styleVariant="secondary"
+          styleVariant={2}
           colorVariant="success"
           useMargin={true}>
           Success
         </Button>
         <Button
           textColorVariant="warning"
-          styleVariant="secondary"
+          styleVariant={2}
           colorVariant="warning"
           useMargin={true}>
           Warning
         </Button>
         <Button
           textColorVariant="danger"
-          styleVariant="secondary"
+          styleVariant={2}
           colorVariant="danger"
           useMargin={true}>
           Danger
@@ -67,37 +67,47 @@ export const ButtonsDemo: React.SFC = () => {
       <Typography styleVariant={3}>Tertiary</Typography>
       <DisplayPaper>
         <Button
-          styleVariant="tertiary"
+          styleVariant={3}
           textColorVariant="core"
           colorVariant="core">
           Core
         </Button>
         <Button
-          styleVariant="tertiary"
+          styleVariant={3}
           textColorVariant="accent"
           colorVariant="accent">
           Accent
         </Button>
         <Button
           textColorVariant="success"
-          styleVariant="tertiary"
+          styleVariant={3}
           colorVariant="success">
           Success
         </Button>
         <Button
           textColorVariant="warning"
-          styleVariant="tertiary"
+          styleVariant={3}
           colorVariant="warning">
           Warning
         </Button>
         <Button
           textColorVariant="danger"
-          styleVariant="tertiary"
+          styleVariant={3}
           colorVariant="danger">
           Danger
         </Button>
       </DisplayPaper>
       <Typography styleVariant={2}>Other Props</Typography>
+	  <Typography styleVariant={3}>Loading</Typography>
+      <DisplayPaper>
+        <Button
+		  weightVariant={7}>
+          Weight 7
+        </Button>
+        <Button>
+          Default Weight (5)
+        </Button>
+      </DisplayPaper>
       <Typography styleVariant={3}>Loading</Typography>
       <DisplayPaper>
         <Button
@@ -109,7 +119,7 @@ export const ButtonsDemo: React.SFC = () => {
         <Button
           isLoading={isLoading}
           onClick={toggleIsLoading}
-          styleVariant={"secondary"}
+          styleVariant={2}
           textColorVariant={"core"}>
           I'm loading
         </Button>
@@ -122,13 +132,13 @@ export const ButtonsDemo: React.SFC = () => {
       </DisplayPaper>
       <Typography styleVariant={3}>Disabled</Typography>
       <DisplayPaper>
-        <Button isDisabled={true} styleVariant={"primary"}>
+        <Button isDisabled={true} styleVariant={1}>
           Primary
         </Button>
-        <Button isDisabled={true} styleVariant={"secondary"}>
+        <Button isDisabled={true} styleVariant={2}>
           Secondary
         </Button>
-        <Button isDisabled={true} styleVariant={"tertiary"}>
+        <Button isDisabled={true} styleVariant={3}>
           Tertiary
         </Button>
       </DisplayPaper>

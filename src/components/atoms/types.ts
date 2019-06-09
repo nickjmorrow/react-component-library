@@ -24,7 +24,7 @@ export interface ColorSet {
   borderColorActive: string;
 }
 
-export type StyleVariant = "primary" | "secondary" | "tertiary";
+export type StyleVariant = 1 | 2 | 3;
 
 export interface ColorState {
   normal: string;
@@ -33,3 +33,5 @@ export interface ColorState {
 }
 
 export type UIState = "normal" | "hover" | "active";
+
+export type WeightVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;

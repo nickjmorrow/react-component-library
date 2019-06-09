@@ -16,7 +16,7 @@ export const Link: React.SFC<{
   children,
   route,
   style,
-  styleVariant = "primary",
+  styleVariant = 1,
   isInline = false,
   typographyProps,
   onClick: handleClick
@@ -48,10 +48,10 @@ export const Link: React.SFC<{
 
 const getColorVariant = (styleVariant: StyleVariant): ColorVariant => {
   switch (styleVariant) {
-    case "primary":
+    case 1:
       return "core";
-    case "secondary":
-    case "tertiary":
+    case 2:
+    case 3:
       return "primaryDark";
   }
 };

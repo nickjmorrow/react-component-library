@@ -19,7 +19,15 @@ import {
   WindIcon,
   HumidityIcon,
   CloudIcon,
-  SunIcon
+  SunIcon,
+  CSharpIcon,
+  MongoDBIcon,
+  TypeScriptIcon,
+  JavaScriptIcon,
+  SQLServerIcon,
+  NETCoreIcon,
+  ReactJSIcon,
+  NodeJSIcon
 } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
@@ -49,6 +57,20 @@ export const IconsDemo: React.SFC = () => {
           <WindIcon sizeVariant={4} />
           <HumidityIcon sizeVariant={4} />
           <CloudIcon sizeVariant={4} />
+        </IconSizes>
+      </DisplayPaper>
+	  <Typography styleVariant={2}>Programming Icons</Typography>
+	  <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
+        <IconSizes spacing={spacing}>
+          {/* <CSharpIcon sizeVariant={4} /> */}
+		  <CSharpIcon sizeVariant={4} />
+		  <MongoDBIcon sizeVariant={4} />
+		  	<TypeScriptIcon sizeVariant={4} />
+  			<JavaScriptIcon sizeVariant={4} />
+  			<SQLServerIcon sizeVariant={4} />
+  			<NETCoreIcon sizeVariant={4} />
+  			<ReactJSIcon sizeVariant={4} />
+  			<NodeJSIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
       <Typography styleVariant={2}>Icon Sizes</Typography>
@@ -84,35 +106,35 @@ export const IconsDemo: React.SFC = () => {
         <IconSizes spacing={spacing}>
           <AddIconButton
             onClick={noOp}
-            styleVariant={"primary"}
+            styleVariant={1}
             sizeVariant={4}
             colorVariant={"core"}
           />
           <AddIconButton
             onClick={noOp}
-            styleVariant={"secondary"}
+            styleVariant={2}
             sizeVariant={4}
           />
           <AddIconButton
             onClick={noOp}
-            styleVariant={"tertiary"}
+            styleVariant={3}
             sizeVariant={4}
           />
           <AddIconButton
             isDisabled={true}
-            styleVariant={"primary"}
-            sizeVariant={4}
-            onClick={noOp}
-          />
-          <AddIconButton
-            isDisabled={true}
-            styleVariant={"secondary"}
+            styleVariant={1}
             sizeVariant={4}
             onClick={noOp}
           />
           <AddIconButton
             isDisabled={true}
-            styleVariant={"tertiary"}
+            styleVariant={2}
+            sizeVariant={4}
+            onClick={noOp}
+          />
+          <AddIconButton
+            isDisabled={true}
+            styleVariant={3}
             sizeVariant={4}
             onClick={noOp}
           />
@@ -120,34 +142,34 @@ export const IconsDemo: React.SFC = () => {
         <IconSizes spacing={spacing}>
           <CloseIconButton
             onClick={noOp}
-            styleVariant={"primary"}
+            styleVariant={1}
             sizeVariant={4}
           />
           <CloseIconButton
             onClick={noOp}
-            styleVariant={"secondary"}
+            styleVariant={2}
             sizeVariant={4}
           />
           <CloseIconButton
             onClick={noOp}
-            styleVariant={"tertiary"}
+            styleVariant={3}
             sizeVariant={4}
           />
           <CloseIconButton
             isDisabled={true}
-            styleVariant={"primary"}
-            sizeVariant={4}
-            onClick={noOp}
-          />
-          <CloseIconButton
-            isDisabled={true}
-            styleVariant={"secondary"}
+            styleVariant={1}
             sizeVariant={4}
             onClick={noOp}
           />
           <CloseIconButton
             isDisabled={true}
-            styleVariant={"tertiary"}
+            styleVariant={2}
+            sizeVariant={4}
+            onClick={noOp}
+          />
+          <CloseIconButton
+            isDisabled={true}
+            styleVariant={3}
             sizeVariant={4}
             onClick={noOp}
           />
@@ -155,34 +177,34 @@ export const IconsDemo: React.SFC = () => {
         <IconSizes spacing={spacing}>
           <EditIconButton
             onClick={noOp}
-            styleVariant={"primary"}
+            styleVariant={1}
             sizeVariant={4}
           />
           <EditIconButton
             onClick={noOp}
-            styleVariant={"secondary"}
+            styleVariant={2}
             sizeVariant={4}
           />
           <EditIconButton
             onClick={noOp}
-            styleVariant={"tertiary"}
+            styleVariant={3}
             sizeVariant={4}
           />
           <EditIconButton
             isDisabled={true}
-            styleVariant={"primary"}
-            sizeVariant={4}
-            onClick={noOp}
-          />
-          <EditIconButton
-            isDisabled={true}
-            styleVariant={"secondary"}
+            styleVariant={1}
             sizeVariant={4}
             onClick={noOp}
           />
           <EditIconButton
             isDisabled={true}
-            styleVariant={"tertiary"}
+            styleVariant={2}
+            sizeVariant={4}
+            onClick={noOp}
+          />
+          <EditIconButton
+            isDisabled={true}
+            styleVariant={3}
             sizeVariant={4}
             onClick={noOp}
           />

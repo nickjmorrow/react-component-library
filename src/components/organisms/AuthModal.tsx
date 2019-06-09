@@ -92,7 +92,7 @@ export const AuthModal: React.SFC<IProps> = ({
   const emailInput = (
     <TextInput
       value={email}
-      onChange={(e) => setEmail(e.currentTarget.value)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)}
       placeholder={"Email"}
       errors={displayedEmailErrors}
     />
@@ -100,7 +100,7 @@ export const AuthModal: React.SFC<IProps> = ({
   const passwordInput = (
     <PasswordInput
       value={password}
-      onChange={(e) => setPassword(e.currentTarget.value)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)}
       placeholder={"Password"}
       type={"password"}
       errors={displayedPasswordErrors}
@@ -112,7 +112,7 @@ export const AuthModal: React.SFC<IProps> = ({
       {emailInput}
       <TextInput
         value={fullName}
-        onChange={(e) => setFullName(e.currentTarget.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFullName(e.currentTarget.value)}
         placeholder={"Full Name"}
         errors={displayedFullNameErrors}
       />
@@ -154,7 +154,7 @@ export const AuthModal: React.SFC<IProps> = ({
           onClick={handleRegisterInternal}
           textColorVariant={isLoggingIn ? "core" : "primaryLight"}
           isFullWidth={true}
-          styleVariant={isLoggingIn ? "secondary" : "primary"}
+          styleVariant={isLoggingIn ? 2 : 1}
           isLoading={isLoading && !isLoggingIn}>
           Register
         </Button>
@@ -163,7 +163,7 @@ export const AuthModal: React.SFC<IProps> = ({
           useMargin={false}
           textColorVariant={isLoggingIn ? "primaryLight" : "core"}
           isFullWidth={true}
-          styleVariant={isLoggingIn ? "primary" : "secondary"}
+          styleVariant={isLoggingIn ? 1 : 2}
           isLoading={isLoading && isLoggingIn}>
           Log In
         </Button>

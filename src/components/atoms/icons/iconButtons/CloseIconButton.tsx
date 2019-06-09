@@ -5,7 +5,7 @@ import { IconButtonContainer } from "./IconButtonContainer";
 import { IconButtonProps } from "./types";
 
 export const CloseIconButton: React.FC<IconProps & IconButtonProps> = ({
-  styleVariant = "primary",
+  styleVariant = 1,
   colorVariant = "core",
   isDisabled = false,
   showBoxShadow = true,

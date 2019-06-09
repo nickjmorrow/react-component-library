@@ -1,7 +1,7 @@
 import * as deepMergeProxy from 'deepmerge';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import { ColorSet, ColorVariant } from '~/components/atoms/types';
+import { ColorSet, ColorVariant, StyleVariant, WeightVariant } from '~/components/atoms/types';
 import { useThemeContext } from '~/styleConstants';
 import { StyleConstant } from '~/typeUtilities';
 import { getColor, getColorActive, getColorHover } from '../atomServices';
@@ -92,8 +92,7 @@ export const StyledTypography = styled('span')<DisplayProps>`
 
 type Align = 'inherit' | 'left' | 'center' | 'right' | 'justify' | 'default';
 type SizeVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
-type WeightVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-type StyleVariant = 1 | 2 | 3;
+
 
 // TODO: <Code></Code> component
 interface DisplayProps {

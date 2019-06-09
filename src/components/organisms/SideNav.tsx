@@ -49,7 +49,7 @@ const SideNavInternal: React.SFC<Props & RouteComponentProps> = ({
         <Link
           route={navLink.route}
           styleVariant={
-            currentRoute === navLink.route ? "primary" : "secondary"
+            currentRoute === navLink.route ? 1 : 2
           }
           typographyProps={{ style: { marginLeft } }}
           style={{

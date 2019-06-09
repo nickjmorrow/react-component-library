@@ -11,20 +11,20 @@ import { Fade } from '../animations';
 
 const getColorVariant = (styleVariant: StyleVariant): ColorVariant => {
 	switch (styleVariant) {
-		case 'primary':
+		case 1:
 			return 'background';
-		case 'secondary':
-		case 'tertiary':
+		case 2:
+		case 3:
 			return 'primaryDark';
 	}
 };
 
 const getIconColorVariant = (styleVariant: StyleVariant): ColorVariant => {
 	switch (styleVariant) {
-		case 'primary':
+		case 1:
 			return 'secondaryLight';
-		case 'secondary':
-		case 'tertiary':
+		case 2:
+		case 3:
 			return 'secondaryDark';
 	}
 };
@@ -40,7 +40,7 @@ export const PopulatedAppBar: React.SFC<{
 	styledOptionWidth?: string;
 }> = ({
 	appName,
-	styleVariant = 'primary',
+	styleVariant = 1,
 	leftComponents,
 	rightComponents,
 	showBoxShadow,

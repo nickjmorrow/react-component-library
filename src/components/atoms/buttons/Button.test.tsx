@@ -8,16 +8,16 @@ describe("Button rendering", () => {
     const tree = renderer.render(<Button />);
     expect(tree).toMatchSnapshot();
   });
-  it("primary", () => {
-    const tree = renderer.render(<Button styleVariant={"primary"} />);
+  it("render styleVariant of 1", () => {
+    const tree = renderer.render(<Button styleVariant={1} />);
     expect(tree).toMatchSnapshot();
   });
-  it("secondary", () => {
-    const tree = renderer.render(<Button styleVariant={"secondary"} />);
+  it("render styleVariant of 2", () => {
+    const tree = renderer.render(<Button styleVariant={2} />);
     expect(tree).toMatchSnapshot();
   });
-  it("tertiary", () => {
-    const tree = renderer.render(<Button styleVariant={"tertiary"} />);
+  it("render styleVariant of 3", () => {
+    const tree = renderer.render(<Button styleVariant={3} />);
     expect(tree).toMatchSnapshot();
   });
 });

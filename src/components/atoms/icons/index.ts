@@ -16,5 +16,6 @@ export { UploadIcon } from "./UploadIcon";
 export { WindIcon } from "./WindIcon";
 export { SunIcon } from "./SunIcon";
 export * from "./iconButtons";
+export * from './programmingIcons';
 export * from "./iconServices";
 export * from "./types";

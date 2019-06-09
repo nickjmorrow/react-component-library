@@ -14,7 +14,7 @@ export const AppBar: React.FC<{
   style?: React.CSSProperties;
 }> = ({
   children,
-  styleVariant = "primary",
+  styleVariant = 1,
   onClick: handleClick,
   showBoxShadow,
   style
@@ -77,10 +77,10 @@ const getBorderTop = (
   colors: StyleConstant<"colors">
 ) => {
   switch (styleVariant) {
-    case "primary":
-    case "secondary":
+    case 1:
+    case 2:
       return `${borderStyle.bs3} ${colors.core.cs5}`;
-    case "tertiary":
+    case 3:
       return "none";
   }
 };
@@ -90,10 +90,10 @@ const getBackgroundColor = (
   styleVariant: StyleVariant
 ) => {
   switch (styleVariant) {
-    case "primary":
+    case 1:
       return colors.core.cs5;
-    case "secondary":
-    case "tertiary":
+    case 2:
+    case 3:
       return colors.neutral.cs2;
   }
 };

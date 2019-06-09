@@ -7,7 +7,7 @@ export const AppBarInternal: React.FC<RouteComponentProps> = () => {
   return (
     <PopulatedAppBar
       navInfos={navInfos}
-      styleVariant={"secondary"}
+      styleVariant={2}
       appName={"Component Library"}
     />
   );

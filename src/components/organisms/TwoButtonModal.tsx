@@ -61,7 +61,7 @@ export const TwoButtonModal: React.SFC<ModalProps & IOwnProps> = ({
           <Button
             onClick={handleSecondaryClickInternal}
             showBoxShadow={false}
-            styleVariant={"tertiary"}
+            styleVariant={3}
             textColorVariant={"core"}>
             {secondaryButtonElement}
           </Button>

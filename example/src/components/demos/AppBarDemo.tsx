@@ -26,14 +26,14 @@ export const AppBarDemo: React.FC = () => {
       <Button
         useMargin={false}
         showBoxShadow={false}
-        styleVariant={"tertiary"}
+        styleVariant={3}
         textColorVariant={"secondaryDark"}>
         Sign In
       </Button>
       <Button
         useMargin={false}
         showBoxShadow={false}
-        styleVariant={"tertiary"}
+        styleVariant={3}
         textColorVariant={"secondaryDark"}>
         Log In
       </Button>
@@ -55,13 +55,13 @@ export const AppBarDemo: React.FC = () => {
             navInfos={sampleMenuOptions}
           />
           <PopulatedAppBar
-            styleVariant={"secondary"}
+            styleVariant={2}
             appName={"Secondary Populated"}
             navInfos={sampleMenuOptions}
             menuLength={"short"}
           />
           <PopulatedAppBar
-            styleVariant={"tertiary"}
+            styleVariant={3}
             appName={"Tertiary Populated"}
             navInfos={sampleMenuOptions}
           />
@@ -69,7 +69,7 @@ export const AppBarDemo: React.FC = () => {
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
         <Typography styleVariant={2}>Primary</Typography>
-        <AppBar styleVariant={"primary"}>
+        <AppBar styleVariant={1}>
           <AppNameTypography colorVariant={"primaryLight"}>
             My AppBar
           </AppNameTypography>
@@ -77,7 +77,7 @@ export const AppBarDemo: React.FC = () => {
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
         <Typography styleVariant={2}>Secondary</Typography>
-        <AppBar styleVariant={"secondary"}>
+        <AppBar styleVariant={2}>
           <AppNameTypography colorVariant={"primaryDark"}>
             My AppBar
           </AppNameTypography>
@@ -85,7 +85,7 @@ export const AppBarDemo: React.FC = () => {
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
         <Typography styleVariant={2}>Tertiary</Typography>
-        <AppBar styleVariant={"tertiary"}>
+        <AppBar styleVariant={3}>
           <AppNameTypography colorVariant={"primaryDark"}>
             My AppBar
           </AppNameTypography>
@@ -96,7 +96,7 @@ export const AppBarDemo: React.FC = () => {
         <div style={{ display: "grid", gridRowGap: "20px" }}>
           <PopulatedAppBar
             appName={"Lorem"}
-            styleVariant={"tertiary"}
+            styleVariant={3}
             rightComponents={rightComponents}
 			leftComponents={rightComponents}
             navInfos={sampleMenuOptions}>

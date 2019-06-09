@@ -188,13 +188,13 @@ const getWrapperColorVariant = (
   isDisabled: boolean
 ): string => {
   switch (styleVariant) {
-    case "primary":
+    case 1:
       if (isDisabled) {
         return colors.neutral.cs5;
       }
       return getColorFunc(uiState)(colors, colorVariant);
-    case "secondary":
-    case "tertiary":
+    case 2:
+    case 3:
       return getColorFunc(uiState)(colors, "transparent");
   }
 };
@@ -207,10 +207,10 @@ const getIconColorVariant = (
   isDisabled: boolean
 ): string => {
   switch (styleVariant) {
-    case "primary":
+    case 1:
       return getColorFunc(uiState)(colors, "background");
-    case "secondary":
-    case "tertiary":
+    case 2:
+    case 3:
       if (isDisabled) {
         return colors.neutral.cs5;
       }
@@ -226,13 +226,13 @@ const getBorderColorVariant = (
   isDisabled: boolean
 ): string => {
   switch (styleVariant) {
-    case "primary":
-    case "secondary":
+    case 1:
+    case 2:
       if (isDisabled) {
         return colors.neutral.cs5;
       }
       return getColorFunc(uiState)(colors, colorVariant);
-    case "tertiary":
+    case 3:
       return getColorFunc(uiState)(colors, "transparent");
   }
 };
