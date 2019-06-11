@@ -113,6 +113,7 @@ export const StyledTypography = styled('span')<{
 	font-size: ${p => getFontSize(p.theme.typography.fontSizes, p.sizeVariant)};
 	font-weight: ${p => getFontWeight(p.theme.typography.fontWeights, p.weightVariant)};
 	line-height: ${p => p.theme.spacing[p.theme.typography.lineHeight.default]};
+	transition: color ${p.theme.transitions.medium};
 	${p =>
 		p.isInteractive &&
 		css`
