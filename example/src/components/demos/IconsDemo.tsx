@@ -36,7 +36,8 @@ import {
   ReduxIcon,
   PostgreSQLIcon,
   StyledComponentsIcon,
-  JestIcon
+  JestIcon,
+  SeleniumIcon
 } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
@@ -87,6 +88,7 @@ export const IconsDemo: React.SFC = () => {
           <ReduxIcon sizeVariant={4} />
 		  <StyledComponentsIcon />
 		  <JestIcon sizeVariant={4} />
+		  <SeleniumIcon sizeVariant={4}/>
         </IconSizes>
       </DisplayPaper>
 	  <Typography styleVariant={2}>Language Icons</Typography>

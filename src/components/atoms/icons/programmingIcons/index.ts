@@ -12,3 +12,4 @@ export { PostgreSQLIcon } from './PostgreSQLIcon';
 export { ReduxIcon } from './ReduxIcon';
 export { JestIcon } from './JestIcon';
 export { StyledComponentsIcon } from './StyledComponentsIcon';
+export { SeleniumIcon } from './SeleniumIcon';
