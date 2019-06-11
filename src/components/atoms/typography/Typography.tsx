@@ -1,11 +1,11 @@
 import * as deepMergeProxy from 'deepmerge';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import { ColorSet, ColorVariant, StyleVariant, WeightVariant } from '~/components/atoms/types';
+import { ColorSet, ColorVariant, StyleVariant, TypographyColorSet, WeightVariant } from '~/components/atoms/types';
 import { useThemeContext } from '~/styleConstants';
+import { Theme } from '~/types';
 import { StyleConstant } from '~/typeUtilities';
 import { getColor, getColorActive, getColorHover } from '../atomServices';
-import { Theme } from '~/types';
 const deepMerge: typeof deepMergeProxy = (deepMergeProxy as any).default || deepMergeProxy;
 
 export const Typography: React.SFC<{
@@ -15,7 +15,7 @@ export const Typography: React.SFC<{
 	weightVariant?: WeightVariant;
 	styleVariant?: StyleVariant;
 	style?: React.CSSProperties;
-	colorSet?: ColorSet;
+	colorSet?: TypographyColorSet;
 	fontFamilyVariant?: FontFamilyVariant;
 	isInteractive?: boolean;
 	link?: string;
@@ -73,7 +73,7 @@ export const Typography: React.SFC<{
 		</StyledTypography>
 	);
 
-	return link === undefined ? content : <StyledLink href="" theme={theme}>{content}</StyledLink>
+	return link === undefined ? content : <StyledLink href={link} theme={theme}>{content}</StyledLink>
 };
 
 const StyledLink = styled('a')<{theme: Theme}>`
@@ -104,7 +104,7 @@ export const StyledTypography = styled('span')<{
 	weightVariant: WeightVariant;
 	sizeVariant: SizeVariant;
 	theme: Theme;
-	colorSet: ColorSet;
+	colorSet: TypographyColorSet;
 }>`
 	display: inline-block;
 	text-align: ${p => p.align};

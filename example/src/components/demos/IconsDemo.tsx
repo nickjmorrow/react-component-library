@@ -29,7 +29,14 @@ import {
   ReactJSIcon,
   NodeJSIcon,
   ShareIcon,
-  ArrowIcon
+  ArrowIcon,
+  JenkinsCIIcon,
+  LinkedInIcon,
+  GitIcon,
+  ReduxIcon,
+  PostgreSQLIcon,
+  StyledComponentsIcon,
+  JestIcon
 } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
 import { DisplayPaper } from "../DisplayPaper";
@@ -54,31 +61,48 @@ export const IconsDemo: React.SFC = () => {
           <UploadIcon sizeVariant={4} />
           <ChevronUpIcon sizeVariant={4} />
           <MenuIcon sizeVariant={4} />
-		  <ShareIcon sizeVariant={4} />
-		  <ArrowIcon sizeVariant={4} />
+          <ShareIcon sizeVariant={4} />
+          <ArrowIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-	  <Typography styleVariant={2}>Weather Icons</Typography>
-	  <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
+      <Typography styleVariant={2}>Weather Icons</Typography>
+      <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         <IconSizes spacing={spacing}>
-		  <RainIcon sizeVariant={4} />
+          <RainIcon sizeVariant={4} />
           <SunIcon sizeVariant={4} />
           <WindIcon sizeVariant={4} />
           <HumidityIcon sizeVariant={4} />
           <CloudIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-	  <Typography styleVariant={2}>Programming Icons</Typography>
-	  <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
+      <Typography styleVariant={2}>Technology Icons</Typography>
+      <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         <IconSizes spacing={spacing}>
-		  <CSharpIcon sizeVariant={4} />
-		  <MongoDBIcon sizeVariant={4} />
-		  	<TypeScriptIcon sizeVariant={4} />
-  			<JavaScriptIcon sizeVariant={4} />
-  			<SQLServerIcon sizeVariant={4} />
-  			<NETCoreIcon sizeVariant={4} />
-  			<ReactJSIcon sizeVariant={4} />
-  			<NodeJSIcon sizeVariant={4} />
+          <NETCoreIcon sizeVariant={4} />
+          <ReactJSIcon sizeVariant={4} />
+          <NodeJSIcon sizeVariant={4} />
+          <JenkinsCIIcon sizeVariant={4} />
+          <LinkedInIcon sizeVariant={4} />
+          <GitIcon sizeVariant={4} />
+          <ReduxIcon sizeVariant={4} />
+		  <StyledComponentsIcon />
+		  <JestIcon sizeVariant={4} />
+        </IconSizes>
+      </DisplayPaper>
+	  <Typography styleVariant={2}>Language Icons</Typography>
+      <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
+        <IconSizes spacing={spacing}>
+          <CSharpIcon sizeVariant={4} />
+          <TypeScriptIcon sizeVariant={4} />
+          <JavaScriptIcon sizeVariant={4} />
+        </IconSizes>
+      </DisplayPaper>
+      <Typography styleVariant={2}>Database Icons</Typography>
+      <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
+        <IconSizes spacing={spacing}>
+          <MongoDBIcon sizeVariant={4} />
+          <SQLServerIcon sizeVariant={4} />
+          <PostgreSQLIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
       <Typography styleVariant={2}>Icon Sizes</Typography>
@@ -110,7 +134,8 @@ export const IconsDemo: React.SFC = () => {
           display: "grid",
           gridAutoFlow: "row",
           gridRowGap: "16px"
-        }}>
+        }}
+      >
         <IconSizes spacing={spacing}>
           <AddIconButton
             onClick={noOp}
@@ -118,16 +143,8 @@ export const IconsDemo: React.SFC = () => {
             sizeVariant={4}
             colorVariant={"core"}
           />
-          <AddIconButton
-            onClick={noOp}
-            styleVariant={2}
-            sizeVariant={4}
-          />
-          <AddIconButton
-            onClick={noOp}
-            styleVariant={3}
-            sizeVariant={4}
-          />
+          <AddIconButton onClick={noOp} styleVariant={2} sizeVariant={4} />
+          <AddIconButton onClick={noOp} styleVariant={3} sizeVariant={4} />
           <AddIconButton
             isDisabled={true}
             styleVariant={1}
@@ -148,21 +165,9 @@ export const IconsDemo: React.SFC = () => {
           />
         </IconSizes>
         <IconSizes spacing={spacing}>
-          <CloseIconButton
-            onClick={noOp}
-            styleVariant={1}
-            sizeVariant={4}
-          />
-          <CloseIconButton
-            onClick={noOp}
-            styleVariant={2}
-            sizeVariant={4}
-          />
-          <CloseIconButton
-            onClick={noOp}
-            styleVariant={3}
-            sizeVariant={4}
-          />
+          <CloseIconButton onClick={noOp} styleVariant={1} sizeVariant={4} />
+          <CloseIconButton onClick={noOp} styleVariant={2} sizeVariant={4} />
+          <CloseIconButton onClick={noOp} styleVariant={3} sizeVariant={4} />
           <CloseIconButton
             isDisabled={true}
             styleVariant={1}
@@ -183,21 +188,9 @@ export const IconsDemo: React.SFC = () => {
           />
         </IconSizes>
         <IconSizes spacing={spacing}>
-          <EditIconButton
-            onClick={noOp}
-            styleVariant={1}
-            sizeVariant={4}
-          />
-          <EditIconButton
-            onClick={noOp}
-            styleVariant={2}
-            sizeVariant={4}
-          />
-          <EditIconButton
-            onClick={noOp}
-            styleVariant={3}
-            sizeVariant={4}
-          />
+          <EditIconButton onClick={noOp} styleVariant={1} sizeVariant={4} />
+          <EditIconButton onClick={noOp} styleVariant={2} sizeVariant={4} />
+          <EditIconButton onClick={noOp} styleVariant={3} sizeVariant={4} />
           <EditIconButton
             isDisabled={true}
             styleVariant={1}

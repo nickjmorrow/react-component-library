@@ -1,6 +1,6 @@
 import * as React from "react";
-import { DefaultIconSvg } from "./DefaultIconSvg";
-import { IconProps } from "./types";
+import { DefaultIconSvg } from "~/components/atoms/icons";
+import { IconProps } from "~/components/atoms/icons/types";
 
 export const AddIcon: React.SFC<IconProps> = ({
   sizeVariant,

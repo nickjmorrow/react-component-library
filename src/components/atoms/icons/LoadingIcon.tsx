@@ -18,9 +18,9 @@ export const LoadingIcon: React.SFC<IconProps> = ({
         d="M50 15A35 35 0 1 0 74.787 25.213"
         fill="none"
         ng-attr-stroke="{{config.color}}"
-        ng-attr-stroke-width="{{config.width}}"
+        ng-attr-strokewidth="{{config.width}}"
         stroke="currentColor"
-        stroke-width="12"
+        strokeWidth="12"
       />
       <path
         ng-attr-d="{{config.darrow}}"

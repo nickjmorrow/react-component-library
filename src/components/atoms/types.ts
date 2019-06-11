@@ -12,16 +12,19 @@ export type ColorVariant =
   | "inherit"
   | "background";
 
-export interface ColorSet {
-  color: string;
-  colorHover: string;
-  colorActive: string;
+export type ColorSet = {
   backgroundColor: string;
   backgroundColorHover: string;
   backgroundColorActive: string;
   borderColor: string;
   borderColorHover: string;
   borderColorActive: string;
+} & TypographyColorSet;
+
+export interface TypographyColorSet {
+	color: string;
+  	colorHover: string;
+  	colorActive: string;
 }
 
 export type StyleVariant = 1 | 2 | 3;
