@@ -39,7 +39,6 @@ exports[`Button rendering default 1`] = `
     }
   }
   height={0}
-  isFullWidth={false}
   onClick={[Function]}
   showBoxShadow={true}
   spacing={
@@ -113,7 +112,6 @@ exports[`Button rendering primary 1`] = `
     }
   }
   height={0}
-  isFullWidth={false}
   onClick={[Function]}
   showBoxShadow={true}
   spacing={
@@ -187,7 +185,6 @@ exports[`Button rendering secondary 1`] = `
     }
   }
   height={0}
-  isFullWidth={false}
   onClick={[Function]}
   showBoxShadow={true}
   spacing={
@@ -261,7 +258,6 @@ exports[`Button rendering tertiary 1`] = `
     }
   }
   height={0}
-  isFullWidth={false}
   onClick={[Function]}
   showBoxShadow={true}
   spacing={

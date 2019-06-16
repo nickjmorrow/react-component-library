@@ -9,28 +9,40 @@ export const ExpansionPanel: React.FC<{
   visibleContent: React.ReactNode;
   hiddenContent: React.ReactNode;
   isFullWidth?: boolean;
-}> = ({ visibleContent, hiddenContent, isFullWidth = false }) => {
+  rightComponent?: (isOpened: boolean) => React.ReactNode;
+  styleApi?: {
+	  wrapperStyle?: React.CSSProperties,
+	  visibleStyle?: React.CSSProperties,
+	  hiddenStyle?: React.CSSProperties
+  };
+}> = ({ visibleContent, hiddenContent, isFullWidth = false, rightComponent, styleApi = {} }) => {
   const [isOpened, setIsOpened] = React.useState(false);
   const toggleIsOpened = () => setIsOpened(prev => !prev);
   const { transitions, spacing } = React.useContext(ThemeContext);
 
+  const defaultRightComponent = (isOpenedArg: boolean) => (
+	<IconWrapper isOpened={isOpenedArg} transitions={transitions}>
+          <ChevronUpIcon />
+        </IconWrapper>
+  )
+  const finalRightComponent = rightComponent || defaultRightComponent;
   return (
     <Paper
       style={{
-        width: isFullWidth ? "100%" : "max-content"
+		width: isFullWidth ? "100%" : "max-content",
+		...styleApi.wrapperStyle
       }}>
       <VisibleWrapper
         spacing={spacing}
         onClick={toggleIsOpened}
-        isFullWidth={isFullWidth}>
+        isFullWidth={isFullWidth}
+		style={styleApi.visibleStyle}>
         {getFormattedTextNode(visibleContent)}
-        <IconWrapper isOpened={isOpened} transitions={transitions}>
-          <ChevronUpIcon />
-        </IconWrapper>
+        {rightComponent}
       </VisibleWrapper>
-
+	  {finalRightComponent(isOpened)}
       <Collapse isOpened={isOpened} springConfig={{ stiffness: 220 }}>
-        <BaseWrapper spacing={spacing}>
+        <BaseWrapper spacing={spacing} style={styleApi.hiddenStyle}>
           {getFormattedTextNode(hiddenContent)}
         </BaseWrapper>
       </Collapse>

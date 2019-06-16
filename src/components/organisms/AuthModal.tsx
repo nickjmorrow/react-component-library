@@ -153,7 +153,6 @@ export const AuthModal: React.SFC<IProps> = ({
         <Button
           onClick={handleRegisterInternal}
           textColorVariant={isLoggingIn ? "core" : "primaryLight"}
-          isFullWidth={true}
           styleVariant={isLoggingIn ? 2 : 1}
           isLoading={isLoading && !isLoggingIn}>
           Register
@@ -162,7 +161,6 @@ export const AuthModal: React.SFC<IProps> = ({
           onClick={handleLoginInternal}
           useMargin={false}
           textColorVariant={isLoggingIn ? "primaryLight" : "core"}
-          isFullWidth={true}
           styleVariant={isLoggingIn ? 1 : 2}
           isLoading={isLoading && isLoggingIn}>
           Log In
