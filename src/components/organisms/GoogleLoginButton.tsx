@@ -16,7 +16,7 @@ export const GoogleLoginButton: React.SFC<
   const renderButton:
     | ((props?: { onClick: () => void } | undefined) => JSX.Element)
     | undefined = renderProps => (
-    <GoogleButton isFullWidth={true} onClick={renderProps!.onClick}>
+    <GoogleButton onClick={renderProps!.onClick}>
       Sign In With Google
     </GoogleButton>
   );

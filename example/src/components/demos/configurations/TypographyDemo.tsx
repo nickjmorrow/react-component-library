@@ -114,12 +114,16 @@ export const TypographyDemo: React.FC = () => {
 					);
 				})}
 			</DisplayPaper>
-			<Typography styleVariant={2}>Style Variants</Typography>
-			<DisplayPaper />
+			<Typography styleVariant={2}>Custom Typography</Typography>
+			<DisplayPaper>
+				<CustomTypography>Hello, world!</CustomTypography>
+			</DisplayPaper>
 			<Typography style={{display: 'block'}} styleVariant={2}>Bullet Point Typography</Typography>
 			<DisplayPaper><BulletPointTypography>Hello, world!</BulletPointTypography></DisplayPaper>
 			<Typography style={{display: 'block'}} styleVariant={2}>Links</Typography>
-			<Typography>Hello, I am a <Typography link={''}>link to someplace.</Typography></Typography>
+			<DisplayPaper>
+				<Typography>Hello, I am a <Typography link={''}>link to someplace.</Typography></Typography>
+			</DisplayPaper>
 
 		</>
 	);
@@ -140,4 +144,13 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
+`;
+
+const CustomTypography = styled(Typography)`
+	color: red;
+	transition: all 100ms;
+	&: hover {
+		color: orange;
+		transition: all 100ms;
+	}
 `;

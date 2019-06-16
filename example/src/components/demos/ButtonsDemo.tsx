@@ -166,6 +166,7 @@ export const ButtonsDemo: React.SFC = () => {
 	  <Typography styleVariant={3}>Custom Buttons</Typography>
 	  <DisplayPaper>
 		  <Button style={{backgroundImage: 'linear-gradient(120deg, purple, pink)', border: 'none'}}>Gradient</Button>
+		  <CustomButton weightVariant={7}>Styled Button</CustomButton>
 	  </DisplayPaper>
     </Wrapper>
   );
@@ -175,4 +176,16 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+`;
+
+const CustomButton = styled(Button)`
+	background-image: linear-gradient(120deg, pink, purple);
+	border: none;
+	color: white;
+	font-weight: 700;
+	transition: filter 100ms;
+	&:hover {
+		filter: brightness(120%);
+		transition: filter 100ms linear;
+	}
 `;

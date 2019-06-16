@@ -6,18 +6,22 @@ import { useThemeContext } from "~/styleConstants";
 import { StyleConstant } from "~/typeUtilities";
 import { Fade } from "../../animations";
 import { getColorFunc } from "../atomServices";
-import { ColorSet, ColorVariant, StyleVariant, UIState, WeightVariant } from "../types";
+import {
+  ColorSet,
+  ColorVariant,
+  StyleVariant,
+  UIState,
+  WeightVariant
+} from "../types";
 import { getFormattedTextNode } from "../typography";
 import { getBackgroundColor, getBorderColor, getColor } from "./buttonServices";
 import { Theme } from "~/types";
 
-type IButtonProps = {
+export const Button: React.SFC<{
   textColorVariant?: ColorVariant;
   colorVariant?: ColorVariant;
   styleVariant?: StyleVariant;
   weightVariant?: WeightVariant;
-  colorSet?: ColorSet;
-  isFullWidth?: boolean;
   isLoading?: boolean;
   link?: string;
   isDisabled?: boolean;
@@ -25,10 +29,9 @@ type IButtonProps = {
   useMargin?: boolean;
   style?: React.CSSProperties;
   typographyStyle?: React.CSSProperties;
+  className?: string;
   onClick?(): void;
-};
-
-export const Button: React.SFC<IButtonProps> = ({
+}> = ({
   children,
   colorVariant = "core",
   textColorVariant = "primaryLight",
@@ -36,13 +39,12 @@ export const Button: React.SFC<IButtonProps> = ({
   weightVariant = 7,
   showBoxShadow = true,
   useMargin = true,
-  isFullWidth = false,
   isDisabled = false,
   isLoading = false,
   link,
   style,
   typographyStyle,
-  colorSet = {} as ColorSet,
+  className,
   onClick: handleClick = () => {
     return;
   }
@@ -53,9 +55,7 @@ export const Button: React.SFC<IButtonProps> = ({
     }
   };
   const theme = useThemeContext();
-  const {
-    defaultShowBoxShadow, colors
-  } = theme;
+  const { defaultShowBoxShadow, colors } = theme;
 
   const formattedChildren = getFormattedTextNode(children, {
     colorVariant: "inherit",
@@ -64,7 +64,7 @@ export const Button: React.SFC<IButtonProps> = ({
     isInteractive: false,
     style: {
       textTransform: "uppercase",
-	  ...typographyStyle
+      ...typographyStyle
     }
   });
 
@@ -87,7 +87,8 @@ export const Button: React.SFC<IButtonProps> = ({
       <Fade
         in={isLoading as boolean}
         style={{ position: "absolute" }}
-        transitionVariant={"medium"}>
+        transitionVariant={"medium"}
+      >
         <PulseLoader
           color={getColorFunc("normal")(colors, textColorVariant)}
           size={8}
@@ -102,19 +103,19 @@ export const Button: React.SFC<IButtonProps> = ({
 
   const content = (
     <StyledButton
+      className={className}
       style={style}
-	  theme={theme}
+      theme={theme}
       defaultShouldShowBoxShadow={defaultShowBoxShadow}
       isDisabled={isDisabled}
       colorVariant={colorVariant}
       styleVariant={styleVariant}
-      colorSet={colorSet}
-      isFullWidth={isFullWidth}
       width={width}
       height={height}
       showBoxShadow={showBoxShadow}
       useMargin={useMargin}
-      onClick={handleClickInternal}>
+      onClick={handleClickInternal}
+    >
       <InnerWrapper width={width} height={height} ref={innerWrapperRef}>
         {isLoading !== undefined ? loadingFade : formattedChildren}
       </InnerWrapper>
@@ -141,26 +142,28 @@ const InnerWrapper = styled("div")<{ width: number; height: number }>`
 // TODO: don't change boxShadow amount if isDisabled = true
 const StyledButton = styled("button")<
   {
-  colorVariant: ColorVariant;
-  styleVariant: StyleVariant;
-  colorSet: ColorSet;
-  showBoxShadow: boolean;
-  useMargin?: boolean;
-  style?: React.CSSProperties;
-  theme: Theme;
-  isFullWidth: boolean;
-  width: number;
-  height: number;
-  isDisabled: boolean;
-  defaultShouldShowBoxShadow: boolean;
-} & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
+    colorVariant: ColorVariant;
+    styleVariant: StyleVariant;
+    showBoxShadow: boolean;
+    useMargin?: boolean;
+    style?: React.CSSProperties;
+    theme: Theme;
+    width: number;
+    height: number;
+    isDisabled: boolean;
+    defaultShouldShowBoxShadow: boolean;
+  } & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
 >`
   border: ${p => p.theme.border.borderStyle.bs2};
   color: ${p =>
-    p.colorSet.color ||
-    getColor(p.theme.colors, p.colorVariant, p.styleVariant, "normal", p.isDisabled)};
+    getColor(
+      p.theme.colors,
+      p.colorVariant,
+      p.styleVariant,
+      "normal",
+      p.isDisabled
+    )};
   background-color: ${p =>
-    p.colorSet.backgroundColor ||
     getBackgroundColor(
       p.theme.colors,
       p.colorVariant,
@@ -169,7 +172,6 @@ const StyledButton = styled("button")<
       p.isDisabled
     )};
   border-color: ${p =>
-    p.colorSet.borderColor ||
     getBorderColor(
       p.theme.colors,
       p.colorVariant,
@@ -193,12 +195,10 @@ const StyledButton = styled("button")<
   min-height: ${p => p.height} / px;
   width: max-content;
   height: max-content;
-  ${p => (p.isFullWidth ? "width: 100%" : "")}
   transition-property: box-shadow, background-color, border-color;
   transition: ${p => p.theme.transitions.medium};
   &:hover {
     border-color: ${p =>
-      p.colorSet.borderColorHover ||
       getBorderColor(
         p.theme.colors,
         p.colorVariant,
@@ -207,7 +207,6 @@ const StyledButton = styled("button")<
         p.isDisabled
       )};
     background-color: ${p =>
-      p.colorSet.backgroundColorHover ||
       getBackgroundColor(
         p.theme.colors,
         p.colorVariant,
@@ -216,7 +215,6 @@ const StyledButton = styled("button")<
         p.isDisabled
       )};
     color: ${p =>
-      p.colorSet.colorHover ||
       getColor(
         p.theme.colors,
         p.colorVariant,
@@ -227,11 +225,11 @@ const StyledButton = styled("button")<
     box-shadow: ${p =>
       p.defaultShouldShowBoxShadow &&
       getBoxShadow(p.theme.boxShadow, p.isDisabled, p.showBoxShadow, "hover")};
-    transition: ${p => !p.isDisabled && `all ${p.theme.transitions.medium} ease-in-out`}};
+    transition: ${p =>
+      !p.isDisabled && `all ${p.theme.transitions.medium} ease-in-out`}};
   }
   &:active {
     border-color: ${p =>
-      p.colorSet.borderColorActive ||
       getBorderColor(
         p.theme.colors,
         p.colorVariant,
@@ -240,7 +238,6 @@ const StyledButton = styled("button")<
         p.isDisabled
       )};
     background-color: ${p =>
-      p.colorSet.backgroundColorActive ||
       getBackgroundColor(
         p.theme.colors,
         p.colorVariant,
@@ -249,7 +246,6 @@ const StyledButton = styled("button")<
         p.isDisabled
       )};
     color: ${p =>
-      p.colorSet.colorActive ||
       getColor(
         p.theme.colors,
         p.colorVariant,
@@ -260,7 +256,8 @@ const StyledButton = styled("button")<
     box-shadow: ${p =>
       p.defaultShouldShowBoxShadow &&
       getBoxShadow(p.theme.boxShadow, p.isDisabled, p.showBoxShadow, "active")};
-    transition: ${p => !p.isDisabled && `all ${p.theme.transitions.medium} ease-in-out`}};
+    transition: ${p =>
+      !p.isDisabled && `all ${p.theme.transitions.medium} ease-in-out`}};
   }
 `;
 

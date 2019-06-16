@@ -14,22 +14,21 @@ export const Typography: React.SFC<{
 	colorVariant?: ColorVariant;
 	weightVariant?: WeightVariant;
 	styleVariant?: StyleVariant;
-	style?: React.CSSProperties;
-	colorSet?: TypographyColorSet;
 	fontFamilyVariant?: FontFamilyVariant;
 	isInteractive?: boolean;
+	className?: string;
 	link?: string;
 } & React.PropsWithoutRef<JSX.IntrinsicElements['span']>> = ({
 	colorVariant,
 	sizeVariant,
 	weightVariant,
 	styleVariant,
-	colorSet = {} as ColorSet,
 	children,
 	align = 'default',
 	isInteractive = false,
 	fontFamilyVariant = 'default',
 	style,
+	className,
 	link
 }) => {
 	const theme = useThemeContext();
@@ -65,9 +64,9 @@ export const Typography: React.SFC<{
 			sizeVariant={newSizeVariant}
 			weightVariant={newWeightVariant}
 			fontFamilyVariant={fontFamilyVariant}
-			colorSet={colorSet}
 			isInteractive={isInteractive}
 			style={newStyle}
+			className={className}
 		>
 			{children}
 		</StyledTypography>
@@ -104,25 +103,24 @@ export const StyledTypography = styled('span')<{
 	weightVariant: WeightVariant;
 	sizeVariant: SizeVariant;
 	theme: Theme;
-	colorSet: TypographyColorSet;
 }>`
 	display: inline-block;
 	text-align: ${p => p.align};
-	color: ${p => p.colorSet.color || getColor(p.theme.colors, p.colorVariant)};
+	color: ${p => getColor(p.theme.colors, p.colorVariant)};
 	font-family: ${p => p.theme.typography.fontFamily[p.fontFamilyVariant]};
 	font-size: ${p => getFontSize(p.theme.typography.fontSizes, p.sizeVariant)};
 	font-weight: ${p => getFontWeight(p.theme.typography.fontWeights, p.weightVariant)};
 	line-height: ${p => p.theme.spacing[p.theme.typography.lineHeight.default]};
-	transition: color ${p.theme.transitions.medium};
+	transition: color ${p => p.theme.transitions.medium};
 	${p =>
 		p.isInteractive &&
 		css`
 			&:hover {
-				color: ${p.colorSet.colorHover || getColorHover(p.theme.colors, p.colorVariant)};
+				color: ${getColorHover(p.theme.colors, p.colorVariant)};
 				transition: color ${p.theme.transitions.medium};
 			}
 			&:active {
-				color: ${p.colorSet.colorActive || getColorActive(p.theme.colors, p.colorVariant)};
+				color: ${getColorActive(p.theme.colors, p.colorVariant)};
 				transition: color ${p.theme.transitions.medium};
 			}
 		`}
