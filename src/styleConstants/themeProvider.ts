@@ -1,5 +1,5 @@
 import { ThemeInput } from "../types";
-import { boxShadowOffsets, colorConstants } from "./styleConstants";
+import { boxShadowOffsets, colorConstants, githubLink } from "./styleConstants";
 import { generateColorShades, getBorderRadius, getBorderStyle, getBoxShadow, getFontSize, getIconSize, getSpacingSystem, getTransitions } from "./styleProviders";
 import { defaultIconColorVariant, defaultIconSizeVariant } from "./styleVariants";
 
@@ -34,5 +34,8 @@ export const getTheme = (themeInputs: ThemeInput) => ({
     iconSizes: getIconSize(themeInputs.icons.iconSizes),
     defaultIconSizeVariant,
     defaultIconColorVariant
+  },
+  settings: {
+	  githubLink: githubLink
   }
 });

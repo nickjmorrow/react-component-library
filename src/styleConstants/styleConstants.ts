@@ -48,3 +48,5 @@ export const defaultShowBoxShadow = true;
 export const mediaWidth = {
   mobileLandscape: "700px"
 };
+
+export const githubLink = 'github.com/nickjmorrow';

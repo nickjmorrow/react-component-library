@@ -9,6 +9,7 @@ export const EditIconButton: React.FC<IconProps & IconButtonProps> = ({
   colorVariant = "core",
   isDisabled = false,
   showBoxShadow = true,
+  sizeVariant,
   onClick: handleClick,
   ...props
 }) => {
@@ -22,7 +23,8 @@ export const EditIconButton: React.FC<IconProps & IconButtonProps> = ({
       <EditIcon
         colorVariant={"inherit"}
         {...props}
-        style={{ display: "block" }}
+		style={{ display: "block" }}
+		sizeVariant={sizeVariant}
       />
     </IconButtonContainer>
   );

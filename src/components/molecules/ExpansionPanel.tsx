@@ -6,41 +6,48 @@ import { StyleConstant } from "~/typeUtilities";
 import { ChevronUpIcon, getFormattedTextNode, Paper } from "../atoms";
 
 export const ExpansionPanel: React.FC<{
-  visibleContent: React.ReactNode;
+  visibleContent?: React.ReactNode;
   hiddenContent: React.ReactNode;
   isFullWidth?: boolean;
   rightComponent?: (isOpened: boolean) => React.ReactNode;
   styleApi?: {
-	  wrapperStyle?: React.CSSProperties,
-	  visibleStyle?: React.CSSProperties,
-	  hiddenStyle?: React.CSSProperties
+    wrapperStyle?: React.CSSProperties;
+    visibleStyle?: React.CSSProperties;
+    hiddenStyle?: React.CSSProperties;
   };
-}> = ({ visibleContent, hiddenContent, isFullWidth = false, rightComponent, styleApi = {} }) => {
+}> = ({
+  visibleContent,
+  hiddenContent,
+  isFullWidth = false,
+  rightComponent,
+  styleApi = {}
+}) => {
   const [isOpened, setIsOpened] = React.useState(false);
   const toggleIsOpened = () => setIsOpened(prev => !prev);
   const { transitions, spacing } = React.useContext(ThemeContext);
 
   const defaultRightComponent = (isOpenedArg: boolean) => (
-	<IconWrapper isOpened={isOpenedArg} transitions={transitions}>
-          <ChevronUpIcon />
-        </IconWrapper>
-  )
+    <IconWrapper isOpened={isOpenedArg} transitions={transitions}>
+      <ChevronUpIcon />
+    </IconWrapper>
+  );
   const finalRightComponent = rightComponent || defaultRightComponent;
   return (
     <Paper
       style={{
-		width: isFullWidth ? "100%" : "max-content",
-		...styleApi.wrapperStyle
-      }}>
+        width: isFullWidth ? "100%" : "max-content",
+        ...styleApi.wrapperStyle
+      }}
+    >
       <VisibleWrapper
         spacing={spacing}
         onClick={toggleIsOpened}
         isFullWidth={isFullWidth}
-		style={styleApi.visibleStyle}>
-        {getFormattedTextNode(visibleContent)}
-        {rightComponent}
+        style={styleApi.visibleStyle}
+      >
+        {visibleContent && getFormattedTextNode(visibleContent)}
+        {finalRightComponent(isOpened)}
       </VisibleWrapper>
-	  {finalRightComponent(isOpened)}
       <Collapse isOpened={isOpened} springConfig={{ stiffness: 220 }}>
         <BaseWrapper spacing={spacing} style={styleApi.hiddenStyle}>
           {getFormattedTextNode(hiddenContent)}

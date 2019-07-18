@@ -38,6 +38,7 @@ export const PopulatedAppBar: React.SFC<{
 	menuLength?: 'long' | 'short';
 	navInfos?: GetComponentProps<typeof SideNav>['navInfos'];
 	styledOptionWidth?: string;
+	githubLink?: string;
 }> = ({
 	appName,
 	styleVariant = 1,
@@ -46,6 +47,7 @@ export const PopulatedAppBar: React.SFC<{
 	showBoxShadow,
 	navInfos = [],
 	menuLength = 'long',
+	githubLink,
 	styledOptionWidth,
 }) => {
 	const { spacing, defaultShowBoxShadow } = React.useContext(ThemeContext);
@@ -104,7 +106,7 @@ export const PopulatedAppBar: React.SFC<{
 							/>
 						)
 					) : (
-						<a href={GITHUB_LINK} style={{ marginLeft: spacing.ss4 }}>
+						<a href={githubLink || GITHUB_LINK} style={{ marginLeft: spacing.ss4 }}>
 							<GithubIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
 						</a>
 					)}

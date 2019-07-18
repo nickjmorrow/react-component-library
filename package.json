@@ -1,6 +1,6 @@
 {
   "name": "@nickjmorrow/react-component-library",
-  "version": "0.0.38",
+  "version": "0.0.44",
   "description": "Personal component library",
   "author": "nickjmorrow",
   "license": "MIT",
@@ -37,6 +37,7 @@
     "react-router-dom": "^4.3.1",
     "react-spinners": "^0.5.1",
     "react-transition-group": "^2.6.0",
+    "react-visibility-sensor": "^5.1.0",
     "stream": "0.0.2",
     "styled-components": "^4.0.0"
   },

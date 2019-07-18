@@ -47,7 +47,7 @@ export const SelectDemo: React.SFC = () => {
     padding: `${spacing.ss8} ${spacing.ss3}`
   };
 
-  const MARGIN_TOP_OFFSET = '-48px';
+  const MARGIN_TOP_OFFSET = "-48px";
 
   return (
     <div style={{ marginBottom: spacing.ss48 }}>
@@ -116,6 +116,17 @@ export const SelectDemo: React.SFC = () => {
             onChange={setOptions}
             placeholder={"Select cities"}
             numVisibleOptions={3}
+          />
+        </div>
+      </DisplayPaper>
+      <Typography styleVariant={2}>Custom Styles</Typography>
+      <DisplayPaper style={paperStyles}>
+        <div>
+          <Select
+            options={options}
+            currentOption={currentOption}
+			onChange={setOption}
+			style={{width: '200px'}}
           />
         </div>
       </DisplayPaper>

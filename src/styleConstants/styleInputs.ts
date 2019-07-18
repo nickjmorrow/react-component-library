@@ -1,4 +1,4 @@
-import { fontFamily, defaultShowBoxShadow, lineHeight, horizontalWidth } from "./styleConstants";
+import { fontFamily, defaultShowBoxShadow, lineHeight, horizontalWidth, githubLink } from "./styleConstants";
 
 const defaultCorePaletteInputs = {
   hue: 220, // hsl(220, 100%, 50%)
@@ -139,5 +139,8 @@ export const defaultThemeInputs = {
   horizontalWidth: horizontalWidth,
   icons: {
     iconSizes: defaultIconSizeInputs
+  },
+  settings: {
+	  githubLink
   }
 };
