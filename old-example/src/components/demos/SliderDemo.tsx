@@ -2,7 +2,7 @@ import "rc-slider/assets/index.css";
 import * as React from "react";
 // TODO: this should be inline or not need to be created in subscribing packages
 import { Slider, Typography, useThemeContext } from "@nickjmorrow/react-component-library";
-import { DisplayPaper } from '../DisplayPaper';
+import { DisplayPaper } from '../../../../app/src/components/shared/DisplayPaper';
 
 export const SliderDemo: React.SFC = () => {
   const [value, setValue] = React.useState(50);

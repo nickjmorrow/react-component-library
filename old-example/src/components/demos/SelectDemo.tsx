@@ -7,7 +7,7 @@ import {
   Typography,
   Multiselect
 } from "@nickjmorrow/react-component-library";
-import { DisplayPaper } from "../DisplayPaper";
+import { DisplayPaper } from "../../../../app/src/components/shared/DisplayPaper";
 
 const options: IOption[] = [
   {

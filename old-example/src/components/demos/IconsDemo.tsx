@@ -40,7 +40,7 @@ import {
   SeleniumIcon
 } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
-import { DisplayPaper } from "../DisplayPaper";
+import { DisplayPaper } from "../../../../app/src/components/shared/DisplayPaper";
 
 export const IconsDemo: React.SFC = () => {
   const { spacing, colors } = React.useContext(ThemeContext);

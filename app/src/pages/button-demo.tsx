@@ -8,13 +8,15 @@ import {
   MenuButton
 } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
-import { DisplayPaper } from "../../../../app/src/components/shared/DisplayPaper";
+import { DisplayPaper } from "../components/shared/DisplayPaper";
+import Layout from "../components/layout";
 
-export const ButtonsDemo: React.SFC = () => {
+export const ButtonDemo: React.SFC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const toggleIsLoading = () => setIsLoading(!isLoading);
 
   return (
+	  <Layout>
     <Wrapper>
       <Typography styleVariant={1}>Buttons</Typography>
       <Typography styleVariant={2}>Style Variants</Typography>
@@ -169,6 +171,7 @@ export const ButtonsDemo: React.SFC = () => {
 		  <CustomButton weightVariant={7}>Styled Button</CustomButton>
 	  </DisplayPaper>
     </Wrapper>
+	</Layout>
   );
 };
 
@@ -189,3 +192,5 @@ const CustomButton = styled(Button)`
 		transition: filter 100ms linear;
 	}
 `;
+
+export default ButtonDemo;
