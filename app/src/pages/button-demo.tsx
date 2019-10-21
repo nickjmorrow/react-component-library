@@ -1,25 +1,25 @@
-import * as React from "react";
+import * as React from "react"
 import {
   Button,
   Typography,
   GoogleButton,
   LinkedInButton,
   FacebookButton,
-  MenuButton
-} from "@nickjmorrow/react-component-library";
-import styled from "styled-components";
-import { DisplayPaper } from "../components/shared/DisplayPaper";
-import Layout from "../components/layout";
+  MenuButton,
+} from "@nickjmorrow/react-component-library"
+import styled from "styled-components"
+import { DisplayPaper } from "../components/shared/DisplayPaper"
+import Layout from "../components/layout"
 
 export const ButtonDemo: React.SFC = () => {
-  const [isLoading, setIsLoading] = React.useState(false);
-  const toggleIsLoading = () => setIsLoading(!isLoading);
+  const [isLoading, setIsLoading] = React.useState(false)
+  const toggleIsLoading = () => setIsLoading(!isLoading)
 
   return (
-	  <Layout>
-    <Wrapper>
-      <Typography styleVariant={1}>Buttons</Typography>
-      <Typography styleVariant={2}>Style Variants</Typography>
+    <Layout>
+      <Wrapper>
+        <Typography styleVariant={1}>Buttons</Typography>
+        <Typography styleVariant={2}>Style Variants</Typography>
       <Typography styleVariant={3}>Primary</Typography>
       <DisplayPaper>
         <Button colorVariant="core">Core</Button>
@@ -29,7 +29,7 @@ export const ButtonDemo: React.SFC = () => {
         <Button colorVariant="danger">Danger</Button>
       </DisplayPaper>
       <Typography styleVariant={3}>Secondary</Typography>
-      <DisplayPaper>
+      {/*<DisplayPaper>
         <Button
           styleVariant={2}
           textColorVariant="core"
@@ -128,9 +128,9 @@ export const ButtonDemo: React.SFC = () => {
       </DisplayPaper>
       <Typography styleVariant={3}>Link Buttons</Typography>
       <DisplayPaper>
-        {/* <GoogleButton link={"http://google.com"}>Google</GoogleButton>
+        <GoogleButton link={"http://google.com"}>Google</GoogleButton>
         <FacebookButton link={"http://facebook.com"}>Facebook</FacebookButton>
-        <LinkedInButton link={"http://linkedin.com"}>LinkedIn</LinkedInButton> */}
+        <LinkedInButton link={"http://linkedin.com"}>LinkedIn</LinkedInButton>
       </DisplayPaper>
       <Typography styleVariant={3}>Disabled</Typography>
       <DisplayPaper>
@@ -169,28 +169,28 @@ export const ButtonDemo: React.SFC = () => {
 	  <DisplayPaper>
 		  <Button style={{backgroundImage: 'linear-gradient(120deg, purple, pink)', border: 'none'}}>Gradient</Button>
 		  <CustomButton weightVariant={7}>Styled Button</CustomButton>
-	  </DisplayPaper>
-    </Wrapper>
-	</Layout>
-  );
-};
+	  </DisplayPaper> */}
+      </Wrapper>
+    </Layout>
+  )
+}
 
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-`;
+`
 
 const CustomButton = styled(Button)`
-	background-image: linear-gradient(120deg, pink, purple);
-	border: none;
-	color: white;
-	font-weight: 700;
-	transition: filter 100ms;
-	&:hover {
-		filter: brightness(120%);
-		transition: filter 100ms linear;
-	}
-`;
+  background-image: linear-gradient(120deg, pink, purple);
+  border: none;
+  color: white;
+  font-weight: 700;
+  transition: filter 100ms;
+  &:hover {
+    filter: brightness(120%);
+    transition: filter 100ms linear;
+  }
+`
 
-export default ButtonDemo;
+export default ButtonDemo
