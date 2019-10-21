@@ -1,5 +1,3 @@
-var path = require('path')
-
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -50,16 +48,6 @@ module.exports = {
 	},
 	{
 		resolve: `gatsby-plugin-styled-components`,
-	},
-	{
-		resolve: `gatsby-plugin-alias-imports`,
-		options: {
-			alias: {
-				"styled-components": path.resolve("node_modules", "styled-components"),
-				"react": path.resolve("node_modules", "react"),
-				"react-dom": path.resolve("node_modules", "react-dom")
-			}
-		}
 	}
 ]
 }

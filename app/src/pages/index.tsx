@@ -55,6 +55,7 @@ const IndexPage = () => {
 <Typography>
           Hello!
         </Typography>
+		<ButtonDemo />
       </ThemeContext.Provider>
 	  </BrowserRouter>
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
