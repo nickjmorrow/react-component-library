@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { BrowserRouter } from "react-router-dom";
+
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
@@ -10,7 +10,11 @@ import {
   getThemeFromNewInputs,
   Typography,
 } from "@nickjmorrow/react-component-library"
-import { ButtonDemo } from "./button-demo";
+
+// Add this in your component file
+require("react-dom")
+window.React2 = require("react")
+console.log(window.React1 === window.React2)
 
 const initialThemeInputs = {
   colors: {
@@ -50,14 +54,12 @@ const IndexPage = () => {
       <h1>Hi people</h1>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
-	  <BrowserRouter basename={process.env.PUBLIC_URL}>
+
       <ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>
 <Typography>
           Hello!
         </Typography>
-		<ButtonDemo />
       </ThemeContext.Provider>
-	  </BrowserRouter>
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
       </div>

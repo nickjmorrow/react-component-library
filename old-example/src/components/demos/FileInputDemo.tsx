@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { FileInput, Typography } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
-import { DisplayPaper } from "../../../../app/src/components/shared/DisplayPaper";
+import { DisplayPaper } from "../DisplayPaper";
 
 export const FileInputDemo: React.SFC = () => {
   const setFile = useState<FileList | null>(null)[1];

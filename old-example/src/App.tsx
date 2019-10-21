@@ -11,7 +11,7 @@ import * as React from "react";
 import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
 import "./App.css";
-import { LibraryAppBar } from "../../app/src/components/shared/LibraryAppBar";
+import { LibraryAppBar } from "./components/LibraryAppBar";
 import { Main } from "./Main";
 
 const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {

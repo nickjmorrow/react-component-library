@@ -17,8 +17,8 @@ import {
   SpacingDemo,
   StyleConstants
 } from "./components/demos";
-import { GettingStarted } from "../../app/src/components/shared/GettingStarted";
-import { Principles } from "../../app/src/components/shared/Principles";
+import { GettingStarted } from "./components/GettingStarted";
+import { Principles } from "./components/Principles";
 import { Route } from "react-router";
 import * as React from "react";
 import { FadeDemo } from "./components/demos/FadeDemo";

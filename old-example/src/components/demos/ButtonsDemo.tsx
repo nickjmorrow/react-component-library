@@ -8,7 +8,7 @@ import {
   MenuButton
 } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
-import { DisplayPaper } from "../../../../app/src/components/shared/DisplayPaper";
+import { DisplayPaper } from "../DisplayPaper";
 
 export const ButtonsDemo: React.SFC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -126,9 +126,9 @@ export const ButtonsDemo: React.SFC = () => {
       </DisplayPaper>
       <Typography styleVariant={3}>Link Buttons</Typography>
       <DisplayPaper>
-        {/* <GoogleButton link={"http://google.com"}>Google</GoogleButton>
+        <GoogleButton link={"http://google.com"}>Google</GoogleButton>
         <FacebookButton link={"http://facebook.com"}>Facebook</FacebookButton>
-        <LinkedInButton link={"http://linkedin.com"}>LinkedIn</LinkedInButton> */}
+        <LinkedInButton link={"http://linkedin.com"}>LinkedIn</LinkedInButton>
       </DisplayPaper>
       <Typography styleVariant={3}>Disabled</Typography>
       <DisplayPaper>

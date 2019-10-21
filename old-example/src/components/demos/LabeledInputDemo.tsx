@@ -8,7 +8,7 @@ import {
   ThemeContext
 } from "@nickjmorrow/react-component-library";
 import styled from "styled-components";
-import { DisplayPaper } from "../../../../app/src/components/shared/DisplayPaper";
+import { DisplayPaper } from "../DisplayPaper";
 
 export const LabeledInputDemo: React.SFC = () => {
   const options: IOption[] = [

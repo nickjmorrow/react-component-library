@@ -1,102 +1,96 @@
 {
-    "name": "@nickjmorrow/react-component-library",
-    "version": "0.0.44",
-    "description": "Personal component library",
-    "author": "nickjmorrow",
-    "license": "MIT",
-    "repository": "nickjmorrow/react-component-library",
-    "main": "dist/index.js",
-    "module": "dist/index.es.js",
-    "jsnext:main": "dist/index.es.js",
-    "engines": {
-        "node": ">=8",
-        "npm": ">=5"
-    },
-    "scripts": {
-        "test": "react-scripts-ts test --env=jsdom",
-        "prebuild": "npm install",
-        "build": "rollup -c && tsc --emitDeclarationOnly",
-        "dev": "tsc --emitDeclarationOnly && rollup -c -w",
-        "predeploy": "npm run build && npm run --prefix example build",
-        "deploy": "gh-pages -d example/dist"
-    },
-    "dependencies": {
-        "@nickjmorrow/algorithms": "^1.0.2",
-        "component-indexof": "^0.0.3",
-        "deepmerge": "^3.2.0",
-        "emitter": "0.0.5",
-        "fast-deep-equal": "^2.0.1",
-        "indexof": "^0.0.1",
-        "radium": "^0.25.1",
-        "rc-slider": "^8.6.5",
-        "react-animations": "^1.0.0",
-        "react-collapse": "^4.0.3",
-        "react-google-login": "^5.0.0",
-        "react-media": "^1.9.2",
-        "react-modal": "^3.8.1",
-        "react-motion": "^0.5.2",
-        "react-router": "^4.3.1",
-        "react-router-dom": "^4.3.1",
-        "react-spinners": "^0.5.1",
-        "react-transition-group": "^2.6.0",
-        "react-visibility-sensor": "^5.1.0",
-        "stream": "0.0.2",
-        "styled-components": "^4.0.0"
-    },
-    "peerDependencies": {
-        "react": "^16.10.2",
-        "react-dom": "^16.10.2"
-    },
-    "devDependencies": {
-        "@svgr/rollup": "^2.4.1",
-        "@types/jest": "^24.0.11",
-        "@types/radium": "^0.24.2",
-        "@types/react": "^16.3.13",
-        "@types/react-collapse": "^4.0.2",
-        "@types/react-dom": "^16.0.5",
-        "@types/react-modal": "^3.8.0",
-        "@types/react-motion": "0.0.28",
-        "@types/react-router-dom": "^4.3.1",
-        "@types/react-test-renderer": "^16.8.1",
-        "@types/react-transition-group": "^2.0.16",
-        "@types/styled-components": "^4.1.4",
-        "babel-core": "^6.26.3",
-        "babel-runtime": "^6.26.0",
-        "concurrently": "^4.1.0",
-        "cross-env": "^5.1.4",
-        "gh-pages": "^1.2.0",
-        "jest-styled-components": "^7.0.0-2",
-        "module-alias": "^2.2.0",
-        "react": "^16.10.2",
-        "react-dom": "^16.10.2",
-        "react-scripts-ts": "^2.16.0",
-        "react-test-renderer": "^16.8.4",
-        "rollup": "^0.62.0",
-        "rollup-plugin-babel": "^3.0.7",
-        "rollup-plugin-commonjs": "^9.1.3",
-        "rollup-plugin-node-resolve": "^3.3.0",
-        "rollup-plugin-peer-deps-external": "^2.2.0",
-        "rollup-plugin-postcss": "^1.6.2",
-        "rollup-plugin-typescript2": "^0.17.2",
-        "rollup-plugin-url": "^1.4.0",
-        "ts-essentials": "^2.0.0",
-        "ts-node": "^8.0.2",
-        "tsconfig-paths": "^3.8.0",
-        "typescript": "^3.5.1"
-    },
-    "alias": {
-        "indexof": "component-indexof/index",
-        "~/component-indexof.js": "component-indexof"
-    },
-    "files": [
-        "dist"
-    ],
-    "_moduleAliases": {
-        "~": "dist"
-    },
-    "jest": {
-        "moduleNameMapper": {
-            "~/(.*)": "<rootDir>/src/$1"
-        }
+  "name": "@nickjmorrow/react-component-library",
+  "version": "0.0.44",
+  "description": "Personal component library",
+  "author": "nickjmorrow",
+  "license": "MIT",
+  "repository": "nickjmorrow/react-component-library",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "test": "react-scripts-ts test --env=jsdom",
+    "prebuild": "npm install",
+    "build": "rollup -c && tsc --emitDeclarationOnly",
+    "dev": "tsc --emitDeclarationOnly && rollup -c -w",
+    "predeploy": "npm run build && npm run --prefix example build",
+    "deploy": "gh-pages -d example/dist"
+  },
+  "dependencies": {
+    "@nickjmorrow/algorithms": "^1.0.2",
+    "deepmerge": "^3.2.0",
+    "emitter": "0.0.5",
+    "fast-deep-equal": "^2.0.1",
+    "radium": "^0.25.1",
+    "rc-slider": "^8.6.5",
+    "react-animations": "^1.0.0",
+    "react-collapse": "^4.0.3",
+    "react-google-login": "^5.0.0",
+    "react-media": "^1.9.2",
+    "react-modal": "^3.8.1",
+    "react-motion": "^0.5.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-spinners": "^0.5.1",
+    "react-transition-group": "^2.6.0",
+    "react-visibility-sensor": "^5.1.0",
+    "stream": "0.0.2",
+    "styled-components": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "devDependencies": {
+    "@svgr/rollup": "^2.4.1",
+    "@types/jest": "^24.0.11",
+    "@types/radium": "^0.24.2",
+    "@types/react": "^16.3.13",
+    "@types/react-collapse": "^4.0.2",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-modal": "^3.8.0",
+    "@types/react-motion": "0.0.28",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/react-test-renderer": "^16.8.1",
+    "@types/react-transition-group": "^2.0.16",
+    "@types/styled-components": "^4.1.4",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.1.4",
+    "gh-pages": "^1.2.0",
+    "jest-styled-components": "^7.0.0-2",
+    "module-alias": "^2.2.0",
+    "react-scripts-ts": "^2.16.0",
+    "react-test-renderer": "^16.8.4",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "rollup": "^0.62.0",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-postcss": "^1.6.2",
+    "rollup-plugin-typescript2": "^0.17.2",
+    "rollup-plugin-url": "^1.4.0",
+    "ts-essentials": "^2.0.0",
+    "ts-node": "^8.0.2",
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "^3.5.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "_moduleAliases": {
+    "~": "dist"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "~/(.*)": "<rootDir>/src/$1"
     }
+  }
 }

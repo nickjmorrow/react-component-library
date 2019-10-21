@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DisplayPaper } from '../../../../../app/src/components/shared/DisplayPaper';
+import { DisplayPaper } from '../../DisplayPaper';
 import { Typography, GetComponentProps, ThemeContext, Link, BulletPointTypography } from "@nickjmorrow/react-component-library";
 import styled from 'styled-components';
 import { DescriptionContainer } from '../../../components/shared';

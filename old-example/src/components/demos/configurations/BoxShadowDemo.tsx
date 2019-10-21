@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Typography, ThemeContext } from "@nickjmorrow/react-component-library";
-import { DisplayPaper } from "../../../../../app/src/components/shared/DisplayPaper";
+import { DisplayPaper } from "../../../components/DisplayPaper";
 import { Block } from "../../../components/shared";
 
 export const BoxShadowDemo: React.FC = () => {

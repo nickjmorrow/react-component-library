@@ -35,11 +35,15 @@ export const Link: React.SFC<{
       {children}
     </Typography>
   );
-  return (
+  return isExternalLink ? (
     <a href={route} onClick={handleClick}>
       {content}
     </a>
-  )
+  ) : (
+    <RouterLink to={route} style={customStyle} onClick={handleClick}>
+      {content}
+    </RouterLink>
+  );
 };
 
 const getColorVariant = (styleVariant: StyleVariant): ColorVariant => {

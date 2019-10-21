@@ -5,7 +5,7 @@ import {
   Button,
   Typography
 } from "@nickjmorrow/react-component-library";
-import { DisplayPaper } from "../../../../app/src/components/shared/DisplayPaper";
+import { DisplayPaper } from "../DisplayPaper";
 import styled from "styled-components";
 
 const possibleValues = ["h", "he", "hell", "help", "helper", "hello"];

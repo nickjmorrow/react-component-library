@@ -14,33 +14,27 @@ export default {
       file: pkg.main,
       format: "cjs",
       exports: "named",
-	  sourcemap: true,
-	  globals: {
-		react: 'React',
-		'react-dom': 'ReactDOM'
-	},
+      sourcemap: true
     },
     {
       file: pkg.module,
       format: "es",
       exports: "named",
-	  sourcemap: true,
-	  globals: {
-		react: 'React',
-		'react-dom': 'ReactDOM'
-	},
+      sourcemap: true
     }
   ],
   external: ["stream", "styled-components", "react", "react-dom"],
+  globals: {
+	  react: 'React',
+	  'react-dom': 'ReactDOM'
+  },
   plugins: [
     external(),
     postcss({
       modules: true
     }),
     url(),
-    resolve({
-		browser: false
-	}),
+    resolve(),
     typescript({
       rollupCommonJSResolveHack: true,
       objectHashIgnoreUnknownHack: true
