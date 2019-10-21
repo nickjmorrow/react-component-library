@@ -142,7 +142,7 @@ export const IconsDemo: React.SFC = () => {
           <AddIconButton
             onClick={noOp}
             styleVariant={1}
-            sizeVariant={1}
+            sizeVariant={4}
             colorVariant={"core"}
           />
           <AddIconButton onClick={noOp} styleVariant={2} sizeVariant={4} />
@@ -190,7 +190,7 @@ export const IconsDemo: React.SFC = () => {
           />
         </IconSizes>
         <IconSizes spacing={spacing}>
-          <EditIconButton onClick={noOp} styleVariant={1} sizeVariant={1} />
+          <EditIconButton onClick={noOp} styleVariant={1} sizeVariant={4} />
           <EditIconButton onClick={noOp} styleVariant={2} sizeVariant={4} />
           <EditIconButton onClick={noOp} styleVariant={3} sizeVariant={4} />
           <EditIconButton

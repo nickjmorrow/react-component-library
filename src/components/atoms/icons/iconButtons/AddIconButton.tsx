@@ -9,7 +9,6 @@ export const AddIconButton: React.FC<IconProps & IconButtonProps> = ({
   colorVariant = "core",
   isDisabled = false,
   showBoxShadow = true,
-  sizeVariant,
   onClick: handleClick,
   ...props
 }) => {
@@ -18,14 +17,12 @@ export const AddIconButton: React.FC<IconProps & IconButtonProps> = ({
       styleVariant={styleVariant}
       showBoxShadow={showBoxShadow}
       colorVariant={colorVariant}
-	  isDisabled={isDisabled}
-	  sizeVariant={sizeVariant}
+      isDisabled={isDisabled}
       onClick={handleClick}>
       <AddIcon
         colorVariant={"inherit"}
         {...props}
-		style={{ display: "block" }}
-		sizeVariant={sizeVariant}
+        style={{ display: "block" }}
       />
     </IconButtonContainer>
   );

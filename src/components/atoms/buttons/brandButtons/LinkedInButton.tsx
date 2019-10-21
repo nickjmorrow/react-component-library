@@ -7,7 +7,7 @@ import { noOp } from "../buttonServices";
 export const LinkedInButton: React.FC<GetComponentProps<typeof Button>> = ({
   ...props
 }) => {
-  const linkedInColorSet= {
+  const linkedInColorSet: GetComponentProps<typeof Button>["colorSet"] = {
     color: "white",
     colorHover: "white",
     colorActive: "white",
@@ -19,10 +19,8 @@ export const LinkedInButton: React.FC<GetComponentProps<typeof Button>> = ({
     borderColorHover: linkedInColors.colorHover
   };
   return (
-    <Button onClick={noOp} {...props}>
+    <Button onClick={noOp} colorSet={linkedInColorSet} {...props}>
       {props.children}
     </Button>
   );
 };
-
-// TODO: styled(Button) to replace the previous colorSet

@@ -7,7 +7,7 @@ import { noOp } from "../buttonServices";
 export const FacebookButton: React.FC<GetComponentProps<typeof Button>> = ({
   ...props
 }) => {
-  const facebookColorSet = {
+  const facebookColorSet: GetComponentProps<typeof Button>["colorSet"] = {
     color: "white",
     colorHover: "white",
     colorActive: "white",
@@ -19,7 +19,7 @@ export const FacebookButton: React.FC<GetComponentProps<typeof Button>> = ({
     borderColorHover: facebookColors.colorHover
   };
   return (
-    <Button onClick={noOp}  {...props}>
+    <Button onClick={noOp} colorSet={facebookColorSet} {...props}>
       {props.children}
     </Button>
   );

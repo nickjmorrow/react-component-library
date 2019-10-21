@@ -10,7 +10,7 @@ import { noOp } from "../buttonServices";
 export const GoogleButton: React.FC<GetComponentProps<typeof Button>> = ({
   ...props
 }) => {
-  const googleColorSet = {
+  const googleColorSet: GetComponentProps<typeof Button>["colorSet"] = {
     color: "white",
     colorHover: "white",
     colorActive: "white",
@@ -22,7 +22,7 @@ export const GoogleButton: React.FC<GetComponentProps<typeof Button>> = ({
     borderColorHover: googleColors.colorHover
   };
   return (
-    <Button onClick={noOp}  {...props}>
+    <Button onClick={noOp} colorSet={googleColorSet} {...props}>
       <FlexWrapper>
         <GoogleIcon colorVariant={"inherit"} sizeVariant={2} />
         <Typography

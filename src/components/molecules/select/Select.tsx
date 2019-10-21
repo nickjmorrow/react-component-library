@@ -17,7 +17,6 @@ export const Select: React.SFC<{
   helperText?: string;
   error?: string;
   numVisibleOptions?: number;
-  style?: React.CSSProperties;
   onChange(option: IOption): void;
 }> = ({
   onChange: handleChange,
@@ -26,8 +25,7 @@ export const Select: React.SFC<{
   label,
   helperText,
   error = "",
-  numVisibleOptions,
-  style
+  numVisibleOptions
 }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const toggleIsMenuVisible = () =>
@@ -73,7 +71,7 @@ export const Select: React.SFC<{
 
   return (
     <div ref={wrapperRef}>
-      <Wrapper width={spacing.ss32} style={style}>
+      <Wrapper width={spacing.ss32}>
         {label && (
           <Typography
             sizeVariant={1}
