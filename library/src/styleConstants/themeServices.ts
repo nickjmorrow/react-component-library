@@ -10,7 +10,7 @@ const deepMerge: typeof deepMergeProxy =
 export const ThemeInputsContext = React.createContext({
   themeInputs: defaultThemeInputs,
   updateThemeInputs: (
-    // @ts-ignore
+    
     newThemeInputs: DeepPartial<typeof defaultThemeInputs>
   ) => {
     return;
