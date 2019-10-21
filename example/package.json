@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://nickjmorrow.github.io/react-component-library",
   "scripts": {
+    "remove-singletons": "rm -rf ./node_modules/react-component-library/node_modules/react ./node_modules/react-component-library/node_modules/react-dom",
     "dev": "webpack-dev-server --mode development",
     "prebuild": "npm install",
     "build": "webpack --mode production",

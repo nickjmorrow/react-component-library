@@ -24,10 +24,6 @@ export default {
     }
   ],
   external: ["stream", "styled-components", "react", "react-dom"],
-  globals: {
-	  react: 'React',
-	  'react-dom': 'ReactDOM'
-  },
   plugins: [
     external(),
     postcss({
