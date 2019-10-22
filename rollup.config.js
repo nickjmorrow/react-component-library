@@ -33,7 +33,8 @@ export default {
     resolve(),
     typescript({
       rollupCommonJSResolveHack: true,
-      objectHashIgnoreUnknownHack: true
+	  objectHashIgnoreUnknownHack: true,
+	  check: false
     }),
     commonjs({
       include: "node_modules/**",

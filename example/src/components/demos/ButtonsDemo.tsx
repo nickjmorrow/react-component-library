@@ -20,7 +20,7 @@ export const ButtonsDemo: React.SFC = () => {
       <Typography styleVariant={2}>Style Variants</Typography>
       <Typography styleVariant={3}>Primary</Typography>
       <DisplayPaper>
-        <Button colorVariant="core">Core</Button>
+        <Button colorVariant="core">Hey</Button>
         <Button colorVariant="accent">Accent</Button>
         <Button colorVariant="success">Success</Button>
         <Button colorVariant="warning">Warning</Button>

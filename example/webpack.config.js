@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack')
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -11,7 +12,8 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
     https: true,
-	historyApiFallback: true
+	historyApiFallback: true,
+	hot: true
   },
   module: {
     rules: [
@@ -48,6 +50,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve("public/index.html"),
       favicon: "public/favicon.png"
-    })
+	}),
+	new webpack.HotModuleReplacementPlugin()
   ]
 };
