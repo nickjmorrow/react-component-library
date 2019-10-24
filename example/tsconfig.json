@@ -19,7 +19,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-	"skipDefaultLibCheck": true
+    "skipDefaultLibCheck": true
   },
   "exclude": [
     "node_modules",
@@ -29,8 +29,11 @@
     "webpack",
     "jest",
     "src/setupTests.ts",
-	"cypress",
-	"webpack.config.js",
-	"dist"
+    "cypress",
+    "webpack.config.js",
+    "webpack.common.js",
+    "webpack.dev.js",
+    "webpack.prod.js",
+    "dist"
   ]
 }
