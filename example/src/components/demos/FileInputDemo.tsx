@@ -8,9 +8,9 @@ export const FileInputDemo: React.SFC = () => {
   const setFile = useState<FileList | null>(null)[1];
   return (
     <Wrapper>
-      <Typography styleVariant={1}>File Input</Typography>
+      <Typography styleVariant={"h1"}>File Input</Typography>
       <div>
-        <Typography styleVariant={2}>Core</Typography>
+        <Typography styleVariant={"h2"}>Core</Typography>
         <DisplayPaper>
           <FileInput onChange={setFile} isLoading={false} />
           <FileInput
@@ -28,7 +28,7 @@ export const FileInputDemo: React.SFC = () => {
         </DisplayPaper>
       </div>
       <div>
-        <Typography styleVariant={2}>Accent</Typography>
+        <Typography styleVariant={"h2"}>Accent</Typography>
         <DisplayPaper>
           <FileInput onChange={setFile} colorVariant={"accent"} />
           <FileInput
@@ -46,7 +46,7 @@ export const FileInputDemo: React.SFC = () => {
         </DisplayPaper>
       </div>
       <div>
-        <Typography styleVariant={2}>Upload Label</Typography>
+        <Typography styleVariant={"h2"}>Upload Label</Typography>
         <DisplayPaper>
           <FileInput
             id={"uploadable"}

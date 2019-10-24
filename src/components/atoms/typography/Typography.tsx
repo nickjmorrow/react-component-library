@@ -2,10 +2,7 @@ import * as deepMergeProxy from "deepmerge";
 import * as React from "react";
 import styled, { css } from "styled-components";
 import {
-  ColorSet,
   ColorVariant,
-  StyleVariant,
-  TypographyColorSet,
   WeightVariant
 } from "~/components/atoms/types";
 import { useThemeContext } from "~/styleConstants";
@@ -171,6 +168,7 @@ export const StyledTypography = styled("span")<{
 type Align = "inherit" | "left" | "center" | "right" | "justify" | "default";
 type SizeVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 type FontFamilyVariant = keyof StyleConstant<"typography">["fontFamily"];
+type StyleVariant = "h1" | "h2" | "h3";
 
 type ConcreteVariant = {
   colorVariant: ColorVariant;
@@ -199,29 +197,29 @@ const getOtherVariants = (
   spacing: StyleConstant<"spacing">
 ) => {
   switch (styleVariant) {
-    case 1: {
+    case "h1": {
       return {
         colorVariant: "primaryDark",
         weightVariant: 5,
         sizeVariant: 9,
+        style: {
+		  marginBottom: spacing.ss8,
+		  marginTop: spacing.ss8
+        }
+      };
+    }
+    case "h2": {
+      return {
+        colorVariant: "primaryDark",
+        weightVariant: 4,
+        sizeVariant: 6,
         style: {
 		  marginBottom: spacing.ss6,
 		  marginTop: spacing.ss6
         }
       };
     }
-    case 2: {
-      return {
-        colorVariant: "primaryDark",
-        weightVariant: 4,
-        sizeVariant: 6,
-        style: {
-		  marginBottom: spacing.ss4,
-		  marginTop: spacing.ss4
-        }
-      };
-    }
-    case 3: {
+    case "h3": {
       return {
         colorVariant: "secondaryDark",
         weightVariant: 3,

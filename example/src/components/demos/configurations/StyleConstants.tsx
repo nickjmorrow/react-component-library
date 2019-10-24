@@ -24,7 +24,7 @@ export const StyleConstants: React.FC = () => {
   // TODO: figure out weird spacing / formatting issues
   return (
     <>
-      <Typography styleVariant={1}>Style Constants</Typography>
+      <Typography styleVariant={"h1"}>Style Constants</Typography>
       <DescriptionContainer>
         <Typography>
           There are miscellaneous flags and settings that are centralized within
@@ -34,7 +34,7 @@ export const StyleConstants: React.FC = () => {
           consuming applications.
         </Typography>
       </DescriptionContainer>
-      <Typography styleVariant={2}>Default Should Show Box Shadow</Typography>
+      <Typography styleVariant={"h2"}>Default Should Show Box Shadow</Typography>
       <div style={{ display: "grid", gridAutoFlow: "row", gridRowGap: "8px" }}>
         <Toggle
           isToggled={defaultShowBoxShadow}

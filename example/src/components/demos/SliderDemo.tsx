@@ -9,7 +9,7 @@ export const SliderDemo: React.SFC = () => {
   const { spacing } = useThemeContext();
   return (
     <>
-      <Typography styleVariant={1}>Slider</Typography>
+      <Typography styleVariant={"h1"}>Slider</Typography>
 	  <Typography style={{display: 'block', maxWidth: spacing.ss160}}>
 	  	The slider component is used to allow the selection of a value amid a continuous range of values. 
 	  </Typography>

@@ -49,8 +49,8 @@ export const IconsDemo: React.SFC = () => {
   };
   return (
     <Wrapper spacing={spacing}>
-      <Typography styleVariant={1}>Icons</Typography>
-      <Typography styleVariant={2}>All Icons</Typography>
+      <Typography styleVariant={"h1"}>Icons</Typography>
+      <Typography styleVariant={"h2"}>All Icons</Typography>
       <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         <IconSizes spacing={spacing}>
           <CloseIcon sizeVariant={4} />
@@ -66,7 +66,7 @@ export const IconsDemo: React.SFC = () => {
           <ArrowIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-      <Typography styleVariant={2}>Weather Icons</Typography>
+      <Typography styleVariant={"h2"}>Weather Icons</Typography>
       <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         <IconSizes spacing={spacing}>
           <RainIcon sizeVariant={4} />
@@ -76,7 +76,7 @@ export const IconsDemo: React.SFC = () => {
           <CloudIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-      <Typography styleVariant={2}>Technology Icons</Typography>
+      <Typography styleVariant={"h2"}>Technology Icons</Typography>
       <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         <IconSizes spacing={spacing}>
           <NETCoreIcon sizeVariant={4} />
@@ -91,7 +91,7 @@ export const IconsDemo: React.SFC = () => {
 		  <SeleniumIcon sizeVariant={4}/>
         </IconSizes>
       </DisplayPaper>
-	  <Typography styleVariant={2}>Language Icons</Typography>
+	  <Typography styleVariant={"h2"}>Language Icons</Typography>
       <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         <IconSizes spacing={spacing}>
           <CSharpIcon sizeVariant={4} />
@@ -99,7 +99,7 @@ export const IconsDemo: React.SFC = () => {
           <JavaScriptIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-      <Typography styleVariant={2}>Database Icons</Typography>
+      <Typography styleVariant={"h2"}>Database Icons</Typography>
       <DisplayPaper style={{ display: "grid", gridAutoFlow: "row" }}>
         <IconSizes spacing={spacing}>
           <MongoDBIcon sizeVariant={4} />
@@ -107,7 +107,7 @@ export const IconsDemo: React.SFC = () => {
           <PostgreSQLIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-      <Typography styleVariant={2}>Icon Sizes</Typography>
+      <Typography styleVariant={"h2"}>Icon Sizes</Typography>
       <DisplayPaper>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={1} />
@@ -116,21 +116,21 @@ export const IconsDemo: React.SFC = () => {
           <GithubIcon sizeVariant={4} />
         </IconSizes>
       </DisplayPaper>
-      <Typography styleVariant={2}>Dark Colors</Typography>
+      <Typography styleVariant={"h2"}>Dark Colors</Typography>
       <DisplayPaper>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"primaryDark"} />
           <GithubIcon sizeVariant={4} colorVariant={"secondaryDark"} />
         </IconSizes>
       </DisplayPaper>
-      <Typography styleVariant={2}>Light Colors</Typography>
+      <Typography styleVariant={"h2"}>Light Colors</Typography>
       <DisplayPaper style={{ backgroundColor: colors.neutral.cs7 }}>
         <IconSizes spacing={spacing}>
           <GithubIcon sizeVariant={4} colorVariant={"secondaryLight"} />
           <GithubIcon sizeVariant={4} colorVariant={"primaryLight"} />
         </IconSizes>
       </DisplayPaper>
-      <Typography styleVariant={2}>Icon Buttons</Typography>
+      <Typography styleVariant={"h2"}>Icon Buttons</Typography>
       <DisplayPaper
         style={{
           display: "grid",

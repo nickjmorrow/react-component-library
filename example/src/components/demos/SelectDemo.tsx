@@ -51,7 +51,7 @@ export const SelectDemo: React.SFC = () => {
 
   return (
     <div style={{ marginBottom: spacing.ss48 }}>
-      <Typography styleVariant={1}>Select</Typography>
+      <Typography styleVariant={"h1"}>Select</Typography>
       <DisplayPaper style={paperStyles}>
         <div>
           <Select
@@ -107,7 +107,7 @@ export const SelectDemo: React.SFC = () => {
           />
         </div>
       </DisplayPaper>
-      <Typography styleVariant={2}>Multiselect</Typography>
+      <Typography styleVariant={"h2"}>Multiselect</Typography>
       <DisplayPaper style={paperStyles}>
         <div>
           <Multiselect

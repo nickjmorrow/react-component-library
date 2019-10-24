@@ -46,9 +46,9 @@ export const AppBarDemo: React.FC = () => {
 
   return (
     <Wrapper spacing={spacing}>
-      <Typography styleVariant={1}>App Bar</Typography>
+      <Typography styleVariant={"h1"}>App Bar</Typography>
       <SectionWrapper spacing={spacing}>
-        <Typography styleVariant={2}>Populated AppBar</Typography>
+        <Typography styleVariant={"h2"}>Populated AppBar</Typography>
         <div style={{ display: "grid", gridRowGap: "48px" }}>
           <PopulatedAppBar
             appName={"Primary Populated"}
@@ -68,7 +68,7 @@ export const AppBarDemo: React.FC = () => {
         </div>
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
-        <Typography styleVariant={2}>Primary</Typography>
+        <Typography styleVariant={"h2"}>Primary</Typography>
         <AppBar styleVariant={1}>
           <AppNameTypography colorVariant={"primaryLight"}>
             My AppBar
@@ -76,7 +76,7 @@ export const AppBarDemo: React.FC = () => {
         </AppBar>
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
-        <Typography styleVariant={2}>Secondary</Typography>
+        <Typography styleVariant={"h2"}>Secondary</Typography>
         <AppBar styleVariant={2}>
           <AppNameTypography colorVariant={"primaryDark"}>
             My AppBar
@@ -84,7 +84,7 @@ export const AppBarDemo: React.FC = () => {
         </AppBar>
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
-        <Typography styleVariant={2}>Tertiary</Typography>
+        <Typography styleVariant={"h2"}>Tertiary</Typography>
         <AppBar styleVariant={3}>
           <AppNameTypography colorVariant={"primaryDark"}>
             My AppBar
@@ -92,7 +92,7 @@ export const AppBarDemo: React.FC = () => {
         </AppBar>
       </SectionWrapper>
       <SectionWrapper spacing={spacing}>
-        <Typography styleVariant={2}>With Components</Typography>
+        <Typography styleVariant={"h2"}>With Components</Typography>
         <div style={{ display: "grid", gridRowGap: "20px" }}>
           <PopulatedAppBar
             appName={"Lorem"}

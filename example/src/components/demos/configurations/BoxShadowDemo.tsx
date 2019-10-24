@@ -7,7 +7,7 @@ export const BoxShadowDemo: React.FC = () => {
   const { colors, boxShadow } = React.useContext(ThemeContext);
   return (
     <>
-      <Typography styleVariant={1}>{"Box Shadow"}</Typography>
+      <Typography styleVariant={"h1"}>{"Box Shadow"}</Typography>
       <DisplayPaper>
         <Block color={colors.accent.cs5} boxShadow={boxShadow.bs1} />
         <Block color={colors.accent.cs5} boxShadow={boxShadow.bs2} />

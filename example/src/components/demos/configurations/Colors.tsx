@@ -38,7 +38,7 @@ export const Colors: React.SFC = () => {
   };
   const renderBlocks = (colorShade: ColorShade, colorName: string) => (
     <React.Fragment key={colorName}>
-      <Typography styleVariant={2}>{colorName}</Typography>
+      <Typography styleVariant={"h2"}>{colorName}</Typography>
       <Blocks spacing={spacing}>
         <ColorsWrapper spacing={spacing}>
           {Object.keys(colorShade).map(shade => (
@@ -192,7 +192,7 @@ export const Colors: React.SFC = () => {
 
   return (
     <>
-      <Typography styleVariant={1}>Colors</Typography>
+      <Typography styleVariant={"h1"}>Colors</Typography>
       <DescriptionContainer>
         <Typography>
           Inputs to a color like saturation, lightness, and hue are all

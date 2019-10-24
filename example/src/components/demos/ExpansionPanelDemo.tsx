@@ -5,7 +5,7 @@ export const ExpansionPanelDemo: React.FC = () => {
   return (
     <>
       <div>
-        <Typography styleVariant={1}>Expansion Panel</Typography>
+        <Typography styleVariant={"h1"}>Expansion Panel</Typography>
       </div>
       <ExpansionPanel
         visibleContent={"I am visible!"}

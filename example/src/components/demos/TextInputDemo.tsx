@@ -39,7 +39,7 @@ export const TextInputDemo: React.SFC = () => {
   };
   return (
     <>
-      <Typography styleVariant={1}>Text Input</Typography>
+      <Typography styleVariant={"h1"}>Text Input</Typography>
       <DisplayPaper style={style}>
         <InputsWrapper>
           <TextInput
@@ -53,7 +53,7 @@ export const TextInputDemo: React.SFC = () => {
           Toggle Errors
         </Button>
       </DisplayPaper>
-      <Typography styleVariant={2}>Autocomplete</Typography>
+      <Typography styleVariant={"h2"}>Autocomplete</Typography>
       <DisplayPaper>
         <TextInput value={otherValue} setValue={(value: string) => setOtherValue(value)} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setOtherValue(e.currentTarget.value)} possibleValues={possibleValues} />
       </DisplayPaper>

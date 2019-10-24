@@ -26,9 +26,9 @@ export const LabeledInputDemo: React.SFC = () => {
   return (
     <>
       <div>
-        <Typography styleVariant={1}>Labeled Input</Typography>
+        <Typography styleVariant={"h1"}>Labeled Input</Typography>
       </div>
-      <Typography styleVariant={2}>Labeled Checkboxes</Typography>
+      <Typography styleVariant={"h2"}>Labeled Checkboxes</Typography>
       <Wrapper spacing={spacing}>
         <DisplayPaper>
           <LabeledCheckboxInput
@@ -41,7 +41,7 @@ export const LabeledInputDemo: React.SFC = () => {
         </DisplayPaper>
       </Wrapper>
       <Wrapper spacing={spacing}>
-        <Typography styleVariant={2}>Labeled Checkboxes</Typography>
+        <Typography styleVariant={"h2"}>Labeled Checkboxes</Typography>
         <DisplayPaper>
           <LabeledRadioButtonInput
             options={options}

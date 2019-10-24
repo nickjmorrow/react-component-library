@@ -16,9 +16,9 @@ export const ButtonsDemo: React.SFC = () => {
 
   return (
     <Wrapper>
-      <Typography styleVariant={1}>Buttons</Typography>
-      <Typography styleVariant={2}>Style Variants</Typography>
-      <Typography styleVariant={3}>Primary</Typography>
+      <Typography styleVariant={"h1"}>Buttons</Typography>
+      <Typography styleVariant={"h2"}>Style Variants</Typography>
+      <Typography styleVariant={"h3"}>Primary</Typography>
       <DisplayPaper>
         <Button colorVariant="core">Hey</Button>
         <Button colorVariant="accent">Accent</Button>
@@ -26,7 +26,7 @@ export const ButtonsDemo: React.SFC = () => {
         <Button colorVariant="warning">Warning</Button>
         <Button colorVariant="danger">Danger</Button>
       </DisplayPaper>
-      <Typography styleVariant={3}>Secondary</Typography>
+      <Typography styleVariant={"h3"}>Secondary</Typography>
       <DisplayPaper>
         <Button
           styleVariant={2}
@@ -64,7 +64,7 @@ export const ButtonsDemo: React.SFC = () => {
           Danger
         </Button>
       </DisplayPaper>
-      <Typography styleVariant={3}>Tertiary</Typography>
+      <Typography styleVariant={"h3"}>Tertiary</Typography>
       <DisplayPaper>
         <Button
           styleVariant={3}
@@ -97,8 +97,8 @@ export const ButtonsDemo: React.SFC = () => {
           Danger
         </Button>
       </DisplayPaper>
-      <Typography styleVariant={2}>Other Props</Typography>
-	  <Typography styleVariant={3}>Loading</Typography>
+      <Typography styleVariant={"h2"}>Other Props</Typography>
+	  <Typography styleVariant={"h3"}>Loading</Typography>
       <DisplayPaper>
         <Button
 		  weightVariant={7}>
@@ -108,7 +108,7 @@ export const ButtonsDemo: React.SFC = () => {
           Default Weight (5)
         </Button>
       </DisplayPaper>
-      <Typography styleVariant={3}>Loading</Typography>
+      <Typography styleVariant={"h3"}>Loading</Typography>
       <DisplayPaper>
         <Button
           isLoading={isLoading}
@@ -124,13 +124,13 @@ export const ButtonsDemo: React.SFC = () => {
           I'm loading
         </Button>
       </DisplayPaper>
-      <Typography styleVariant={3}>Link Buttons</Typography>
+      <Typography styleVariant={"h3"}>Link Buttons</Typography>
       <DisplayPaper>
         <GoogleButton link={"http://google.com"}>Google</GoogleButton>
         <FacebookButton link={"http://facebook.com"}>Facebook</FacebookButton>
         <LinkedInButton link={"http://linkedin.com"}>LinkedIn</LinkedInButton>
       </DisplayPaper>
-      <Typography styleVariant={3}>Disabled</Typography>
+      <Typography styleVariant={"h3"}>Disabled</Typography>
       <DisplayPaper>
         <Button isDisabled={true} styleVariant={1}>
           Primary
@@ -142,7 +142,7 @@ export const ButtonsDemo: React.SFC = () => {
           Tertiary
         </Button>
       </DisplayPaper>
-      <Typography styleVariant={3}>Menu Buttons</Typography>
+      <Typography styleVariant={"h3"}>Menu Buttons</Typography>
       <DisplayPaper
         style={{
           display: "grid",
@@ -163,7 +163,7 @@ export const ButtonsDemo: React.SFC = () => {
           align={"right"}
         />
       </DisplayPaper>
-	  <Typography styleVariant={3}>Custom Buttons</Typography>
+	  <Typography styleVariant={"h3"}>Custom Buttons</Typography>
 	  <DisplayPaper>
 		  <Button style={{backgroundImage: 'linear-gradient(120deg, purple, pink)', border: 'none'}}>Gradient</Button>
 		  <CustomButton weightVariant={7}>Styled Button</CustomButton>

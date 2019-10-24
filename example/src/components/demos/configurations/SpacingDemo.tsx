@@ -16,7 +16,7 @@ export const SpacingDemo: React.FC = () => {
 
 	return (
 		<React.Fragment>
-			<Typography styleVariant={1}>Spacing</Typography>
+			<Typography styleVariant={"h1"}>Spacing</Typography>
 			<DisplayPaper
 				style={{
 					display: 'flex',

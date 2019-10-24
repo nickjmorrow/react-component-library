@@ -23,7 +23,7 @@ export const TypographyDemo: React.FC = () => {
 	return (
 		<>
 			<div>
-				<Typography styleVariant={1}>Typography</Typography>
+				<Typography styleVariant={"h1"}>Typography</Typography>
 			</div>
 			<DescriptionContainer>
 				<Typography>
@@ -32,7 +32,7 @@ export const TypographyDemo: React.FC = () => {
 					throughout an application through variant props.
 				</Typography>
 			</DescriptionContainer>
-			<Typography styleVariant={2}>Size Variants</Typography>
+			<Typography styleVariant={"h2"}>Size Variants</Typography>
 			<DisplayPaper
 				style={{
 					flexDirection: 'column',
@@ -47,7 +47,7 @@ export const TypographyDemo: React.FC = () => {
 					</Wrapper>
 				))}
 			</DisplayPaper>
-			<Typography styleVariant={2}>Color Variants</Typography>
+			<Typography styleVariant={"h2"}>Color Variants</Typography>
 			<DisplayPaper
 				style={{
 					flexDirection: 'column',
@@ -57,7 +57,7 @@ export const TypographyDemo: React.FC = () => {
 			>
 				{colorVariants.map(renderColorVariant)}
 			</DisplayPaper>
-			<Typography styleVariant={2}>Dark Color Variants</Typography>
+			<Typography styleVariant={"h2"}>Dark Color Variants</Typography>
 			<DisplayPaper
 				style={{
 					flexDirection: 'column',
@@ -67,7 +67,7 @@ export const TypographyDemo: React.FC = () => {
 			>
 				{darkColorVariants.map(renderColorVariant)}
 			</DisplayPaper>
-			<Typography styleVariant={2}>Light Color Variants</Typography>
+			<Typography styleVariant={"h2"}>Light Color Variants</Typography>
 			<DisplayPaper
 				style={{
 					flexDirection: 'column',
@@ -79,7 +79,7 @@ export const TypographyDemo: React.FC = () => {
 				{lightColorVariants.map(renderColorVariant)}
 			</DisplayPaper>
 			<div>
-				<Typography styleVariant={2}>Weight Variants</Typography>
+				<Typography styleVariant={"h2"}>Weight Variants</Typography>
 			</div>
 			<DescriptionContainer>
 				<Typography>
@@ -114,13 +114,13 @@ export const TypographyDemo: React.FC = () => {
 					);
 				})}
 			</DisplayPaper>
-			<Typography styleVariant={2}>Custom Typography</Typography>
+			<Typography styleVariant={"h2"}>Custom Typography</Typography>
 			<DisplayPaper>
 				<CustomTypography>Hello, world!</CustomTypography>
 			</DisplayPaper>
-			<Typography style={{display: 'block'}} styleVariant={2}>Bullet Point Typography</Typography>
+			<Typography style={{display: 'block'}} styleVariant={"h2"}>Bullet Point Typography</Typography>
 			<DisplayPaper><BulletPointTypography>Hello, world!</BulletPointTypography></DisplayPaper>
-			<Typography style={{display: 'block'}} styleVariant={2}>Links</Typography>
+			<Typography style={{display: 'block'}} styleVariant={"h2"}>Links</Typography>
 			<DisplayPaper>
 				<Typography>Hello, I am a <Typography link={''}>link to someplace.</Typography></Typography>
 			</DisplayPaper>

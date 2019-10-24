@@ -16,9 +16,9 @@ export const Borders: React.FC = () => {
   return (
     <>
       <div>
-        <Typography styleVariant={1}>Borders</Typography>
+        <Typography styleVariant={"h1"}>Borders</Typography>
       </div>
-      <Typography styleVariant={2}>Border Radius</Typography>
+      <Typography styleVariant={"h2"}>Border Radius</Typography>
       <Block color={colors.core.cs5} />
       <Slider
         min={0}

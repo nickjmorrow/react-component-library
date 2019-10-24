@@ -22,7 +22,7 @@ export const AuthModalDemo: React.SFC = () => {
 
   return (
     <>
-      <Typography styleVariant={1}>Auth Modal</Typography>
+      <Typography styleVariant={"h1"}>Auth Modal</Typography>
       <Button onClick={toggleAuthModal} useMargin={false}>
         Toggle Auth Modal
       </Button>
