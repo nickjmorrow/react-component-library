@@ -22,7 +22,8 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "paths": {
-      "~/*": ["*"]
+      "~/*": ["*"],
+      "@atoms/*": ["components/atoms/*"]
     }
   },
   "include": ["src"],

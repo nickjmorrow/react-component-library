@@ -14,10 +14,9 @@
   },
   "scripts": {
     "test": "react-scripts-ts test --env=jsdom",
-    "prebuild": "npm install",
-    "build": "rollup -c",
-    "build:watch": "rollup -c -w",
-    "predeploy": "npm run build && npm run --prefix example build",
+    "build": "tsc --emitDeclarationOnly && rollup -c",
+    "build:watch": "tsc --emitDeclarationOnly && rollup -c -w",
+    "build:all": "npm run build && npm run --prefix example build",
     "deploy": "gh-pages -d example/dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

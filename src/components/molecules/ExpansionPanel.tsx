@@ -11,36 +11,45 @@ export const ExpansionPanel: React.FC<{
   isFullWidth?: boolean;
   rightComponent?: (isOpened: boolean) => React.ReactNode;
   styleApi?: {
-	  wrapperStyle?: React.CSSProperties,
-	  visibleStyle?: React.CSSProperties,
-	  hiddenStyle?: React.CSSProperties
+    wrapperStyle?: React.CSSProperties;
+    visibleStyle?: React.CSSProperties;
+    hiddenStyle?: React.CSSProperties;
   };
-}> = ({ visibleContent, hiddenContent, isFullWidth = false, rightComponent, styleApi = {} }) => {
+}> = ({
+  visibleContent,
+  hiddenContent,
+  isFullWidth = false,
+  rightComponent,
+  styleApi = {}
+}) => {
   const [isOpened, setIsOpened] = React.useState(false);
   const toggleIsOpened = () => setIsOpened(prev => !prev);
   const { transitions, spacing } = React.useContext(ThemeContext);
 
   const defaultRightComponent = (isOpenedArg: boolean) => (
-	<IconWrapper isOpened={isOpenedArg} transitions={transitions}>
-          <ChevronUpIcon />
-        </IconWrapper>
-  )
+    <IconWrapper isOpened={isOpenedArg} transitions={transitions}>
+      <ChevronUpIcon />
+    </IconWrapper>
+  );
   const finalRightComponent = rightComponent || defaultRightComponent;
   return (
     <Paper
       style={{
-		width: isFullWidth ? "100%" : "max-content",
-		...styleApi.wrapperStyle
-      }}>
-      <VisibleWrapper
-        spacing={spacing}
-        onClick={toggleIsOpened}
-        isFullWidth={isFullWidth}
-		style={styleApi.visibleStyle}>
-        {getFormattedTextNode(visibleContent)}
-        {rightComponent}
-      </VisibleWrapper>
-	  {finalRightComponent(isOpened)}
+        width: isFullWidth ? "100%" : "max-content",
+        ...styleApi.wrapperStyle
+      }}
+    >
+      <div style={{ display: "flex", flexDirection: "row", alignItems: 'center', width: '100%' }}>
+        <VisibleWrapper
+          spacing={spacing}
+          onClick={toggleIsOpened}
+          isFullWidth={isFullWidth}
+          style={styleApi.visibleStyle}
+        >
+          {getFormattedTextNode(visibleContent)}
+          {finalRightComponent(isOpened)}
+        </VisibleWrapper>
+      </div>
       <Collapse isOpened={isOpened} springConfig={{ stiffness: 220 }}>
         <BaseWrapper spacing={spacing} style={styleApi.hiddenStyle}>
           {getFormattedTextNode(hiddenContent)}
@@ -77,4 +86,5 @@ const VisibleWrapper = styled(BaseWrapper)<{
   align-items: center;
   height: ${p => p.spacing.ss16};
   box-sizing: border-box;
+  width: 100%;
 `;

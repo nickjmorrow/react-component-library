@@ -19,8 +19,6 @@ export const GettingStarted: React.FC = () => {
 	  <CodeBlock>
 		  <Code>npm run --prefix example cypress:open</Code>
 	  </CodeBlock>
-	  <Typography styleVariant={2} style={{display: 'block'}}>Purpose</Typography>
-	  <Typography style={{display: 'block'}}>Sit amet met</Typography>
   </div>;
 };
 

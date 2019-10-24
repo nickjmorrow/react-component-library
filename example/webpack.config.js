@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require('webpack')
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -13,7 +13,6 @@ module.exports = {
     contentBase: "./dist",
     https: true,
 	historyApiFallback: true,
-	hot: true
   },
   module: {
     rules: [
@@ -51,6 +50,6 @@ module.exports = {
       template: path.resolve("public/index.html"),
       favicon: "public/favicon.png"
 	}),
-	new webpack.HotModuleReplacementPlugin()
+	new Dotenv()
   ]
 };
