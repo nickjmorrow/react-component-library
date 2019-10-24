@@ -6,6 +6,7 @@ import {
 } from "@nickjmorrow/react-component-library";
 import * as React from "react";
 import { useState } from "react";
+import styled from 'styled-components';
 
 export const AuthModalDemo: React.SFC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ export const AuthModalDemo: React.SFC = () => {
         isLoading={isLoading}
         renderAdditionalComponents={[
           () => (
-            <GoogleLoginButton
+            <StyledGoogleLoginButton
               handleSuccess={() => {
                 return;
               }}
@@ -46,3 +47,7 @@ export const AuthModalDemo: React.SFC = () => {
     </>
   );
 };
+
+const StyledGoogleLoginButton = styled(GoogleLoginButton)`
+	width: 100%;
+`;

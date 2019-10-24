@@ -1,22 +1,30 @@
 import * as React from "react";
 import ReactGoogleLogin, { GoogleLoginResponse } from "react-google-login";
-import { GoogleButton } from "../atoms";
+import { GoogleButton, Button } from "../atoms";
 import { GetComponentProps } from "~/typeUtilities";
 
 export const GoogleLoginButton: React.SFC<
-  IOwnProps & GetComponentProps<typeof ReactGoogleLogin>
+{
+	clientId: string;
+	className: string;
+	buttonProps: GetComponentProps<typeof Button>
+	handleSuccess: (res: GoogleLoginResponse) => void;
+	handleFailure?: (error: any) => void;
+  } & GetComponentProps<typeof ReactGoogleLogin>
 > = ({
   handleSuccess,
+  className,
   handleFailure = () => {
     return;
   },
   clientId,
+  buttonProps,
   ...props
 }) => {
   const renderButton:
     | ((props?: { onClick: () => void } | undefined) => JSX.Element)
     | undefined = renderProps => (
-    <GoogleButton onClick={renderProps!.onClick}>
+    <GoogleButton className={className} onClick={renderProps!.onClick} {...buttonProps}>
       Sign In With Google
     </GoogleButton>
   );
@@ -30,10 +38,3 @@ export const GoogleLoginButton: React.SFC<
     />
   );
 };
-
-// types
-interface IOwnProps {
-  clientId: string;
-  handleSuccess: (res: GoogleLoginResponse) => void;
-  handleFailure?: (error: any) => void;
-}

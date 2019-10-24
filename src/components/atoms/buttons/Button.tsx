@@ -123,7 +123,7 @@ export const Button: React.SFC<{
   );
 
   return link ? (
-    <Link route={link} style={{ textDecoration: "none" }}>
+    <Link route={link} style={{ textDecoration: "none", width: 'min-content' }}>
       {content}
     </Link>
   ) : (

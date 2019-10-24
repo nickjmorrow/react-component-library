@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "https://nickjmorrow.github.io/react-component-library",
   "scripts": {
-    "build:watch": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
+    "build:watch": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "test": "node scripts/test.js --env=jsdom",
     "cypress:open": "cypress open",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",

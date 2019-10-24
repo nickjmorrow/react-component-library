@@ -22,6 +22,7 @@ import { Principles } from "./components/Principles";
 import { Route } from "react-router";
 import * as React from "react";
 import { FadeDemo } from "./components/demos/FadeDemo";
+import { Home } from './components/Home';
 
 const atomComponents = {
   label: "Atoms",
@@ -154,14 +155,23 @@ const navLinks = [
     label: "Principles",
     route: "/principles",
     component: Principles
-  }
+  },
 ];
 
-const navLinkRoutes = navLinks.map((nl, i) => (
+const routesWithoutNavLink = [
+	{
+		label: "Home",
+		route: "/",
+		component: Home
+	}
+]
+
+const navLinkRoutes = [...navLinks, ...routesWithoutNavLink].map((nl, i) => (
   <Route
     key={`route-${nl.route}-${i}`}
     path={nl.route}
-    component={nl.component}
+	component={nl.component}
+	exact={true}
   />
 ));
 

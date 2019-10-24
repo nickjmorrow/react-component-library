@@ -150,21 +150,21 @@ export const AuthModal: React.SFC<IProps> = ({
         {authInputs}
       </InputsWrapper>
       <ButtonContainer verticalMargin={spacing.ss4}>
-        <Button
+        <StyledButton
           onClick={handleRegisterInternal}
           textColorVariant={isLoggingIn ? "core" : "primaryLight"}
           styleVariant={isLoggingIn ? 2 : 1}
           isLoading={isLoading && !isLoggingIn}>
           Register
-        </Button>
-        <Button
+        </StyledButton>
+        <StyledButton
           onClick={handleLoginInternal}
           useMargin={false}
           textColorVariant={isLoggingIn ? "primaryLight" : "core"}
           styleVariant={isLoggingIn ? 1 : 2}
           isLoading={isLoading && isLoggingIn}>
           Log In
-        </Button>
+        </StyledButton>
         {renderAdditionalComponents &&
           renderAdditionalComponents.map(render => render())}
       </ButtonContainer>
@@ -200,4 +200,8 @@ const ButtonContainer = styled("div")<{ verticalMargin: string }>`
 
 const InputsWrapper = styled("div")<{ height: number }>`
   min-height: ${p => p.height}px;
+`;
+
+const StyledButton = styled(Button)`
+	width: 100%;
 `;
