@@ -1,70 +1,68 @@
-import * as React from 'react';
-import { Typography, StyleConstant, ThemeContext } from "@nickjmorrow/react-component-library";
-import { DisplayPaper } from '../../../components/DisplayPaper';
-import styled from 'styled-components';
+import * as React from "react";
+import {
+  Typography,
+  StyleConstant,
+  ThemeContext
+} from "@nickjmorrow/react-component-library";
+import { DisplayPaper } from "../../../components/DisplayPaper";
+import styled from "styled-components";
+import { ContentWrapper } from '../../shared/ContentWrapper';
 
 export const SpacingDemo: React.FC = () => {
-	const {
-		spacing,
-		colors,
-		border: { borderRadius },
-	} = React.useContext(ThemeContext);
+  const {
+    spacing,
+    colors,
+    border: { borderRadius }
+  } = React.useContext(ThemeContext);
 
-	const renderBar = (width: string) => (
-		<Bar spacing={spacing} colors={colors} borderRadius={borderRadius} width={width} />
-	);
+  const renderBar = (width: string) => (
+    <Bar
+      spacing={spacing}
+      colors={colors}
+      borderRadius={borderRadius}
+      width={width}
+    />
+  );
 
-	return (
-		<React.Fragment>
-			<Typography styleVariant={"h1"}>Spacing</Typography>
-			<DisplayPaper
-				style={{
-					display: 'flex',
-					flexDirection: 'row',
-					maxWidth: 'none',
-					justifyContent: 'none',
-				}}
-			>
-				<div style={{ display: 'flex' }}>
-					<div
-						style={{
-							display: 'grid',
-							gridAutoFlow: 'row',
-							gridRowGap: spacing.ss4,
-							width: 'min-content',
-							height: '100%',
-							marginRight: spacing.ss4,
-						}}
-					>
-						{Object.keys(spacing).map(key => (
-							<Typography>{key}</Typography>
-						))}
-					</div>
-					<div
-						style={{
-							display: 'grid',
-							gridAutoFlow: 'row',
-							gridRowGap: spacing.ss4,
-							maxWidth: '800px',
-							height: '100%',
-						}}
-					>
-						{Object.keys(spacing).map(key => renderBar(spacing[key]))}
-					</div>
-				</div>
-			</DisplayPaper>
-		</React.Fragment>
-	);
+  return (
+    <React.Fragment>
+      <Typography styleVariant={"h1"}>Spacing</Typography>
+	  <ContentWrapper>
+		  <Typography>Using consistent spacing makes it easier to make decisions and have things look "relative" throughout the application. The appended number to each key helps to show how much larger one value is to another.</Typography>
+	  </ContentWrapper>
+      <DisplayPaper
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          maxWidth: "none",
+          justifyContent: "none"
+        }}
+      >
+        <table style={{ borderSpacing: spacing.ss2 }}>
+          <tbody>
+            {Object.keys(spacing).map(key => (
+              <tr key={key}>
+                <td style={{paddingRight: '16px'}}>
+                  <Typography>{key}</Typography>
+                </td>
+                <td>{renderBar(spacing[key])}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </DisplayPaper>
+    </React.Fragment>
+  );
 };
 
-const Bar = styled('div')<{
-	spacing: StyleConstant<'spacing'>;
-	width: string;
-	colors: StyleConstant<'colors'>;
-	borderRadius: StyleConstant<'border'>['borderRadius'];
+const Bar = styled("div")<{
+  spacing: StyleConstant<"spacing">;
+  width: string;
+  colors: StyleConstant<"colors">;
+  borderRadius: StyleConstant<"border">["borderRadius"];
 }>`
-	height: 27px;
-	width: ${p => p.width};
-	background-color: ${p => p.colors.core.cs3};
-	border-radius: ${p => p.borderRadius.br1};
+  height: 27px;
+  width: ${p => p.width};
+  background-color: ${p => p.colors.core.cs3};
+  border-radius: ${p => p.borderRadius.br1};
 `;
