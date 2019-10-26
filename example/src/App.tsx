@@ -1,11 +1,11 @@
 import {
   ArgumentType,
-  Footer,
   ThemeContext,
   ThemeInputsContext,
   getThemeFromNewInputs,
   getMergedThemeInputs,
-  updateThemeInputs
+  updateThemeInputs,
+  PopulatedFooter
 } from "@nickjmorrow/react-component-library";
 import * as React from "react";
 import { BrowserRouter } from "react-router-dom";
@@ -61,7 +61,7 @@ const App: React.SFC = () => {
           <Wrapper>
             <LibraryAppBar />
             <Main />
-            <Footer style={{ marginTop: "40px" }} />
+            <PopulatedFooter style={{ marginTop: "40px"}} />
           </Wrapper>
         </ThemeInputsContext.Provider>
       </ThemeContext.Provider>

@@ -32,95 +32,93 @@ export const ButtonsDemo: React.SFC = () => {
           styleVariant={2}
           textColorVariant="core"
           colorVariant="core"
-          useMargin={true}>
+          useMargin={true}
+        >
           Core
         </Button>
         <Button
           styleVariant={2}
           textColorVariant="accent"
           colorVariant="accent"
-          useMargin={true}>
+          useMargin={true}
+        >
           Accent
         </Button>
         <Button
           textColorVariant="success"
           styleVariant={2}
           colorVariant="success"
-          useMargin={true}>
+          useMargin={true}
+        >
           Success
         </Button>
         <Button
           textColorVariant="warning"
           styleVariant={2}
           colorVariant="warning"
-          useMargin={true}>
+          useMargin={true}
+        >
           Warning
         </Button>
         <Button
           textColorVariant="danger"
           styleVariant={2}
           colorVariant="danger"
-          useMargin={true}>
+          useMargin={true}
+        >
           Danger
         </Button>
       </DisplayPaper>
       <Typography styleVariant={"h3"}>Tertiary</Typography>
       <DisplayPaper>
-        <Button
-          styleVariant={3}
-          textColorVariant="core"
-          colorVariant="core">
+        <Button styleVariant={3} textColorVariant="core" colorVariant="core">
           Core
         </Button>
         <Button
           styleVariant={3}
           textColorVariant="accent"
-          colorVariant="accent">
+          colorVariant="accent"
+        >
           Accent
         </Button>
         <Button
           textColorVariant="success"
           styleVariant={3}
-          colorVariant="success">
+          colorVariant="success"
+        >
           Success
         </Button>
         <Button
           textColorVariant="warning"
           styleVariant={3}
-          colorVariant="warning">
+          colorVariant="warning"
+        >
           Warning
         </Button>
         <Button
           textColorVariant="danger"
           styleVariant={3}
-          colorVariant="danger">
+          colorVariant="danger"
+        >
           Danger
         </Button>
       </DisplayPaper>
       <Typography styleVariant={"h2"}>Other Props</Typography>
-	  <Typography styleVariant={"h3"}>Loading</Typography>
-      <DisplayPaper>
-        <Button
-		  weightVariant={7}>
-          Weight 7
-        </Button>
-        <Button>
-          Default Weight (5)
-        </Button>
-      </DisplayPaper>
       <Typography styleVariant={"h3"}>Loading</Typography>
       <DisplayPaper>
         <Button
           isLoading={isLoading}
           onClick={toggleIsLoading}
-          textColorVariant={"primaryLight"}>
+          textColorVariant={"primaryLight"}
+        >
           He's loading!
         </Button>
         <Button
           isLoading={isLoading}
           onClick={toggleIsLoading}
           styleVariant={2}
-          textColorVariant={"core"}>
+          textColorVariant={"core"}
+        >
           I'm loading
         </Button>
       </DisplayPaper>
@@ -142,19 +140,14 @@ export const ButtonsDemo: React.SFC = () => {
           Tertiary
         </Button>
       </DisplayPaper>
-      <Typography styleVariant={"h3"}>Menu Buttons</Typography>
+      <Typography styleVariant={"h3"}>Menu Button</Typography>
       <DisplayPaper
         style={{
           display: "grid",
           gridAutoFlow: "column",
           gridColumnGap: "64px"
-        }}>
-        <MenuButton
-          navLinks={[
-            { label: "Dog", route: "/dog" },
-            { label: "Cat", route: "/cat" }
-          ]}
-        />
+        }}
+      >
         <MenuButton
           navLinks={[
             { label: "Dog", route: "/dog" },
@@ -163,11 +156,18 @@ export const ButtonsDemo: React.SFC = () => {
           align={"right"}
         />
       </DisplayPaper>
-	  <Typography styleVariant={"h3"}>Custom Buttons</Typography>
-	  <DisplayPaper>
-		  <Button style={{backgroundImage: 'linear-gradient(120deg, purple, pink)', border: 'none'}}>Gradient</Button>
-		  <CustomButton weightVariant={7}>Styled Button</CustomButton>
-	  </DisplayPaper>
+      <Typography styleVariant={"h3"}>Custom Buttons</Typography>
+      <DisplayPaper>
+        <Button
+          style={{
+            backgroundImage: "linear-gradient(120deg, purple, pink)",
+            border: "none"
+          }}
+        >
+          Gradient
+        </Button>
+        <CustomButton weightVariant={7}>Styled Button</CustomButton>
+      </DisplayPaper>
     </Wrapper>
   );
 };
@@ -179,13 +179,13 @@ const Wrapper = styled.div`
 `;
 
 const CustomButton = styled(Button)`
-	background-image: linear-gradient(120deg, pink, purple);
-	border: none;
-	color: white;
-	font-weight: 700;
-	transition: filter 100ms;
-	&:hover {
-		filter: brightness(120%);
-		transition: filter 100ms linear;
-	}
+  background-image: linear-gradient(120deg, pink, purple);
+  border: none;
+  color: white;
+  font-weight: 700;
+  transition: filter 100ms;
+  &:hover {
+    filter: brightness(120%);
+    transition: filter 100ms linear;
+  }
 `;

@@ -1,2 +1,2 @@
-export { getFormattedTextNode } from "./typographyServices";
-export { Typography } from "./Typography";
+export { getFormattedTextNode } from './typographyServices';
+export { Typography } from './Typography';

@@ -1,44 +1,34 @@
-import * as React from "react";
-import styled from "styled-components";
-import { FULL_NAME, GITHUB_LINK } from "../../constants";
-import { ThemeContext } from "../../styleConstants";
-import { GithubIcon, InvisibleLink } from "../atoms";
-import { Typography } from "../atoms/typography/Typography";
-import { StyleConstant } from "../../typeUtilities";
-
-const currentYear = new Date().getFullYear();
-const defaultText = `© ${currentYear} ${FULL_NAME}`;
+import * as React from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../../styleConstants';
+import { StyleConstant } from '../../typeUtilities';
 
 export const Footer: React.FC<{
-  text?: string;
-  style?: React.CSSProperties;
-}> = ({ text = defaultText, style }) => {
-  const { colors, spacing } = React.useContext(ThemeContext);
-  return (
-    <StyledFooter colors={colors} spacing={spacing} style={style}>
-      <Typography colorVariant="secondaryDark" sizeVariant={2}>
-        {text}
-      </Typography>
-      <InvisibleLink href={GITHUB_LINK}>
-        <GithubIcon sizeVariant={2} colorVariant={"secondaryDark"} />
-      </InvisibleLink>
-    </StyledFooter>
-  );
+    children: React.ReactNode;
+    className?: string;
+    style?: React.CSSProperties;
+}> = ({ children, className, style }) => {
+    const { colors, spacing } = React.useContext(ThemeContext);
+    return (
+        <StyledFooter style={style} className={className} colors={colors} spacing={spacing}>
+            {children}
+        </StyledFooter>
+    );
 };
 
 interface DisplayProps {
-  colors: StyleConstant<"colors">;
-  spacing: StyleConstant<"spacing">;
+    colors: StyleConstant<'colors'>;
+    spacing: StyleConstant<'spacing'>;
 }
 
-const StyledFooter = styled("footer")<DisplayProps>`
-  background-color: ${p => p.colors.neutral.cs2};
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: ${p => p.spacing.ss2};
-  width: 100%;
-  box-sizing: border-box;
-  position: absolute;
-  bottom: 0;
+const StyledFooter = styled('footer')<DisplayProps>`
+    background-color: ${p => p.colors.neutral.cs2};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: ${p => p.spacing.ss4};
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
 `;
