@@ -42,7 +42,8 @@ import {
     GoIcon,
     GatsbyIcon,
     RollupIcon,
-    WebpackIcon
+    WebpackIcon,
+    MailIcon,
 } from '@nickjmorrow/react-component-library';
 import styled from 'styled-components';
 import { DisplayPaper } from '../DisplayPaper';
@@ -82,7 +83,6 @@ export const IconsDemo: React.SFC = () => {
                     <SeleniumIcon sizeVariant={4} />
                     <RollupIcon sizeVariant={4} />
                     <WebpackIcon sizeVariant={4} />
-            
                 </IconSizes>
             </DisplayPaper>
             <Typography styleVariant={'h2'}>Language Icons</Typography>
@@ -118,6 +118,7 @@ export const IconsDemo: React.SFC = () => {
                     <MenuIcon sizeVariant={4} />
                     <ShareIcon sizeVariant={4} />
                     <ArrowIcon sizeVariant={4} />
+                    <MailIcon sizeVariant={4} />
                 </IconSizes>
             </DisplayPaper>
             <Typography styleVariant={'h2'}>Weather Icons</Typography>

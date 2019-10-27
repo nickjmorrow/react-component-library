@@ -18,7 +18,7 @@ export { WindIcon } from './WindIcon';
 export { SunIcon } from './SunIcon';
 export { ShareIcon } from './ShareIcon';
 export { ArrowIcon } from './ArrowIcon';
-
+export { MailIcon } from './MailIcon';
 export * from './iconButtons';
 export * from './programmingIcons';
 export * from './iconServices';
