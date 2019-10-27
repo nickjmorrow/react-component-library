@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FULL_NAME, GITHUB_LINK, LINKED_IN_LINK } from '~/constants';
 import { ThemeContext } from '~/styleConstants';
 import { Typography, GithubIcon, InvisibleLink, LinkedInIcon } from '~/components/atoms';
-import { Footer } from '~/components/organisms';
+import { Footer } from '../../';
 
 const currentYear = new Date().getFullYear();
 const defaultText = `© ${currentYear} ${FULL_NAME}`;

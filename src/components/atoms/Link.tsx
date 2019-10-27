@@ -26,7 +26,7 @@ export const Link: React.SFC<{
         </Typography>
     );
     return isExternalLink ? (
-        <a href={route} onClick={handleClick} style={style}>
+        <a href={route} onClick={handleClick} style={customStyle}>
             {content}
         </a>
     ) : (
