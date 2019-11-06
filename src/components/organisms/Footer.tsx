@@ -1,32 +1,28 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../../styleConstants';
-import { StyleConstant } from '../../typeUtilities';
+import { StyleConstant, Theme } from '../../typeUtilities';
 
 export const Footer: React.FC<{
     children: React.ReactNode;
     className?: string;
     style?: React.CSSProperties;
 }> = ({ children, className, style }) => {
-    const { colors, spacing } = React.useContext(ThemeContext);
+    const theme = React.useContext(ThemeContext);
+
     return (
-        <StyledFooter style={style} className={className} colors={colors} spacing={spacing}>
+        <StyledFooter style={style} className={className} theme={theme}>
             {children}
         </StyledFooter>
     );
 };
 
-interface DisplayProps {
-    colors: StyleConstant<'colors'>;
-    spacing: StyleConstant<'spacing'>;
-}
-
-const StyledFooter = styled('footer')<DisplayProps>`
-    background-color: ${p => p.colors.neutral.cs2};
+const StyledFooter = styled('footer')<{ theme: Theme }>`
+    background-color: ${p => p.theme.colors.neutral.cs2};
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: ${p => p.spacing.ss4};
+    padding: ${p => p.theme.spacing.ss4};
     width: 100%;
     box-sizing: border-box;
     position: absolute;

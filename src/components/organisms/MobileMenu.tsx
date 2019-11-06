@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CloseIconButton } from '../atoms';
 import { GetComponentProps } from '~/typeUtilities';
 import { SideNav } from './SideNav';
+import { SideNavRouterContainer } from './SideNavRouterContainer';
 
 export const MobileMenu: React.FC<{
     onClose: () => void;
@@ -15,11 +16,10 @@ export const MobileMenu: React.FC<{
                 onClick={handleClose}
                 style={{ position: 'absolute', right: '15px', top: '18px', zIndex: 3 }}
             />
-            <SideNav
+            <SideNavRouterContainer
                 navInfos={navInfos}
-                marginTop={'0'}
                 styleApi={{
-                    navElementStyle: { width: '100%' },
+                    navLinkStyle: { width: '100%' },
                     wrapperStyle: { width: '100%' },
                     navStyle: { height: '100vh' },
                 }}

@@ -9,11 +9,12 @@ const defaultText = `© ${currentYear} ${FULL_NAME}`;
 
 export const PopulatedFooter: React.FC<{
     text?: string;
+    className?: string;
     style?: React.CSSProperties;
-}> = ({ text = defaultText, style = {} }) => {
+}> = ({ text = defaultText, style, className }) => {
     const { spacing } = React.useContext(ThemeContext);
     return (
-        <Footer style={style}>
+        <Footer style={style} className={className}>
             <Typography colorVariant="secondaryDark" sizeVariant={2}>
                 {text}
             </Typography>{' '}

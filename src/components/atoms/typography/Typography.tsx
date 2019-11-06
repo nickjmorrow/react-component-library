@@ -9,17 +9,17 @@ import { getColor, getColorActive, getColorHover } from '../atomServices';
 const deepMerge: typeof deepMergeProxy = (deepMergeProxy as any).default || deepMergeProxy;
 
 export const Typography: React.SFC<
-    {
-        align?: Align;
-        sizeVariant?: SizeVariant;
-        colorVariant?: ColorVariant;
-        weightVariant?: WeightVariant;
-        styleVariant?: StyleVariant;
-        fontFamilyVariant?: FontFamilyVariant;
-        isInteractive?: boolean;
-        className?: string;
-        link?: string;
-    } & React.PropsWithoutRef<JSX.IntrinsicElements['span']>
+{
+    align?: Align;
+    sizeVariant?: SizeVariant;
+    colorVariant?: ColorVariant;
+    weightVariant?: WeightVariant;
+    styleVariant?: StyleVariant;
+    fontFamilyVariant?: FontFamilyVariant;
+    isInteractive?: boolean;
+    className?: string;
+    link?: string;
+} & React.PropsWithoutRef<JSX.IntrinsicElements['span']>
 > = ({
     colorVariant,
     sizeVariant,
@@ -32,6 +32,7 @@ export const Typography: React.SFC<
     style,
     className,
     link,
+    ...props
 }) => {
     const theme = useThemeContext();
     const { spacing } = theme;
@@ -70,6 +71,7 @@ export const Typography: React.SFC<
             isInteractive={isInteractive}
             style={newStyle}
             className={className}
+            {...props}
         >
             {children}
         </StyledTypography>
@@ -159,12 +161,12 @@ type SizeVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 type FontFamilyVariant = keyof StyleConstant<'typography'>['fontFamily'];
 type StyleVariant = 'h1' | 'h2' | 'h3';
 
-type ConcreteVariant = {
+interface ConcreteVariant {
     colorVariant: ColorVariant;
     sizeVariant: SizeVariant;
     weightVariant: WeightVariant;
     style: React.CSSProperties;
-};
+}
 
 // helpers
 const getFontSize = (fontSizes: StyleConstant<'typography'>['fontSizes'], sizeVariant: SizeVariant): string => {
