@@ -11,6 +11,7 @@ export const SideNavDemo: React.FC = () => {
                         label: 'Client',
                         navLinks: [
                             { label: 'Data Elements', route: '/data-elements' },
+                            { label: 'Database Settings', route: '/database-settings' },
                             { label: 'Attributes', route: '/attributes' },
                             {
                                 label: 'Benchmark Weights',
@@ -18,6 +19,7 @@ export const SideNavDemo: React.FC = () => {
                             },
                             { label: 'Competitive Sets', route: '/competitive-sets' },
                             { label: 'Instance Status', route: '/instance-status' },
+                            { label: 'Miscellaneous', route: '/miscellaneous' },
                         ],
                     },
                     {
