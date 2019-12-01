@@ -44,4 +44,9 @@ export const getTheme = (themeInputs: ThemeInput) => ({
         defaultIconSizeVariant,
         defaultIconColorVariant,
     },
+    appSettings: {
+        githubUrl: themeInputs.appSettings.githubUrl,
+        linkedInUrl: themeInputs.appSettings.linkedInUrl,
+        portfolioUrl: themeInputs.appSettings.portfolioUrl,
+    },
 });

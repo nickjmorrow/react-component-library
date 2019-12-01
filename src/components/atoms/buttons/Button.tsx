@@ -19,7 +19,6 @@ export const Button: React.SFC<{
     isLoading?: boolean;
     link?: string;
     isDisabled?: boolean;
-    showBoxShadow?: boolean;
     useMargin?: boolean;
     style?: React.CSSProperties;
     typographyStyle?: React.CSSProperties;
@@ -31,7 +30,6 @@ export const Button: React.SFC<{
     textColorVariant = 'primaryLight',
     styleVariant = 1,
     weightVariant = 7,
-    showBoxShadow = true,
     useMargin = true,
     isDisabled = false,
     isLoading = false,
@@ -98,7 +96,6 @@ export const Button: React.SFC<{
             styleVariant={styleVariant}
             width={width}
             height={height}
-            showBoxShadow={showBoxShadow}
             useMargin={useMargin}
             onClick={handleClickInternal}
         >
@@ -125,12 +122,10 @@ const InnerWrapper = styled('div')<{ width: number; height: number }>`
     justify-content: center;
 `;
 
-// TODO: don't change boxShadow amount if isDisabled = true
 const StyledButton = styled('button')<
     {
         colorVariant: ColorVariant;
         styleVariant: StyleVariant;
-        showBoxShadow: boolean;
         useMargin?: boolean;
         style?: React.CSSProperties;
         theme: Theme;
@@ -154,12 +149,12 @@ const StyledButton = styled('button')<
     cursor: ${p => (p.isDisabled ? 'not-allowed' : 'pointer')};
     outline: none;
     word-wrap: wrap;
-    box-shadow: ${p =>
-        p.defaultShouldShowBoxShadow && getBoxShadow(p.theme.boxShadow, p.isDisabled, p.showBoxShadow, 'normal')};
+    box-shadow: ${p => getBoxShadow(p.theme.boxShadow, p.isDisabled, p.theme.defaultShouldShowBoxShadow, 'normal')};
     min-width: ${p => p.width}px;
     min-height: ${p => p.height} / px;
     width: max-content;
     height: max-content;
+    font-weight: ${p => p.theme.typography.fontWeights.fw9};
     transition-property: box-shadow, background-color, border-color;
     transition: ${p => p.theme.transitions.medium};
     &:hover {
@@ -168,7 +163,8 @@ const StyledButton = styled('button')<
             getBackgroundColor(p.theme.colors, p.colorVariant, p.styleVariant, 'hover', p.isDisabled)};
         color: ${p => getColor(p.theme.colors, p.colorVariant, p.styleVariant, 'hover', p.isDisabled)};
         box-shadow: ${p =>
-            p.defaultShouldShowBoxShadow && getBoxShadow(p.theme.boxShadow, p.isDisabled, p.showBoxShadow, 'hover')};
+            p.defaultShouldShowBoxShadow &&
+            getBoxShadow(p.theme.boxShadow, p.isDisabled, p.theme.defaultShouldShowBoxShadow, 'hover')};
         transition: ${p => !p.isDisabled && `all ${p.theme.transitions.medium} ease-in-out`}};
     }
     &:active {
@@ -177,7 +173,8 @@ const StyledButton = styled('button')<
             getBackgroundColor(p.theme.colors, p.colorVariant, p.styleVariant, 'active', p.isDisabled)};
         color: ${p => getColor(p.theme.colors, p.colorVariant, p.styleVariant, 'active', p.isDisabled)};
         box-shadow: ${p =>
-            p.defaultShouldShowBoxShadow && getBoxShadow(p.theme.boxShadow, p.isDisabled, p.showBoxShadow, 'active')};
+            p.defaultShouldShowBoxShadow &&
+            getBoxShadow(p.theme.boxShadow, p.isDisabled, p.theme.defaultShouldShowBoxShadow, 'active')};
         transition: ${p => !p.isDisabled && `all ${p.theme.transitions.medium} ease-in-out`}};
     }
 `;

@@ -12,7 +12,8 @@ export const AppBar: React.FC<{
     children: React.ReactNode;
     showBoxShadow?: boolean;
     style?: React.CSSProperties;
-}> = ({ children, styleVariant = 1, onClick: handleClick, showBoxShadow, style }) => {
+    className?: string;
+}> = ({ children, styleVariant = 1, className, onClick: handleClick, showBoxShadow, style }) => {
     const {
         colors,
         boxShadow,
@@ -29,6 +30,7 @@ export const AppBar: React.FC<{
             styleVariant={styleVariant}
             spacing={spacing}
             boxShadow={finalShowBoxShadow ? boxShadow.bs1 : 'none'}
+            className={className}
         >
             <Inner spacing={spacing} style={style}>
                 {children}

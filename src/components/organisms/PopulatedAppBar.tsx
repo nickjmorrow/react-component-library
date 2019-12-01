@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppBar, Typography, GithubIcon, StyleVariant, ColorVariant, Link, MenuIcon, MenuButton } from '../atoms';
 import { GITHUB_LINK } from '~/constants';
-import { ThemeContext, mediaWidth } from '~/styleConstants';
+import { ThemeContext, mediaWidth, useThemeContext } from '~/styleConstants';
 import { getFinalShowBoxShadow } from '~/styleConstants/themeUtilities';
 import Media from 'react-media';
 import { MobileMenu } from './MobileMenu';
@@ -38,7 +38,7 @@ export const PopulatedAppBar: React.SFC<{
     menuLength?: 'long' | 'short';
     navInfos?: GetComponentProps<typeof SideNav>['navInfos'];
     styledOptionWidth?: string;
-    githubLink?: string;
+    className?: string;
 }> = ({
     appName,
     styleVariant = 1,
@@ -48,9 +48,13 @@ export const PopulatedAppBar: React.SFC<{
     navInfos = [],
     menuLength = 'long',
     styledOptionWidth,
-    githubLink = GITHUB_LINK,
+    className,
 }) => {
-    const { spacing, defaultShowBoxShadow } = React.useContext(ThemeContext);
+    const {
+        spacing,
+        defaultShowBoxShadow,
+        appSettings: { githubUrl },
+    } = useThemeContext();
     const [isMenuVisible, setIsMenuVisible] = React.useState(false);
     const finalShowBoxShadow = getFinalShowBoxShadow(showBoxShadow, defaultShowBoxShadow);
 
@@ -69,6 +73,7 @@ export const PopulatedAppBar: React.SFC<{
                     style={{ justifyContent: matches ? 'center' : 'space-between' }}
                     styleVariant={styleVariant}
                     showBoxShadow={finalShowBoxShadow}
+                    className={className}
                 >
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Link route={'/'}>
@@ -106,7 +111,7 @@ export const PopulatedAppBar: React.SFC<{
                                 />
                             )
                         ) : (
-                            <a href={githubLink} style={{ marginLeft: spacing.ss4 }}>
+                            <a href={githubUrl} style={{ marginLeft: spacing.ss4 }}>
                                 <GithubIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
                             </a>
                         )}

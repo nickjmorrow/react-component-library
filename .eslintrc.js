@@ -19,6 +19,7 @@ module.exports = {
         'react/prop-types': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
+        '@typescript-eslint/indent': 'off',
     },
     settings: {
         react: {

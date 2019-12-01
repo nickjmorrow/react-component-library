@@ -91,7 +91,7 @@ const NavLink: React.FC<{
                 style={{
                     width: '100%',
                     height: '100%',
-                    padding: theme.spacing.ss3,
+                    padding: theme.spacing.ss4,
                     ...style,
                 }}
                 {...props}
@@ -115,7 +115,7 @@ const Folder: React.SFC<{
     return (
         <>
             <NavElement onClick={toggleIsExpanded} style={style} theme={theme}>
-                <div style={{ padding: theme.spacing.ss3 }}>
+                <div style={{ padding: theme.spacing.ss4 }}>
                     <Typography weightVariant={5}>{folderInfo.label}</Typography>
                 </div>
             </NavElement>
@@ -127,7 +127,7 @@ const Folder: React.SFC<{
                             navLink={nl}
                             onClick={onClick}
                             colorVariant={getColorVariant(nl)}
-                            style={{ paddingLeft: theme.spacing.ss6 }}
+                            style={{ paddingLeft: theme.spacing.ss8 }}
                         />
                     ))}
                 </div>

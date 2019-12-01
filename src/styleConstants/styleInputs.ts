@@ -62,14 +62,8 @@ const defaultIconSizeInputs = {
 };
 
 const defaultFontWeightInputs = {
-    fw1: 100,
-    fw2: 200,
-    fw3: 300,
-    fw4: 400,
     fw5: 500,
-    fw6: 600,
     fw7: 700,
-    fw8: 800,
     fw9: 900,
 };
 
@@ -139,5 +133,10 @@ export const defaultThemeInputs = {
     horizontalWidth: horizontalWidth,
     icons: {
         iconSizes: defaultIconSizeInputs,
+    },
+    appSettings: {
+        githubUrl: 'https://github.com/nickjmorrow/',
+        linkedInUrl: 'https://www.linkedin.com/in/nickjmorrow/',
+        portfolioUrl: 'https://nickjmorrow.com',
     },
 };

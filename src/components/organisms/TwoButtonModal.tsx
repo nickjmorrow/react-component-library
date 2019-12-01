@@ -6,7 +6,16 @@ import { Button, getFormattedTextNode, PaperModal, Typography } from '../atoms';
 
 type ModalProps = GetComponentProps<typeof PaperModal>;
 
-export const TwoButtonModal: React.SFC<ModalProps & IOwnProps> = ({
+export const TwoButtonModal: React.SFC<
+    ModalProps & {
+        primaryButtonElement: React.ReactNode;
+        secondaryButtonElement: React.ReactNode;
+        secondaryButtonVariant?: GetComponentProps<typeof Button>['colorVariant'];
+        title?: React.ReactNode;
+        onPrimaryClick(): void;
+        onSecondaryClick(): void;
+    }
+> = ({
     isOpen,
     children,
     title,
@@ -52,12 +61,7 @@ export const TwoButtonModal: React.SFC<ModalProps & IOwnProps> = ({
                     </ChildrenContainer>
                 </AboveButtons>
                 <ButtonsContainer spacing={spacing} colors={colors} borderRadius={borderRadius}>
-                    <Button
-                        onClick={handleSecondaryClickInternal}
-                        showBoxShadow={false}
-                        styleVariant={3}
-                        textColorVariant={'core'}
-                    >
+                    <Button onClick={handleSecondaryClickInternal} styleVariant={3} textColorVariant={'core'}>
                         {secondaryButtonElement}
                     </Button>
                     <Button onClick={handlePrimaryClickInternal} useMargin={false}>
@@ -102,13 +106,3 @@ const ChildrenContainer = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
 const TitleWrapper = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
     margin-left: ${p => p.spacing.ss2};
 `;
-
-// types
-interface IOwnProps {
-    primaryButtonElement: React.ReactNode;
-    secondaryButtonElement: React.ReactNode;
-    secondaryButtonVariant?: GetComponentProps<typeof Button>['colorVariant'];
-    title?: React.ReactNode;
-    onPrimaryClick(): void;
-    onSecondaryClick(): void;
-}

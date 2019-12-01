@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { EyeIcon } from '../../icons/EyeIcon';
-import { StyledInput } from './StyledInput';
-import { AllowedInputType } from './types';
+import { TextInput, EyeIcon } from '~/components/atoms';
 
 export const PasswordInput: React.SFC<
     { errors?: string[] } & React.PropsWithoutRef<JSX.IntrinsicElements['input']>
@@ -15,7 +13,7 @@ export const PasswordInput: React.SFC<
     },
     ...props
 }) => {
-    const [inputType, setInputType] = useState<AllowedInputType>('password');
+    const [inputType, setInputType] = useState<'text' | 'password'>('password');
     const showPassword = inputType === 'text';
 
     const toggleInputType = () => setInputType(inputType === 'text' ? 'password' : 'text');
@@ -31,7 +29,7 @@ export const PasswordInput: React.SFC<
                 position: 'relative',
             }}
         >
-            <StyledInput
+            <TextInput
                 value={value}
                 onChange={handleChangeInternal}
                 type={inputType}

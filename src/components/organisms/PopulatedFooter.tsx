@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FULL_NAME, GITHUB_LINK, LINKED_IN_LINK } from '~/constants';
+import { FULL_NAME, LINKED_IN_LINK } from '~/constants';
 import { ThemeContext } from '~/styleConstants';
 import { Typography, GithubIcon, InvisibleLink, LinkedInIcon } from '~/components/atoms';
 import { Footer } from '../../';
@@ -12,7 +12,10 @@ export const PopulatedFooter: React.FC<{
     className?: string;
     style?: React.CSSProperties;
 }> = ({ text = defaultText, style, className }) => {
-    const { spacing } = React.useContext(ThemeContext);
+    const {
+        spacing,
+        appSettings: { githubUrl, linkedInUrl },
+    } = React.useContext(ThemeContext);
     return (
         <Footer style={style} className={className}>
             <Typography colorVariant="secondaryDark" sizeVariant={2}>
@@ -25,10 +28,10 @@ export const PopulatedFooter: React.FC<{
                     gridColumnGap: spacing.ss3,
                 }}
             >
-                <InvisibleLink href={GITHUB_LINK}>
+                <InvisibleLink href={githubUrl}>
                     <GithubIcon sizeVariant={2} colorVariant={'secondaryDark'} />
                 </InvisibleLink>
-                <InvisibleLink href={LINKED_IN_LINK}>
+                <InvisibleLink href={linkedInUrl}>
                     <LinkedInIcon sizeVariant={2} colorVariant={'secondaryDark'} />
                 </InvisibleLink>
             </div>

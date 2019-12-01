@@ -7,12 +7,11 @@ import { LabeledInputsWrapper } from './LabeledInputsWrapper';
 export const LabeledCheckboxInput: React.SFC<{
     options: IOption[];
     selectedOptions: IOption[];
-    name?: string;
     text?: string;
-    onClick(newSelectedOptions: IOption[], name?: string): void;
-}> = ({ onClick: handleClick, name, selectedOptions, options, text = '' }) => {
+    onClick(newSelectedOptions: IOption[]): void;
+}> = ({ onClick: handleClick, selectedOptions, options, text = '' }) => {
     const handleClickInternal = (selectedOption: IOption) => {
-        handleClick(getNewSelectedOptions(selectedOption, selectedOptions), name);
+        handleClick(getNewSelectedOptions(selectedOption, selectedOptions));
     };
 
     // TODO: this isn't working as I expect it to :)
