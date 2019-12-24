@@ -1,29 +1,23 @@
-# react-component-library
-
-> Personal component library
+# React Component Library
 
 [![NPM](https://img.shields.io/npm/v/react-component-library.svg)](https://www.npmjs.com/package/react-component-library) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save react-component-library
+npm install --save @nickjmorrow/react-component-library
 ```
 
 ## Usage
 
 ```tsx
-import * as React from 'react'
+import * as React from 'react';
 
-import MyComponent from "@nickjmorrow/react-component-library"
+import { Typography } from '@nickjmorrow/react-component-library';
 
-class Example extends React.Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
+const SomeOtherComponent: React.FC = () => {
+    return <Typography>Hello, World!</Typography>;
+};
 ```
 
 ## License

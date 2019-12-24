@@ -1,24 +1,39 @@
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { Collapse } from 'react-collapse';
 import styled from 'styled-components';
 import { Typography, StyledOptionList } from '~/components';
 import { useThemeContext } from '~/styleConstants';
 import { IOption } from '~/types';
 import { Option } from './Option';
 import { StyledSelect } from './StyledSelect';
+import { GetComponentProps } from '~/typeUtilities';
 
 export const Select: React.SFC<{
     options: IOption[];
     currentOption: IOption;
-    id?: string | number;
+    styleApi?: {
+        wrapper?: React.CSSProperties;
+        currentOption?: React.CSSProperties;
+        currentOptionTypography?: React.CSSProperties;
+        optionsList?: React.CSSProperties;
+        optionStyleApi?: GetComponentProps<typeof Option>['styleApi'];
+    };
     includeNoneOptionAfterSelection?: boolean;
     label?: string;
     helperText?: string;
     error?: string;
     numVisibleOptions?: number;
     onChange(option: IOption): void;
-}> = ({ onChange: handleChange, currentOption, options, label, helperText, error = '', numVisibleOptions }) => {
+}> = ({
+    onChange: handleChange,
+    currentOption,
+    options,
+    label,
+    helperText,
+    error = '',
+    numVisibleOptions,
+    styleApi = {},
+}) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
     const toggleIsMenuVisible = () => setIsMenuVisible(currentIsMenuVisible => !currentIsMenuVisible);
 
@@ -62,7 +77,7 @@ export const Select: React.SFC<{
 
     return (
         <div ref={wrapperRef}>
-            <Wrapper width={spacing.ss32}>
+            <Wrapper width={spacing.ss32} style={styleApi.wrapper}>
                 {label && (
                     <Typography sizeVariant={1} colorVariant={error ? 'danger' : 'secondaryDark'}>
                         {label || error}
@@ -72,12 +87,24 @@ export const Select: React.SFC<{
                     onClick={(e: React.MouseEvent) => handleClick(e)}
                     isMenuVisible={isMenuVisible}
                     hasError={hasError}
+                    style={styleApi.currentOption}
                 >
-                    <Typography sizeVariant={3}>{currentOption.label}</Typography>
+                    <Typography sizeVariant={3} style={styleApi.currentOptionTypography}>
+                        {currentOption.label}
+                    </Typography>
                 </StyledSelect>
-                <StyledOptionList numVisibleOptions={numVisibleOptions} isMenuVisible={isMenuVisible}>
+                <StyledOptionList
+                    numVisibleOptions={numVisibleOptions}
+                    isMenuVisible={isMenuVisible}
+                    style={styleApi.optionsList}
+                >
                     {options.map(o => (
-                        <Option key={o.value} onClick={handleClickOption} option={o} />
+                        <Option
+                            key={o.value}
+                            onClick={handleClickOption}
+                            option={o}
+                            styleApi={styleApi.optionStyleApi}
+                        />
                     ))}
                 </StyledOptionList>
 
