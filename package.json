@@ -14,6 +14,7 @@
     },
     "scripts": {
         "test": "react-scripts-ts test --env=jsdom",
+        "prebuild": "npm i -g typescript rollup && npm install",
         "build": "tsc --emitDeclarationOnly && rollup -c",
         "build:watch": "tsc --emitDeclarationOnly && rollup -c -w",
         "build:all": "npm run build && npm run --prefix example build",
@@ -91,6 +92,7 @@
         "rollup-plugin-node-resolve": "^3.3.0",
         "rollup-plugin-peer-deps-external": "^2.2.0",
         "rollup-plugin-postcss": "^1.6.2",
+        "rollup-plugin-ts-paths": "^1.0.3",
         "rollup-plugin-typescript2": "^0.17.2",
         "rollup-plugin-url": "^1.4.0",
         "ts-essentials": "^2.0.0",
