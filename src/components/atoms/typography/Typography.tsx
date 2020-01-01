@@ -9,17 +9,17 @@ import { getColor, getColorActive, getColorHover } from '../atomServices';
 const deepMerge: typeof deepMergeProxy = (deepMergeProxy as any).default || deepMergeProxy;
 
 export const Typography: React.SFC<
-{
-    align?: Align;
-    sizeVariant?: SizeVariant;
-    colorVariant?: ColorVariant;
-    weightVariant?: WeightVariant;
-    styleVariant?: StyleVariant;
-    fontFamilyVariant?: FontFamilyVariant;
-    isInteractive?: boolean;
-    className?: string;
-    link?: string;
-} & React.PropsWithoutRef<JSX.IntrinsicElements['span']>
+    {
+        align?: Align;
+        sizeVariant?: SizeVariant;
+        colorVariant?: ColorVariant;
+        weightVariant?: WeightVariant;
+        styleVariant?: StyleVariant;
+        fontFamilyVariant?: FontFamilyVariant;
+        isInteractive?: boolean;
+        className?: string;
+        link?: string;
+    } & React.PropsWithoutRef<JSX.IntrinsicElements['span']>
 > = ({
     colorVariant,
     sizeVariant,

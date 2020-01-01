@@ -21,6 +21,7 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': 0,
         '@typescript-eslint/indent': 0,
         '@typescript-eslint/interface-name-prefix': 0,
+        '@typescript-eslint/ban-ts-ignore': 0,
     },
     settings: {
         react: {

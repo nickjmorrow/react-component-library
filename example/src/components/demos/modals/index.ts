@@ -1,2 +1,2 @@
-export { AuthModalDemo } from "./AuthModalDemo";
-export { LogoutModalDemo } from "./LogoutModalDemo";
+export { AuthModalDemo } from './AuthModalDemo';
+export { LogoutModalDemo } from './LogoutModalDemo';

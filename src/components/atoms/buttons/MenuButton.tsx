@@ -42,7 +42,7 @@ export const MenuButton: React.FC<{
                     }}
                 >
                     {navLinks.map(nl => (
-                        <Link route={nl.route} onClick={() => setIsMenuVisible(false)}>
+                        <Link key={nl.route} route={nl.route} onClick={() => setIsMenuVisible(false)}>
                             <StyledOption style={{ minWidth: finalOptionWidth }}>
                                 <Typography>{nl.label}</Typography>
                             </StyledOption>

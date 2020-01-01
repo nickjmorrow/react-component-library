@@ -1,20 +1,20 @@
-import * as React from "react";
-import { Typography, ThemeContext } from "@nickjmorrow/react-component-library";
-import { DisplayPaper } from "../../../components/DisplayPaper";
-import { Block } from "../../../components/shared";
+import * as React from 'react';
+import { Typography, ThemeContext } from '@nickjmorrow/react-component-library';
+import { DisplayPaper } from '../../../components/DisplayPaper';
+import { Block } from '../../../components/shared';
 
 export const BoxShadowDemo: React.FC = () => {
-  const { colors, boxShadow } = React.useContext(ThemeContext);
-  return (
-    <>
-      <Typography styleVariant={"h1"}>{"Box Shadow"}</Typography>
-      <DisplayPaper>
-        <Block color={colors.accent.cs5} boxShadow={boxShadow.bs1} />
-        <Block color={colors.accent.cs5} boxShadow={boxShadow.bs2} />
-        <Block color={colors.accent.cs5} boxShadow={boxShadow.bs3} />
-        <Block color={colors.accent.cs5} boxShadow={boxShadow.bs4} />
-        <Block color={colors.accent.cs5} boxShadow={boxShadow.bs5} />
-      </DisplayPaper>
-    </>
-  );
+    const { colors, boxShadow } = React.useContext(ThemeContext);
+    return (
+        <>
+            <Typography styleVariant={'h1'}>{'Box Shadow'}</Typography>
+            <DisplayPaper>
+                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs1} />
+                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs2} />
+                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs3} />
+                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs4} />
+                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs5} />
+            </DisplayPaper>
+        </>
+    );
 };

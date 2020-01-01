@@ -6,6 +6,7 @@ export const VerticalNavMenu: React.SFC<IOwnProps> = ({ buttonProps: links }) =>
         <>
             {links.map(l => (
                 <Button
+                    key={l.label}
                     onClick={l.onClick}
                     style={{
                         width: '100%',
