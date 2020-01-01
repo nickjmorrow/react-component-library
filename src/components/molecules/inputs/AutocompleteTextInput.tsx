@@ -1,4 +1,4 @@
-import { Trie } from '@nickjmorrow/algorithms';
+import { Trie } from '~/components/molecules/utilities/Trie';
 import * as React from 'react';
 import { StyledOptionList } from '~/components/molecules';
 import { Option } from '~/components/molecules/select/Option';

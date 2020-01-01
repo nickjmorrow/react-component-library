@@ -40,7 +40,7 @@ export const Colors: React.SFC = () => {
             <Blocks spacing={spacing}>
                 <ColorsWrapper spacing={spacing}>
                     {Object.keys(colorShade).map(shade => (
-                        <Block color={colorShade[shade]} />
+                        <Block key={shade} color={colorShade[shade]} />
                     ))}
                 </ColorsWrapper>
                 <ExpansionPanel

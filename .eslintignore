@@ -1,3 +1,4 @@
 node_modules
 dist
-example
+example/dist
+example/node_modules

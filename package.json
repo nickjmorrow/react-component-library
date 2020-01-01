@@ -106,10 +106,5 @@
     ],
     "_moduleAliases": {
         "~": "dist"
-    },
-    "jest": {
-        "moduleNameMapper": {
-            "~/(.*)": "<rootDir>/src/$1"
-        }
     }
 }

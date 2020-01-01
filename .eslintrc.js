@@ -14,6 +14,7 @@ module.exports = {
     },
     rules: {
         // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+        'react/no-unescaped-entities': 0,
         '@typescript-eslint/explicit-function-return-type': 0,
         'react/display-name': 0,
         'react/prop-types': 0,
@@ -22,6 +23,7 @@ module.exports = {
         '@typescript-eslint/indent': 0,
         '@typescript-eslint/interface-name-prefix': 0,
         '@typescript-eslint/ban-ts-ignore': 0,
+        '@typescript-eslint/no-non-null-assertion': 0,
     },
     settings: {
         react: {
