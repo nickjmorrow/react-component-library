@@ -27,6 +27,7 @@ export const SideNav: React.SFC<{
 }) => {
     const getColorVariant = (nl: INavLink): ColorVariant => (nl.route === currentRoute ? 'core' : 'primaryDark');
     const theme = useThemeContext();
+    const leftPadding = theme.spacing.ss6;
     return (
         <div>
             <nav
@@ -57,13 +58,19 @@ export const SideNav: React.SFC<{
                                             return agg || currentRoute === cur;
                                         }, false)
                                 }
-                                style={styleApi.folderStyle}
+                                style={{
+                                    padding: `${theme.spacing.ss4} ${theme.spacing.ss4} ${theme.spacing.ss4} ${leftPadding}`,
+                                    ...styleApi.folderStyle,
+                                }}
                                 onClick={handleLinkClick}
                             />
                         ) : (
                             <NavLink
                                 key={`nav-link-${ni.label}`}
-                                style={styleApi.navLinkStyle}
+                                style={{
+                                    padding: `${theme.spacing.ss4} ${theme.spacing.ss4} ${theme.spacing.ss4} ${leftPadding}`,
+                                    ...styleApi.navLinkStyle,
+                                }}
                                 navLink={ni}
                                 onClick={handleLinkClick}
                                 colorVariant={getColorVariant(ni)}
@@ -91,7 +98,6 @@ const NavLink: React.FC<{
                 style={{
                     width: '100%',
                     height: '100%',
-                    padding: theme.spacing.ss4,
                     ...style,
                 }}
                 {...props}
@@ -115,7 +121,7 @@ const Folder: React.SFC<{
     return (
         <>
             <NavElement onClick={toggleIsExpanded} style={style} theme={theme}>
-                <div style={{ padding: theme.spacing.ss4 }}>
+                <div>
                     <Typography weightVariant={5}>{folderInfo.label}</Typography>
                 </div>
             </NavElement>
@@ -127,7 +133,9 @@ const Folder: React.SFC<{
                             navLink={nl}
                             onClick={onClick}
                             colorVariant={getColorVariant(nl)}
-                            style={{ paddingLeft: theme.spacing.ss8 }}
+                            style={{
+                                padding: `${theme.spacing.ss4} ${theme.spacing.ss4} ${theme.spacing.ss4} ${theme.spacing.ss12}`,
+                            }}
                         />
                     ))}
                 </div>
