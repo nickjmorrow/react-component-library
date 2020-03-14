@@ -1,19 +1,33 @@
 import * as React from 'react';
 import { Typography, ThemeContext } from '@nickjmorrow/react-component-library';
 import { DisplayPaper } from '../../../components/DisplayPaper';
-import { Block } from '../../../components/shared';
+import { Block, DescriptionContainer } from '../../../components/shared';
 
 export const BoxShadowDemo: React.FC = () => {
     const { colors, boxShadow } = React.useContext(ThemeContext);
+    const boxColor = colors.accent.cs5;
+    const boxShadows = Object.keys(boxShadow).map(bs => ({ key: `theme.boxShadow.${bs}`, value: boxShadow[bs] }));
     return (
         <>
             <Typography styleVariant={'h1'}>{'Box Shadow'}</Typography>
+            <DescriptionContainer>
+                <Typography>Give elements a three-dimensional "pop" off the page.</Typography>
+            </DescriptionContainer>
             <DisplayPaper>
-                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs1} />
-                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs2} />
-                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs3} />
-                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs4} />
-                <Block color={colors.accent.cs5} boxShadow={boxShadow.bs5} />
+                <table style={{ borderSpacing: '18px' }}>
+                    <tbody>
+                        {boxShadows.map((bs, i) => (
+                            <tr key={i}>
+                                <td style={{ paddingRight: '24px' }}>
+                                    <Typography fontFamilyVariant={'monospace'}>{bs.key}</Typography>
+                                </td>
+                                <td>
+                                    <Block color={boxColor} boxShadow={bs.value} />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </DisplayPaper>
         </>
     );

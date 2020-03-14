@@ -38,7 +38,7 @@ export const SpacingDemo: React.FC = () => {
                         {Object.keys(spacing).map(key => (
                             <tr key={key}>
                                 <td style={{ paddingRight: '16px' }}>
-                                    <Typography>{key}</Typography>
+                                    <Typography fontFamilyVariant={'monospace'}>{`theme.spacing.${key}`}</Typography>
                                 </td>
                                 <td>{renderBar(spacing[key])}</td>
                             </tr>
