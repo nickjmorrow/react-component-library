@@ -40,6 +40,12 @@ export const AppBarDemo: React.FC = () => {
         <Wrapper spacing={spacing}>
             <Typography styleVariant={'h1'}>App Bar</Typography>
             <SectionWrapper spacing={spacing}>
+                <Typography styleVariant={'h2'}>Populated AppBar with No Props</Typography>
+                <div style={{ display: 'grid', gridRowGap: '48px' }}>
+                    <PopulatedAppBar />
+                </div>
+            </SectionWrapper>
+            <SectionWrapper spacing={spacing}>
                 <Typography styleVariant={'h2'}>Populated AppBar</Typography>
                 <div style={{ display: 'grid', gridRowGap: '48px' }}>
                     <PopulatedAppBar appName={'Primary Populated'} navInfos={sampleMenuOptions} />

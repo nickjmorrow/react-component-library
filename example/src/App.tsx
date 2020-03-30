@@ -44,6 +44,7 @@ const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
     defaultShowBoxShadow: false,
     appSettings: {
         githubUrl: 'https://github.com/nickjmorrow/react-component-library',
+        appName: 'Component Library',
     },
 };
 

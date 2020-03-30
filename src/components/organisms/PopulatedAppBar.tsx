@@ -1,40 +1,27 @@
 import * as React from 'react';
-import { AppBar, Typography, GithubIcon, StyleVariant, ColorVariant, Link, MenuIcon, MenuButton } from '../atoms';
-import { GITHUB_LINK } from '~/constants';
-import { ThemeContext, mediaWidth, useThemeContext } from '~/styleConstants';
-import { getFinalShowBoxShadow } from '~/styleConstants/themeUtilities';
+import {
+    AppBar,
+    Typography,
+    GithubIcon,
+    StyleVariant,
+    ColorVariant,
+    MenuIcon,
+    MenuButton,
+    InvisibleLink,
+    LinkedInIcon,
+} from '~/components/atoms';
+import { mediaWidth, useThemeContext } from '~/styleConstants';
 import Media from 'react-media';
 import { MobileMenu } from './MobileMenu';
 import { GetComponentProps } from '~/typeUtilities';
 import { SideNav } from './SideNav';
 import { Fade } from '../animations';
 
-const getColorVariant = (styleVariant: StyleVariant): ColorVariant => {
-    switch (styleVariant) {
-        case 1:
-            return 'background';
-        case 2:
-        case 3:
-            return 'primaryDark';
-    }
-};
-
-const getIconColorVariant = (styleVariant: StyleVariant): ColorVariant => {
-    switch (styleVariant) {
-        case 1:
-            return 'secondaryLight';
-        case 2:
-        case 3:
-            return 'secondaryDark';
-    }
-};
-
 export const PopulatedAppBar: React.SFC<{
-    appName: React.ReactNode;
+    appName?: React.ReactNode;
     styleVariant?: StyleVariant;
     rightComponents?: React.ReactNode;
     leftComponents?: React.ReactNode;
-    showBoxShadow?: boolean;
     menuLength?: 'long' | 'short';
     navInfos?: GetComponentProps<typeof SideNav>['navInfos'];
     styledOptionWidth?: string;
@@ -44,7 +31,6 @@ export const PopulatedAppBar: React.SFC<{
     styleVariant = 1,
     leftComponents,
     rightComponents,
-    showBoxShadow,
     navInfos = [],
     menuLength = 'long',
     styledOptionWidth,
@@ -52,14 +38,11 @@ export const PopulatedAppBar: React.SFC<{
 }) => {
     const {
         spacing,
-        defaultShowBoxShadow,
-        appSettings: { githubUrl },
+        appSettings: { githubUrl, appName: defaultAppName, linkedInUrl },
     } = useThemeContext();
     const [isMenuVisible, setIsMenuVisible] = React.useState(false);
-    const finalShowBoxShadow = getFinalShowBoxShadow(showBoxShadow, defaultShowBoxShadow);
+    const finalAppName = appName === undefined ? defaultAppName : appName;
 
-    // TODO: clean up
-    const useLongMenu = menuLength === 'long';
     const iconStyle = {
         position: 'absolute',
         right: '0px',
@@ -72,26 +55,25 @@ export const PopulatedAppBar: React.SFC<{
                 <AppBar
                     style={{ justifyContent: matches ? 'center' : 'space-between' }}
                     styleVariant={styleVariant}
-                    showBoxShadow={finalShowBoxShadow}
                     className={className}
                 >
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Link route={'/'}>
+                        <InvisibleLink href={'/'}>
                             <Typography
                                 sizeVariant={7}
                                 weightVariant={5}
                                 fontFamilyVariant={'title'}
                                 colorVariant={getColorVariant(styleVariant)}
                             >
-                                {appName}
+                                {finalAppName}
                             </Typography>
-                        </Link>
+                        </InvisibleLink>
                         {leftComponents}
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {rightComponents}
                         {matches && navInfos.length > 0 ? (
-                            useLongMenu ? (
+                            menuLength === 'long' ? (
                                 <MenuIcon
                                     style={iconStyle as React.CSSProperties}
                                     colorVariant={getIconColorVariant(styleVariant)}
@@ -111,9 +93,14 @@ export const PopulatedAppBar: React.SFC<{
                                 />
                             )
                         ) : (
-                            <a href={githubUrl} style={{ marginLeft: spacing.ss4 }}>
-                                <GithubIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
-                            </a>
+                            <div>
+                                <a href={linkedInUrl} style={{ marginLeft: spacing.ss4 }}>
+                                    <LinkedInIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
+                                </a>
+                                <a href={githubUrl} style={{ marginLeft: spacing.ss4 }}>
+                                    <GithubIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
+                                </a>
+                            </div>
                         )}
                     </div>
 
@@ -132,4 +119,24 @@ export const PopulatedAppBar: React.SFC<{
             )}
         </Media>
     );
+};
+
+const getColorVariant = (styleVariant: StyleVariant): ColorVariant => {
+    switch (styleVariant) {
+        case 1:
+            return 'background';
+        case 2:
+        case 3:
+            return 'primaryDark';
+    }
+};
+
+const getIconColorVariant = (styleVariant: StyleVariant): ColorVariant => {
+    switch (styleVariant) {
+        case 1:
+            return 'secondaryLight';
+        case 2:
+        case 3:
+            return 'secondaryDark';
+    }
 };

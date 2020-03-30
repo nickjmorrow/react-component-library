@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Route } from 'react-router';
 import {
     AppBarDemo,
-    AuthModalDemo,
     Borders,
     BoxShadowDemo,
     Buttons,
@@ -20,7 +19,6 @@ import {
     TypographyDemo,
 } from './components/demos';
 import { FadeDemo } from './components/demos/FadeDemo';
-import { SideNavDemo } from './components/demos/SideNavDemo';
 import { GettingStarted } from './components/GettingStarted';
 import { Home } from './components/Home';
 import { Principles } from './components/Principles';
@@ -86,19 +84,9 @@ const organismComponents = {
             route: '/logout-modal',
         },
         {
-            component: AuthModalDemo,
-            label: 'Auth Modal',
-            route: '/auth-modal',
-        },
-        {
             component: AppBarDemo,
             label: 'App Bar',
             route: '/app-bar',
-        },
-        {
-            component: SideNavDemo,
-            label: 'Side Nav',
-            route: '/side-nav',
         },
     ],
 };

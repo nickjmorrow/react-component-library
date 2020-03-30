@@ -1,27 +1,23 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ThemeContext, defaultShowBoxShadow } from '../../../styleConstants';
+import { ThemeContext } from '../../../styleConstants';
 import { StyleConstant } from '../../../typeUtilities';
 import { StyleVariant } from '../../atoms/types';
-import { getFinalShowBoxShadow } from '~/styleConstants/themeUtilities';
 import { PAGE_MARGIN_SPACING_KEY } from '~/constants';
 
 export const AppBar: React.FC<{
     styleVariant?: StyleVariant;
     onClick?: () => void;
     children: React.ReactNode;
-    showBoxShadow?: boolean;
     style?: React.CSSProperties;
     className?: string;
-}> = ({ children, styleVariant = 1, className, onClick: handleClick, showBoxShadow, style }) => {
+}> = ({ children, styleVariant = 1, className, onClick: handleClick, style }) => {
     const {
         colors,
-        boxShadow,
         border: { borderStyle },
         spacing,
     } = React.useContext(ThemeContext);
 
-    const finalShowBoxShadow = getFinalShowBoxShadow(showBoxShadow, defaultShowBoxShadow);
     return (
         <Wrapper
             onClick={handleClick}
@@ -29,7 +25,7 @@ export const AppBar: React.FC<{
             borderStyle={borderStyle}
             styleVariant={styleVariant}
             spacing={spacing}
-            boxShadow={finalShowBoxShadow ? boxShadow.bs1 : 'none'}
+            boxShadow={'none'}
             className={className}
         >
             <Inner spacing={spacing} style={style}>
