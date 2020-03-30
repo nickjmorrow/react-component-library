@@ -6,7 +6,7 @@ The live demo can be found [here](https://nickjmorrow.github.io/react-component-
 
 ## At a Glance
 
--   The component library uses [Rollup](https://github.com/rollup/rollup) for the bunndler / build pipeline.
+-   The component library uses [Rollup](https://github.com/rollup/rollup) for the bundler / build pipeline.
 -   The component library and the demo application are built in TypeScript.
 
 ## Install
