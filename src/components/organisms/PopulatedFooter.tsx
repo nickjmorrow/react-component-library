@@ -28,11 +28,11 @@ export const PopulatedFooter: React.FC<{
                     gridColumnGap: spacing.ss3,
                 }}
             >
-                <InvisibleLink href={githubUrl}>
-                    <GithubIcon sizeVariant={2} colorVariant={'secondaryDark'} />
-                </InvisibleLink>
                 <InvisibleLink href={linkedInUrl}>
                     <LinkedInIcon sizeVariant={2} colorVariant={'secondaryDark'} />
+                </InvisibleLink>
+                <InvisibleLink href={githubUrl}>
+                    <GithubIcon sizeVariant={2} colorVariant={'secondaryDark'} />
                 </InvisibleLink>
             </div>
         </Footer>

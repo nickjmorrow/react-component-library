@@ -10,11 +10,10 @@ import {
     FileInputDemo,
     IconsDemo,
     LabeledInputDemo,
-    LogoutModalDemo,
+    ModalDemo,
     SelectDemo,
     SliderDemo,
     SpacingDemo,
-    StyleConstants,
     TextInputDemo,
     TypographyDemo,
 } from './components/demos';
@@ -79,9 +78,9 @@ const organismComponents = {
     label: 'Organisms',
     navLinks: [
         {
-            component: LogoutModalDemo,
-            label: 'Logout Modal',
-            route: '/logout-modal',
+            component: ModalDemo,
+            label: 'Modal',
+            route: '/modal',
         },
         {
             component: AppBarDemo,
@@ -123,11 +122,6 @@ const themeConfiguration = {
             component: FadeDemo,
             label: 'Fade Animation',
             route: '/fade-animation',
-        },
-        {
-            component: StyleConstants,
-            label: 'Style Constants',
-            route: '/style-constants',
         },
     ],
 };

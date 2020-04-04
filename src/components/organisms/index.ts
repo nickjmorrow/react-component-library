@@ -5,7 +5,7 @@ export { LabeledRadioButtonInput } from './inputs/LabeledRadioButtonInput';
 export { LogOutModal } from './LogOutModal';
 export { PopulatedAppBar } from './PopulatedAppBar';
 export { SideNav } from './SideNav';
-export { TwoButtonModal } from './TwoButtonModal';
+export { ButtonModal } from './ButtonModal';
 export { Footer } from './Footer';
 export { PopulatedFooter } from './PopulatedFooter';
 export { SideNavRouterContainer } from './SideNavRouterContainer';

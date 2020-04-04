@@ -6,25 +6,30 @@ import { Button, getFormattedTextNode, PaperModal, Typography } from '../atoms';
 
 type ModalProps = GetComponentProps<typeof PaperModal>;
 
-export const TwoButtonModal: React.SFC<
+interface ButtonInfo {
+    onClick: () => void;
+    element: React.ReactNode;
+}
+
+export const ButtonModal: React.SFC<
     ModalProps & {
-        primaryButtonElement: React.ReactNode;
-        secondaryButtonElement: React.ReactNode;
         secondaryButtonVariant?: GetComponentProps<typeof Button>['colorVariant'];
         title?: React.ReactNode;
-        onPrimaryClick(): void;
-        onSecondaryClick(): void;
+        primaryButtonInfo: ButtonInfo;
+        secondaryButtonInfo?: ButtonInfo;
+        styles?: React.CSSProperties;
     }
 > = ({
     isOpen,
     children,
     title,
     onRequestClose: handleRequestClose,
-    primaryButtonElement,
-    secondaryButtonElement,
-    onPrimaryClick: handlePrimaryClick,
-    onSecondaryClick: handleSecondaryClick,
+    primaryButtonInfo,
+    secondaryButtonInfo,
+    styles,
 }) => {
+    const { onClick: handlePrimaryClick, element: primaryButtonElement } = primaryButtonInfo;
+
     const modalTitle =
         title && typeof title === 'string' ? (
             <Typography sizeVariant={5} weightVariant={5}>
@@ -33,15 +38,12 @@ export const TwoButtonModal: React.SFC<
         ) : (
             title
         );
+
     const handlePrimaryClickInternal = () => {
         handlePrimaryClick();
         handleRequestClose();
     };
 
-    const handleSecondaryClickInternal = () => {
-        handleSecondaryClick();
-        handleRequestClose();
-    };
     const {
         colors,
         spacing,
@@ -49,7 +51,12 @@ export const TwoButtonModal: React.SFC<
     } = React.useContext(ThemeContext);
 
     return (
-        <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose} useMargin={false}>
+        <PaperModal
+            isOpen={isOpen}
+            styles={styles}
+            onRequestClose={handleRequestClose}
+            wrapperStyles={{ backgroundColor: colors.background, borderRadius: borderRadius.br1 }}
+        >
             <Wrapper>
                 <AboveButtons spacing={spacing}>
                     <TitleWrapper spacing={spacing}>{modalTitle}</TitleWrapper>
@@ -61,9 +68,19 @@ export const TwoButtonModal: React.SFC<
                     </ChildrenContainer>
                 </AboveButtons>
                 <ButtonsContainer spacing={spacing} colors={colors} borderRadius={borderRadius}>
-                    <Button onClick={handleSecondaryClickInternal} styleVariant={3} textColorVariant={'core'}>
-                        {secondaryButtonElement}
-                    </Button>
+                    {secondaryButtonInfo && (
+                        <Button
+                            onClick={() => {
+                                secondaryButtonInfo.onClick();
+                                handleRequestClose();
+                            }}
+                            styleVariant={3}
+                            textColorVariant={'core'}
+                            useMargin={false}
+                        >
+                            {secondaryButtonInfo.element}
+                        </Button>
+                    )}
                     <Button onClick={handlePrimaryClickInternal} useMargin={false}>
                         {primaryButtonElement}
                     </Button>
@@ -83,7 +100,7 @@ const ButtonsContainer = styled('div')<{
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    padding: ${({ spacing: { ss8: padding, ss1 } }) => `${ss1} ${padding}`};
+    padding: ${({ spacing }) => `${spacing.ss4} ${spacing.ss8}`};
     background-color: ${({ colors }) => colors.neutral.cs2};
     padding-right: ${p => p.spacing.ss8};
     border-radius: ${({ borderRadius: { br1 } }) => `0 0 ${br1} ${br1}`};

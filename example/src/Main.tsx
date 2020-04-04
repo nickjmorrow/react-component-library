@@ -27,7 +27,6 @@ const Wrapper = styled.div`
     flex-direction: row;
     height: 100%;
     flex-grow: 1;
-    margin-bottom: 36px;
 `;
 
 const RoutesWrapper = styled.div`

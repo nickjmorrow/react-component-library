@@ -39,6 +39,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve('public/index.html'),
             favicon: 'public/favicon.ico',
+            manifest: 'public/manifest.json',
         }),
         new Dotenv(),
     ],

@@ -2,7 +2,6 @@
     "name": "example",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://nickjmorrow.github.io/react-component-library",
     "scripts": {
         "build:watch": "webpack-dev-server --open --config webpack.dev.js",
         "build": "webpack --config webpack.prod.js",

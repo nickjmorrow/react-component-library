@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TwoButtonModal } from '../organisms';
+import { ButtonModal } from '../organisms';
 
 export const LogOutModal: React.SFC<IOwnProps> = ({
     isOpen,
@@ -7,17 +7,15 @@ export const LogOutModal: React.SFC<IOwnProps> = ({
     onPrimaryClick: handlePrimaryClick,
 }) => {
     return (
-        <TwoButtonModal
+        <ButtonModal
             isOpen={isOpen}
             onRequestClose={handleRequestClose}
-            primaryButtonElement={'Log Out'}
-            secondaryButtonElement={'Cancel'}
+            primaryButtonInfo={{ element: 'Log Out', onClick: handlePrimaryClick }}
+            secondaryButtonInfo={{ element: 'Cancel', onClick: handleRequestClose }}
             title={'Log Out'}
-            onPrimaryClick={handlePrimaryClick}
-            onSecondaryClick={handleRequestClose}
         >
             Are you sure you want to log out?
-        </TwoButtonModal>
+        </ButtonModal>
     );
 };
 
