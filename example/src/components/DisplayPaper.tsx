@@ -17,7 +17,6 @@ export const DisplayPaper: React.SFC<{
         justifyContent: 'space-around',
         alignItems: 'center',
         maxWidth: '700px',
-        padding: spacing.ss6,
     };
     return (
         <Paper {...props} style={{ ...defaultStyle, ...style }}>
