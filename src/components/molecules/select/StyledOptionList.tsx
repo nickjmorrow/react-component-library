@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { useThemeContext } from '~/styleConstants';
+import { useThemeContext } from '~/theming';
 import { StyleConstant } from '~/typeUtilities';
 import { Collapse } from 'react-collapse';
 

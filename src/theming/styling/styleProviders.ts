@@ -1,4 +1,4 @@
-import { ThemeInput } from '../types';
+import { ThemeInput } from '~/types';
 import { boxShadowOffsets, transitionTimingFunction } from './styleConstants';
 
 export const getBorderStyle = (borderStyleInputs: ThemeInput['border']['borderStyle']) => ({

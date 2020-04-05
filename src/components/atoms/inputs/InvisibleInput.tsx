@@ -1,13 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { IValue } from '../../../types';
+import { Value } from '../../../types';
 
 interface IOwnProps {
-    value?: IValue;
+    value?: Value;
     placeholder?: string;
     size?: number;
     onBlur?(): void;
-    onChange(value: IValue): void;
+    onChange(value: Value): void;
 }
 
 export const InvisibleInput: React.SFC<IOwnProps> = props => {

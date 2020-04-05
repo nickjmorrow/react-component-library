@@ -57,6 +57,7 @@ const CodeBlock: React.FC = ({ children }) => {
                 justifyContent: 'flex-start',
                 overflowX: 'auto',
                 width: '100%',
+                padding: '16px',
             }}
         >
             {children}

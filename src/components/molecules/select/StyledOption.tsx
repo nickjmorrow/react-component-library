@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { StyleConstant } from '~/typeUtilities';
-import { useThemeContext } from '~/styleConstants';
+import { useThemeContext } from '~/theming';
 import * as React from 'react';
 
 export const StyledOption: React.FC<React.PropsWithoutRef<JSX.IntrinsicElements['div']> & Props> = ({

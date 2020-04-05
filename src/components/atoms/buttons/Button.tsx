@@ -2,7 +2,7 @@ import * as React from 'react';
 import PulseLoader from 'react-spinners/PulseLoader';
 import styled from 'styled-components';
 import { Link } from '~/components/atoms';
-import { useThemeContext } from '~/styleConstants';
+import { useThemeContext } from '~/theming';
 import { StyleConstant } from '~/typeUtilities';
 import { Fade } from '../../animations';
 import { getColorFunc } from '../atomServices';

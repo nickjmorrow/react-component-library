@@ -1,4 +1,4 @@
-import { StyleConstant } from '~/typeUtilities';
+import { StyleConstant } from '../../typeUtilities';
 
 export const transitions = {
     fast: '0.15s',

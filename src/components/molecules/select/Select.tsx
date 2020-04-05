@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Typography, StyledOptionList } from '~/components';
-import { useThemeContext } from '~/styleConstants';
+import { useThemeContext } from '~/theming';
 import { IOption } from '~/types';
 import { Option } from './Option';
 import { StyledSelect } from './StyledSelect';

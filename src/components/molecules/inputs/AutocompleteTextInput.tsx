@@ -2,7 +2,7 @@ import { Trie } from '~/components/molecules/utilities/Trie';
 import * as React from 'react';
 import { StyledOptionList } from '~/components/molecules';
 import { Option } from '~/components/molecules/select/Option';
-import { useThemeContext } from '~/styleConstants';
+import { useThemeContext } from '~/theming';
 import { TextInput } from '~/components/atoms/inputs/textInputs';
 
 export const AutocompleteTextInput: React.SFC<

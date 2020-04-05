@@ -2,10 +2,20 @@ import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Button, PaperModal, PasswordInput, TextInput, Typography } from '../atoms';
-import { ThemeContext } from '../../styleConstants';
-import { ILoginInfo, IRegisterInfo } from '../../types';
+import { ThemeContext } from '~/theming';
 import { validateEmail, isRequired } from '../atoms/inputs';
 import { StyleConstant } from '../../typeUtilities';
+
+interface ILoginInfo {
+    email: string;
+    password: string;
+}
+
+interface IRegisterInfo {
+    email: string;
+    password: string;
+    name: string;
+}
 
 export const AuthModal: React.SFC<IProps> = ({
     isOpen,

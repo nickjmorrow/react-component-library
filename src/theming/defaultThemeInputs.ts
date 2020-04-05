@@ -1,4 +1,4 @@
-import { fontFamily, defaultShowBoxShadow, lineHeight, horizontalWidth } from './styleConstants';
+import { fontFamily, defaultShowBoxShadow, lineHeight, horizontalWidth } from './styling/styleConstants';
 
 const defaultCorePaletteInputs = {
     hue: 220, // hsl(220, 100%, 50%)

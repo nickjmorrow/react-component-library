@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ThemeContext } from '../../../styleConstants';
+import { ThemeContext } from '~/theming';
 import * as React from 'react';
 import { StyleConstant } from '../../../typeUtilities';
 

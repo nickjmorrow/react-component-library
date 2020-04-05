@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconProps } from '../types';
 import { ColorVariant, StyleVariant } from '../../types';
-import { ThemeContext } from '~/styleConstants';
+import { ThemeContext } from '~/theming';
 import styled from 'styled-components';
 import { getColorFunc } from '../../atomServices';
 import { StyleConstant } from '~/typeUtilities';

@@ -3,7 +3,7 @@ import 'rc-slider/assets/index.css';
 import * as React from 'react';
 import styled from 'styled-components';
 import { Typography } from '../typography/Typography';
-import { ThemeContext } from '../../../styleConstants';
+import { ThemeContext } from '~/theming';
 import { StyleConstant } from '../../../typeUtilities';
 
 interface IProps {

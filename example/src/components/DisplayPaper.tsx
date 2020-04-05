@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Paper, ThemeContext } from '@nickjmorrow/react-component-library';
+import { Paper, useThemeContext } from '@nickjmorrow/react-component-library';
 /* tslint:disable-next-line */
 
 export const DisplayPaper: React.SFC<{
@@ -7,16 +7,18 @@ export const DisplayPaper: React.SFC<{
     onClick?: () => void;
     props?: React.HTMLProps<HTMLDivElement>;
 }> = ({ children, style, ...props }) => {
-    const { spacing } = React.useContext(ThemeContext);
+    const theme = useThemeContext();
+
     const defaultStyle = {
-        marginBottom: spacing.ss12,
-        marginTop: spacing.ss6,
+        marginBottom: theme.spacing.ss12,
+        marginTop: theme.spacing.ss6,
         width: 'max-content',
         display: 'flex',
         flexDirection: 'row' as 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
         maxWidth: '700px',
+        borderRadius: '6px',
     };
     return (
         <Paper {...props} style={{ ...defaultStyle, ...style }}>

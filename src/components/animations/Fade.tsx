@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Transition } from 'react-transition-group';
 import { StyleConstant, GetComponentProps } from '../../typeUtilities';
-import { ThemeContext } from '../../styleConstants';
+import { ThemeContext } from '~/theming';
 
 type TransitionProps = GetComponentProps<typeof Transition>;
 

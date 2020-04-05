@@ -2,7 +2,7 @@ import * as deepMergeProxy from 'deepmerge';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { ColorVariant, WeightVariant } from '~/components/atoms/types';
-import { useThemeContext } from '~/styleConstants';
+import { useThemeContext } from '~/theming';
 import { Theme } from '~/types';
 import { StyleConstant } from '~/typeUtilities';
 import { getColor, getColorActive, getColorHover } from '../atomServices';

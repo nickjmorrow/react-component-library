@@ -1,7 +1,7 @@
 import * as React from 'react';
 const ReactModal = require('react-modal');
 import Radium from 'radium';
-import { ThemeContext } from '../../../styleConstants';
+import { ThemeContext } from '~/theming';
 const Style = Radium.Style;
 
 export const Modal: React.SFC<{

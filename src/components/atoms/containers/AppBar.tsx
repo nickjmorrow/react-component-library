@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from '../../../styleConstants';
+import { ThemeContext } from '~/theming';
 import { StyleConstant } from '../../../typeUtilities';
 import { StyleVariant } from '../../atoms/types';
 import { PAGE_MARGIN_SPACING_KEY } from '~/constants';

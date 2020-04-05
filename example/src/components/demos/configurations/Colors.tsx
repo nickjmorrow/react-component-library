@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
     ArgumentType,
-    ColorShade,
     ExpansionPanel,
     getMergedThemeInputs,
     Slider,
@@ -10,6 +9,7 @@ import {
     ThemeInputsContext,
     Typography,
     Link,
+    Theme,
 } from '@nickjmorrow/react-component-library';
 import styled from 'styled-components';
 import { Block } from '../../shared/Block';
@@ -34,7 +34,7 @@ export const Colors: React.SFC = () => {
         };
         updateThemeInputs(newThemeInput);
     };
-    const renderBlocks = (colorShade: ColorShade, colorName: string) => (
+    const renderBlocks = (colorShade: Theme['colors'], colorName: string) => (
         <React.Fragment key={colorName}>
             <Typography styleVariant={'h2'}>{colorName}</Typography>
             <Blocks spacing={spacing}>

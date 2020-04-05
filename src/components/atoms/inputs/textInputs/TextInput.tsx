@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 
-import { useThemeContext } from '~/styleConstants';
+import { useThemeContext } from '~/theming';
 import { Typography } from '~/components/atoms';
 import { Fade } from '~/components/animations';
 import { Theme } from '~/typeUtilities';

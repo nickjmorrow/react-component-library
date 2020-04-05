@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { GetComponentProps } from '~/index';
-import { facebookColors } from '~/styleConstants/brandColors';
 import { Button } from '..';
 import { noOp } from '../buttonServices';
 

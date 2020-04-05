@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from '../../../styleConstants';
+import { ThemeContext } from '~/theming';
 import { IOption } from '../../../types';
 import { StyleConstant } from '../../../typeUtilities';
 import { Typography } from '../../atoms/typography/Typography';

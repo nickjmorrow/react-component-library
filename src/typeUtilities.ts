@@ -1,5 +1,5 @@
 import { Theme as TTheme } from './types';
-import { useThemeContext } from './styleConstants';
+import { useThemeContext } from '~/theming/useThemeContext';
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 

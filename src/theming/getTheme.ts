@@ -1,5 +1,5 @@
 import { ThemeInput } from '../types';
-import { boxShadowOffsets, colorConstants } from './styleConstants';
+
 import {
     generateColorShades,
     getBorderRadius,
@@ -9,8 +9,9 @@ import {
     getIconSize,
     getSpacingSystem,
     getTransitions,
-} from './styleProviders';
-import { defaultIconColorVariant, defaultIconSizeVariant } from './styleVariants';
+} from '~/theming/styling/styleProviders';
+import { boxShadowOffsets, colorConstants } from '~/theming/styling';
+import { defaultIconColorVariant, defaultIconSizeVariant } from '~/theming/styling/styleVariants';
 
 export const getTheme = (themeInputs: ThemeInput) => ({
     colors: {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { IOption } from 'types';
 import { Checkbox, Typography } from '~/components/atoms';
-import { ThemeContext } from '../../../styleConstants';
+import { ThemeContext } from '~/theming';
 import { StyleConstant } from '../../../typeUtilities';
 import { LabeledInputWrapper } from './LabeledInputWrapper';
 

@@ -1,6 +1,6 @@
 {
     "name": "@nickjmorrow/react-component-library",
-    "version": "0.0.58",
+    "version": "0.0.59",
     "description": "Personal component library",
     "author": "nickjmorrow",
     "license": "MIT",
@@ -14,7 +14,6 @@
     },
     "scripts": {
         "test": "react-scripts-ts test --env=jsdom",
-        "prebuild": "npm i -g typescript rollup && npm install",
         "build": "tsc --emitDeclarationOnly && rollup -c",
         "build:watch": "tsc --emitDeclarationOnly && rollup -c -w",
         "build:all": "npm run build && npm run --prefix example build",

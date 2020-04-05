@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { StyleConstant } from '~/index';
-import { useThemeContext } from '~/styleConstants';
+import { useThemeContext } from '~/theming';
 import { getBorderColor } from './selectUtilities';
 
 export const StyledSelect: React.FC<Props> = ({ isMenuVisible, hasError, children, ...props }) => {

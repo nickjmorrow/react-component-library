@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Collapse } from 'react-collapse';
 import styled from 'styled-components';
-import { useThemeContext } from '../../styleConstants';
+import { useThemeContext } from '~/theming';
 import { Theme } from '../../typeUtilities';
 import { ColorVariant, Link, Typography } from '../atoms';
 

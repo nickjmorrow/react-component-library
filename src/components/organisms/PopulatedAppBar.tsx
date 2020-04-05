@@ -10,7 +10,7 @@ import {
     InvisibleLink,
     LinkedInIcon,
 } from '~/components/atoms';
-import { mediaWidth, useThemeContext } from '~/styleConstants';
+import { mediaWidth, useThemeContext } from '~/theming';
 import Media from 'react-media';
 import { MobileMenu } from './MobileMenu';
 import { GetComponentProps } from '~/typeUtilities';
