@@ -63,7 +63,7 @@ export const Typography: React.SFC<
         <StyledTypography
             styleVariant={styleVariant}
             align={align}
-            theme={theme}
+            manualTheme={theme}
             colorVariant={link === undefined ? newColorVariant : 'core'}
             sizeVariant={newSizeVariant}
             weightVariant={newWeightVariant}
@@ -80,13 +80,13 @@ export const Typography: React.SFC<
     return link === undefined ? (
         content
     ) : (
-        <StyledLink href={link} theme={theme}>
+        <StyledLink href={link} manualTheme={theme}>
             {content}
         </StyledLink>
     );
 };
 
-const StyledLink = styled('a')<{ theme: Theme }>`
+const StyledLink = styled('a')<{ manualTheme: Theme }>`
     position: relative;
     text-decoration: none;
     &:hover:before {
@@ -100,9 +100,12 @@ const StyledLink = styled('a')<{ theme: Theme }>`
         height: 2px;
         bottom: -1px;
         left: 0;
-        background-image: linear-gradient(90deg, ${p => `${p.theme.colors.core.cs5}, ${p.theme.colors.accent.cs5}`});
+        background-image: linear-gradient(
+            90deg,
+            ${p => `${p.manualTheme.colors.core.cs5}, ${p.manualTheme.colors.accent.cs5}`}
+        );
         visibility: hidden;
-        transition: ${p => p.theme.transitions.medium};
+        transition: ${p => p.manualTheme.transitions.medium};
     }
 `;
 
@@ -113,7 +116,7 @@ export const StyledTypography = styled('span')<{
     fontFamilyVariant: FontFamilyVariant;
     weightVariant: WeightVariant;
     sizeVariant: SizeVariant;
-    theme: Theme;
+    manualTheme: Theme;
     styleVariant?: StyleVariant;
 }>`
     ${p => {
@@ -123,7 +126,7 @@ export const StyledTypography = styled('span')<{
             sizeVariant,
             weightVariant,
             styleVariant,
-            theme: {
+            manualTheme: {
                 colors,
                 spacing,
                 transitions,

@@ -91,7 +91,7 @@ const NavLink: React.FC<{
 }> = ({ navLink, onClick, style, colorVariant, ...props }) => {
     const theme = useThemeContext();
     return (
-        <NavElement theme={theme} key={`nav-element-${navLink.route}`} onClick={onClick}>
+        <NavElement manualTheme={theme} key={`nav-element-${navLink.route}`} onClick={onClick}>
             <Link
                 route={navLink.route}
                 typographyProps={{ colorVariant: colorVariant }}
@@ -120,7 +120,7 @@ const Folder: React.SFC<{
     const toggleIsExpanded = () => setIsExpanded(prev => !prev);
     return (
         <>
-            <NavElement onClick={toggleIsExpanded} style={style} theme={theme}>
+            <NavElement onClick={toggleIsExpanded} style={style} manualTheme={theme}>
                 <div>
                     <Typography weightVariant={5}>{folderInfo.label}</Typography>
                 </div>
@@ -161,17 +161,17 @@ export interface INavLink {
 
 const NavElement = styled('div')<{
     style?: React.CSSProperties;
-    theme: Theme;
+    manualTheme: Theme;
 }>`
     cursor: pointer;
-    width: ${p => p.theme.spacing.ss64};
-    transition: background-color ${p => p.theme.transitions.medium};
+    width: ${p => p.manualTheme.spacing.ss64};
+    transition: background-color ${p => p.manualTheme.transitions.medium};
     &:hover {
-        background-color: ${p => p.theme.colors.neutral.cs2};
-        transition: background-color ${p => p.theme.transitions.medium};
+        background-color: ${p => p.manualTheme.colors.neutral.cs2};
+        transition: background-color ${p => p.manualTheme.transitions.medium};
     }
     &:active {
-        background-color: ${p => p.theme.colors.neutral.cs3};
-        transition: background-color ${p => p.theme.transitions.medium};
+        background-color: ${p => p.manualTheme.colors.neutral.cs3};
+        transition: background-color ${p => p.manualTheme.transitions.medium};
     }
 `;

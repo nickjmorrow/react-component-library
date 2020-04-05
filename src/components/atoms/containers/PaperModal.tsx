@@ -19,7 +19,7 @@ export const PaperModal: React.SFC<{
         <Modal isOpen={isOpen} onRequestClose={handleRequestClose}>
             <Paper className={className} style={styles}>
                 <CloseIcon onClick={handleRequestClose} style={iconStyle} sizeVariant={4} />
-                <Wrapper theme={theme} style={wrapperStyles}>
+                <Wrapper manualTheme={theme} style={wrapperStyles}>
                     {children}
                 </Wrapper>
             </Paper>
@@ -27,12 +27,12 @@ export const PaperModal: React.SFC<{
     );
 };
 
-const Wrapper = styled('div')<{ theme: Theme }>`
+const Wrapper = styled('div')<{ manualTheme: Theme }>`
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: ${p => `${p.theme.spacing.ss8} ${p.theme.spacing.ss8} 0 ${p.theme.spacing.ss8}`};
+    margin: ${p => `${p.manualTheme.spacing.ss8} ${p.manualTheme.spacing.ss8} 0 ${p.manualTheme.spacing.ss8}`};
 `;
 
 const iconStyle: React.CSSProperties = {

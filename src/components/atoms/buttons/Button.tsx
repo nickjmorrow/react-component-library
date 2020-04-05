@@ -89,7 +89,7 @@ export const Button: React.SFC<{
         <StyledButton
             className={className}
             style={style}
-            theme={theme}
+            manualTheme={theme}
             defaultShouldShowBoxShadow={defaultShowBoxShadow}
             isDisabled={isDisabled}
             colorVariant={colorVariant}
@@ -128,54 +128,54 @@ const StyledButton = styled('button')<
         styleVariant: StyleVariant;
         useMargin?: boolean;
         style?: React.CSSProperties;
-        theme: Theme;
+        manualTheme: Theme;
         width: number;
         height: number;
         isDisabled: boolean;
         defaultShouldShowBoxShadow: boolean;
     } & Partial<ColorSet & React.HTMLProps<HTMLButtonElement>>
 >`
-    border: ${p => p.theme.border.borderStyle.bs2};
-    color: ${p => getColor(p.theme.colors, p.colorVariant, p.styleVariant, 'normal', p.isDisabled)};
+    border: ${p => p.manualTheme.border.borderStyle.bs2};
+    color: ${p => getColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'normal', p.isDisabled)};
     background-color: ${p =>
-        getBackgroundColor(p.theme.colors, p.colorVariant, p.styleVariant, 'normal', p.isDisabled)};
-    border-color: ${p => getBorderColor(p.theme.colors, p.colorVariant, p.styleVariant, 'normal', p.isDisabled)};
-    border-radius: ${p => p.theme.border.borderRadius.br1};
-    padding: ${p => `${p.theme.spacing.ss2} ${p.theme.spacing.ss3}`};
+        getBackgroundColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'normal', p.isDisabled)};
+    border-color: ${p => getBorderColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'normal', p.isDisabled)};
+    border-radius: ${p => p.manualTheme.border.borderRadius.br1};
+    padding: ${p => `${p.manualTheme.spacing.ss2} ${p.manualTheme.spacing.ss3}`};
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: ${p => (p.useMargin ? p.theme.spacing.ss4 : 0)};
+    margin: ${p => (p.useMargin ? p.manualTheme.spacing.ss4 : 0)};
     cursor: ${p => (p.isDisabled ? 'not-allowed' : 'pointer')};
     outline: none;
     word-wrap: wrap;
-    box-shadow: ${p => getBoxShadow(p.theme.boxShadow, p.isDisabled, p.theme.defaultShouldShowBoxShadow, 'normal')};
+    box-shadow: ${p => getBoxShadow(p.manualTheme.boxShadow, p.isDisabled, false, 'normal')};
     min-width: ${p => p.width}px;
     min-height: ${p => p.height} / px;
     width: max-content;
     height: max-content;
-    font-weight: ${p => p.theme.typography.fontWeights.fw9};
+    font-weight: ${p => p.manualTheme.typography.fontWeights.fw9};
     transition-property: box-shadow, background-color, border-color;
-    transition: ${p => p.theme.transitions.medium};
+    transition: ${p => p.manualTheme.transitions.medium};
     &:hover {
-        border-color: ${p => getBorderColor(p.theme.colors, p.colorVariant, p.styleVariant, 'hover', p.isDisabled)};
+        border-color: ${p =>
+            getBorderColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'hover', p.isDisabled)};
         background-color: ${p =>
-            getBackgroundColor(p.theme.colors, p.colorVariant, p.styleVariant, 'hover', p.isDisabled)};
-        color: ${p => getColor(p.theme.colors, p.colorVariant, p.styleVariant, 'hover', p.isDisabled)};
+            getBackgroundColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'hover', p.isDisabled)};
+        color: ${p => getColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'hover', p.isDisabled)};
         box-shadow: ${p =>
-            p.defaultShouldShowBoxShadow &&
-            getBoxShadow(p.theme.boxShadow, p.isDisabled, p.theme.defaultShouldShowBoxShadow, 'hover')};
-        transition: ${p => !p.isDisabled && `all ${p.theme.transitions.medium} ease-in-out`}};
+            p.defaultShouldShowBoxShadow && getBoxShadow(p.manualTheme.boxShadow, p.isDisabled, false, 'hover')};
+        transition: ${p => !p.isDisabled && `all ${p.manualTheme.transitions.medium} ease-in-out`}};
     }
     &:active {
-        border-color: ${p => getBorderColor(p.theme.colors, p.colorVariant, p.styleVariant, 'active', p.isDisabled)};
+        border-color: ${p =>
+            getBorderColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'active', p.isDisabled)};
         background-color: ${p =>
-            getBackgroundColor(p.theme.colors, p.colorVariant, p.styleVariant, 'active', p.isDisabled)};
-        color: ${p => getColor(p.theme.colors, p.colorVariant, p.styleVariant, 'active', p.isDisabled)};
+            getBackgroundColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'active', p.isDisabled)};
+        color: ${p => getColor(p.manualTheme.colors, p.colorVariant, p.styleVariant, 'active', p.isDisabled)};
         box-shadow: ${p =>
-            p.defaultShouldShowBoxShadow &&
-            getBoxShadow(p.theme.boxShadow, p.isDisabled, p.theme.defaultShouldShowBoxShadow, 'active')};
-        transition: ${p => !p.isDisabled && `all ${p.theme.transitions.medium} ease-in-out`}};
+            p.defaultShouldShowBoxShadow && getBoxShadow(p.manualTheme.boxShadow, p.isDisabled, false, 'active')};
+        transition: ${p => !p.isDisabled && `all ${p.manualTheme.transitions.medium} ease-in-out`}};
     }
 `;
 

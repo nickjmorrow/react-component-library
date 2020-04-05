@@ -31,7 +31,7 @@ export const TextInput: React.SFC<
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Typography sizeVariant={1}>{label}</Typography>
-            <Input hasErrors={errors.length > 0} theme={theme} {...props} />
+            <Input hasErrors={errors.length > 0} manualTheme={theme} {...props} />
             <FlexColumn>
                 <TransitionGroup>{errors.map(renderErrors)}</TransitionGroup>
             </FlexColumn>
@@ -46,28 +46,29 @@ const FlexColumn = styled.div`
 
 const Input = styled('input')<{
     hasErrors: boolean;
-    theme: Theme;
+    manualTheme: Theme;
 }>`
     outline: none;
-    width: ${p => p.theme.spacing.ss64};
-    padding: ${p => p.theme.spacing.ss3};
-    background-color: ${p => p.theme.colors.neutral.cs2};
-    border-radius: ${p => p.theme.border.borderRadius.br1};
-    border: ${p => p.theme.border.borderStyle.bs1} ${p => p.theme.colors.transparent};
-    border-left-width: ${p => (p.hasErrors ? '2px' : p.theme.border.borderStyle.bs1)};
-    border-left-color: ${p => (p.hasErrors ? p.theme.colors.danger.cs3 : p.theme.colors.transparent)};
+    width: ${p => p.manualTheme.spacing.ss64};
+    padding: ${p => p.manualTheme.spacing.ss3};
+    background-color: ${p => p.manualTheme.colors.neutral.cs2};
+    border-radius: ${p => p.manualTheme.border.borderRadius.br1};
+    border: ${p => p.manualTheme.border.borderStyle.bs1} ${p => p.manualTheme.colors.transparent};
+    border-left-width: ${p => (p.hasErrors ? '2px' : p.manualTheme.border.borderStyle.bs1)};
+    border-left-color: ${p => (p.hasErrors ? p.manualTheme.colors.danger.cs3 : p.manualTheme.colors.transparent)};
     type: ${p => p.type};
-    font-weight: ${p => p.theme.typography.fontWeights.fw5};
-    font-family: ${p => p.theme.typography.fontFamily.default};
-    font-size: ${p => p.theme.typography.fontSizes.fs3};
+    font-weight: ${p => p.manualTheme.typography.fontWeights.fw5};
+    font-family: ${p => p.manualTheme.typography.fontFamily.default};
+    font-size: ${p => p.manualTheme.typography.fontSizes.fs3};
     box-sizing: border-box;
-    transition: box-shadow ${p => p.theme.transitions.medium}, border-left-color ${p => p.theme.transitions.medium};
+    transition: box-shadow ${p => p.manualTheme.transitions.medium},
+        border-left-color ${p => p.manualTheme.transitions.medium};
     &:hover {
-        box-shadow: ${p => p.theme.defaultShowBoxShadow && p.theme.boxShadow.bs1};
-        transition: box-shadow ${p => p.theme.transitions.medium};
+        box-shadow: ${p => p.manualTheme.defaultShowBoxShadow && p.manualTheme.boxShadow.bs1};
+        transition: box-shadow ${p => p.manualTheme.transitions.medium};
     }
     &:focus {
-        box-shadow: ${p => p.theme.defaultShowBoxShadow && p.theme.boxShadow.bs2};
-        transition: all ${p => p.theme.transitions.medium};
+        box-shadow: ${p => p.manualTheme.defaultShowBoxShadow && p.manualTheme.boxShadow.bs2};
+        transition: all ${p => p.manualTheme.transitions.medium};
     }
 `;

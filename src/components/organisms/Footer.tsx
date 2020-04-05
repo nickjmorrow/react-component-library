@@ -11,18 +11,18 @@ export const Footer: React.FC<{
     const theme = React.useContext(ThemeContext);
 
     return (
-        <StyledFooter style={style} className={className} theme={theme}>
+        <StyledFooter style={style} className={className} manualTheme={theme}>
             {children}
         </StyledFooter>
     );
 };
 
-const StyledFooter = styled('footer')<{ theme: Theme }>`
-    background-color: ${p => p.theme.colors.neutral.cs2};
+const StyledFooter = styled('footer')<{ manualTheme: Theme }>`
+    background-color: ${p => p.manualTheme.colors.neutral.cs2};
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: ${p => p.theme.spacing.ss4};
+    padding: ${p => p.manualTheme.spacing.ss4};
     width: 100%;
     box-sizing: border-box;
     position: absolute;

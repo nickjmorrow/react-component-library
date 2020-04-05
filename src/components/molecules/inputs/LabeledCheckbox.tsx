@@ -51,7 +51,8 @@ const CheckboxWrapper = styled('div')<{
 }>`
     height: ${width}px;
     width: ${width}px;
-    border: 1px solid ${props => props.color};
+	// border: 1px solid ${props => props.color};
+	border: 1px solid ${p => p.theme.njmTheme.colors.core.cs5};
     border-radius: ${p => p.borderRadius.br1};
     box-shadow: ${p => p.boxShadow.bs1};
     transition: border ${p => p.transitions.medium};
