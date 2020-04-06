@@ -9,6 +9,10 @@ The live demo can be found [here](https://nickjmorrow.github.io/react-component-
 -   The component library uses [Rollup](https://github.com/rollup/rollup) for the bundler / build pipeline.
 -   The component library and the demo application are built in TypeScript.
 
+## Purpose
+
+I wanted a set of reusable components and styles to use across my personal projects. This component library prioritizes consistent design guidelines while allowing for easy departures and overriding.
+
 ## Install
 
 ```bash
@@ -19,7 +23,6 @@ npm install --save @nickjmorrow/react-component-library
 
 ```tsx
 import * as React from 'react';
-
 import { Typography } from '@nickjmorrow/react-component-library';
 
 const SomeOtherComponent: React.FC = () => {

@@ -13,12 +13,12 @@ import { DescriptionContainer } from '../../../components/shared';
 type TypographyProp = GetComponentProps<typeof Typography>;
 
 export const TypographyDemo: React.FC = () => {
-    const sizeVariants: Array<TypographyProp['sizeVariant']> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    const colorVariants: Array<TypographyProp['colorVariant']> = ['core', 'accent', 'success', 'warning', 'danger'];
+    const sizeVariants: TypographyProp['sizeVariant'][] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    const colorVariants: TypographyProp['colorVariant'][] = ['core', 'accent', 'success', 'warning', 'danger'];
 
-    const darkColorVariants: Array<TypographyProp['colorVariant']> = ['primaryDark', 'secondaryDark'];
+    const darkColorVariants: TypographyProp['colorVariant'][] = ['primaryDark', 'secondaryDark'];
 
-    const lightColorVariants: Array<TypographyProp['colorVariant']> = ['primaryLight', 'secondaryLight'];
+    const lightColorVariants: TypographyProp['colorVariant'][] = ['primaryLight', 'secondaryLight'];
     const {
         colors,
         spacing,
@@ -42,15 +42,19 @@ export const TypographyDemo: React.FC = () => {
                 style={{
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    width: '400px',
                 }}
             >
-                {sizeVariants.map((sv, i) => (
-                    <Wrapper key={i}>
-                        <Typography>{sv}</Typography>
-                        <Typography sizeVariant={sv as TypographyProp['sizeVariant']}>Testing</Typography>
-                    </Wrapper>
-                ))}
+                <table style={{ borderSpacing: '26px' }}>
+                    <tbody>
+                        {sizeVariants.map((bs, i) => (
+                            <tr key={i}>
+                                <td>
+                                    <Typography sizeVariant={bs}>{`Size Variant ${bs}`}</Typography>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </DisplayPaper>
             <Typography styleVariant={'h2'}>Color Variants</Typography>
             <DisplayPaper
@@ -88,10 +92,10 @@ export const TypographyDemo: React.FC = () => {
             </div>
             <DescriptionContainer>
                 <Typography>
-                    The rendered font weight depends on the weights of the font that have been imported. Please see{' '}
+                    The rendered font weight depends on the weights of the font that have been imported. Please see
                     <Link route={'https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Fallback_weights'}>
                         fallback weights
-                    </Link>{' '}
+                    </Link>
                     for more information.
                 </Typography>
             </DescriptionContainer>
@@ -150,13 +154,13 @@ const renderColorVariant = (colorVariant: string & TypographyProp['colorVariant'
     );
 };
 
-const Wrapper = styled.div`
-    margin: 16px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-`;
+// const Wrapper = styled.div`
+//     margin: 16px 0;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     width: 100%;
+// `;
 
 const CustomTypography = styled(Typography)`
     color: red;

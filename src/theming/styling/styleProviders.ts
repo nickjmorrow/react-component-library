@@ -29,7 +29,7 @@ export const generateColorShades = ({
 
 export const getBorderRadius = (bri: ThemeInput['border']['borderRadius']) => ({
     br1: bri.br1 + 'px',
-    br2: bri.br1 + 'px',
+    br2: bri.br2 + 'px',
 });
 
 export const getIconSize = (disi: ThemeInput['icons']['iconSizes']) => ({
