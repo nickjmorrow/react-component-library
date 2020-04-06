@@ -6,12 +6,13 @@ The live demo can be found [here](https://nickjmorrow.github.io/react-component-
 
 ## At a Glance
 
--   The component library uses [Rollup](https://github.com/rollup/rollup) for the bundler / build pipeline.
--   The component library and the demo application are built in TypeScript.
+-   The component library uses [Rollup](https://github.com/rollup/rollup) for the [build pipeline](https://github.com/ezolenko/rollup-plugin-typescript2).
+-   The component library and the demo application are built in [TypeScript](https://www.typescriptlang.org/).
+-   [Styled components](https://styled-components.com/) are used for styling and theming.
 
 ## Purpose
 
-I wanted a set of reusable components and styles to use across my personal projects. This component library prioritizes consistent design guidelines while allowing for easy departures and overriding.
+I wanted a set of reusable components and styles to use across my personal projects. This component library prioritizes **consistent design** guidelines while allowing for **easy departures**.
 
 ## Install
 
