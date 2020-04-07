@@ -83,6 +83,7 @@ export const TypographyDemo: React.FC = () => {
                     alignItems: 'flex-start',
                     height: '100px',
                     backgroundColor: colors.neutral.cs6,
+                    padding: '16px',
                 }}
             >
                 {lightColorVariants.map(renderColorVariant)}
@@ -92,10 +93,13 @@ export const TypographyDemo: React.FC = () => {
             </div>
             <DescriptionContainer>
                 <Typography>
-                    The rendered font weight depends on the weights of the font that have been imported. Please see
-                    <Link route={'https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Fallback_weights'}>
+                    The rendered font weight depends on the weights of the font that have been imported. Please see{' '}
+                    <Link
+                        isInline={true}
+                        route={'https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Fallback_weights'}
+                    >
                         fallback weights
-                    </Link>
+                    </Link>{' '}
                     for more information.
                 </Typography>
             </DescriptionContainer>
@@ -153,14 +157,6 @@ const renderColorVariant = (colorVariant: string & TypographyProp['colorVariant'
         </Typography>
     );
 };
-
-// const Wrapper = styled.div`
-//     margin: 16px 0;
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     width: 100%;
-// `;
 
 const CustomTypography = styled(Typography)`
     color: red;
