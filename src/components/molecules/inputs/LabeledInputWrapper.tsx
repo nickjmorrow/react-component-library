@@ -21,11 +21,12 @@ const StyledLabeledInputWrapper = styled('div')<{
     spacing: StyleConstant<'spacing'>;
 }>`
     cursor: pointer;
-    display: grid;
-    grid-auto-flow: column;
-    grid-column-gap: ${p => p.spacing.ss4};
+    display: flex;
     justify-content: flex-start;
+    align-items: center;
     margin: auto 0;
 `;
 
-export const InputWrapper = styled.div``;
+export const InputWrapper = styled.div`
+    margin-left: ${p => p.theme.njmTheme.spacing.ss4};
+`;

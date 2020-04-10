@@ -21,6 +21,9 @@ export const LabeledInputDemo: React.SFC = () => {
     const [selectedOptions, setSelectedOptions] = React.useState<IOption[]>([]);
     const [selectedOption, setSelectedOption] = React.useState<IOption>(options[0]);
     const { spacing } = React.useContext(ThemeContext);
+    const handleClick = (newSelectedOptions: IOption[]) => {
+        setSelectedOptions(newSelectedOptions);
+    };
     return (
         <>
             <div>
@@ -29,11 +32,7 @@ export const LabeledInputDemo: React.SFC = () => {
             <Typography styleVariant={'h2'}>Labeled Checkboxes</Typography>
             <Wrapper spacing={spacing}>
                 <DisplayPaper>
-                    <LabeledCheckboxInput
-                        options={options}
-                        selectedOptions={selectedOptions}
-                        onClick={(newSelectedOptions: IOption[]) => setSelectedOptions(newSelectedOptions)}
-                    />
+                    <LabeledCheckboxInput options={options} selectedOptions={selectedOptions} onClick={handleClick} />
                 </DisplayPaper>
             </Wrapper>
             <Wrapper spacing={spacing}>

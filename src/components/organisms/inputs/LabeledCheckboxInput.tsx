@@ -4,17 +4,21 @@ import { IOption } from '../../../types';
 import { LabeledCheckbox } from '../../molecules';
 import { LabeledInputsWrapper } from './LabeledInputsWrapper';
 
+const handleClickInternal = (
+    selectedOption: IOption,
+    handleClick: (selectedOptions: IOption[]) => void,
+    selectedOptions: IOption[],
+) => {
+    const newSelectedOptions = getNewSelectedOptions(selectedOption, selectedOptions);
+    handleClick(newSelectedOptions);
+};
+
 export const LabeledCheckboxInput: React.SFC<{
     options: IOption[];
     selectedOptions: IOption[];
     text?: string;
     onClick(newSelectedOptions: IOption[]): void;
 }> = ({ onClick: handleClick, selectedOptions, options, text = '' }) => {
-    const handleClickInternal = (selectedOption: IOption) => {
-        handleClick(getNewSelectedOptions(selectedOption, selectedOptions));
-    };
-
-    // TODO: this isn't working as I expect it to :)
     return (
         <LabeledInputsWrapper
             text={text}
@@ -24,7 +28,9 @@ export const LabeledCheckboxInput: React.SFC<{
                         option={option}
                         key={option.value}
                         isToggled={selectedOptions.some(so => so.value === option.value)}
-                        onClick={handleClickInternal}
+                        onClick={(selectedOption: IOption) =>
+                            handleClickInternal(selectedOption, handleClick, selectedOptions)
+                        }
                     />
                 ))
             }

@@ -46,8 +46,6 @@ export const Multiselect: React.SFC<{
     const handleClick = (e: React.MouseEvent | Event) => {
         // @ts-ignore
         if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-            console.log('detected click outside, closing');
-
             setIsMenuVisible(false);
             return;
         }
