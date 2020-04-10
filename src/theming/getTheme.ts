@@ -50,5 +50,6 @@ export const getTheme = (themeInputs: ThemeInput) => ({
         linkedInUrl: themeInputs.appSettings.linkedInUrl,
         portfolioUrl: themeInputs.appSettings.portfolioUrl,
         appName: themeInputs.appSettings.appName,
+        appUrl: themeInputs.appSettings.appUrl,
     },
 });

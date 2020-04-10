@@ -139,5 +139,6 @@ export const defaultThemeInputs = {
         linkedInUrl: 'https://www.linkedin.com/in/nickjmorrow/',
         portfolioUrl: 'https://nickjmorrow.com',
         appName: 'DEFAULT_APP_NAME',
+        appUrl: 'DEFAULT_APP_URL',
     },
 };

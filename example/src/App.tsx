@@ -13,11 +13,12 @@ import styled, { ThemeProvider } from 'styled-components';
 import './App.css';
 import { LibraryAppBar } from './components/LibraryAppBar';
 import { Main } from './Main';
+import { getAppUrl } from 'src/services/getAppUrl';
 
 const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
     colors: {
         core: {
-            hue: 220,
+            hue: 180,
             middleLightness: 50,
             saturation: 60,
         },
@@ -45,6 +46,7 @@ const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
     appSettings: {
         githubUrl: 'https://github.com/nickjmorrow/react-component-library',
         appName: 'Component Library',
+        appUrl: getAppUrl(),
     },
 };
 

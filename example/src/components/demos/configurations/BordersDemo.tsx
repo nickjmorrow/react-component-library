@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Typography, useThemeContext } from '@nickjmorrow/react-component-library';
-import { Block } from '../../../components/shared/Block';
-import { DescriptionContainer } from '../../../components/shared/DescriptionContainer';
-import { DisplayPaper } from '../../../components/DisplayPaper';
+import { Block } from '../../shared/Block';
+import { DescriptionContainer } from '../../shared/DescriptionContainer';
+import { DisplayPaper } from '../../DisplayPaper';
 
-export const Borders: React.FC = () => {
+export const BordersDemo: React.FC = () => {
     const {
         border: { borderRadius },
     } = useThemeContext();
@@ -28,7 +28,7 @@ export const Borders: React.FC = () => {
                         <Typography>{o.description}</Typography>
                     </DescriptionContainer>
                     <DisplayPaper>
-                        <table style={{ borderSpacing: '18px' }}>
+                        <table style={{ borderSpacing: '0 18px' }}>
                             <tbody>
                                 {Object.keys(o.styleObject).map((bs, i) => (
                                     <tr key={i}>

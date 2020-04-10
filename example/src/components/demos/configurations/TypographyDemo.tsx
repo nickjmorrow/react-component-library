@@ -3,9 +3,9 @@ import { DisplayPaper } from '../../DisplayPaper';
 import {
     Typography,
     GetComponentProps,
-    ThemeContext,
     Link,
     BulletPointTypography,
+    useThemeContext,
 } from '@nickjmorrow/react-component-library';
 import styled from 'styled-components';
 import { DescriptionContainer } from '../../../components/shared';
@@ -14,7 +14,14 @@ type TypographyProp = GetComponentProps<typeof Typography>;
 
 export const TypographyDemo: React.FC = () => {
     const sizeVariants: TypographyProp['sizeVariant'][] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    const colorVariants: TypographyProp['colorVariant'][] = ['core', 'accent', 'success', 'warning', 'danger'];
+    const colorVariants: TypographyProp['colorVariant'][] = [
+        'core',
+        'accent',
+        'success',
+        'warning',
+        'danger',
+        'neutral',
+    ];
 
     const darkColorVariants: TypographyProp['colorVariant'][] = ['primaryDark', 'secondaryDark'];
 
@@ -23,7 +30,7 @@ export const TypographyDemo: React.FC = () => {
         colors,
         spacing,
         typography: { fontWeights },
-    } = React.useContext(ThemeContext);
+    } = useThemeContext();
 
     return (
         <>
@@ -38,18 +45,24 @@ export const TypographyDemo: React.FC = () => {
                 </Typography>
             </DescriptionContainer>
             <Typography styleVariant={'h2'}>Size Variants</Typography>
+            <Typography>
+                Use consistent sizing throughout your application to make it easier for users to recognize a hierarchy.
+            </Typography>
             <DisplayPaper
                 style={{
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                 }}
             >
-                <table style={{ borderSpacing: '26px' }}>
+                <table style={{ borderSpacing: '0 16px' }}>
                     <tbody>
                         {sizeVariants.map((bs, i) => (
                             <tr key={i}>
                                 <td>
-                                    <Typography sizeVariant={bs}>{`Size Variant ${bs}`}</Typography>
+                                    <Typography>{`Size Variant ${bs}`}</Typography>
+                                </td>
+                                <td>
+                                    <Typography sizeVariant={bs}>{`Lorem Ipsum`}</Typography>
                                 </td>
                             </tr>
                         ))}
@@ -57,6 +70,13 @@ export const TypographyDemo: React.FC = () => {
                 </table>
             </DisplayPaper>
             <Typography styleVariant={'h2'}>Color Variants</Typography>
+            <DescriptionContainer>
+                <Typography>
+                    Color variants have associated meaning and are not named after actual colors. Assign a color variant
+                    to atomic components like your typography or buttons to maintain consistency while centralizing the
+                    detail of what color each variant actually maps to.
+                </Typography>
+            </DescriptionContainer>
             <DisplayPaper
                 style={{
                     flexDirection: 'column',
@@ -67,6 +87,12 @@ export const TypographyDemo: React.FC = () => {
                 {colorVariants.map(renderColorVariant)}
             </DisplayPaper>
             <Typography styleVariant={'h2'}>Dark Color Variants</Typography>
+            <DescriptionContainer>
+                <Typography>
+                    These are typically used for dark text on a light background. The secondary dark variant can be
+                    useful for less important text to help illustrate a hierarchy.
+                </Typography>
+            </DescriptionContainer>
             <DisplayPaper
                 style={{
                     flexDirection: 'column',
@@ -77,6 +103,12 @@ export const TypographyDemo: React.FC = () => {
                 {darkColorVariants.map(renderColorVariant)}
             </DisplayPaper>
             <Typography styleVariant={'h2'}>Light Color Variants</Typography>
+            <DescriptionContainer>
+                <Typography>
+                    Like the dark color variants, these are typically used for light text or iconography against a
+                    darker background.
+                </Typography>
+            </DescriptionContainer>
             <DisplayPaper
                 style={{
                     flexDirection: 'column',
@@ -103,7 +135,7 @@ export const TypographyDemo: React.FC = () => {
                     for more information.
                 </Typography>
             </DescriptionContainer>
-            <DisplayPaper style={{ display: 'grid', gridAutoFlow: 'row' }}>
+            <DisplayPaper style={{ display: 'grid', gridAutoFlow: 'row', gridRowGap: spacing.ss1 }}>
                 {Object.keys(fontWeights).map(key => {
                     const weightVariant = parseInt(key.replace(/^\D+/g, ''), 10) as GetComponentProps<
                         typeof Typography
@@ -128,18 +160,33 @@ export const TypographyDemo: React.FC = () => {
                 })}
             </DisplayPaper>
             <Typography styleVariant={'h2'}>Custom Typography</Typography>
+            <DescriptionContainer>
+                <Typography>
+                    Easily apply different, custom styles to typography as needed. Embrace the need for departures.
+                </Typography>
+            </DescriptionContainer>
             <DisplayPaper>
                 <CustomTypography>Hello, world!</CustomTypography>
             </DisplayPaper>
             <Typography style={{ display: 'block' }} styleVariant={'h2'}>
                 Bullet Point Typography
             </Typography>
+            <DescriptionContainer>
+                <Typography>
+                    Construct new components with typography as you discover common use cases, like using bullet points.
+                </Typography>
+            </DescriptionContainer>
             <DisplayPaper>
                 <BulletPointTypography>Hello, world!</BulletPointTypography>
             </DisplayPaper>
             <Typography style={{ display: 'block' }} styleVariant={'h2'}>
                 Links
             </Typography>
+            <DescriptionContainer>
+                <Typography>
+                    Style your links with consistency so users immediately recognize their functionality.
+                </Typography>
+            </DescriptionContainer>
             <DisplayPaper>
                 <Typography>
                     Hello, I am a <Typography link={''}>link to someplace.</Typography>

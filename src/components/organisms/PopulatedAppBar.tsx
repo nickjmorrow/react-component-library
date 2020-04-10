@@ -38,7 +38,7 @@ export const PopulatedAppBar: React.SFC<{
 }) => {
     const {
         spacing,
-        appSettings: { githubUrl, appName: defaultAppName, linkedInUrl },
+        appSettings: { githubUrl, appName: defaultAppName, linkedInUrl, appUrl },
     } = useThemeContext();
     const [isMenuVisible, setIsMenuVisible] = React.useState(false);
     const finalAppName = appName === undefined ? defaultAppName : appName;
@@ -58,7 +58,7 @@ export const PopulatedAppBar: React.SFC<{
                     className={className}
                 >
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <InvisibleLink href={'/'}>
+                        <InvisibleLink href={appUrl}>
                             <Typography
                                 sizeVariant={7}
                                 weightVariant={5}

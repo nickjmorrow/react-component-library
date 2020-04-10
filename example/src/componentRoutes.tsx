@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Route } from 'react-router';
 import {
     AppBarDemo,
-    Borders,
+    BordersDemo,
     BoxShadowDemo,
     Buttons,
-    Colors,
+    ColorsDemo,
     ExpansionPanelDemo,
     FileInputDemo,
     IconsDemo,
@@ -94,12 +94,12 @@ const themeConfiguration = {
     label: 'Style System',
     navLinks: [
         {
-            component: Colors,
+            component: ColorsDemo,
             label: 'Colors',
             route: '/colors',
         },
         {
-            component: Borders,
+            component: BordersDemo,
             label: 'Borders',
             route: '/borders',
         },
