@@ -30,6 +30,8 @@ export const colorConstants = {
     background: 'hsl(0, 0%, 100%)',
     transparent: 'transparent',
     shadow: 'hsla(0, 0%, 0%, 0.2)',
+    // Dark surfaces need a heavier shadow for elevation to read at all.
+    darkShadow: 'hsla(0, 0%, 0%, 0.5)',
     inherit: 'inherit',
 };
 

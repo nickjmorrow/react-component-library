@@ -107,7 +107,7 @@ export const TypographyDemo: React.FC = () => {
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     height: '100px',
-                    backgroundColor: colors.neutral.cs6,
+                    backgroundColor: colors.fixedNeutral.cs6,
                     padding: '16px',
                 }}
             >

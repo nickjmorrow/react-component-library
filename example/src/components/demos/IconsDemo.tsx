@@ -148,7 +148,7 @@ export const IconsDemo: React.FC = () => {
                 </IconSizes>
             </DisplayPaper>
             <Typography styleVariant={'h2'}>Light Colors</Typography>
-            <DisplayPaper style={{ backgroundColor: colors.neutral.cs7 }}>
+            <DisplayPaper style={{ backgroundColor: colors.fixedNeutral.cs7 }}>
                 <IconSizes spacing={spacing}>
                     <GithubIcon sizeVariant={4} colorVariant={'secondaryLight'} />
                     <GithubIcon sizeVariant={4} colorVariant={'primaryLight'} />

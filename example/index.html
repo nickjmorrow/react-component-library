@@ -1,20 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="theme-color" content="#000000" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css?family=Fira+Mono&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps" rel="stylesheet" />
         <title>Component Library | Nicholas Morrow</title>
+        <script>
+            // Apply the saved (or system) color theme before the app loads, so dark mode doesn't flash white.
+            // Keep the storage key in sync with useColorModePreference in App.tsx.
+            try {
+                var saved = localStorage.getItem('react-component-library-color-mode');
+                document.documentElement.style.colorScheme =
+                    saved === 'light' || saved === 'dark' ? saved : 'light dark';
+            } catch (e) {}
+        </script>
     </head>
     <body>
-        <noscript>
-            You need to enable JavaScript to run this app.
-        </noscript>
+        <noscript> You need to enable JavaScript to run this app. </noscript>
         <div id="root"></div>
         <script type="module" src="/src/index.tsx"></script>
     </body>

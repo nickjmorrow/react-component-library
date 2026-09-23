@@ -42,7 +42,7 @@ const CodeBlock: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
     return (
         <DisplayPaper
             style={{
-                backgroundColor: colors.neutral.cs7,
+                backgroundColor: colors.fixedNeutral.cs7,
                 justifyContent: 'flex-start',
                 overflowX: 'auto',
                 width: '100%',

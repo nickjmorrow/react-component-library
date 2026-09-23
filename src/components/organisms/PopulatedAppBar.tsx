@@ -41,6 +41,9 @@ export const PopulatedAppBar: React.FC<{
     } = useThemeContext();
     const [isMenuVisible, setIsMenuVisible] = React.useState(false);
     const matches = useMediaQuery(`(max-width: ${mediaWidth.mobileLandscape})`);
+    // On small screens with the full-screen menu, extra header controls move into that menu instead of
+    // crowding the centered title.
+    const showsMobileMenu = matches && navInfos.length > 0 && menuLength === 'long';
     const finalAppName = appName === undefined ? defaultAppName : appName;
 
     const iconStyle = {
@@ -69,7 +72,7 @@ export const PopulatedAppBar: React.FC<{
                 {leftComponents}
             </div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                {rightComponents}
+                {!showsMobileMenu && rightComponents}
                 {matches && navInfos.length > 0 ? (
                     menuLength === 'long' ? (
                         <MenuIcon
@@ -111,7 +114,11 @@ export const PopulatedAppBar: React.FC<{
                 unmounted={{ transform: 'translateY(-300px)' }}
                 styleKeys={['transform']}
             >
-                <MobileMenu navInfos={navInfos!} onClose={() => setIsMenuVisible(false)} />
+                <MobileMenu
+                    navInfos={navInfos!}
+                    onClose={() => setIsMenuVisible(false)}
+                    footer={showsMobileMenu ? rightComponents : undefined}
+                />
             </Fade>
         </AppBar>
     );

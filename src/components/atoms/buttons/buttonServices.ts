@@ -51,7 +51,8 @@ export const getColor = (
 ) => {
     switch (styleVariant) {
         case 1:
-            return colors.background;
+            // Text on a filled button stays white in both color modes; the fill doesn't flip.
+            return colors.fixedNeutral.cs1;
         case 2:
         case 3:
             if (isDisabled) {

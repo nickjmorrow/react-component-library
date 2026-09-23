@@ -6,3 +6,5 @@ export * from './themeUtilities';
 export * from './useThemeContext';
 export * from './styling';
 export * from './useMediaQuery';
+export * from './useColorModePreference';
+export type { ColorMode } from './styling/styleProviders';

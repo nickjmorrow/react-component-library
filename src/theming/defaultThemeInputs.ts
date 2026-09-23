@@ -1,4 +1,5 @@
 import { fontFamily, defaultShowBoxShadow, lineHeight, horizontalWidth } from './styling/styleConstants';
+import type { ColorMode } from './styling/styleProviders';
 
 const defaultCorePaletteInputs = {
     hue: 220, // hsl(220, 100%, 50%)
@@ -109,6 +110,7 @@ const defaultTransitionInputs = {
 };
 
 export const defaultThemeInputs = {
+    mode: 'light' as ColorMode,
     colors: {
         core: defaultCorePaletteInputs,
         accent: defaultAccentPaletteInputs,

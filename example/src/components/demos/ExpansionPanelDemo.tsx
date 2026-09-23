@@ -11,7 +11,9 @@ export const ExpansionPanelDemo: React.FC = () => {
             <DescriptionContainer>
                 <Typography>Hide content by default and show it when a user clicks on visible content.</Typography>
             </DescriptionContainer>
-            <DisplayPaper style={{ backgroundColor: 'lightgray', borderRadius: theme.border.borderRadius.br1 }}>
+            <DisplayPaper
+                style={{ backgroundColor: theme.colors.neutral.cs3, borderRadius: theme.border.borderRadius.br1 }}
+            >
                 <ExpansionPanel visibleContent={'I am visible!'} hiddenContent={'I was not visible!'} />
             </DisplayPaper>
         </>

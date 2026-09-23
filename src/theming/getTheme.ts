@@ -13,43 +13,52 @@ import {
 import { boxShadowOffsets, colorConstants } from '~/theming/styling';
 import { defaultIconColorVariant, defaultIconSizeVariant } from '~/theming/styling/styleVariants';
 
-export const getTheme = (themeInputs: ThemeInput) => ({
-    colors: {
-        background: colorConstants.background,
-        transparent: colorConstants.transparent,
-        inherit: colorConstants.inherit,
-        core: generateColorShades(themeInputs.colors.core),
-        accent: generateColorShades(themeInputs.colors.accent),
-        neutral: generateColorShades(themeInputs.colors.neutral),
-        success: generateColorShades(themeInputs.colors.success),
-        warning: generateColorShades(themeInputs.colors.warning),
-        danger: generateColorShades(themeInputs.colors.danger),
-    },
-    transitions: getTransitions(themeInputs.transitions),
-    boxShadow: getBoxShadow(boxShadowOffsets, colorConstants.shadow),
-    defaultShowBoxShadow: themeInputs.defaultShowBoxShadow,
-    border: {
-        borderRadius: getBorderRadius(themeInputs.border.borderRadius),
-        borderStyle: getBorderStyle(themeInputs.border.borderStyle),
-    },
-    typography: {
-        fontSizes: getFontSize(themeInputs.typography.fontSizes),
-        fontFamily: themeInputs.typography.fontFamily,
-        fontWeights: themeInputs.typography.fontWeights,
-        lineHeight: themeInputs.typography.lineHeight,
-    },
-    spacing: getSpacingSystem(themeInputs.spacing),
-    horizontalWidth: themeInputs.horizontalWidth,
-    icons: {
-        iconSizes: getIconSize(themeInputs.icons.iconSizes),
-        defaultIconSizeVariant,
-        defaultIconColorVariant,
-    },
-    appSettings: {
-        githubUrl: themeInputs.appSettings.githubUrl,
-        linkedInUrl: themeInputs.appSettings.linkedInUrl,
-        portfolioUrl: themeInputs.appSettings.portfolioUrl,
-        appName: themeInputs.appSettings.appName,
-        appUrl: themeInputs.appSettings.appUrl,
-    },
-});
+export const getTheme = (themeInputs: ThemeInput) => {
+    const { mode } = themeInputs;
+    const neutral = generateColorShades(themeInputs.colors.neutral, mode);
+    return {
+        mode,
+        colors: {
+            // In dark mode the background is the neutral scale's darkest shade, as it is its lightest (white) in light mode.
+            background: mode === 'dark' ? neutral.cs1 : colorConstants.background,
+            transparent: colorConstants.transparent,
+            inherit: colorConstants.inherit,
+            core: generateColorShades(themeInputs.colors.core, mode),
+            accent: generateColorShades(themeInputs.colors.accent, mode),
+            neutral,
+            // The light-mode neutral scale in both modes. Light text variants (primaryLight, secondaryLight)
+            // sit on colored or dark fills, which don't flip in dark mode, so their text mustn't either.
+            fixedNeutral: mode === 'dark' ? generateColorShades(themeInputs.colors.neutral) : neutral,
+            success: generateColorShades(themeInputs.colors.success, mode),
+            warning: generateColorShades(themeInputs.colors.warning, mode),
+            danger: generateColorShades(themeInputs.colors.danger, mode),
+        },
+        transitions: getTransitions(themeInputs.transitions),
+        boxShadow: getBoxShadow(boxShadowOffsets, mode === 'dark' ? colorConstants.darkShadow : colorConstants.shadow),
+        defaultShowBoxShadow: themeInputs.defaultShowBoxShadow,
+        border: {
+            borderRadius: getBorderRadius(themeInputs.border.borderRadius),
+            borderStyle: getBorderStyle(themeInputs.border.borderStyle),
+        },
+        typography: {
+            fontSizes: getFontSize(themeInputs.typography.fontSizes),
+            fontFamily: themeInputs.typography.fontFamily,
+            fontWeights: themeInputs.typography.fontWeights,
+            lineHeight: themeInputs.typography.lineHeight,
+        },
+        spacing: getSpacingSystem(themeInputs.spacing),
+        horizontalWidth: themeInputs.horizontalWidth,
+        icons: {
+            iconSizes: getIconSize(themeInputs.icons.iconSizes),
+            defaultIconSizeVariant,
+            defaultIconColorVariant,
+        },
+        appSettings: {
+            githubUrl: themeInputs.appSettings.githubUrl,
+            linkedInUrl: themeInputs.appSettings.linkedInUrl,
+            portfolioUrl: themeInputs.appSettings.portfolioUrl,
+            appName: themeInputs.appSettings.appName,
+            appUrl: themeInputs.appSettings.appUrl,
+        },
+    };
+};

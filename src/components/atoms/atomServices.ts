@@ -9,9 +9,9 @@ export const getColorHover = (colors: StyleConstant<'colors'>, colorVariant: Col
         case 'secondaryDark':
             return colors.neutral.cs7;
         case 'primaryLight':
-            return colors.neutral.cs1;
+            return colors.fixedNeutral.cs1;
         case 'secondaryLight':
-            return colors.neutral.cs2;
+            return colors.fixedNeutral.cs2;
         case 'core':
             return colors.core.cs4;
         case 'accent':
@@ -38,9 +38,9 @@ export const getColorActive = (colors: StyleConstant<'colors'>, colorVariant: Co
         case 'secondaryDark':
             return colors.neutral.cs5;
         case 'primaryLight':
-            return colors.neutral.cs3;
+            return colors.fixedNeutral.cs3;
         case 'secondaryLight':
-            return colors.neutral.cs4;
+            return colors.fixedNeutral.cs4;
         case 'core':
             return colors.core.cs7;
         case 'accent':
@@ -68,9 +68,9 @@ export const getColor = (colors: StyleConstant<'colors'>, color: ColorVariant) =
         case 'secondaryDark':
             return colors.neutral.cs5;
         case 'primaryLight':
-            return colors.neutral.cs2;
+            return colors.fixedNeutral.cs2;
         case 'secondaryLight':
-            return colors.neutral.cs3;
+            return colors.fixedNeutral.cs3;
         case 'core':
             return colors.core.cs5;
         case 'accent':

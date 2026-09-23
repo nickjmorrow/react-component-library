@@ -7,10 +7,12 @@ import {
     updateThemeInputs,
     PopulatedFooter,
     shouldForwardProp,
+    Theme,
+    useColorModePreference,
 } from '@nickjmorrow/react-component-library';
 import * as React from 'react';
 import { BrowserRouter } from 'react-router';
-import styled, { StyleSheetManager, ThemeProvider } from 'styled-components';
+import styled, { createGlobalStyle, StyleSheetManager, ThemeProvider } from 'styled-components';
 import './App.css';
 import { LibraryAppBar } from './components/LibraryAppBar';
 import { Main } from './Main';
@@ -57,7 +59,14 @@ const App: React.FC = () => {
     const handleUpdateThemeInputs = (newThemeInputs: ArgumentType<typeof updateThemeInputs>[0]): void =>
         setThemeInputs(updateThemeInputs(newThemeInputs));
 
-    const theme = getThemeFromNewInputs(themeInputs);
+    const { preference, mode, setPreference } = useColorModePreference('react-component-library-color-mode');
+    const theme = getThemeFromNewInputs({ ...themeInputs, mode });
+
+    // Also set by the inline script in index.html before first paint; keep them in the same place.
+    // color-scheme switches native scrollbars and form controls to match.
+    React.useLayoutEffect(() => {
+        document.documentElement.style.colorScheme = mode;
+    }, [mode]);
 
     return (
         <BrowserRouter basename={import.meta.env.BASE_URL}>
@@ -70,8 +79,9 @@ const App: React.FC = () => {
                                 updateThemeInputs: handleUpdateThemeInputs,
                             }}
                         >
+                            <GlobalStyle $theme={theme} />
                             <Wrapper>
-                                <LibraryAppBar />
+                                <LibraryAppBar colorModePreference={preference} onColorModeChange={setPreference} />
                                 <Main />
                                 <PopulatedFooter style={{ marginTop: '40px' }} />
                             </Wrapper>
@@ -84,6 +94,13 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+const GlobalStyle = createGlobalStyle<{ $theme: Theme }>`
+    body {
+        background-color: ${p => p.$theme.colors.background};
+        color: ${p => p.$theme.colors.neutral.cs8};
+    }
+`;
 
 const Wrapper = styled.div`
     min-height: 100vh;
