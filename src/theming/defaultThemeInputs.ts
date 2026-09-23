@@ -16,13 +16,16 @@ const defaultAccentPaletteInputs = {
     hue: 190, // hsl(190, 70%, 50%)
 };
 
+// A near-neutral gray with a faint cool tint (hue 217, 6-14% saturation), matched to the clinical
+// copilot site's grays. The dark end of this scale becomes the dark-mode background.
 const defaultNeutralPaletteInputs = {
     ...defaultCorePaletteInputs,
-    saturation: 10,
+    saturation: 6,
+    saturationIncrement: 1,
     middleLightness: 60,
     lightnessIncrement: 12,
     lightnessDecrement: 10,
-    hue: 200, // hsl(200, 10%, 50%)
+    hue: 217,
 };
 
 const defaultDangerPaletteInputs = {
