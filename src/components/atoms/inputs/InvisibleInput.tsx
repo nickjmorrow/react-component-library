@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Value } from '../../../types';
+import { shouldForwardProp } from '~/styled';
 
 interface IOwnProps {
     value?: Value;
@@ -10,13 +11,12 @@ interface IOwnProps {
     onChange(value: Value): void;
 }
 
-export const InvisibleInput: React.SFC<IOwnProps> = props => {
+export const InvisibleInput: React.FC<IOwnProps> = props => {
     const { value, size, placeholder, onBlur, onChange: handleChange } = props;
 
     const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter' || event.key === 'Tab') {
-            /* tslint:disable-next-line:no-unused-expression */
-            onBlur && onBlur();
+            onBlur?.();
         }
     };
 
@@ -36,7 +36,7 @@ export const InvisibleInput: React.SFC<IOwnProps> = props => {
     );
 };
 
-const StyledInvisibleInput = styled.input`
+const StyledInvisibleInput = styled.input.withConfig({ shouldForwardProp })`
     outline: none;
     border: none;
     font-size: inherit;

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Paper, useThemeContext } from '@nickjmorrow/react-component-library';
 /* tslint:disable-next-line */
 
-export const DisplayPaper: React.SFC<{
+export const DisplayPaper: React.FC<{
+    children?: React.ReactNode;
     style?: React.CSSProperties;
     onClick?: () => void;
     props?: React.HTMLProps<HTMLDivElement>;
@@ -14,7 +15,7 @@ export const DisplayPaper: React.SFC<{
         marginTop: theme.spacing.ss6,
         width: 'max-content',
         display: 'flex',
-        flexDirection: 'row' as 'row',
+        flexDirection: 'row' as const,
         justifyContent: 'space-around',
         alignItems: 'center',
         maxWidth: '700px',

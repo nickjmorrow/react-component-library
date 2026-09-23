@@ -1,23 +1,22 @@
 import * as React from 'react';
-import { mediaWidth, SideNavRouterContainer } from '@nickjmorrow/react-component-library';
+import { mediaWidth, SideNavRouterContainer, useMediaQuery } from '@nickjmorrow/react-component-library';
+import { Routes } from 'react-router';
 import styled from 'styled-components';
 import { navInfos, routes } from './componentRoutes';
-import Media from 'react-media';
 
-export const Main: React.SFC<{}> = () => {
+export const Main: React.FC = () => {
+    const isWideEnoughForSideNav = useMediaQuery(`(min-width: ${mediaWidth.mobileLandscape})`);
     return (
         <Wrapper>
-            <Media query={`(min-width: ${mediaWidth.mobileLandscape})`}>
-                {(matches: boolean) =>
-                    matches && (
-                        <SideNavRouterContainer
-                            navInfos={navInfos}
-                            styleApi={{ navStyle: { height: 'calc(100vh - 64px - 64px)' } }}
-                        />
-                    )
-                }
-            </Media>
-            <RoutesWrapper>{routes}</RoutesWrapper>
+            {isWideEnoughForSideNav && (
+                <SideNavRouterContainer
+                    navInfos={navInfos}
+                    styleApi={{ navStyle: { height: 'calc(100vh - 64px - 64px)' } }}
+                />
+            )}
+            <RoutesWrapper>
+                <Routes>{routes}</Routes>
+            </RoutesWrapper>
         </Wrapper>
     );
 };

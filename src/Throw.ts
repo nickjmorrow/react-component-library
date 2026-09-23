@@ -21,7 +21,6 @@ class ShouldNeverGetHereException extends Error {
 
 class ArgumentException extends Error {
     name: string;
-    message: string;
 
     constructor(message?: string) {
         super(message);

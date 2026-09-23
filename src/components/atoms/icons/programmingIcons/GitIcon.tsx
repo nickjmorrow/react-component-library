@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from '~/components/atoms/icons';
 import { IconProps } from '~/components/atoms/icons/types';
 
-export const GitIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => (
+export const GitIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => (
     <DefaultIconSvg
         {...svgProps}
         colorVariant={colorVariant}

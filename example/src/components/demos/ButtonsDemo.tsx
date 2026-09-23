@@ -10,7 +10,7 @@ import {
 import styled from 'styled-components';
 import { DisplayPaper } from '../DisplayPaper';
 
-export const ButtonsDemo: React.SFC = () => {
+export const ButtonsDemo: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const toggleIsLoading = () => setIsLoading(!isLoading);
 
@@ -99,7 +99,10 @@ export const ButtonsDemo: React.SFC = () => {
                 }}
             >
                 <MenuButton
-                    navLinks={[{ label: 'Dog', route: '/dog' }, { label: 'Cat', route: '/cat' }]}
+                    navLinks={[
+                        { label: 'Dog', route: '/dog' },
+                        { label: 'Cat', route: '/cat' },
+                    ]}
                     align={'right'}
                 />
             </DisplayPaper>

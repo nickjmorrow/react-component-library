@@ -5,8 +5,9 @@ import { IOption } from '../../../types';
 import { StyleConstant } from '../../../typeUtilities';
 import { Typography } from '../../atoms/typography/Typography';
 import { LabeledInputWrapper } from './LabeledInputWrapper';
+import { shouldForwardProp } from '~/styled';
 
-export const LabeledRadioButton: React.SFC<IProps> = ({ option, isChecked, onClick: handleClick }) => {
+export const LabeledRadioButton: React.FC<IProps> = ({ option, isChecked, onClick: handleClick }) => {
     const handleClickInternal = () => {
         handleClick(option);
     };
@@ -21,7 +22,7 @@ export const LabeledRadioButton: React.SFC<IProps> = ({ option, isChecked, onCli
 };
 
 const length = 14;
-const RadioButton = styled('div')<IRadioButtonProps>`
+const RadioButton = styled('div').withConfig({ shouldForwardProp })<IRadioButtonProps>`
     width: ${length}px;
     height: ${length}px;
     border-radius: ${length}px;

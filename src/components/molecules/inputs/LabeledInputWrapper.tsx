@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { ThemeContext } from '~/theming';
 import * as React from 'react';
 import { StyleConstant } from '../../../typeUtilities';
+import { shouldForwardProp } from '~/styled';
 
-export const LabeledInputWrapper: React.SFC<{
+export const LabeledInputWrapper: React.FC<{
     onClick: () => void;
     renderInput: () => React.ReactNode;
     renderLabel: () => React.ReactNode;
@@ -17,7 +18,7 @@ export const LabeledInputWrapper: React.SFC<{
     );
 };
 
-const StyledLabeledInputWrapper = styled('div')<{
+const StyledLabeledInputWrapper = styled('div').withConfig({ shouldForwardProp })<{
     spacing: StyleConstant<'spacing'>;
 }>`
     cursor: pointer;
@@ -27,6 +28,6 @@ const StyledLabeledInputWrapper = styled('div')<{
     margin: auto 0;
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div.withConfig({ shouldForwardProp })`
     margin-left: ${p => p.theme.njmTheme.spacing.ss4};
 `;

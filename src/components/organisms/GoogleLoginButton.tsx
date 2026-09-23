@@ -1,38 +1,39 @@
 import * as React from 'react';
-import ReactGoogleLogin, { GoogleLoginResponse } from 'react-google-login';
+import { GoogleOAuthProvider, TokenResponse, useGoogleLogin } from '@react-oauth/google';
 import { GoogleButton, Button } from '../atoms';
 import { GetComponentProps } from '~/typeUtilities';
 
-export const GoogleLoginButton: React.SFC<
-    {
-        clientId: string;
-        className: string;
-        buttonProps: GetComponentProps<typeof Button>;
-        handleSuccess: (res: GoogleLoginResponse) => void;
-        handleFailure?: (error: any) => void;
-    } & GetComponentProps<typeof ReactGoogleLogin>
-> = ({
+type GoogleLoginButtonProps = {
+    clientId: string;
+    className?: string;
+    buttonProps?: GetComponentProps<typeof Button>;
+    handleSuccess: (res: TokenResponse) => void;
+    handleFailure?: (error: unknown) => void;
+};
+
+// Uses Google Identity Services; the legacy gapi sign-in behind react-google-login no longer works.
+export const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ clientId, ...props }) => (
+    <GoogleOAuthProvider clientId={clientId}>
+        <GoogleLoginButtonInternal {...props} />
+    </GoogleOAuthProvider>
+);
+
+const GoogleLoginButtonInternal: React.FC<Omit<GoogleLoginButtonProps, 'clientId'>> = ({
     handleSuccess,
     className,
     handleFailure = () => {
         return;
     },
-    clientId,
     buttonProps,
-    ...props
 }) => {
-    const renderButton: ((props?: { onClick: () => void } | undefined) => JSX.Element) | undefined = renderProps => (
-        <GoogleButton className={className} onClick={renderProps!.onClick} {...buttonProps}>
+    const login = useGoogleLogin({
+        onSuccess: handleSuccess,
+        onError: handleFailure,
+        onNonOAuthError: handleFailure,
+    });
+    return (
+        <GoogleButton className={className} {...buttonProps} onClick={() => login()}>
             Sign In With Google
         </GoogleButton>
-    );
-    return (
-        <ReactGoogleLogin
-            clientId={clientId}
-            onSuccess={handleSuccess}
-            render={renderButton}
-            onFailure={handleFailure}
-            {...props}
-        />
     );
 };

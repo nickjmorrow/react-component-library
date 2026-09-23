@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { hasDuplicates } from 'services';
+import { hasDuplicates } from '~/services';
 import { IOption } from '../../../types';
 import { LabeledCheckbox } from '../../molecules';
 import { LabeledInputsWrapper } from './LabeledInputsWrapper';
@@ -13,7 +13,7 @@ const handleClickInternal = (
     handleClick(newSelectedOptions);
 };
 
-export const LabeledCheckboxInput: React.SFC<{
+export const LabeledCheckboxInput: React.FC<{
     options: IOption[];
     selectedOptions: IOption[];
     text?: string;

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { GetComponentProps } from '~/typeUtilities';
-import { googleColors } from '~/theming';
 import { Button, Typography, GoogleIcon } from '../..';
 import { noOp } from '../buttonServices';
+import { shouldForwardProp } from '~/styled';
 
 // TODO: be able to pass in Icon component to button that passes in props to Icon component
 // so that I dont have to manually set the Typography props
@@ -36,7 +36,7 @@ export const GoogleButton: React.FC<GetComponentProps<typeof Button>> = ({ ...pr
     );
 };
 
-const FlexWrapper = styled.div`
+const FlexWrapper = styled.div.withConfig({ shouldForwardProp })`
     display: flex;
     align-items: center;
     justify-content: space-between;

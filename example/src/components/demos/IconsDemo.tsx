@@ -48,7 +48,7 @@ import {
 import styled from 'styled-components';
 import { DisplayPaper } from '../DisplayPaper';
 
-export const IconsDemo: React.SFC = () => {
+export const IconsDemo: React.FC = () => {
     const { spacing, colors } = React.useContext(ThemeContext);
     const noOp = () => {
         return;

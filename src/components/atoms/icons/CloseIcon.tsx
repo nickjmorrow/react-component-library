@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from './DefaultIconSvg';
 import { IconProps } from './types';
 
-export const CloseIcon: React.SFC<IconProps> = ({ colorVariant, sizeVariant, ...svgProps }) => {
+export const CloseIcon: React.FC<IconProps> = ({ colorVariant, sizeVariant, ...svgProps }) => {
     return (
         <DefaultIconSvg
             xmlns="http://www.w3.org/2000/svg"

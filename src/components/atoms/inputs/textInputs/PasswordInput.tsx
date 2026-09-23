@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import { TextInput, EyeIcon } from '~/components/atoms';
 
-export const PasswordInput: React.SFC<
-    { errors?: string[] } & React.PropsWithoutRef<JSX.IntrinsicElements['input']>
+export const PasswordInput: React.FC<
+    { errors?: string[] } & React.PropsWithoutRef<React.JSX.IntrinsicElements['input']>
 > = ({
     placeholder = 'Password',
     errors = [],

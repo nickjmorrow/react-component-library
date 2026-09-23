@@ -5,3 +5,4 @@ export * from './ThemeInputsContext';
 export * from './themeUtilities';
 export * from './useThemeContext';
 export * from './styling';
+export * from './useMediaQuery';

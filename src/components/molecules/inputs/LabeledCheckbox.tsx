@@ -1,11 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { IOption } from 'types';
+import { IOption } from '~/types';
 import { Checkbox, Typography } from '~/components/atoms';
 import { useThemeContext } from '~/theming';
 import { LabeledInputWrapper } from './LabeledInputWrapper';
+import { shouldForwardProp } from '~/styled';
 
-export const LabeledCheckbox: React.SFC<{
+export const LabeledCheckbox: React.FC<{
     isToggled: boolean;
     option: IOption;
     onClick(option: IOption): void;
@@ -25,7 +26,7 @@ export const LabeledCheckbox: React.SFC<{
 
 const WIDTH = 18;
 
-const CheckboxWrapper = styled('div')<{
+const CheckboxWrapper = styled('div').withConfig({ shouldForwardProp })<{
     color: string;
 }>`
     height: ${WIDTH}px;

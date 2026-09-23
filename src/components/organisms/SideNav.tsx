@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Collapse } from 'react-collapse';
+import { Collapse } from '~/components/animations/Collapse';
 import styled from 'styled-components';
 import { useThemeContext } from '~/theming';
 import { Theme } from '../../typeUtilities';
 import { ColorVariant, Link, Typography } from '../atoms';
+import { shouldForwardProp } from '~/styled';
 
-export const SideNav: React.SFC<{
+export const SideNav: React.FC<{
     navInfos: (FolderInfo | INavLink)[];
     currentRoute: string;
     onLinkClick?: () => void;
@@ -108,7 +109,7 @@ const NavLink: React.FC<{
     );
 };
 
-const Folder: React.SFC<{
+const Folder: React.FC<{
     folderInfo: FolderInfo;
     isInitiallyExpanded: boolean;
     getColorVariant: (nl: INavLink) => ColorVariant;
@@ -125,7 +126,7 @@ const Folder: React.SFC<{
                     <Typography weightVariant={5}>{folderInfo.label}</Typography>
                 </div>
             </NavElement>
-            <Collapse isOpened={isExpanded} springConfig={{ stiffness: 220 }}>
+            <Collapse isOpened={isExpanded}>
                 <div>
                     {folderInfo.navLinks.map(nl => (
                         <NavLink
@@ -159,7 +160,7 @@ export interface INavLink {
     route: string;
 }
 
-const NavElement = styled('div')<{
+const NavElement = styled('div').withConfig({ shouldForwardProp })<{
     style?: React.CSSProperties;
     manualTheme: Theme;
 }>`

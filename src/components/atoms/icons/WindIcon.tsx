@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from './DefaultIconSvg';
 import { IconProps } from './types';
 
-export const WindIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant, ...svgProps }) => (
+export const WindIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant, ...svgProps }) => (
     <DefaultIconSvg
         {...svgProps}
         sizeVariant={sizeVariant}

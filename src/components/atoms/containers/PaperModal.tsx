@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Paper } from './Paper';
 import { Modal } from './Modal';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { CloseIcon } from '../icons/CloseIcon';
 import { ThemeContext } from '~/theming';
 import { Theme } from '~/types';
+import { shouldForwardProp } from '~/styled';
 
-export const PaperModal: React.SFC<{
+export const PaperModal: React.FC<{
     isOpen: boolean;
     className?: string;
     styles?: React.CSSProperties;
@@ -27,7 +28,7 @@ export const PaperModal: React.SFC<{
     );
 };
 
-const Wrapper = styled('div')<{ manualTheme: Theme }>`
+const Wrapper = styled('div').withConfig({ shouldForwardProp })<{ manualTheme: Theme }>`
     display: flex;
     align-items: center;
     justify-content: center;

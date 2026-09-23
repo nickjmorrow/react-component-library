@@ -6,10 +6,11 @@ import {
     getMergedThemeInputs,
     updateThemeInputs,
     PopulatedFooter,
+    shouldForwardProp,
 } from '@nickjmorrow/react-component-library';
 import * as React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import styled, { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router';
+import styled, { StyleSheetManager, ThemeProvider } from 'styled-components';
 import './App.css';
 import { LibraryAppBar } from './components/LibraryAppBar';
 import { Main } from './Main';
@@ -50,7 +51,7 @@ const initialThemeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
     },
 };
 
-const App: React.SFC = () => {
+const App: React.FC = () => {
     const [themeInputs, setThemeInputs] = React.useState(initialThemeInputs);
 
     const handleUpdateThemeInputs = (newThemeInputs: ArgumentType<typeof updateThemeInputs>[0]): void =>
@@ -59,23 +60,25 @@ const App: React.SFC = () => {
     const theme = getThemeFromNewInputs(themeInputs);
 
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <ThemeProvider theme={{ njmTheme: theme }}>
-                <ThemeContext.Provider value={theme}>
-                    <ThemeInputsContext.Provider
-                        value={{
-                            themeInputs: getMergedThemeInputs(themeInputs),
-                            updateThemeInputs: handleUpdateThemeInputs,
-                        }}
-                    >
-                        <Wrapper>
-                            <LibraryAppBar />
-                            <Main />
-                            <PopulatedFooter style={{ marginTop: '40px' }} />
-                        </Wrapper>
-                    </ThemeInputsContext.Provider>
-                </ThemeContext.Provider>
-            </ThemeProvider>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
+            <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+                <ThemeProvider theme={{ njmTheme: theme }}>
+                    <ThemeContext.Provider value={theme}>
+                        <ThemeInputsContext.Provider
+                            value={{
+                                themeInputs: getMergedThemeInputs(themeInputs),
+                                updateThemeInputs: handleUpdateThemeInputs,
+                            }}
+                        >
+                            <Wrapper>
+                                <LibraryAppBar />
+                                <Main />
+                                <PopulatedFooter style={{ marginTop: '40px' }} />
+                            </Wrapper>
+                        </ThemeInputsContext.Provider>
+                    </ThemeContext.Provider>
+                </ThemeProvider>
+            </StyleSheetManager>
         </BrowserRouter>
     );
 };

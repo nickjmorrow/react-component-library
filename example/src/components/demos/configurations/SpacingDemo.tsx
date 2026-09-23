@@ -35,7 +35,7 @@ export const SpacingDemo: React.FC = () => {
             >
                 <table style={{ borderSpacing: spacing.ss2 }}>
                     <tbody>
-                        {Object.keys(spacing).map(key => (
+                        {(Object.keys(spacing) as (keyof typeof spacing)[]).map(key => (
                             <tr key={key}>
                                 <td style={{ paddingRight: '16px' }}>
                                     <Typography fontFamilyVariant={'monospace'}>{`theme.spacing.${key}`}</Typography>

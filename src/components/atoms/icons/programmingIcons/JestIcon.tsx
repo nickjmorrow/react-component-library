@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from '~/components/atoms/icons';
 import { IconProps } from '~/components/atoms/icons/types';
 
-export const JestIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant, ...svgProps }) => (
+export const JestIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant, ...svgProps }) => (
     <DefaultIconSvg
         {...svgProps}
         colorVariant={colorVariant}

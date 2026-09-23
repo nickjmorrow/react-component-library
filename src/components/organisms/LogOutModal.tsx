@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ButtonModal } from '../organisms';
 
-export const LogOutModal: React.SFC<IOwnProps> = ({
+export const LogOutModal: React.FC<IOwnProps> = ({
     isOpen,
     onRequestClose: handleRequestClose,
     onPrimaryClick: handlePrimaryClick,

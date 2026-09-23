@@ -3,7 +3,7 @@ import { Typography } from '~/components/atoms/typography';
 import { IOption } from '~/types';
 import { StyledOption } from './StyledOption';
 
-export const Option: React.SFC<{
+export const Option: React.FC<{
     option: IOption;
     isSelected?: boolean;
     styleApi?: {

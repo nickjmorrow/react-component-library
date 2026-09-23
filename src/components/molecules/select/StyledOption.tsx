@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { StyleConstant } from '~/typeUtilities';
 import { useThemeContext } from '~/theming';
 import * as React from 'react';
+import { shouldForwardProp } from '~/styled';
 
-export const StyledOption: React.FC<React.PropsWithoutRef<JSX.IntrinsicElements['div']> & Props> = ({
+export const StyledOption: React.FC<React.PropsWithoutRef<React.JSX.IntrinsicElements['div']> & Props> = ({
     isSelected = false,
     ...props
 }) => {
@@ -19,7 +20,7 @@ export const StyledOption: React.FC<React.PropsWithoutRef<JSX.IntrinsicElements[
     );
 };
 
-export const StyledOptionInternal = styled('div')<
+export const StyledOptionInternal = styled('div').withConfig({ shouldForwardProp })<
     {
         spacing: StyleConstant<'spacing'>;
         colors: StyleConstant<'colors'>;

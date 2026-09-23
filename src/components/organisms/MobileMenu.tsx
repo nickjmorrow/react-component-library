@@ -4,6 +4,7 @@ import { CloseIconButton } from '../atoms';
 import { GetComponentProps } from '~/typeUtilities';
 import { SideNav } from './SideNav';
 import { SideNavRouterContainer } from './SideNavRouterContainer';
+import { shouldForwardProp } from '~/styled';
 
 export const MobileMenu: React.FC<{
     onClose: () => void;
@@ -29,7 +30,7 @@ export const MobileMenu: React.FC<{
     );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.withConfig({ shouldForwardProp })`
     position: fixed;
     top: 0;
     left: 0;

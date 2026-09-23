@@ -3,7 +3,7 @@ import { LabeledRadioButton } from '~/components/molecules';
 import { IOption } from '~/types';
 import { LabeledInputsWrapper } from '~/components/organisms/inputs/LabeledInputsWrapper';
 
-export const LabeledRadioButtonInput: React.SFC<{
+export const LabeledRadioButtonInput: React.FC<{
     options: IOption[];
     selectedOption: IOption;
     name?: string;

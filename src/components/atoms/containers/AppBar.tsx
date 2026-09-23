@@ -4,6 +4,7 @@ import { ThemeContext } from '~/theming';
 import { StyleConstant } from '../../../typeUtilities';
 import { StyleVariant } from '../../atoms/types';
 import { PAGE_MARGIN_SPACING_KEY } from '~/constants';
+import { shouldForwardProp } from '~/styled';
 
 export const AppBar: React.FC<{
     styleVariant?: StyleVariant;
@@ -35,7 +36,7 @@ export const AppBar: React.FC<{
     );
 };
 
-const Inner = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
+const Inner = styled('div').withConfig({ shouldForwardProp })<{ spacing: StyleConstant<'spacing'> }>`
     margin: 0px ${p => p.spacing[PAGE_MARGIN_SPACING_KEY]};
     width: 100%;
     display: flex;
@@ -45,7 +46,7 @@ const Inner = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
     position: relative;
 `;
 
-const Wrapper = styled('div')<{
+const Wrapper = styled('div').withConfig({ shouldForwardProp })<{
     boxShadow: string;
     styleVariant: StyleVariant;
     colors: StyleConstant<'colors'>;

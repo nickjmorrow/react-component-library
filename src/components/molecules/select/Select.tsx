@@ -1,14 +1,16 @@
 import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Typography, StyledOptionList } from '~/components';
 import { useThemeContext } from '~/theming';
 import { IOption } from '~/types';
 import { Option } from './Option';
 import { StyledSelect } from './StyledSelect';
+import { useClickOutside } from './useClickOutside';
 import { GetComponentProps } from '~/typeUtilities';
+import { shouldForwardProp } from '~/styled';
 
-export const Select: React.SFC<{
+export const Select: React.FC<{
     options: IOption[];
     currentOption: IOption;
     styleApi?: {
@@ -36,6 +38,7 @@ export const Select: React.SFC<{
 }) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
     const toggleIsMenuVisible = () => setIsMenuVisible(currentIsMenuVisible => !currentIsMenuVisible);
+    const closeMenu = useCallback(() => setIsMenuVisible(false), []);
 
     const handleClickOption = (option: IOption) => {
         setIsMenuVisible(false);
@@ -44,31 +47,9 @@ export const Select: React.SFC<{
 
     const { spacing } = useThemeContext();
 
-    // TODO: can this and handleClick be shared?
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const handleClick = (e: React.MouseEvent | Event) => {
-        // @ts-ignore
-        if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-            setIsMenuVisible(false);
-            return;
-        }
-
-        // @ts-ignore
-        if (e.dispatchConfig === undefined) {
-            return;
-        }
-
-        toggleIsMenuVisible();
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClick, false);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClick, false);
-        };
-    }, []);
+    useClickOutside(wrapperRef, closeMenu);
 
     const hasError = error.length > 0;
     const belowText = error || helperText;
@@ -82,7 +63,7 @@ export const Select: React.SFC<{
                     </Typography>
                 )}
                 <StyledSelect
-                    onClick={(e: React.MouseEvent) => handleClick(e)}
+                    onClick={toggleIsMenuVisible}
                     isMenuVisible={isMenuVisible}
                     hasError={hasError}
                     style={styleApi.currentOption}
@@ -120,7 +101,7 @@ export const Select: React.SFC<{
     );
 };
 
-const Wrapper = styled('div')<{ width: string }>`
+const Wrapper = styled('div').withConfig({ shouldForwardProp })<{ width: string }>`
     width: ${p => p.width};
     height: 40px;
     position: relative;

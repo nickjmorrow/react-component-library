@@ -10,7 +10,7 @@ import {
 import styled from 'styled-components';
 import { DisplayPaper } from '../DisplayPaper';
 
-export const LabeledInputDemo: React.SFC = () => {
+export const LabeledInputDemo: React.FC = () => {
     const options: IOption[] = [
         { label: 'Red', value: 'red' },
         { label: 'Orange', value: 'orange' },

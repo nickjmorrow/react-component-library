@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorVariant, Fade, StyledOption, StyledOptionList, Typography } from '~/components';
+import { ColorVariant, StyledOption, StyledOptionList, Typography } from '~/components';
 import { useThemeContext } from '~/theming';
 import { MenuIcon } from '../icons';
 import { Link } from '../Link';

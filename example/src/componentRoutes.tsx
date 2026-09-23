@@ -150,20 +150,17 @@ const routesWithoutNavLink = [
 ];
 
 const navLinkRoutes = [...navLinks, ...routesWithoutNavLink].map((nl, i) => (
-    <Route key={`route-${nl.route}-${i}`} path={nl.route} component={nl.component} exact={true} />
+    <Route key={`route-${nl.route}-${i}`} path={nl.route} element={<nl.component />} />
 ));
 
-const folderRoutes = componentFolders.reduce(
-    (prev, curr) => {
-        prev.push(
-            ...curr.navLinks.map((c, i) => (
-                <Route key={`route-${c.route}-${i}`} path={c.route} component={c.component} exact={true} />
-            )),
-        );
-        return prev;
-    },
-    [] as React.ReactNode[],
-);
+const folderRoutes = componentFolders.reduce((prev, curr) => {
+    prev.push(
+        ...curr.navLinks.map((c, i) => (
+            <Route key={`route-${c.route}-${i}`} path={c.route} element={<c.component />} />
+        )),
+    );
+    return prev;
+}, [] as React.ReactNode[]);
 
 export const routes = [...folderRoutes, ...navLinkRoutes];
 

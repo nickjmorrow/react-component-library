@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from './DefaultIconSvg';
 import { IconProps } from './types';
 
-export const TrashIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant, ...svgProps }) => (
+export const TrashIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant, ...svgProps }) => (
     <DefaultIconSvg
         {...svgProps}
         aria-hidden="true"

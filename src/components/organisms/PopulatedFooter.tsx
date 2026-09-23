@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FULL_NAME, LINKED_IN_LINK } from '~/constants';
+import { FULL_NAME } from '~/constants';
 import { ThemeContext } from '~/theming';
 import { Typography, GithubIcon, InvisibleLink, LinkedInIcon } from '~/components/atoms';
 import { Footer } from '../../';

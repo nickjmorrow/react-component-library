@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from './DefaultIconSvg';
 import { IconProps } from './types';
 
-export const ChevronUpIcon: React.SFC<IconProps> = ({ colorVariant, sizeVariant, ...svgProps }) => {
+export const ChevronUpIcon: React.FC<IconProps> = ({ colorVariant, sizeVariant, ...svgProps }) => {
     return (
         <DefaultIconSvg
             {...svgProps}

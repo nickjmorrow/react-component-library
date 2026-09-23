@@ -6,9 +6,10 @@ import { useThemeContext } from '~/theming';
 import { Theme } from '~/types';
 import { StyleConstant } from '~/typeUtilities';
 import { getColor, getColorActive, getColorHover } from '../atomServices';
+import { shouldForwardProp } from '~/styled';
 const deepMerge: typeof deepMergeProxy = (deepMergeProxy as any).default || deepMergeProxy;
 
-export const Typography: React.SFC<
+export const Typography: React.FC<
     {
         align?: Align;
         sizeVariant?: SizeVariant;
@@ -19,7 +20,7 @@ export const Typography: React.SFC<
         isInteractive?: boolean;
         className?: string;
         link?: string;
-    } & React.PropsWithoutRef<JSX.IntrinsicElements['span']>
+    } & React.PropsWithoutRef<React.JSX.IntrinsicElements['span']>
 > = ({
     colorVariant,
     sizeVariant,
@@ -86,7 +87,7 @@ export const Typography: React.SFC<
     );
 };
 
-const StyledLink = styled('a')<{ manualTheme: Theme }>`
+const StyledLink = styled('a').withConfig({ shouldForwardProp })<{ manualTheme: Theme }>`
     position: relative;
     text-decoration: none;
     &:hover:before {
@@ -109,7 +110,7 @@ const StyledLink = styled('a')<{ manualTheme: Theme }>`
     }
 `;
 
-export const StyledTypography = styled('span')<{
+export const StyledTypography = styled('span').withConfig({ shouldForwardProp })<{
     align: string;
     isInteractive: boolean;
     colorVariant: ColorVariant;
@@ -144,7 +145,8 @@ export const StyledTypography = styled('span')<{
 			font-weight: ${getFontWeight(fontWeights, weightVariant)};
 			line-height: ${spacing[lineHeight.default]};
 			transition: color ${transitions.medium};
-			${p.isInteractive &&
+			${
+                p.isInteractive &&
                 css`
                     &:hover {
                         color: ${getColorHover(colors, p.colorVariant)};
@@ -154,7 +156,8 @@ export const StyledTypography = styled('span')<{
                         color: ${getColorActive(colors, p.colorVariant)};
                         transition: color ${transitions.medium};
                     }
-                `}	
+                `
+            }	
 		`;
     }}
 `;
@@ -177,7 +180,7 @@ const getFontSize = (fontSizes: StyleConstant<'typography'>['fontSizes'], sizeVa
 };
 
 const getFontWeight = (fontWeights: StyleConstant<'typography'>['fontWeights'], weightVariant: WeightVariant) => {
-    return fontWeights['fw' + weightVariant];
+    return fontWeights[`fw${weightVariant}` as keyof typeof fontWeights];
 };
 
 const getOtherVariants = (styleVariant: StyleVariant, spacing: StyleConstant<'spacing'>) => {
@@ -234,6 +237,6 @@ const mergeVariants = (presetVariants: ConcreteVariant, selectedVariants: Partia
 };
 
 const removeUndefined = <T extends {}>(obj: Partial<T>): Partial<T> => {
-    Object.keys(obj).forEach(key => obj[key] === undefined && delete obj[key]);
+    (Object.keys(obj) as (keyof T)[]).forEach(key => obj[key] === undefined && delete obj[key]);
     return obj;
 };

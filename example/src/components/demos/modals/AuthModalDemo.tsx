@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export const AuthModalDemo: React.SFC = () => {
+export const AuthModalDemo: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const toggleAuthModal = () => setIsOpen(!isOpen);

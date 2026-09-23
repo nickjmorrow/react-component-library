@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconProps, DefaultIconSvg } from '~/components/atoms/icons';
 
-export const SQLServerIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => (
+export const SQLServerIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => (
     <DefaultIconSvg
         {...svgProps}
         colorVariant={colorVariant}

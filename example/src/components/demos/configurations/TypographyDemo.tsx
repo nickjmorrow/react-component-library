@@ -14,14 +14,7 @@ type TypographyProp = GetComponentProps<typeof Typography>;
 
 export const TypographyDemo: React.FC = () => {
     const sizeVariants: TypographyProp['sizeVariant'][] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    const colorVariants: TypographyProp['colorVariant'][] = [
-        'core',
-        'accent',
-        'success',
-        'warning',
-        'danger',
-        'neutral',
-    ];
+    const colorVariants: TypographyProp['colorVariant'][] = ['core', 'accent', 'success', 'warning', 'danger'];
 
     const darkColorVariants: TypographyProp['colorVariant'][] = ['primaryDark', 'secondaryDark'];
 
@@ -196,7 +189,7 @@ export const TypographyDemo: React.FC = () => {
     );
 };
 
-const renderColorVariant = (colorVariant: string & TypographyProp['colorVariant'], index: number) => {
+const renderColorVariant = (colorVariant: TypographyProp['colorVariant'], index: number) => {
     const cvs = colorVariant as string;
     return (
         <Typography colorVariant={colorVariant} sizeVariant={4} weightVariant={4} key={index}>

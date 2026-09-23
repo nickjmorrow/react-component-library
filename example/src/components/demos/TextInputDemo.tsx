@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 const possibleValues = ['h', 'he', 'hell', 'help', 'helper', 'hello'];
 
-export const TextInputDemo: React.SFC = () => {
+export const TextInputDemo: React.FC = () => {
     const [value, setValue] = React.useState('');
     const [autocompleteValue, setAutocompleteValue] = React.useState('');
     const [otherValue, setOtherValue] = React.useState('');
@@ -33,7 +33,7 @@ export const TextInputDemo: React.SFC = () => {
     const toggleErrors = () => getNewErrors();
 
     const style = {
-        flexDirection: 'column' as 'column',
+        flexDirection: 'column' as const,
         alignItems: 'flex-start',
     };
     return (
@@ -57,7 +57,7 @@ export const TextInputDemo: React.SFC = () => {
                 <AutocompleteTextInput
                     value={autocompleteValue}
                     setValue={(value: string) => setAutocompleteValue(value)}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAutocompleteValue(e.currentTarget.value)}
+                    onChange={e => setAutocompleteValue(e.currentTarget.value)}
                     possibleValues={possibleValues}
                 />
             </DisplayPaper>

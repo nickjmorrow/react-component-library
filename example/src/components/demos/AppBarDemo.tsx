@@ -85,9 +85,7 @@ export const AppBarDemo: React.FC = () => {
                         rightComponents={rightComponents}
                         leftComponents={rightComponents}
                         navInfos={sampleMenuOptions}
-                    >
-                        <AppNameTypography colorVariant={'primaryDark'}>My AppBar</AppNameTypography>
-                    </PopulatedAppBar>
+                    />
                 </div>
             </SectionWrapper>
         </Wrapper>
@@ -104,7 +102,7 @@ const SectionWrapper = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
     margin-bottom: ${p => p.spacing.ss8};
 `;
 
-const AppNameTypography: React.FC<{ colorVariant: ColorVariant }> = ({ colorVariant }) => (
+const AppNameTypography: React.FC<{ colorVariant: ColorVariant; children?: React.ReactNode }> = ({ colorVariant }) => (
     <Typography sizeVariant={6} weightVariant={5} colorVariant={colorVariant}>
         My AppBar
     </Typography>

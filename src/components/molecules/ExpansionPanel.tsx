@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Collapse } from 'react-collapse';
+import { Collapse } from '~/components/animations/Collapse';
 import styled from 'styled-components';
 import { ThemeContext } from '~/theming';
 import { StyleConstant } from '~/typeUtilities';
 import { ChevronUpIcon, getFormattedTextNode, Paper } from '../atoms';
+import { shouldForwardProp } from '~/styled';
 
 export const ExpansionPanel: React.FC<{
     visibleContent: React.ReactNode;
@@ -44,7 +45,7 @@ export const ExpansionPanel: React.FC<{
                     {finalRightComponent(isOpened)}
                 </VisibleWrapper>
             </div>
-            <Collapse isOpened={isOpened} springConfig={{ stiffness: 220 }}>
+            <Collapse isOpened={isOpened}>
                 <BaseWrapper spacing={spacing} style={styleApi.hiddenStyle}>
                     {getFormattedTextNode(hiddenContent)}
                 </BaseWrapper>
@@ -53,7 +54,7 @@ export const ExpansionPanel: React.FC<{
     );
 };
 
-const BaseWrapper = styled('div')<{
+const BaseWrapper = styled('div').withConfig({ shouldForwardProp })<{
     spacing: StyleConstant<'spacing'>;
     isFullWidth?: boolean;
 }>`
@@ -63,7 +64,7 @@ const BaseWrapper = styled('div')<{
     padding: ${p => p.spacing.ss4};
 `;
 
-const IconWrapper = styled('div')<{
+const IconWrapper = styled('div').withConfig({ shouldForwardProp })<{
     isOpened: boolean;
     transitions: StyleConstant<'transitions'>;
 }>`

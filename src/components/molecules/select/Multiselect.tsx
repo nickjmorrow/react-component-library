@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Typography } from '~/components';
 import { useThemeContext } from '~/theming';
@@ -7,8 +7,10 @@ import { IOption } from '~/types';
 import { Option } from './Option';
 import { StyledOptionList } from './StyledOptionList';
 import { StyledSelect } from './StyledSelect';
+import { useClickOutside } from './useClickOutside';
+import { shouldForwardProp } from '~/styled';
 
-export const Multiselect: React.SFC<{
+export const Multiselect: React.FC<{
     options: IOption[];
     currentOptions: IOption[];
     label?: string;
@@ -29,6 +31,7 @@ export const Multiselect: React.SFC<{
 }) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
     const toggleIsMenuVisible = () => setIsMenuVisible(currentIsMenuVisible => !currentIsMenuVisible);
+    const closeMenu = useCallback(() => setIsMenuVisible(false), []);
 
     const handleClickOption = (option: IOption) => {
         const newOptions = currentOptions.some(co => co.value === option.value)
@@ -41,30 +44,7 @@ export const Multiselect: React.SFC<{
 
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    // TODO: can this be shared? can this be a custom hook?
-    // same for the wrapperRef above
-    const handleClick = (e: React.MouseEvent | Event) => {
-        // @ts-ignore
-        if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-            setIsMenuVisible(false);
-            return;
-        }
-
-        // @ts-ignore
-        if (e.dispatchConfig === undefined) {
-            return;
-        }
-
-        toggleIsMenuVisible();
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClick, false);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClick, false);
-        };
-    }, []);
+    useClickOutside(wrapperRef, closeMenu);
 
     const hasError = error.length > 0;
     const belowText = error || helperText;
@@ -89,11 +69,7 @@ export const Multiselect: React.SFC<{
                         {label || error}
                     </Typography>
                 )}
-                <StyledSelect
-                    onClick={(e: React.MouseEvent) => handleClick(e)}
-                    isMenuVisible={isMenuVisible}
-                    hasError={hasError}
-                >
+                <StyledSelect onClick={toggleIsMenuVisible} isMenuVisible={isMenuVisible} hasError={hasError}>
                     {currentOptionsLabels}
                 </StyledSelect>
                 <StyledOptionList numVisibleOptions={numVisibleOptions} isMenuVisible={isMenuVisible}>
@@ -117,7 +93,7 @@ export const Multiselect: React.SFC<{
 };
 
 // TODO: can this be shared with Select.tsx?
-const Wrapper = styled('div')<{ width: string }>`
+const Wrapper = styled('div').withConfig({ shouldForwardProp })<{ width: string }>`
     width: ${p => p.width};
     height: 40px;
 `;

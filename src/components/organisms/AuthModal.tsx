@@ -5,6 +5,7 @@ import { Button, PaperModal, PasswordInput, TextInput, Typography } from '../ato
 import { ThemeContext } from '~/theming';
 import { validateEmail, isRequired } from '../atoms/inputs';
 import { StyleConstant } from '../../typeUtilities';
+import { shouldForwardProp } from '~/styled';
 
 interface ILoginInfo {
     email: string;
@@ -17,7 +18,7 @@ interface IRegisterInfo {
     name: string;
 }
 
-export const AuthModal: React.SFC<IProps> = ({
+export const AuthModal: React.FC<IProps> = ({
     isOpen,
     renderAdditionalComponents,
     onLoginClick: handleLoginClick,
@@ -128,9 +129,13 @@ export const AuthModal: React.SFC<IProps> = ({
 
     const inputsWrapperRef = React.useRef<HTMLDivElement>(null);
     const [height, setHeight] = React.useState(0);
-    if (inputsWrapperRef.current && inputsWrapperRef.current.clientHeight > height) {
-        setHeight(inputsWrapperRef.current.clientHeight);
-    }
+    // Grow-only: keep the modal from shrinking when switching between the login and register forms.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-measure after every render; the grow-only check ends the loop.
+    React.useLayoutEffect(() => {
+        if (inputsWrapperRef.current && inputsWrapperRef.current.clientHeight > height) {
+            setHeight(inputsWrapperRef.current.clientHeight);
+        }
+    });
 
     return (
         <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
@@ -174,14 +179,14 @@ interface IProps {
     onLoginClick(loginClick: ILoginInfo): void;
 }
 
-const InputWrapper = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
+const InputWrapper = styled('div').withConfig({ shouldForwardProp })<{ spacing: StyleConstant<'spacing'> }>`
     margin-top: ${p => p.spacing.ss6};
     display: grid;
     grid-auto-flow: row;
     grid-row-gap: ${p => p.spacing.ss2};
 `;
 
-const ButtonContainer = styled('div')<{ verticalMargin: string }>`
+const ButtonContainer = styled('div').withConfig({ shouldForwardProp })<{ verticalMargin: string }>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -190,7 +195,7 @@ const ButtonContainer = styled('div')<{ verticalMargin: string }>`
     margin: ${p => p.verticalMargin} 0;
 `;
 
-const InputsWrapper = styled('div')<{ height: number }>`
+const InputsWrapper = styled('div').withConfig({ shouldForwardProp })<{ height: number }>`
     min-height: ${p => p.height}px;
 `;
 

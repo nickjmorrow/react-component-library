@@ -4,7 +4,7 @@ import { FileInput, Typography } from '@nickjmorrow/react-component-library';
 import styled from 'styled-components';
 import { DisplayPaper } from '../DisplayPaper';
 
-export const FileInputDemo: React.SFC = () => {
+export const FileInputDemo: React.FC = () => {
     const setFile = useState<FileList | null>(null)[1];
     return (
         <Wrapper>

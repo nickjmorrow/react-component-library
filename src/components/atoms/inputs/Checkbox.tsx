@@ -2,8 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { StyleConstant } from '../../../typeUtilities';
 import { ThemeContext } from '~/theming';
+import { shouldForwardProp } from '~/styled';
 
-export const Checkbox: React.SFC<{ fill: string }> = ({ fill }) => {
+export const Checkbox: React.FC<{ fill: string }> = ({ fill }) => {
     const { transitions } = React.useContext(ThemeContext);
     return (
         <Svg fill={fill} transitions={transitions} viewBox="0 0 26 26" width="18px" height="18px">
@@ -14,7 +15,7 @@ export const Checkbox: React.SFC<{ fill: string }> = ({ fill }) => {
     );
 };
 
-const Svg = styled('svg')<{
+const Svg = styled('svg').withConfig({ shouldForwardProp })<{
     fill: string;
     transitions: StyleConstant<'transitions'>;
 }>`

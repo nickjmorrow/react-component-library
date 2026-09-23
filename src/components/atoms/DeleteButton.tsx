@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { ThemeContext } from '~/theming';
 import { TrashIcon } from './icons/TrashIcon';
 import { StyleConstant } from '../../typeUtilities';
+import { shouldForwardProp } from '~/styled';
 
 // TODO: do something about this / move it elsewhere / generalize it
-export const DeleteButton: React.SFC<{ onClick: () => void }> = ({ onClick: handleClick }) => {
+export const DeleteButton: React.FC<{ onClick: () => void }> = ({ onClick: handleClick }) => {
     const {
         colors,
         spacing,
@@ -32,7 +33,7 @@ interface DisplayProps {
     transitions: StyleConstant<'transitions'>;
 }
 
-const StyledDeleteButton = styled('div')<DisplayProps>`
+const StyledDeleteButton = styled('div').withConfig({ shouldForwardProp })<DisplayProps>`
     width: ${props => props.spacing.ss2};
     height: ${props => props.spacing.ss2};
     border-radius: ${props => props.borderRadius}px;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from '../DefaultIconSvg';
 import { IconProps } from '../types';
 
-export const PythonIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => (
+export const PythonIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => (
     <>
         <DefaultIconSvg {...svgProps} colorVariant={colorVariant} sizeVariant={sizeVariant} viewBox="0 0 48 48">
             <path

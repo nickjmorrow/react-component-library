@@ -26,7 +26,7 @@ const options: IOption[] = [
     },
 ];
 
-export const SelectDemo: React.SFC = () => {
+export const SelectDemo: React.FC = () => {
     const [currentOption, setOption] = useState(options[0]);
     const [currentOptions, setOptions] = useState([options[0]]);
 

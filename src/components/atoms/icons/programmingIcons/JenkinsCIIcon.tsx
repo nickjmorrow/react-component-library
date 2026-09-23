@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from '~/components/atoms/icons';
 import { IconProps } from '~/components/atoms/icons/types';
 
-export const JenkinsCIIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => {
+export const JenkinsCIIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => {
     return (
         <DefaultIconSvg
             {...svgProps}

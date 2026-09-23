@@ -4,6 +4,7 @@ import { ThemeContext } from '~/theming';
 import { getColor, getColorHover } from '../atomServices';
 import { getIconSize } from './iconServices';
 import { IconDisplayProps, IconProps } from './types';
+import { shouldForwardProp } from '~/styled';
 
 export const DefaultIconSvg: React.FC<IconProps> = ({ children, colorVariant, sizeVariant, style, ...svgProps }) => {
     const {
@@ -27,7 +28,7 @@ export const DefaultIconSvg: React.FC<IconProps> = ({ children, colorVariant, si
     );
 };
 
-export const Svg = styled('svg')<IconDisplayProps>`
+export const Svg = styled('svg').withConfig({ shouldForwardProp })<IconDisplayProps>`
     height: ${p => getIconSize(p.sizeVariant, p.iconSizes)};
     width: ${p => getIconSize(p.sizeVariant, p.iconSizes)};
     color: ${p => getColor(p.colors, p.colorVariant)};

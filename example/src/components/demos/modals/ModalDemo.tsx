@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ButtonModal, Button, Typography } from '@nickjmorrow/react-component-library';
 import { DescriptionContainer } from '../../shared/DescriptionContainer';
 
-export const ModalDemo: React.SFC = () => {
+export const ModalDemo: React.FC = () => {
     const [isOneButtonModalOpen, setIsOneButtonModalOpen] = React.useState(false);
     const [isTwoButtonModalOpen, setIsTwoButtonModalOpen] = React.useState(false);
     const handleOneButtonModalRequestClose = () => setIsOneButtonModalOpen(false);

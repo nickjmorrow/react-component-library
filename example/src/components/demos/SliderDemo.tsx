@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Slider, Typography, useThemeContext } from '@nickjmorrow/react-component-library';
 import { DisplayPaper } from '../DisplayPaper';
 
-export const SliderDemo: React.SFC = () => {
+export const SliderDemo: React.FC = () => {
     const [value, setValue] = React.useState(50);
     const { spacing } = useThemeContext();
     return (

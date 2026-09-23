@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from '../atoms';
 
-export const VerticalNavMenu: React.SFC<IOwnProps> = ({ buttonProps: links }) => {
+export const VerticalNavMenu: React.FC<IOwnProps> = ({ buttonProps: links }) => {
     return (
         <>
             {links.map(l => (

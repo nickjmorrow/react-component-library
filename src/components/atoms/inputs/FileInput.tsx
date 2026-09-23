@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { GetComponentProps } from '../../../typeUtilities';
 import { Button, Typography, UploadIcon } from '../../atoms';
+import { shouldForwardProp } from '~/styled';
 
 interface FileInputProps {
     id?: string;
@@ -11,7 +12,7 @@ interface FileInputProps {
     onChange(value: FileList | null): void;
 }
 
-export const FileInput: React.SFC<FileInputProps & GetComponentProps<typeof Button>> = ({
+export const FileInput: React.FC<FileInputProps & GetComponentProps<typeof Button>> = ({
     initialLabel = 'upload',
     labelOnUpload,
     onChange: handleChange,
@@ -67,7 +68,7 @@ export const FileInput: React.SFC<FileInputProps & GetComponentProps<typeof Butt
 };
 
 // TODO: spacing looks kind of weird here, no?
-const StyledFileInput = styled.input`
+const StyledFileInput = styled.input.withConfig({ shouldForwardProp })`
     width: 0.1px;
     height: 0.1px;
     opacity: 0;

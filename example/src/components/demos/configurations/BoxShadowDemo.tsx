@@ -6,7 +6,7 @@ import { Block, DescriptionContainer } from '../../../components/shared';
 export const BoxShadowDemo: React.FC = () => {
     const { colors, boxShadow } = React.useContext(ThemeContext);
     const boxColor = colors.accent.cs5;
-    const boxShadows = Object.keys(boxShadow).map(bs => ({ key: `theme.boxShadow.${bs}`, value: boxShadow[bs] }));
+    const boxShadows = Object.entries(boxShadow).map(([bs, value]) => ({ key: `theme.boxShadow.${bs}`, value }));
     return (
         <>
             <Typography styleVariant={'h1'}>{'Box Shadow'}</Typography>

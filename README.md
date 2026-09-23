@@ -6,9 +6,9 @@ The live demo can be found [here](https://nickjmorrow.github.io/react-component-
 
 ## At a Glance
 
--   The component library uses [Rollup](https://github.com/rollup/rollup) for the [build pipeline](https://github.com/ezolenko/rollup-plugin-typescript2).
--   The component library and the demo application are built in [TypeScript](https://www.typescriptlang.org/).
+-   The component library and the demo application are built with [Vite](https://vite.dev/) and written in [TypeScript](https://www.typescriptlang.org/).
 -   [Styled components](https://styled-components.com/) are used for styling and theming.
+-   Requires React 19 and Node 22.12+.
 
 ## Purpose
 
@@ -39,6 +39,18 @@ import { Typography } from '@nickjmorrow/react-component-library';
 const SomeOtherComponent: React.FC = () => {
     return <Typography>Hello, World!</Typography>;
 };
+```
+
+## Development
+
+```bash
+npm install
+npm run dev          # demo app at http://localhost:8080, hot-reloading library source
+npm test             # Vitest
+npm run lint         # ESLint
+npm run typecheck    # library + demo app
+npm run build        # library -> dist/
+npm run deploy       # build the demo app and push it to the gh-pages branch
 ```
 
 ## License

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from './DefaultIconSvg';
 import { IconProps } from './types';
 
-export const ArrowIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant = 'primaryDark', ...svgProps }) => (
+export const ArrowIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant = 'primaryDark', ...svgProps }) => (
     <DefaultIconSvg
         {...svgProps}
         colorVariant={colorVariant}

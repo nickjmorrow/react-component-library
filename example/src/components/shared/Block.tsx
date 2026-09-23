@@ -6,7 +6,7 @@ export const Block: React.FC<
     {
         color?: string;
         boxShadow?: string;
-    } & React.PropsWithoutRef<JSX.IntrinsicElements['div']>
+    } & React.PropsWithoutRef<React.JSX.IntrinsicElements['div']>
 > = ({ color, boxShadow: boxShadowOverride, ...props }) => {
     const {
         spacing,

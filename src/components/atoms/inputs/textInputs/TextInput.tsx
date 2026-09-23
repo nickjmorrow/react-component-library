@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
+import { shouldForwardProp } from '~/styled';
 
 import { useThemeContext } from '~/theming';
 import { Typography } from '~/components/atoms';
 import { Fade } from '~/components/animations';
 import { Theme } from '~/typeUtilities';
 
-export const TextInput: React.SFC<
-    { errors?: string[]; label?: string } & React.PropsWithoutRef<JSX.IntrinsicElements['input']>
+export const TextInput: React.FC<
+    { errors?: string[]; label?: string } & React.PropsWithoutRef<React.JSX.IntrinsicElements['input']>
 > = ({ errors = [], label, ...props }) => {
     const theme = useThemeContext();
 
@@ -39,12 +40,12 @@ export const TextInput: React.SFC<
     );
 };
 
-const FlexColumn = styled.div`
+const FlexColumn = styled.div.withConfig({ shouldForwardProp })`
     display: flex;
     flex-direction: column;
 `;
 
-const Input = styled('input')<{
+const Input = styled('input').withConfig({ shouldForwardProp })<{
     hasErrors: boolean;
     manualTheme: Theme;
 }>`
@@ -61,7 +62,8 @@ const Input = styled('input')<{
     font-family: ${p => p.manualTheme.typography.fontFamily.default};
     font-size: ${p => p.manualTheme.typography.fontSizes.fs3};
     box-sizing: border-box;
-    transition: box-shadow ${p => p.manualTheme.transitions.medium},
+    transition:
+        box-shadow ${p => p.manualTheme.transitions.medium},
         border-left-color ${p => p.manualTheme.transitions.medium};
     &:hover {
         box-shadow: ${p => p.manualTheme.defaultShowBoxShadow && p.manualTheme.boxShadow.bs1};

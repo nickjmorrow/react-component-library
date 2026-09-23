@@ -5,7 +5,7 @@ import { Option } from '~/components/molecules/select/Option';
 import { useThemeContext } from '~/theming';
 import { TextInput } from '~/components/atoms/inputs/textInputs';
 
-export const AutocompleteTextInput: React.SFC<
+export const AutocompleteTextInput: React.FC<
     {
         style?: React.CSSProperties;
         errors?: string[];
@@ -72,7 +72,7 @@ export const AutocompleteTextInput: React.SFC<
                         <Option
                             key={ew}
                             option={{ value: ew, label: ew }}
-                            onClick={e => {
+                            onClick={() => {
                                 setValue(ew);
                                 setShowMenu(false);
                             }}

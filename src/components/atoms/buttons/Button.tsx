@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PulseLoader from 'react-spinners/PulseLoader';
+import { PulseLoader } from 'react-spinners';
 import styled from 'styled-components';
 import { Link } from '~/components/atoms';
 import { useThemeContext } from '~/theming';
@@ -10,8 +10,10 @@ import { ColorSet, ColorVariant, StyleVariant, UIState, WeightVariant } from '..
 import { getFormattedTextNode } from '../typography';
 import { getBackgroundColor, getBorderColor, getColor } from './buttonServices';
 import { Theme } from '~/types';
+import { shouldForwardProp } from '~/styled';
 
-export const Button: React.SFC<{
+export const Button: React.FC<{
+    children?: React.ReactNode;
     textColorVariant?: ColorVariant;
     colorVariant?: ColorVariant;
     styleVariant?: StyleVariant;
@@ -64,20 +66,24 @@ export const Button: React.SFC<{
     const [width, setWidth] = React.useState(0);
     const [height, setHeight] = React.useState(0);
 
-    if (innerWrapperRef && innerWrapperRef.current) {
+    // Grow-only: keep the button from shrinking when its label is swapped for the loading indicator.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-measure after every render; the grow-only check ends the loop.
+    React.useLayoutEffect(() => {
+        if (!innerWrapperRef.current) {
+            return;
+        }
         if (innerWrapperRef.current.clientWidth > width) {
             setWidth(innerWrapperRef.current.clientWidth);
         }
-
         if (innerWrapperRef.current.clientHeight > height) {
             setHeight(innerWrapperRef.current.clientHeight);
         }
-    }
+    });
 
     const loadingFade = (
         <>
             <Fade in={isLoading as boolean} style={{ position: 'absolute' }} transitionVariant={'medium'}>
-                <PulseLoader color={getColorFunc('normal')(colors, textColorVariant)} size={8} sizeUnit={'px'} />
+                <PulseLoader color={getColorFunc('normal')(colors, textColorVariant)} size={8} />
             </Fade>
             <Fade in={!isLoading} transitionVariant={'medium'}>
                 {formattedChildren}
@@ -114,7 +120,7 @@ export const Button: React.SFC<{
     );
 };
 
-const InnerWrapper = styled('div')<{ width: number; height: number }>`
+const InnerWrapper = styled('div').withConfig({ shouldForwardProp })<{ width: number; height: number }>`
     min-width: ${p => p.width}px;
     min-height: ${p => p.height}px;
     display: flex;
@@ -122,7 +128,7 @@ const InnerWrapper = styled('div')<{ width: number; height: number }>`
     justify-content: center;
 `;
 
-const StyledButton = styled('button')<
+const StyledButton = styled('button').withConfig({ shouldForwardProp })<
     {
         colorVariant: ColorVariant;
         styleVariant: StyleVariant;

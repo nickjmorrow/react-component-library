@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { useThemeContext } from '~/theming';
 import { StyleConstant } from '~/typeUtilities';
-import { Collapse } from 'react-collapse';
+import { Collapse } from '~/components/animations/Collapse';
+import { shouldForwardProp } from '~/styled';
 
 interface StyleApi {
     collapse?: React.CSSProperties;
@@ -14,7 +15,7 @@ export const StyledOptionList: React.FC<
         numVisibleOptions?: number;
         isMenuVisible: boolean;
         styleApi?: StyleApi;
-    } & React.PropsWithoutRef<JSX.IntrinsicElements['div']>
+    } & React.PropsWithoutRef<React.JSX.IntrinsicElements['div']>
 > = ({ children, numVisibleOptions, isMenuVisible, styleApi = { collapse: {} }, ...props }) => {
     const {
         colors,
@@ -30,7 +31,7 @@ export const StyledOptionList: React.FC<
     };
     const collapseStyle = { ...defaultCollapseStyle, ...styleApi.collapse };
     return (
-        <Collapse style={collapseStyle} isOpened={isMenuVisible} springConfig={{ stiffness: 220 }}>
+        <Collapse style={collapseStyle} isOpened={isMenuVisible}>
             <StyledOptionListInternal
                 colors={colors}
                 spacing={spacing}
@@ -48,7 +49,7 @@ export const StyledOptionList: React.FC<
 
 const OPTION_ELEMENT_HEIGHT = 51;
 
-const StyledOptionListInternal = styled('div')<
+const StyledOptionListInternal = styled('div').withConfig({ shouldForwardProp })<
     {
         colors: StyleConstant<'colors'>;
         spacing: StyleConstant<'spacing'>;

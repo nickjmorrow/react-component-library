@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ThemeContext } from '~/theming';
 import { GetComponentProps, StyleConstant } from '../../typeUtilities';
 import { Button, getFormattedTextNode, PaperModal, Typography } from '../atoms';
+import { shouldForwardProp } from '~/styled';
 
 type ModalProps = GetComponentProps<typeof PaperModal>;
 
@@ -11,7 +12,7 @@ interface ButtonInfo {
     element: React.ReactNode;
 }
 
-export const ButtonModal: React.SFC<
+export const ButtonModal: React.FC<
     ModalProps & {
         secondaryButtonVariant?: GetComponentProps<typeof Button>['colorVariant'];
         title?: React.ReactNode;
@@ -91,7 +92,7 @@ export const ButtonModal: React.SFC<
 };
 
 // css
-const ButtonsContainer = styled('div')<{
+const ButtonsContainer = styled('div').withConfig({ shouldForwardProp })<{
     spacing: StyleConstant<'spacing'>;
     colors: StyleConstant<'colors'>;
     borderRadius: StyleConstant<'border'>['borderRadius'];
@@ -106,20 +107,20 @@ const ButtonsContainer = styled('div')<{
     border-radius: ${({ borderRadius: { br1 } }) => `0 0 ${br1} ${br1}`};
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.withConfig({ shouldForwardProp })`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 `;
 
-const AboveButtons = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
+const AboveButtons = styled('div').withConfig({ shouldForwardProp })<{ spacing: StyleConstant<'spacing'> }>`
     margin: ${({ spacing: { ss8: margin } }) => `${margin} ${margin} 0 ${margin}`};
 `;
 
-const ChildrenContainer = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
+const ChildrenContainer = styled('div').withConfig({ shouldForwardProp })<{ spacing: StyleConstant<'spacing'> }>`
     margin: 2rem ${p => p.spacing.ss2};
 `;
 
-const TitleWrapper = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
+const TitleWrapper = styled('div').withConfig({ shouldForwardProp })<{ spacing: StyleConstant<'spacing'> }>`
     margin-left: ${p => p.spacing.ss2};
 `;

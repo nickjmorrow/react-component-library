@@ -15,15 +15,16 @@ import styled from 'styled-components';
 import { Block } from '../../shared/Block';
 import { DescriptionContainer } from '../../shared';
 
-export const ColorsDemo: React.SFC = () => {
+export const ColorsDemo: React.FC = () => {
     const { colors, spacing } = useThemeContext();
 
     const { themeInputs, updateThemeInputs } = React.useContext(ThemeInputsContext);
+    type ThemeColorName = keyof NonNullable<typeof themeInputs.colors>;
 
     const handleChange = (
         value: number,
         colorInput: keyof ReturnType<typeof getMergedThemeInputs>['colors']['core'],
-        colorShade: keyof typeof colors,
+        colorShade: ThemeColorName,
     ) => {
         const newThemeInput: ArgumentType<typeof updateThemeInputs>[0] = {
             colors: {
@@ -43,8 +44,8 @@ export const ColorsDemo: React.SFC = () => {
             </DescriptionContainer>
             <Blocks spacing={spacing}>
                 <ColorsWrapper spacing={spacing}>
-                    {Object.keys(colorShade).map(shade => (
-                        <Block key={shade} color={colorShade[shade]} />
+                    {Object.entries(colorShade).map(([shade, color]) => (
+                        <Block key={shade} color={color} />
                     ))}
                 </ColorsWrapper>
                 <ExpansionPanelWrapper>
@@ -57,9 +58,9 @@ export const ColorsDemo: React.SFC = () => {
                                     <Slider
                                         min={0}
                                         max={360}
-                                        value={themeInputs.colors![colorName.toLowerCase() as keyof typeof colors]!.hue}
+                                        value={themeInputs.colors![colorName.toLowerCase() as ThemeColorName]!.hue}
                                         onChange={value =>
-                                            handleChange(value, 'hue', colorName.toLowerCase() as keyof typeof colors)
+                                            handleChange(value, 'hue', colorName.toLowerCase() as ThemeColorName)
                                         }
                                     />
                                 </ColorInput>
@@ -69,14 +70,13 @@ export const ColorsDemo: React.SFC = () => {
                                         min={0}
                                         max={100}
                                         value={
-                                            themeInputs.colors![colorName.toLowerCase() as keyof typeof colors]!
-                                                .hueDecrement
+                                            themeInputs.colors![colorName.toLowerCase() as ThemeColorName]!.hueDecrement
                                         }
                                         onChange={value =>
                                             handleChange(
                                                 value,
                                                 'hueDecrement',
-                                                colorName.toLowerCase() as keyof typeof colors,
+                                                colorName.toLowerCase() as ThemeColorName,
                                             )
                                         }
                                     />
@@ -87,14 +87,14 @@ export const ColorsDemo: React.SFC = () => {
                                         min={0}
                                         max={100}
                                         value={
-                                            themeInputs.colors![colorName.toLowerCase() as keyof typeof colors]!
+                                            themeInputs.colors![colorName.toLowerCase() as ThemeColorName]!
                                                 .middleLightness
                                         }
                                         onChange={value =>
                                             handleChange(
                                                 value,
                                                 'middleLightness',
-                                                colorName.toLowerCase() as keyof typeof colors,
+                                                colorName.toLowerCase() as ThemeColorName,
                                             )
                                         }
                                     />
@@ -105,14 +105,14 @@ export const ColorsDemo: React.SFC = () => {
                                         min={0}
                                         max={100}
                                         value={
-                                            themeInputs.colors![colorName.toLowerCase() as keyof typeof colors]!
+                                            themeInputs.colors![colorName.toLowerCase() as ThemeColorName]!
                                                 .lightnessIncrement
                                         }
                                         onChange={value =>
                                             handleChange(
                                                 value,
                                                 'lightnessIncrement',
-                                                colorName.toLowerCase() as keyof typeof colors,
+                                                colorName.toLowerCase() as ThemeColorName,
                                             )
                                         }
                                     />
@@ -123,14 +123,14 @@ export const ColorsDemo: React.SFC = () => {
                                         min={0}
                                         max={100}
                                         value={
-                                            themeInputs.colors![colorName.toLowerCase() as keyof typeof colors]!
+                                            themeInputs.colors![colorName.toLowerCase() as ThemeColorName]!
                                                 .lightnessDecrement
                                         }
                                         onChange={value =>
                                             handleChange(
                                                 value,
                                                 'lightnessDecrement',
-                                                colorName.toLowerCase() as keyof typeof colors,
+                                                colorName.toLowerCase() as ThemeColorName,
                                             )
                                         }
                                     />
@@ -141,15 +141,10 @@ export const ColorsDemo: React.SFC = () => {
                                         min={0}
                                         max={100}
                                         value={
-                                            themeInputs.colors![colorName.toLowerCase() as keyof typeof colors]!
-                                                .saturation
+                                            themeInputs.colors![colorName.toLowerCase() as ThemeColorName]!.saturation
                                         }
                                         onChange={value =>
-                                            handleChange(
-                                                value,
-                                                'saturation',
-                                                colorName.toLowerCase() as keyof typeof colors,
-                                            )
+                                            handleChange(value, 'saturation', colorName.toLowerCase() as ThemeColorName)
                                         }
                                     />
                                 </ColorInput>
@@ -159,14 +154,14 @@ export const ColorsDemo: React.SFC = () => {
                                         min={0}
                                         max={100}
                                         value={
-                                            themeInputs.colors![colorName.toLowerCase() as keyof typeof colors]!
+                                            themeInputs.colors![colorName.toLowerCase() as ThemeColorName]!
                                                 .saturationIncrement
                                         }
                                         onChange={value =>
                                             handleChange(
                                                 value,
                                                 'saturationIncrement',
-                                                colorName.toLowerCase() as keyof typeof colors,
+                                                colorName.toLowerCase() as ThemeColorName,
                                             )
                                         }
                                     />

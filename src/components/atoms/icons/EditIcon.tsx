@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from './DefaultIconSvg';
 import { IconProps } from './types';
 
-export const EditIcon: React.SFC<IconProps> = ({ colorVariant, sizeVariant, ...svgProps }) => {
+export const EditIcon: React.FC<IconProps> = ({ colorVariant, sizeVariant, ...svgProps }) => {
     return (
         <DefaultIconSvg
             xmlns="http://www.w3.org/2000/svg"

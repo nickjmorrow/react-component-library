@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { getColorFunc } from '../../atomServices';
 import { StyleConstant } from '~/typeUtilities';
 import { UIState } from '../../types';
+import { shouldForwardProp } from '~/styled';
 
 interface Props {
     styleVariant: StyleVariant;
@@ -62,7 +63,7 @@ export const IconButtonContainer: React.FC<IconProps & Props & { onClick: () => 
     );
 };
 
-const IconWrapper = styled('div')<
+const IconWrapper = styled('div').withConfig({ shouldForwardProp })<
     Props & {
         colors: StyleConstant<'colors'>;
         transitions: StyleConstant<'transitions'>;
@@ -79,9 +80,9 @@ const IconWrapper = styled('div')<
     }
 `;
 
-const Wrapper = styled('div')<
+const Wrapper = styled('div').withConfig({ shouldForwardProp })<
     Props &
-        React.PropsWithoutRef<JSX.IntrinsicElements['div']> & {
+        React.PropsWithoutRef<React.JSX.IntrinsicElements['div']> & {
             colors: StyleConstant<'colors'>;
             transitions: StyleConstant<'transitions'>;
             colorVariant: ColorVariant;

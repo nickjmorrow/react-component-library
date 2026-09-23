@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { StyleConstant } from '~/index';
 import { useThemeContext } from '~/theming';
 import { getBorderColor } from './selectUtilities';
+import { shouldForwardProp } from '~/styled';
 
 export const StyledSelect: React.FC<Props> = ({ isMenuVisible, hasError, children, ...props }) => {
     const { colors, spacing, border, transitions, boxShadow } = useThemeContext();
@@ -23,7 +24,7 @@ export const StyledSelect: React.FC<Props> = ({ isMenuVisible, hasError, childre
     );
 };
 
-const StyledSelectInternal = styled('div')<
+const StyledSelectInternal = styled('div').withConfig({ shouldForwardProp })<
     {
         colors: StyleConstant<'colors'>;
         spacing: StyleConstant<'spacing'>;
@@ -61,4 +62,4 @@ type Props = {
     isMenuVisible: boolean;
     hasError: boolean;
     children: React.ReactNode;
-} & React.PropsWithoutRef<JSX.IntrinsicElements['div']>;
+} & React.PropsWithoutRef<React.JSX.IntrinsicElements['div']>;

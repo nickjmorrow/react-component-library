@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Typography } from '../typography/Typography';
 import { ThemeContext } from '~/theming';
 import { StyleConstant } from '../../../typeUtilities';
+import { shouldForwardProp } from '~/styled';
 
 interface IProps {
     value?: number;
@@ -14,7 +15,7 @@ interface IProps {
     onChange(value: number): void;
 }
 
-export const Slider: React.SFC<IProps> = ({ value, min, max, spacingVariant = 'ss64', onChange: handleChange }) => {
+export const Slider: React.FC<IProps> = ({ value, min, max, spacingVariant = 'ss64', onChange: handleChange }) => {
     const {
         spacing,
         colors,
@@ -34,13 +35,13 @@ export const Slider: React.SFC<IProps> = ({ value, min, max, spacingVariant = 's
                 min={min}
                 max={max}
                 value={value || min}
-                onChange={handleChange}
-                handleStyle={handleStyle}
-                railStyle={{
-                    backgroundColor: colors.neutral.cs3,
-                    width: spacing.ss48,
+                onChange={v => handleChange(Array.isArray(v) ? v[0] : v)}
+                styles={{
+                    handle: handleStyle,
+                    rail: { backgroundColor: colors.neutral.cs3 },
+                    track: { backgroundColor: colors.core.cs5 },
                 }}
-                trackStyle={{ backgroundColor: colors.core.cs5 }}
+                style={{ width: spacing.ss48 }}
             />
             <ValueWrapper>
                 <Typography sizeVariant={3}>{value}</Typography>
@@ -49,7 +50,7 @@ export const Slider: React.SFC<IProps> = ({ value, min, max, spacingVariant = 's
     );
 };
 
-const Wrapper = styled('div')<{
+const Wrapper = styled('div').withConfig({ shouldForwardProp })<{
     spacing: StyleConstant<'spacing'>;
     spacingVariant: keyof StyleConstant<'spacing'>;
 }>`
@@ -60,6 +61,6 @@ const Wrapper = styled('div')<{
     padding: ${p => p.spacing.ss1} 0;
 `;
 
-const ValueWrapper = styled.div`
+const ValueWrapper = styled.div.withConfig({ shouldForwardProp })`
     margin-left: 12px;
 `;

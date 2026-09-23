@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DefaultIconSvg } from '../DefaultIconSvg';
 import { IconProps } from '../types';
 
-export const RollupIcon: React.SFC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => (
+export const RollupIcon: React.FC<IconProps> = ({ sizeVariant, colorVariant = 'core', ...svgProps }) => (
     <DefaultIconSvg
         {...svgProps}
         colorVariant={colorVariant}

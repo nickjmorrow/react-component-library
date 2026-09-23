@@ -30,7 +30,7 @@ export const BordersDemo: React.FC = () => {
                     <DisplayPaper>
                         <table style={{ borderSpacing: '0 18px' }}>
                             <tbody>
-                                {Object.keys(o.styleObject).map((bs, i) => (
+                                {Object.entries(o.styleObject).map(([bs, value], i) => (
                                     <tr key={i}>
                                         <td style={{ paddingRight: '24px' }}>
                                             <Typography
@@ -38,12 +38,12 @@ export const BordersDemo: React.FC = () => {
                                             >{`${o.themePrefix}.${bs}`}</Typography>
                                         </td>
                                         <td style={{ paddingRight: '24px' }}>
-                                            <Typography fontFamilyVariant={'monospace'}>{o.styleObject[bs]}</Typography>
+                                            <Typography fontFamilyVariant={'monospace'}>{value}</Typography>
                                         </td>
                                         <td>
                                             <Block
                                                 style={{
-                                                    [o.styleKey]: o.styleObject[bs],
+                                                    [o.styleKey]: value,
                                                 }}
                                             />
                                         </td>

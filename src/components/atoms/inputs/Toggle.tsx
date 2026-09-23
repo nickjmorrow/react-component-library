@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import * as React from 'react';
 import { ThemeContext } from '~/theming';
 import { StyleConstant } from '../../../typeUtilities';
+import { shouldForwardProp } from '~/styled';
 
 interface IProps {
     isToggled: boolean;
     onClick: (isChecked: boolean) => void;
 }
 
-export const Toggle: React.SFC<IProps> = ({ isToggled, onClick: handleClick }) => {
+export const Toggle: React.FC<IProps> = ({ isToggled, onClick: handleClick }) => {
     const { colors, transitions } = React.useContext(ThemeContext);
     const handleClickInternal = () => handleClick(isToggled);
 
@@ -22,7 +23,7 @@ export const Toggle: React.SFC<IProps> = ({ isToggled, onClick: handleClick }) =
 const width = 40;
 const height = 20;
 
-const Wrapper = styled('div')<{
+const Wrapper = styled('div').withConfig({ shouldForwardProp })<{
     colors: StyleConstant<'colors'>;
     transitions: StyleConstant<'transitions'>;
 }>`
@@ -41,7 +42,7 @@ const Wrapper = styled('div')<{
     }
 `;
 
-const Switch = styled('div')<{
+const Switch = styled('div').withConfig({ shouldForwardProp })<{
     isToggled: boolean;
     colors: StyleConstant<'colors'>;
     transitions: StyleConstant<'transitions'>;
@@ -54,8 +55,11 @@ const Switch = styled('div')<{
     transform: ${props => `translateX(${props.isToggled ? '120%' : '0%'})`};
     background-color: ${p => p.colors.neutral.cs3};
     transition: transform ${p => p.transitions.fast} ease-in-out;
-    box-shadow: ${p => p.colors.neutral.cs6} 1px 0px 2px -1px, ${p => p.colors.neutral.cs6} -1px 0px 2px -1px,
-        ${p => p.colors.neutral.cs6} 0px 1px 2px -1px, ${p => p.colors.neutral.cs6} 0px -1px 2px -1px;
+    box-shadow:
+        ${p => p.colors.neutral.cs6} 1px 0px 2px -1px,
+        ${p => p.colors.neutral.cs6} -1px 0px 2px -1px,
+        ${p => p.colors.neutral.cs6} 0px 1px 2px -1px,
+        ${p => p.colors.neutral.cs6} 0px -1px 2px -1px;
     &:hover {
         background-color: ${p => p.colors.neutral.cs3};
     }

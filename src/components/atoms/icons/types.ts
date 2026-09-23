@@ -1,7 +1,8 @@
+import type * as React from 'react';
 import { ColorVariant } from '../../atoms';
 import { StyleConstant } from '~/typeUtilities';
 
-type SvgProps = React.PropsWithoutRef<JSX.IntrinsicElements['svg']>;
+type SvgProps = React.PropsWithoutRef<React.JSX.IntrinsicElements['svg']>;
 
 type DefaultSvgProps = {
     sizeVariant?: IconSizeVariant;

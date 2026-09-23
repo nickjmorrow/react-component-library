@@ -1,23 +1,23 @@
 import * as React from 'react';
-import { Transition } from 'react-transition-group';
-import { StyleConstant, GetComponentProps } from '../../typeUtilities';
+import { Transition, TransitionStatus } from 'react-transition-group';
+import { StyleConstant } from '../../typeUtilities';
 import { ThemeContext } from '~/theming';
 
-type TransitionProps = GetComponentProps<typeof Transition>;
-
-export const Fade: React.SFC<
-    {
-        in: boolean;
-        transitionVariant?: keyof StyleConstant<'transitions'>;
-        style?: React.CSSProperties;
-        styleKeys?: any[]; // TODO: this should be array of html style css attributes
-        mounted?: React.CSSProperties;
-        unmounted?: React.CSSProperties;
-        enterTimeout?: number;
-        mountOnEnter?: boolean;
-        unmountOnExit?: boolean;
-    } & Omit<TransitionProps, 'timeout'>
-> = ({
+export const Fade: React.FC<{
+    in: boolean;
+    children?: React.ReactNode;
+    transitionVariant?: keyof StyleConstant<'transitions'>['durations'];
+    style?: React.CSSProperties;
+    styleKeys?: string[];
+    mounted?: React.CSSProperties;
+    unmounted?: React.CSSProperties;
+    enterTimeout?: number;
+    mountOnEnter?: boolean;
+    unmountOnExit?: boolean;
+    appear?: boolean;
+    onEntered?: () => void;
+    onExited?: () => void;
+}> = ({
     children,
     in: inProp,
     style,
@@ -30,20 +30,23 @@ export const Fade: React.SFC<
     unmountOnExit = false,
     ...props
 }) => {
+    // react-transition-group falls back to findDOMNode (removed in React 19) without a nodeRef.
+    const nodeRef = React.useRef<HTMLDivElement>(null);
     const defaultMounted = { opacity: 1 };
     const defaultUnmounted = { opacity: 0 };
     const mounted = { ...defaultMounted, ...customMounted };
     const unmounted = { ...defaultUnmounted, ...customUnmounted };
 
-    const transitionStyles = {
+    const transitionStyles: Record<TransitionStatus, React.CSSProperties> = {
         entering: unmounted,
         entered: mounted,
         exiting: unmounted,
         exited: unmounted,
+        unmounted: unmounted,
     };
 
     const { transitions } = React.useContext(ThemeContext);
-    const duration = transitions.durations[transitionVariant as keyof StyleConstant<'transitions'>['durations']];
+    const duration = transitions.durations[transitionVariant];
 
     const transitionInfo = transitions[transitionVariant];
 
@@ -58,13 +61,18 @@ export const Fade: React.SFC<
     };
     return (
         <Transition
+            nodeRef={nodeRef}
             in={inProp}
             timeout={{ enter: enterTimeout, exit: duration }}
             unmountOnExit={unmountOnExit}
             mountOnEnter={mountOnEnter}
             {...props}
         >
-            {state => <div style={{ ...defaultStyle, ...transitionStyles[state] }}>{children}</div>}
+            {state => (
+                <div ref={nodeRef} style={{ ...defaultStyle, ...transitionStyles[state] }}>
+                    {children}
+                </div>
+            )}
         </Transition>
     );
 };

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '~/theming';
-import { StyleConstant, Theme } from '../../typeUtilities';
+import { Theme } from '../../typeUtilities';
+import { shouldForwardProp } from '~/styled';
 
 export const Footer: React.FC<{
     children: React.ReactNode;
@@ -17,7 +18,7 @@ export const Footer: React.FC<{
     );
 };
 
-const StyledFooter = styled('footer')<{ manualTheme: Theme }>`
+const StyledFooter = styled('footer').withConfig({ shouldForwardProp })<{ manualTheme: Theme }>`
     background-color: ${p => p.manualTheme.colors.neutral.cs2};
     display: flex;
     align-items: center;

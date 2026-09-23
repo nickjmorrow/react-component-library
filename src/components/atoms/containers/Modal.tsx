@@ -1,11 +1,11 @@
 import * as React from 'react';
-const ReactModal = require('react-modal');
-import Radium from 'radium';
+import ReactModal from 'react-modal';
+import { createGlobalStyle } from 'styled-components';
 import { ThemeContext } from '~/theming';
-const Style = Radium.Style;
 
-export const Modal: React.SFC<{
+export const Modal: React.FC<{
     isOpen: boolean;
+    children?: React.ReactNode;
     onRequestClose(): void;
 }> = ({ isOpen, children, onRequestClose: handleRequestClose }) => {
     const { boxShadow } = React.useContext(ThemeContext);
@@ -24,34 +24,34 @@ export const Modal: React.SFC<{
 
     return (
         <>
-            <Style
-                rules={{
-                    '.ReactModalPortal > div': {
-                        opacity: 0,
-                        boxShadow: boxShadow.bs5,
-                    },
-                    '.ReactModalPortal .ReactModal__Overlay': {
-                        transition: 'opacity 200ms ease-in-out',
-                        background: 'rgba(0, 0, 0, 0.15)',
-                    },
-                    '.ReactModalPortal .ReactModal__Overlay--after-open': {
-                        opacity: 1,
-                        backgroundColor: 'rgba(0, 0, 0, 0.4) !important',
-                    },
-                    '.ReactModalPortal .ReactModal__Overlay--before-close': {
-                        opacity: 0,
-                    },
-                }}
-            />
+            <ModalGlobalStyle $boxShadow={boxShadow.bs5} />
             <ReactModal
                 style={customStyles}
                 isOpen={isOpen}
                 onRequestClose={handleRequestClose}
                 closeTimeoutMS={100}
-                appElement={undefined}
+                ariaHideApp={false}
             >
                 {children}
             </ReactModal>
         </>
     );
 };
+
+const ModalGlobalStyle = createGlobalStyle<{ $boxShadow: string }>`
+    .ReactModalPortal > div {
+        opacity: 0;
+        box-shadow: ${p => p.$boxShadow};
+    }
+    .ReactModalPortal .ReactModal__Overlay {
+        transition: opacity 200ms ease-in-out;
+        background: rgba(0, 0, 0, 0.15);
+    }
+    .ReactModalPortal .ReactModal__Overlay--after-open {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.4) !important;
+    }
+    .ReactModalPortal .ReactModal__Overlay--before-close {
+        opacity: 0;
+    }
+`;

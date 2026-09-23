@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router';
 import { GetComponentProps } from '~/typeUtilities';
 import { ColorVariant, StyleVariant } from './types';
 import { Typography } from './typography';
 
-export const Link: React.SFC<{
+export const Link: React.FC<{
     route: string;
     children: React.ReactNode;
     style?: React.CSSProperties;
