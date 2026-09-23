@@ -1,6 +1,6 @@
 # React Component Library
 
-[![NPM](https://img.shields.io/npm/v/react-component-library.svg)](https://www.npmjs.com/package/react-component-library) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Deploy demo site](https://github.com/nickjmorrow/react-component-library/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/nickjmorrow/react-component-library/actions/workflows/deploy.yml) [![NPM](https://img.shields.io/npm/v/react-component-library.svg)](https://www.npmjs.com/package/react-component-library) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 The live demo can be found [here](https://nickjmorrow.github.io/react-component-library/).
 
