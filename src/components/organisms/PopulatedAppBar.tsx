@@ -94,11 +94,15 @@ export const PopulatedAppBar: React.FC<{
                         />
                     )
                 ) : (
-                    <div>
-                        <a href={linkedInUrl} style={{ marginLeft: spacing.ss4 }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <a
+                            href={linkedInUrl}
+                            aria-label="LinkedIn"
+                            style={{ display: 'flex', marginLeft: spacing.ss4 }}
+                        >
                             <LinkedInIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
                         </a>
-                        <a href={githubUrl} style={{ marginLeft: spacing.ss4 }}>
+                        <a href={githubUrl} aria-label="GitHub" style={{ display: 'flex', marginLeft: spacing.ss4 }}>
                             <GithubIcon colorVariant={getIconColorVariant(styleVariant)} sizeVariant={3} />
                         </a>
                     </div>
