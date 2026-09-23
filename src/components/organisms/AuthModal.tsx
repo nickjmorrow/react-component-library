@@ -138,7 +138,7 @@ export const AuthModal: React.FC<IProps> = ({
     });
 
     return (
-        <PaperModal isOpen={isOpen} onRequestClose={handleRequestClose}>
+        <PaperModal isOpen={isOpen} title="Sign In" onRequestClose={handleRequestClose}>
             <Typography sizeVariant={6} weightVariant={5} style={{ alignSelf: 'flex-start' }}>
                 {'Sign In'}
             </Typography>

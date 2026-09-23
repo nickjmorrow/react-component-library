@@ -9,7 +9,7 @@ const externalPackages = [...Object.keys(pkg.dependencies), ...Object.keys(pkg.p
 const isExternal = (id: string) => externalPackages.some(name => id === name || id.startsWith(`${name}/`));
 
 export default defineConfig({
-    plugins: [react(), dts({ include: ['src'], exclude: ['src/**/*.test.tsx'], rollupTypes: true })],
+    plugins: [react(), dts({ include: ['src'], exclude: ['src/**/*.test.tsx', 'src/test'], rollupTypes: true })],
     resolve: {
         alias: { '~': fileURLToPath(new URL('./src', import.meta.url)) },
     },
@@ -26,5 +26,6 @@ export default defineConfig({
     test: {
         environment: 'jsdom',
         include: ['src/**/*.test.{ts,tsx}'],
+        setupFiles: ['src/test/setup.ts'],
     },
 });

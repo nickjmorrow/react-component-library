@@ -1,15 +1,17 @@
 import * as React from 'react';
-import { useCallback, useRef, useState } from 'react';
+import { useId, useState } from 'react';
+import { Select as RadixSelect } from 'radix-ui';
 import styled from 'styled-components';
-import { Typography, StyledOptionList } from '~/components';
+import { Typography } from '~/components';
 import { useThemeContext } from '~/theming';
 import { IOption } from '~/types';
 import { Option } from './Option';
 import { StyledSelect } from './StyledSelect';
-import { useClickOutside } from './useClickOutside';
-import { GetComponentProps } from '~/typeUtilities';
+import { menuContentStyles, menuItemStyles } from './menuStyles';
+import { GetComponentProps, Theme } from '~/typeUtilities';
 import { shouldForwardProp } from '~/styled';
 
+// Radix Select provides keyboard navigation, typeahead, focus management and combobox/listbox semantics.
 export const Select: React.FC<{
     options: IOption[];
     currentOption: IOption;
@@ -37,67 +39,83 @@ export const Select: React.FC<{
     styleApi = {},
 }) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
-    const toggleIsMenuVisible = () => setIsMenuVisible(currentIsMenuVisible => !currentIsMenuVisible);
-    const closeMenu = useCallback(() => setIsMenuVisible(false), []);
+    const theme = useThemeContext();
+    const triggerId = useId();
 
-    const handleClickOption = (option: IOption) => {
-        setIsMenuVisible(false);
-        handleChange(option);
+    const handleValueChange = (value: string) => {
+        const option = options.find(o => String(o.value) === value);
+        if (option) {
+            handleChange(option);
+        }
     };
-
-    const { spacing } = useThemeContext();
-
-    const wrapperRef = useRef<HTMLDivElement>(null);
-
-    useClickOutside(wrapperRef, closeMenu);
 
     const hasError = error.length > 0;
     const belowText = error || helperText;
 
     return (
-        <div ref={wrapperRef}>
-            <Wrapper width={spacing.ss32} style={styleApi.wrapper}>
-                {label && (
+        <Wrapper width={theme.spacing.ss32} style={styleApi.wrapper}>
+            {label && (
+                <label htmlFor={triggerId}>
                     <Typography sizeVariant={1} colorVariant={error ? 'danger' : 'secondaryDark'}>
-                        {label || error}
+                        {label}
                     </Typography>
-                )}
-                <StyledSelect
-                    onClick={toggleIsMenuVisible}
-                    isMenuVisible={isMenuVisible}
-                    hasError={hasError}
-                    style={styleApi.currentOption}
-                >
-                    <Typography sizeVariant={3} style={styleApi.currentOptionTypography}>
-                        {currentOption.label}
-                    </Typography>
-                </StyledSelect>
-                <StyledOptionList
-                    numVisibleOptions={numVisibleOptions}
-                    isMenuVisible={isMenuVisible}
-                    style={styleApi.optionsList}
-                >
-                    {options.map(o => (
-                        <Option
-                            key={o.value}
-                            onClick={handleClickOption}
-                            option={o}
-                            styleApi={styleApi.optionStyleApi}
-                        />
-                    ))}
-                </StyledOptionList>
-
-                {belowText && (
-                    <Typography
-                        sizeVariant={1}
-                        colorVariant={error ? 'danger' : 'secondaryDark'}
-                        style={{ position: 'absolute', bottom: label ? 'none' : '-30px' }}
+                </label>
+            )}
+            <RadixSelect.Root
+                value={String(currentOption.value)}
+                onValueChange={handleValueChange}
+                open={isMenuVisible}
+                onOpenChange={setIsMenuVisible}
+            >
+                <RadixSelect.Trigger asChild>
+                    <StyledSelect
+                        id={triggerId}
+                        isMenuVisible={isMenuVisible}
+                        hasError={hasError}
+                        aria-invalid={hasError || undefined}
+                        style={styleApi.currentOption}
                     >
-                        {belowText}
-                    </Typography>
-                )}
-            </Wrapper>
-        </div>
+                        <Typography sizeVariant={3} style={styleApi.currentOptionTypography}>
+                            <RadixSelect.Value>{currentOption.label}</RadixSelect.Value>
+                        </Typography>
+                    </StyledSelect>
+                </RadixSelect.Trigger>
+                <RadixSelect.Portal>
+                    <Content
+                        position="popper"
+                        sideOffset={4}
+                        $theme={theme}
+                        $numVisibleOptions={numVisibleOptions}
+                        style={styleApi.optionsList}
+                    >
+                        <RadixSelect.Viewport>
+                            {options.map(o => (
+                                <Item
+                                    key={o.value}
+                                    value={String(o.value)}
+                                    $theme={theme}
+                                    style={styleApi.optionStyleApi?.option}
+                                >
+                                    <Typography style={styleApi.optionStyleApi?.typography}>
+                                        <RadixSelect.ItemText>{o.label}</RadixSelect.ItemText>
+                                    </Typography>
+                                </Item>
+                            ))}
+                        </RadixSelect.Viewport>
+                    </Content>
+                </RadixSelect.Portal>
+            </RadixSelect.Root>
+
+            {belowText && (
+                <Typography
+                    sizeVariant={1}
+                    colorVariant={error ? 'danger' : 'secondaryDark'}
+                    style={{ position: 'absolute', bottom: label ? 'none' : '-30px' }}
+                >
+                    {belowText}
+                </Typography>
+            )}
+        </Wrapper>
     );
 };
 
@@ -105,4 +123,13 @@ const Wrapper = styled('div').withConfig({ shouldForwardProp })<{ width: string 
     width: ${p => p.width};
     height: 40px;
     position: relative;
+`;
+
+const Content = styled(RadixSelect.Content)<{ $theme: Theme; $numVisibleOptions?: number }>`
+    ${menuContentStyles}
+    width: var(--radix-select-trigger-width);
+`;
+
+const Item = styled(RadixSelect.Item)<{ $theme: Theme }>`
+    ${menuItemStyles}
 `;

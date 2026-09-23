@@ -24,7 +24,7 @@ export const StyledSelect: React.FC<Props> = ({ isMenuVisible, hasError, childre
     );
 };
 
-const StyledSelectInternal = styled('div').withConfig({ shouldForwardProp })<
+const StyledSelectInternal = styled('button').withConfig({ shouldForwardProp })<
     {
         colors: StyleConstant<'colors'>;
         spacing: StyleConstant<'spacing'>;
@@ -33,6 +33,11 @@ const StyledSelectInternal = styled('div').withConfig({ shouldForwardProp })<
         boxShadow: StyleConstant<'boxShadow'>;
     } & Props
 >`
+    display: block;
+    width: 100%;
+    background: none;
+    font: inherit;
+    text-align: left;
     border: none;
     outline: none;
     appearance: none;
@@ -50,7 +55,7 @@ const StyledSelectInternal = styled('div').withConfig({ shouldForwardProp })<
         transition: border-bottom ${p => p.transitions.medium};
         cursor: pointer;
     }
-    &:focus,
+    &:focus-visible,
     &:active {
         border-bottom: ${p => p.border.borderStyle.bs2}
             ${p => getBorderColor(p.isMenuVisible, p.colors, 'active', p.hasError)};
@@ -62,4 +67,4 @@ type Props = {
     isMenuVisible: boolean;
     hasError: boolean;
     children: React.ReactNode;
-} & React.PropsWithoutRef<React.JSX.IntrinsicElements['div']>;
+} & React.ComponentPropsWithRef<'button'>;

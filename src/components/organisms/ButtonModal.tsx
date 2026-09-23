@@ -54,6 +54,7 @@ export const ButtonModal: React.FC<
     return (
         <PaperModal
             isOpen={isOpen}
+            title={typeof title === 'string' ? title : undefined}
             styles={styles}
             onRequestClose={handleRequestClose}
             wrapperStyles={{ backgroundColor: colors.background, borderRadius: borderRadius.br1 }}
