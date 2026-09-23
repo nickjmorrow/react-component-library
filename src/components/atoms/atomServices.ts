@@ -5,9 +5,9 @@ import { UIState } from './types';
 export const getColorHover = (colors: StyleConstant<'colors'>, colorVariant: ColorVariant) => {
     switch (colorVariant) {
         case 'primaryDark':
-            return colors.neutral.cs8;
+            return colors.text.primaryHover;
         case 'secondaryDark':
-            return colors.neutral.cs7;
+            return colors.text.secondaryHover;
         case 'primaryLight':
             return colors.fixedNeutral.cs1;
         case 'secondaryLight':
@@ -34,9 +34,9 @@ export const getColorHover = (colors: StyleConstant<'colors'>, colorVariant: Col
 export const getColorActive = (colors: StyleConstant<'colors'>, colorVariant: ColorVariant) => {
     switch (colorVariant) {
         case 'primaryDark':
-            return colors.neutral.cs7;
+            return colors.text.primary;
         case 'secondaryDark':
-            return colors.neutral.cs5;
+            return colors.text.secondary;
         case 'primaryLight':
             return colors.fixedNeutral.cs3;
         case 'secondaryLight':
@@ -64,9 +64,9 @@ export const getColor = (colors: StyleConstant<'colors'>, color: ColorVariant) =
     switch (color) {
         default:
         case 'primaryDark':
-            return colors.neutral.cs7;
+            return colors.text.primary;
         case 'secondaryDark':
-            return colors.neutral.cs5;
+            return colors.text.secondary;
         case 'primaryLight':
             return colors.fixedNeutral.cs2;
         case 'secondaryLight':

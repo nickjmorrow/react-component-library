@@ -98,7 +98,7 @@ export default App;
 const GlobalStyle = createGlobalStyle<{ $theme: Theme }>`
     body {
         background-color: ${p => p.$theme.colors.background};
-        color: ${p => p.$theme.colors.neutral.cs8};
+        color: ${p => p.$theme.colors.text.primary};
     }
 `;
 

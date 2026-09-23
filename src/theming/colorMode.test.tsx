@@ -27,6 +27,13 @@ describe('dark mode theme', () => {
         expect(lightness(dark.colors.background)).toBeLessThan(15);
     });
 
+    it('keeps light text colors on the neutral scale and brightens them in dark mode', () => {
+        expect(light.colors.text.primary).toBe(light.colors.neutral.cs7);
+        expect(light.colors.text.secondary).toBe(light.colors.neutral.cs5);
+        expect(lightness(dark.colors.text.primary)).toBe(94);
+        expect(lightness(dark.colors.text.secondary)).toBeCloseTo(60, 0);
+    });
+
     it('keeps the fixed neutral scale light so text on fills stays readable', () => {
         expect(dark.colors.fixedNeutral).toEqual(light.colors.neutral);
     });

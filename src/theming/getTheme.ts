@@ -16,6 +16,8 @@ import { defaultIconColorVariant, defaultIconSizeVariant } from '~/theming/styli
 export const getTheme = (themeInputs: ThemeInput) => {
     const { mode } = themeInputs;
     const neutral = generateColorShades(themeInputs.colors.neutral, mode);
+    const { hue, saturation, saturationIncrement } = themeInputs.colors.neutral;
+    const brightNeutral = (lightness: number) => `hsl(${hue}, ${saturation + 8 * saturationIncrement}%, ${lightness}%)`;
     return {
         mode,
         colors: {
@@ -32,6 +34,23 @@ export const getTheme = (themeInputs: ThemeInput) => {
             success: generateColorShades(themeInputs.colors.success, mode),
             warning: generateColorShades(themeInputs.colors.warning, mode),
             danger: generateColorShades(themeInputs.colors.danger, mode),
+            // Text on the page background (the primaryDark / secondaryDark variants). Light mode uses the
+            // neutral scale directly; dark mode needs a brighter primary than any shade on the scale reaches
+            // (matched to the clinical copilot site: ~94% primary, ~60% secondary).
+            text:
+                mode === 'dark'
+                    ? {
+                          primary: brightNeutral(94),
+                          primaryHover: brightNeutral(99),
+                          secondary: neutral.cs7,
+                          secondaryHover: neutral.cs8,
+                      }
+                    : {
+                          primary: neutral.cs7,
+                          primaryHover: neutral.cs8,
+                          secondary: neutral.cs5,
+                          secondaryHover: neutral.cs7,
+                      },
         },
         transitions: getTransitions(themeInputs.transitions),
         boxShadow: getBoxShadow(boxShadowOffsets, mode === 'dark' ? colorConstants.darkShadow : colorConstants.shadow),
