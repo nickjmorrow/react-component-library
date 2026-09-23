@@ -1,0 +1,36 @@
+name: Deploy demo site
+
+on:
+    push:
+        branches: [master]
+    workflow_dispatch:
+
+# Only one deploy at a time; a newer push supersedes one still in progress.
+concurrency:
+    group: deploy
+    cancel-in-progress: true
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write # push the built site to the gh-pages branch
+        steps:
+            - uses: actions/checkout@v7
+
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: 24
+                  cache: npm
+
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run typecheck
+            - run: npm test
+            - run: npm run build:example
+
+            # Same result as `npm run deploy`: publish example/dist to the gh-pages branch.
+            - uses: peaceiris/actions-gh-pages@1ef5a1b1df4c63fe21a2242edbee6cac921ece01 # v4.1.0
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: example/dist
