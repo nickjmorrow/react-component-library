@@ -19,9 +19,8 @@ const githubPagesRoutes = (): Plugin => ({
     },
 });
 
-export default defineConfig(({ command, isPreview }) => ({
-    // GitHub Pages serves the site from /react-component-library/.
-    base: command === 'build' || isPreview ? '/react-component-library/' : '/',
+export default defineConfig({
+    // Served at the root of its custom domain; example/public/CNAME tells GitHub Pages which.
     plugins: [react(), githubPagesRoutes()],
     resolve: {
         alias: {
@@ -34,4 +33,4 @@ export default defineConfig(({ command, isPreview }) => ({
     server: { port: 8080 },
     // The demo ships as a single bundle; it's a docs site, not something to code-split.
     build: { chunkSizeWarningLimit: 1000 },
-}));
+});

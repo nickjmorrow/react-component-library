@@ -2,7 +2,7 @@
 
 [![Deploy demo site](https://github.com/nickjmorrow/react-component-library/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/nickjmorrow/react-component-library/actions/workflows/deploy.yml) [![NPM](https://img.shields.io/npm/v/@nickjmorrow/react-component-library.svg)](https://www.npmjs.com/package/@nickjmorrow/react-component-library)
 
-The live demo can be found [here](https://nickjmorrow.github.io/react-component-library/).
+The live demo can be found [here](https://components.nickjmorrow.com/).
 
 ## At a Glance
 
